@@ -9,7 +9,7 @@ e crie o arquivo do miolo.
 import html, json, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://cobaia.vercel.app"
+SITE = "https://cobaia-dev.vercel.app"
 REDES = [
     ("Instagram", "https://www.instagram.com/cobaia.dev/"),
     ("TikTok", "https://www.tiktok.com/@cobaia.dev"),
