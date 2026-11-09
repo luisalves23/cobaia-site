@@ -26,8 +26,8 @@ DIAS = [
          desc="O manual pra criar a sua primeira skill no Claude e ensinar uma tarefa do seu jeito."),
     dict(n=4, slug="limpar", kw="LIMPAR", curto="19 mil e-mails limpos",
          desc="Os dois prompts pra limpar a caixa de entrada e receber o resumo da noite com o Claude no Gmail e na Agenda."),
-    dict(n=5, slug="mcp", kw="MCP", curto="A tomada padrão da IA",
-         desc="Guia sem programação do MCP: o que é, como funciona e como ligar o seu primeiro app no Claude."),
+    dict(n=5, slug="mcp", kw="MCP", curto="O Claude montou meu post no Canva",
+         desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
 ]
 TOTAL = 30
 
