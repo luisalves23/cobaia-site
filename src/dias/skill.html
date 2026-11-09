@@ -1,0 +1,95 @@
+{"titulo":"Skill é a receita da vó","kicker":"o manual pra criar a sua","h1":"Skill é a <span class=\"r\">receita da vó</span>","lede":"O melhor chef do mundo perde pro feijão da sua vó. Com o Claude é igual: ele entende de tudo, menos do seu jeito. A skill ensina. Aqui está <b>o manual pra criar a sua</b>, sem escrever nada à mão.","meta":["leitura de 4 min","funciona no plano grátis","vídeo de 63 s"]}
+---
+<section aria-labelledby="t1">
+  <p class="eyebrow">em 30 segundos</p>
+  <h2 id="t1" class="rv">O resumo do vídeo</h2>
+  <div class="tldr">
+    <div class="glass rv"><span class="ic">01</span><p>Skill é <b>um arquivo de texto</b> que ensina uma tarefa exatamente do jeito que você gosta.</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>Você pode ter dezenas. O Claude <b>só lê o nome</b> e pra que cada uma serve, e abre a certa quando o pedido combina.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>Você <b>não precisa escrever</b>: pede pro próprio Claude montar a sua. Ele pergunta o que falta.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t2">
+  <div class="read rv">
+    <p class="eyebrow">como ele escolhe</p>
+    <h2 id="t2">O livro de <span class="r">receitas</span></h2>
+    <p>O Claude não decora o livro inteiro. Ele passa o olho no índice e só abre a página que combina com o pedido. Por isso dá pra ter um monte de skills sem entulhar a cabeça dele. Toque num pedido:</p>
+  </div>
+  <div class="lab glass rv">
+    <div class="asks" role="group" aria-label="Pedidos de exemplo">
+      <button type="button" data-k="rel" aria-pressed="false">Faz o relatório de outubro</button>
+      <button type="button" data-k="post" aria-pressed="false">Escreve a legenda do post de hoje</button>
+      <button type="button" data-k="gas" aria-pressed="false">Organiza meus gastos do mês</button>
+    </div>
+    <div class="shelf" id="shelf">
+      <div class="rec" data-k="rel" style="--r:-1.2deg"><b>relatorio-mensal</b><span>Monta o relatório do mês no meu modelo, com os números em tabela e um resumo no topo.</span></div>
+      <div class="rec" data-k="post" style="--r:1deg"><b>legenda-instagram</b><span>Escreve legendas no meu tom: curtas, com emoji no começo e pergunta no final.</span></div>
+      <div class="rec" data-k="gas" style="--r:.8deg"><b>planilha-gastos</b><span>Organiza despesas por categoria e destaca o que passou do orçamento.</span></div>
+      <div class="rec" data-k="vid" style="--r:-.6deg"><b>videos-cobaia</b><span>Cria os vídeos do canal com as cores, o ritmo e as músicas do @cobaia.dev.</span></div>
+    </div>
+    <p class="cap" id="shelf-cap">O Claude lê só o nome e a descrição de cada uma. Escolha um pedido acima.</p>
+  </div>
+</section>
+
+<section aria-labelledby="t3">
+  <div class="read">
+    <p class="eyebrow">por dentro</p>
+    <h2 id="t3" class="rv">É só um <span class="r">arquivo de texto</span></h2>
+    <p class="rv">Uma skill é um arquivo chamado <span class="ui">SKILL.md</span>. Em cima vão o nome e pra que ela serve, que é o que o Claude lê primeiro. Embaixo vai a receita.</p>
+    <div class="file glass rv">
+      <div class="fh">SKILL.md</div>
+<pre><span class="k">---</span>
+<span class="k">name:</span> legenda-instagram
+<span class="k">description:</span> Escreve legendas de Instagram no meu tom.
+  Use quando eu pedir legenda, texto de post ou caption.
+<span class="k">---</span>
+
+<span class="c"># Como eu escrevo</span>
+- Abro com um emoji e uma frase curta que prende.
+- No máximo 5 linhas antes das hashtags.
+- Falo como amigo: "você", nada de "prezado".
+- Termino sempre com uma pergunta pro público.
+- 5 hashtags, sempre em minúsculas.</pre>
+    </div>
+    <p class="rv" style="margin-top:16px;color:var(--muted)">O vídeo do Dia 3 saiu de uma skill minha com mais de 300 linhas de cor, corte e música. E quando o Claude te entrega um PowerPoint pronto, por trás tem uma skill da própria Anthropic.</p>
+  </div>
+</section>
+
+<section aria-labelledby="t4">
+  <div class="read">
+    <p class="eyebrow">o manual que eu prometi</p>
+    <h2 id="t4" class="rv">Crie a sua, <em>sem escrever</em></h2>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>Ative as skills</b><span class="d">Em <span class="ui">Configurações</span> → <span class="ui">Capacidades</span>, ligue a execução de código e as skills.</span></div></li>
+      <li class="glass rv"><span class="gn">2</span><div><b>Escolha uma tarefa que você repete</b><span class="d">Relatório, legenda, e-mail pra cliente, organizar planilha. Quanto mais você corrige o Claude nela, melhor candidata.</span></div></li>
+      <li class="glass rv"><span class="gn">3</span><div><b>Cole o pedido abaixo numa conversa nova</b><span class="d">Troque o trecho em vermelho pela sua tarefa.</span></div></li>
+      <li class="glass rv"><span class="gn">4</span><div><b>Responda as perguntas dele</b><span class="d">Ele pergunta o que falta, uma coisa por vez. Mande exemplos do que você já fez: ajuda muito.</span></div></li>
+      <li class="glass rv"><span class="gn">5</span><div><b>Salve a skill e teste</b><span class="d">Ele entrega o arquivo pronto. Salve nas suas skills e faça o pedido de novo numa conversa nova.</span></div></li>
+    </ol>
+    <div class="prompt glass rv">
+      <div class="prompt-h"><span class="t">Pedido pra criar a skill</span><button class="copy" type="button" data-copy="sk">Copiar</button></div>
+      <pre id="sk">Quero criar uma skill para <mark>escrever as legendas dos meus posts</mark>. Me faça as perguntas que faltarem, uma por vez, pra entender exatamente como eu gosto. Depois monte a skill completa e pronta pra eu salvar.</pre>
+    </div>
+    <p class="note">// os nomes dos menus podem mudar com as atualizações do Claude</p>
+  </div>
+</section>
+
+<section aria-labelledby="t5">
+  <div class="read rv">
+    <p class="eyebrow">dúvidas dos comentários</p>
+    <h2 id="t5">Perguntas frequentes</h2>
+    <details><summary>Funciona no plano grátis?</summary><p>Sim, como eu mostrei no vídeo.</p></details>
+    <details><summary>Qual a diferença pra um prompt salvo?</summary><p>O prompt você precisa colar toda vez. A skill fica guardada e o Claude abre sozinho quando o pedido combina.</p></details>
+    <details><summary>Muitas skills deixam o Claude lento ou confuso?</summary><p>Não. Ele só lê o nome e a descrição de cada uma e abre por inteiro só a que vai usar.</p></details>
+    <details><summary>Ele errou do meu jeito. E agora?</summary><p>Fale o que ficou errado e peça pra ele atualizar a skill. Ela vai ficando melhor a cada correção.</p></details>
+  </div>
+</section>
+
+<script>
+(function(){var sh=document.getElementById('shelf'),cap=document.getElementById('shelf-cap'),bs=document.querySelectorAll('.asks button');
+var T={rel:'Pedido de relatório: ele abre só a receita relatorio-mensal e segue à risca.',post:'Pedido de legenda: ele abre só a legenda-instagram. As outras continuam fechadas.',gas:'Pedido de gastos: ele abre só a planilha-gastos.'};
+bs.forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-k');sh.setAttribute('data-pick',k);
+bs.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+sh.querySelectorAll('.rec').forEach(function(r){r.classList.toggle('on',r.getAttribute('data-k')===k)});cap.textContent=T[k];})});})();
+</script>

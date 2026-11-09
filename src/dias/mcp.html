@@ -1,0 +1,137 @@
+{"titulo":"MCP, a tomada padrão da IA","kicker":"a tomada padrão da IA","h1":"Os maiores <span class=\"r\">rivais</span> usam isso","lede":"Foi a Anthropic que criou o MCP, e hoje OpenAI e Google também usam. Aqui está o guia completo do vídeo, <b>sem uma linha de programação</b>: o que é, como funciona e como ligar o seu primeiro app no Claude.","meta":["leitura de 4 min","nível: zero código","vídeo de 52 s"]}
+---
+<section aria-labelledby="t1">
+  <p class="eyebrow">em 30 segundos</p>
+  <h2 id="t1">O resumo do vídeo</h2>
+  <div class="tldr">
+    <div class="glass rv"><span class="ic">01</span><p>Antes, cada IA precisava de uma <b>ponte feita sob medida</b> pra conversar com cada app.</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>O MCP virou <b>a tomada padrão</b>: o app instala a tomada uma vez e qualquer IA compatível encaixa.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>Os <b>conectores</b> do Claude rodam quase todos em MCP. Pra você, é só apertar "conectar".</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t2">
+  <div class="read rv">
+    <p class="eyebrow">o problema</p>
+    <h2 id="t2">O caos antes dos <span class="r">3 pinos</span></h2>
+    <p>Lembra quando cada aparelho tinha um plugue diferente e a gaveta de casa era cheia de adaptador? Com a IA era pior. Pra ligar o Claude no seu e-mail, alguém programava uma ponte. Pra ligar na agenda, outra ponte. Se aparecesse outra IA, todas as pontes tinham que ser feitas de novo.</p>
+    <p>Aperte o botão abaixo e veja a diferença.</p>
+  </div>
+  <div class="lab glass rv" data-mode="a">
+    <div class="lab-head">
+      <div class="toggle" role="group" aria-label="Comparar">
+        <button type="button" data-set="a" aria-pressed="true">Antes</button>
+        <button type="button" data-set="b" aria-pressed="false">Com MCP</button>
+      </div>
+      <div class="count"><b data-a="9" data-b="6">9</b><span data-a="pontes sob medida" data-b="encaixes no mesmo padrão">pontes sob medida</span></div>
+    </div>
+    <div class="svgbox">
+    <svg id="rede" viewBox="0 0 720 380" role="img" aria-label="Três IAs ligadas a três apps. Antes: nove ligações separadas. Com MCP: todos passam por uma tomada central.">
+      <defs><filter id="gl"><feGaussianBlur stdDeviation="6"/></filter></defs>
+      <g id="wires"></g>
+      <g class="hub">
+        <circle cx="360" cy="190" r="56" fill="#FF2D2D" opacity=".25" filter="url(#gl)"/>
+        <circle cx="360" cy="190" r="46" fill="#141414" stroke="#FF2D2D" stroke-width="3"/>
+        <rect x="342" y="172" width="8" height="18" rx="2" fill="#F2EEE6"/>
+        <rect x="370" y="172" width="8" height="18" rx="2" fill="#F2EEE6"/>
+        <rect x="356" y="198" width="8" height="14" rx="2" fill="#F2EEE6"/>
+        <text x="360" y="262" text-anchor="middle" fill="#F2EEE6" font-family="Anton,Impact,sans-serif" font-size="22" letter-spacing="2">MCP</text>
+      </g>
+      <g id="pulses"></g>
+      <g id="nodes"></g>
+      <text class="tag" x="360" y="356" text-anchor="middle" fill="#FF2D2D" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" transform="rotate(-3 360 356)">GAMBIARRA</text>
+    </svg>
+    </div>
+    <p class="cap" data-a="3 IAs × 3 apps = 9 integrações diferentes. Cada app novo multiplica o trabalho de todo mundo." data-b="Cada app instala a tomada uma vez, cada IA encaixa uma vez. App novo? Uma tomada só, e todas as IAs já conseguem usar.">3 IAs × 3 apps = 9 integrações diferentes. Cada app novo multiplica o trabalho de todo mundo.</p>
+  </div>
+</section>
+
+<section aria-labelledby="t3">
+  <div class="read">
+    <p class="eyebrow">como funciona</p>
+    <h2 id="t3" class="rv">Tomada, cardápio, <span class="r">escolha</span></h2>
+    <div class="steps">
+      <div class="step rv"><span class="n">1</span><div><h3>Cada app instala a sua tomada</h3><p>O Gmail, a Agenda, a planilha: cada serviço publica um "servidor MCP". É a tomada dele na parede.</p></div></div>
+      <div class="step rv"><span class="n">2</span><div><h3>A tomada avisa o que sabe fazer</h3><p>Junto vem uma lista de ferramentas: buscar e-mail, marcar reunião, abrir planilha. É o cardápio da casa.</p></div></div>
+      <div class="step rv"><span class="n">3</span><div><h3>O Claude lê o cardápio e escolhe</h3><p>Você faz o pedido em português normal. Ele vê o que está disponível, escolhe a ferramenta certa e, quando for mexer em algo, pede a sua aprovação.</p></div></div>
+    </div>
+    <div class="menu rv" aria-label="Exemplo de cardápio de ferramentas">
+      <h4>— CARDÁPIO —</h4>
+      <ul>
+        <li><span>Buscar e-mail</span><span>gmail</span></li>
+        <li class="pick"><span>Marcar reunião</span><span>agenda</span></li>
+        <li><span>Abrir planilha</span><span>drive</span></li>
+        <li><span>Criar documento</span><span>drive</span></li>
+      </ul>
+      <div class="ask"><span>Marca uma call com o Pedro quinta às 15h</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="t4">
+  <p class="eyebrow">por que os rivais entraram</p>
+  <h2 id="t4" class="rv">O padrão é <span class="r">aberto</span></h2>
+  <p class="read rv">A Anthropic publicou o MCP como padrão aberto: qualquer empresa pode fazer a sua tomada sem pedir licença. Quanto mais apps falam MCP, mais vale a pena pra qualquer IA usar também. Por isso a fila andou rápido.</p>
+  <div class="tl">
+    <div class="rv"><span class="when">novembro de 2024</span><div class="who">Anthropic</div><p>Lança o Model Context Protocol, aberto, junto com o Claude.</p></div>
+    <div class="rv rv-d1"><span class="when">março de 2025</span><div class="who">OpenAI <span class="senha">Nº 1</span></div><p>Anuncia suporte ao MCP nos seus produtos para desenvolvedores.</p></div>
+    <div class="rv rv-d2"><span class="when">abril de 2025</span><div class="who">Google <span class="senha">Nº 2</span></div><p>Confirma que vai suportar o MCP nos modelos Gemini.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t5">
+  <div class="read">
+    <p class="eyebrow">o guia que eu prometi</p>
+    <h2 id="t5" class="rv">Ligue seu primeiro app, <em>sem programar</em></h2>
+    <p class="rv">Você não vê o MCP. Ele fica por trás dos conectores. Pra usar, o caminho é este:</p>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>Abra o Claude no computador ou no app</b><span class="d">Em claude.ai ou no aplicativo do Claude, logado na sua conta.</span></div></li>
+      <li class="glass rv"><span class="gn">2</span><div><b>Vá em <span class="ui">Configurações</span> → <span class="ui">Conectores</span></b><span class="d">É lá que ficam os apps que você já ligou e o botão pra procurar novos.</span></div></li>
+      <li class="glass rv"><span class="gn">3</span><div><b>Escolha um app e clique em <span class="ui">Conectar</span></b><span class="d">Comece com um só, como o Gmail ou a Google Agenda. Faça login e autorize.</span></div></li>
+      <li class="glass rv"><span class="gn">4</span><div><b>Teste com um pedido simples</b><span class="d">"Quais e-mails desta semana ficaram sem resposta?" Ele busca, resume e mostra de onde tirou.</span></div></li>
+      <li class="glass rv"><span class="gn">5</span><div><b>Não gostou? Desconecte</b><span class="d">Na mesma tela, um clique e o acesso some.</span></div></li>
+    </ol>
+    <p class="note">// os nomes dos menus podem mudar com as atualizações do Claude</p>
+    <div class="warn glass red rv">
+      <span class="big">!</span>
+      <p><b>Leia antes de aprovar.</b> Um e-mail ou documento pode esconder instruções pro Claude. Por padrão ele pede a sua aprovação antes de enviar, apagar ou mudar algo. Confira o que ele vai fazer antes de dizer sim.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="t6">
+  <p class="eyebrow">palavras do vídeo</p>
+  <h2 id="t6" class="rv">Glossário rápido</h2>
+  <dl class="gloss">
+    <div class="glass rv"><dt>MCP</dt><dd>Model Context Protocol. O padrão que diz como uma IA conversa com um app.</dd></div>
+    <div class="glass rv rv-d1"><dt>Servidor MCP</dt><dd>A "tomada" de um app. É o que o app publica pra qualquer IA compatível poder usar.</dd></div>
+    <div class="glass rv"><dt>Conector</dt><dd>O nome que o Claude dá pra um app ligado. Quase todos funcionam por MCP.</dd></div>
+    <div class="glass rv rv-d1"><dt>Ferramenta</dt><dd>Cada item do cardápio: uma ação que o app deixa a IA fazer, como "buscar e-mail".</dd></div>
+  </dl>
+</section>
+
+<section aria-labelledby="t7">
+  <div class="read rv">
+    <p class="eyebrow">dúvidas dos comentários</p>
+    <h2 id="t7">Perguntas frequentes</h2>
+    <details><summary>Preciso saber programar?</summary><p>Não. Programar só é preciso se você quiser criar a tomada de um app que ainda não tem. Pra usar os conectores prontos, é clicar e autorizar.</p></details>
+    <details><summary>Funciona no plano grátis?</summary><p>Os conectores do diretório funcionam até no plano grátis, como mostrei no Dia 4 com o Gmail e a Agenda. Alguns recursos extras podem pedir um plano pago.</p></details>
+    <details><summary>MCP é a mesma coisa que conector?</summary><p>Quase. O MCP é o padrão por baixo. O conector é o botão que você vê no Claude. Um usa o outro.</p></details>
+    <details><summary>Se a OpenAI usa, o ChatGPT vira o Claude?</summary><p>Não. Cada IA continua sendo uma IA diferente. O que fica igual é a tomada: o mesmo app pode ser ligado em várias delas.</p></details>
+  </div>
+</section>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg',ais=[['Claude',90],['OpenAI',190],['Gemini',290]],apps=[['Gmail',90],['Agenda',190],['Planilha',290]];
+  var LX=110,RX=610,HX=360,HY=190,W=document.getElementById('wires'),ND=document.getElementById('nodes'),P=document.getElementById('pulses');
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e}
+  ais.forEach(function(a,i){apps.forEach(function(p,j){var w=(i-j)*38;W.appendChild(el('path',{'class':'wire bad',d:'M'+(LX+44)+' '+a[1]+' C '+(300+w)+' '+(a[1]-60+j*40)+', '+(420-w)+' '+(p[1]+60-i*40)+', '+(RX-44)+' '+p[1]}))})});
+  function good(d){W.appendChild(el('path',{'class':'wire good',d:d}));var c=el('circle',{'class':'pulse',r:4});c.appendChild(el('animateMotion',{dur:'2.2s',repeatCount:'indefinite',path:d,begin:(Math.random()*2).toFixed(2)+'s'}));P.appendChild(c)}
+  ais.forEach(function(a){good('M'+(LX+44)+' '+a[1]+' C 240 '+a[1]+', 260 '+HY+', '+(HX-46)+' '+HY)});
+  apps.forEach(function(p){good('M'+(HX+46)+' '+HY+' C 460 '+HY+', 480 '+p[1]+', '+(RX-44)+' '+p[1])});
+  function node(x,y,l,hot){var g=el('g',{});g.appendChild(el('rect',{x:x-44,y:y-26,width:88,height:52,rx:14,fill:hot?'#D97757':'#F2EEE6',stroke:'#0c0c0c','stroke-width':2}));var t=el('text',{x:x,y:y+5,'text-anchor':'middle',fill:'#0c0c0c','font-family':'Inter,system-ui,sans-serif','font-size':14,'font-weight':800});t.textContent=l;g.appendChild(t);ND.appendChild(g)}
+  ais.forEach(function(a,i){node(LX,a[1],a[0],i===0)});apps.forEach(function(p){node(RX,p[1],p[0])});
+  [['IAs',LX],['APPS',RX]].forEach(function(h){var t=el('text',{x:h[1],y:40,'text-anchor':'middle',fill:'#a7a29a','font-family':'JetBrains Mono,monospace','font-size':12,'font-weight':700,'letter-spacing':2});t.textContent=h[0];ND.appendChild(t)});
+})();
+</script>
