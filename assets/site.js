@@ -74,7 +74,7 @@
         f.setAttribute('color-interpolation-filters', 'sRGB');
         f.innerHTML = '<feImage href="' + m.url + '" x="0" y="0" width="' + w + '" height="' + h + '" preserveAspectRatio="none" result="map"/>' +
           '<feImage href="' + m.mask + '" x="0" y="0" width="' + w + '" height="' + h + '" preserveAspectRatio="none" result="rim"/>' +
-          '<feGaussianBlur in="SourceGraphic" stdDeviation="6" edgeMode="duplicate" result="soft"/>' +
+          '<feGaussianBlur in="SourceGraphic" stdDeviation="' + (h < 90 ? 6 : 3.5) + '" edgeMode="duplicate" result="soft"/>' +
           '<feDisplacementMap in="SourceGraphic" in2="map" scale="' + m.scale.toFixed(1) + '" xChannelSelector="R" yChannelSelector="G" result="lens"/>' +
           '<feGaussianBlur in="lens" stdDeviation="0.6" result="lens2"/>' +
           '<feComposite in="lens2" in2="rim" operator="in" result="edge"/>' +
