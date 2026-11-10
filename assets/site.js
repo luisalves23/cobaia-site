@@ -5,7 +5,9 @@
 
   /* ---------- liberação diária: 12h de Brasília (15h UTC) ---------- */
   // Dia 4 sai em 09/11/2026; um dia novo por dia a partir daí.
-  function releaseOf(n) { return Date.UTC(2026, 10, 5 + n, 15, 0, 0); }
+  /* EARLY: dias liberados antes das 12h a pedido do Luis (dia: horário UTC) */
+  var EARLY = { 5: Date.UTC(2026, 10, 10, 11, 0, 0) };
+  function releaseOf(n) { return EARLY[n] || Date.UTC(2026, 10, 5 + n, 15, 0, 0); }
   function released(n) { return Date.now() >= releaseOf(n); }
   window.COBAIA = { releaseOf: releaseOf, released: released };
 
