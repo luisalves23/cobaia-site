@@ -8,6 +8,7 @@ const items = [
   ['dia03', 'DIA 03/30', 'SKILL É A <span>RECEITA DA VÓ</span>', 'SKILL'],
   ['dia04', 'DIA 04/30', '19 MIL E-MAILS <span>LIMPOS</span>', 'LIMPAR'],
   ['dia05', 'DIA 05/30', 'MCP: A TOMADA <span>PADRÃO</span> DA IA', 'MCP'],
+  ['dia06', 'DIA 06/30', 'UM NOTEBOOK VELHO <span>RESSUSCITADO</span>', 'NOTEBOOK'],
   ['hub', 'PROJETO 30 DIAS', '30 DIAS, <span>30 EXPERIMENTOS</span> COM CLAUDE', null],
 ];
 const css = `@font-face{font-family:Anton;src:url(${A}fonts/anton-latin-400-normal.woff2)}@font-face{font-family:M;font-weight:700;src:url(${A}fonts/jetbrains-mono-latin-700-normal.woff2)}@font-face{font-family:S;font-style:italic;src:url(${A}fonts/instrument-serif-latin-400-italic.woff2)}
