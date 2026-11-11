@@ -29,7 +29,7 @@ DIAS = [
     dict(n=5, slug="mcp", kw="MCP", curto="O Claude montou meu post no Canva",
          desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
     dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude",
-         desc="O guia pra reviver um notebook velho com um Linux leve e o Claude, com os pedidos prontos pra copiar."),
+         desc="O guia pra reviver um notebook velho com um Debian 13 e o Claude Code, do pendrive à interface, com os pedidos prontos pra copiar."),
 ]
 TOTAL = 30
 

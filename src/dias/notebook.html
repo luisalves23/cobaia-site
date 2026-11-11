@@ -1,20 +1,21 @@
-{"titulo":"Ressuscitei um notebook velho com o Claude","kicker":"o notebook que parecia lixo","h1":"Ressuscitei um <span class=\"r\">notebook velho</span> com o Claude","lede":"Um notebook que não ligava e, depois, era lento demais. Com o Claude, ele virou uma máquina rápida. Aqui está <b>o passo a passo, os números e os pedidos prontos pra copiar</b>.","meta":["leitura de 5 min","nível: zero código","precisa de um pendrive"]}
+{"titulo":"Ressuscitei um notebook velho com o Claude","kicker":"o notebook que parecia lixo","h1":"Ressuscitei um <span class=\"r\">notebook velho</span> com o Claude","lede":"Um notebook que não aguentava abrir um app virou uma máquina rápida e bonita. Aqui está <b>o jeito mais curto de fazer o mesmo</b>: você prepara o pendrive, instala o Debian 13 e deixa o Claude cuidar do resto.","meta":["leitura de 8 min","nível: zero código","precisa de um pendrive"]}
 ---
 <section aria-labelledby="t1">
   <p class="eyebrow">em 30 segundos</p>
   <h2 id="t1">O resumo do vídeo</h2>
   <div class="tldr">
-    <div class="glass rv"><span class="ic">01</span><p>Notebook que "não liga" pode ser <b>só a bateria descarregada demais</b>. Antes de jogar fora, teste.</p></div>
-    <div class="glass rv rv-d1"><span class="ic">02</span><p>Ele era lento porque o sistema vem cheio de coisa rodando escondida. A saída foi <b>instalar um Linux leve do zero</b>.</p></div>
-    <div class="glass rv rv-d2"><span class="ic">03</span><p>O Claude guiou cada passo, do pendrive à interface. Quando travava, eu <b>descrevia o erro ou mandava foto da tela</b>.</p></div>
+    <div class="glass rv"><span class="ic">01</span><p>Notebook que "não liga" pode ser só a bateria descarregada demais. Teste antes de jogar fora.</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>Você só prepara o pendrive e instala o Debian 13 mínimo. É a única parte que fica na sua mão.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>Com o sistema de pé, instala o Claude Code no próprio notebook. Ele monta a interface, a identidade visual e os apps.</p></div>
   </div>
+  <figure class="rv" style="margin:28px 0 0"><img src="../assets/img/notebook-3d.jpg" alt="Notebook Positivo vermelho em 3D com o Claude Code aberto no terminal" width="1200" height="800" loading="lazy" style="width:100%;height:auto;border-radius:24px;display:block"><figcaption class="note">// o meu notebook, com o Claude Code rodando dentro dele</figcaption></figure>
 </section>
 
 <section aria-labelledby="t2">
   <div class="read">
     <p class="eyebrow">passo zero</p>
     <h2 id="t2" class="rv">Antes de jogar fora, <span class="r">tente isso</span></h2>
-    <p class="rv">Notebook parado por muito tempo pode estar com a bateria em descarga profunda. Parece morto, mas não está. Faça nesta ordem:</p>
+    <p class="rv">Notebook parado por muito tempo pode estar com a bateria em descarga profunda. Parece morto, mas ainda tem conserto. Faça nesta ordem:</p>
     <ol class="guide">
       <li class="glass rv"><span class="gn">1</span><div><b>Ligue o carregador e espere</b><span class="d">Deixe carregando de 1 a 2 horas antes de tentar ligar.</span></div></li>
       <li class="glass rv"><span class="gn">2</span><div><b>Segure o botão de ligar por 30 a 60 segundos</b><span class="d">Com o carregador ligado. Depois solte e aperte uma vez.</span></div></li>
@@ -29,10 +30,11 @@
     <p class="eyebrow">o que você precisa</p>
     <h2 id="t3" class="rv">A lista de <span class="r">materiais</span></h2>
     <ul class="rv" style="padding-left:20px;display:grid;gap:8px">
-      <li>O notebook velho.</li>
+      <li>O notebook velho, de preferência com 4 GB de memória ou mais.</li>
       <li>Um pendrive de 8 GB ou mais.</li>
-      <li>Outro computador, só para baixar o sistema.</li>
-      <li>O Claude, no app do Claude ou no Claude Code.</li>
+      <li>Outro computador, só para baixar o sistema e gravar o pendrive.</li>
+      <li>Internet no notebook, por cabo, Wi-Fi ou o celular ligado por USB.</li>
+      <li>Uma conta paga do Claude para usar o Claude Code. Eu usei o plano de R$ 100 por mês.</li>
     </ul>
   </div>
 </section>
@@ -41,7 +43,7 @@
   <div class="read">
     <p class="eyebrow">o problema</p>
     <h2 id="t4" class="rv">Por que ele ficou <span class="r">lento</span></h2>
-    <p class="rv">Os sistemas atuais vêm cheios de apps e serviços rodando escondidos. Num notebook velho, isso pesa. O caminho foi instalar um Linux leve do zero e montar só o que eu precisava. No experimento, usei o Debian 13 mínimo, sem interface nenhuma.</p>
+    <p class="rv">Os sistemas atuais vêm cheios de apps e serviços rodando escondidos, e num notebook velho isso pesa. A saída foi apagar tudo e instalar um Linux leve do zero. Escolhi o Debian 13, sem interface nenhuma, e deixei o Claude montar só o que eu precisava.</p>
   </div>
 </section>
 
@@ -49,11 +51,16 @@
   <div class="read">
     <p class="eyebrow">o passo a passo</p>
     <h2 id="t5" class="rv">Do pendrive ao <em>sistema novo</em></h2>
+    <p class="rv">Este é o caminho mais curto. No vídeo eu dei muitas voltas até chegar aqui, e você pode pular todas elas.</p>
     <div class="steps">
-      <div class="step rv"><span class="n">1</span><div><h3>Baixe a imagem do sistema e confira o hash</h3><p>Baixe no outro computador. O hash SHA256 prova que o arquivo veio inteiro e sem alteração. Peça ao Claude pra explicar como conferir no seu computador.</p></div></div>
-      <div class="step rv"><span class="n">2</span><div><h3>Grave no pendrive</h3><p>Use o Ventoy ou um programa parecido. O Claude explica como usar o que você escolher.</p></div></div>
-      <div class="step rv"><span class="n">3</span><div><h3>Instale no notebook</h3><p>Ligue pelo pendrive e siga a instalação com o Claude do lado. A conversa fica aberta no outro computador.</p></div></div>
-      <div class="step rv"><span class="n">4</span><div><h3>Travou? Conte pro Claude</h3><p>Descreva o erro ou mande uma foto da tela. Ele diz o que tentar. No meu caso, o Wi-Fi travava o sistema, e a solução foi um kernel mais novo.</p></div></div>
+      <div class="step rv"><span class="n">1</span><div><h3>Faça backup de tudo</h3><p>Instalar do zero apaga o disco. Copie fotos e documentos para outro lugar antes de começar.</p></div></div>
+      <div class="step rv"><span class="n">2</span><div><h3>Baixe o Debian 13</h3><p>No outro computador, entre em debian.org, abra a página de download e pegue a imagem de instalação pela internet (netinst) para 64 bits. É um arquivo .iso pequeno. O Claude confere o hash SHA256 com você, se quiser garantir que o arquivo veio inteiro.</p></div></div>
+      <div class="step rv"><span class="n">3</span><div><h3>Grave o pendrive bootável</h3><p>Use o balenaEtcher ou o Rufus. Abra o programa, escolha o arquivo .iso, escolha o pendrive e clique em gravar. Tudo o que estava no pendrive some.</p></div></div>
+      <div class="step rv"><span class="n">4</span><div><h3>Ligue o notebook pelo pendrive</h3><p>Com o pendrive espetado, ligue o notebook e aperte a tecla do menu de boot logo no início. Costuma ser F12, F2, Esc ou Del, e muda de marca para marca. Escolha o pendrive na lista.</p></div></div>
+      <div class="step rv"><span class="n">5</span><div><h3>Instale o Debian</h3><p>Escolha a instalação normal, português do Brasil e o disco inteiro com particionamento guiado. Na tela de seleção de programas, desmarque tudo, deixando só os utilitários padrão do sistema. O Claude monta o resto depois, então o sistema fica mínimo. Se o Wi-Fi não aparecer durante a instalação, use um cabo de rede ou compartilhe a internet do celular por USB.</p></div></div>
+      <div class="step rv"><span class="n">6</span><div><h3>Prepare o terminal</h3><p>Reinicie, tire o pendrive e entre com o usuário que você criou. Digite <code>su -</code>, coloque a senha de administrador e rode <code>apt update &amp;&amp; apt install -y curl sudo git</code>. Depois rode <code>usermod -aG sudo SEU_USUARIO</code>, saia e entre de novo.</p></div></div>
+      <div class="step rv"><span class="n">7</span><div><h3>Instale o Claude Code</h3><p>Ainda no terminal do notebook, rode <code>curl -fsSL https://claude.ai/install.sh | bash</code> e depois <code>claude</code>. Ele mostra um link: abra no celular, entre na sua conta e cole o código de volta. Se o comando <code>claude</code> não for encontrado, feche e abra o terminal.</p></div></div>
+      <div class="step rv"><span class="n">8</span><div><h3>Peça o resto ao Claude</h3><p>A partir daqui você só conversa. Peça a interface, a identidade visual, os apps e os ajustes de desempenho com os pedidos prontos mais abaixo. Quando algo travar, cole o erro na conversa.</p></div></div>
     </div>
   </div>
 </section>
@@ -61,8 +68,8 @@
 <section aria-labelledby="t6">
   <div class="read">
     <p class="eyebrow">o salto</p>
-    <h2 id="t6" class="rv">Coloque o Claude <span class="r">dentro</span> do notebook</h2>
-    <p class="rv">Com o sistema funcionando, instalei o Claude Code no terminal do próprio notebook. A partir daí, o Claude passou a configurar a máquina de dentro. Pedi a interface, e ele montou uma área de trabalho leve, com barra no topo, dock e apps próprios.</p>
+    <h2 id="t6" class="rv">Por que o Claude entra <span class="r">cedo</span></h2>
+    <p class="rv">Instalar o Claude Code logo depois do Debian evita o trabalho mais chato. Com ele rodando no próprio notebook, você deixa de caçar tutoriais para cada driver e cada configuração. Pede em português, ele executa os comandos, lê os erros e corrige. Foi assim que ele montou minha área de trabalho, com barra no topo, dock e apps próprios.</p>
   </div>
 </section>
 
@@ -84,26 +91,11 @@
     <p class="eyebrow">o que você veio buscar</p>
     <h2 id="t8" class="rv">Os pedidos prontos</h2>
     <p class="rv">Copie, troque o que está entre colchetes e cole numa conversa com o Claude.</p>
-    <div class="prompt glass rv">
-      <div class="prompt-h"><span><span class="t">Pedido 1</span> · diagnóstico</span><button class="copy" type="button" data-copy="p1">Copiar</button></div>
-      <pre id="p1">Meu notebook [modelo, ex.: Acer Aspire 5] não liga. Me ajuda a diagnosticar passo a passo, uma coisa por vez, começando pela bateria.</pre>
-    </div>
-    <div class="prompt glass rv">
-      <div class="prompt-h"><span><span class="t">Pedido 2</span> · escolher o sistema</span><button class="copy" type="button" data-copy="p2">Copiar</button></div>
-      <pre id="p2">Quero instalar um Linux leve nesse notebook com [quantidade, ex.: 4 GB] de RAM. Qual você recomenda e como faço o pendrive?</pre>
-    </div>
-    <div class="prompt glass rv">
-      <div class="prompt-h"><span><span class="t">Pedido 3</span> · quando dá erro</span><button class="copy" type="button" data-copy="p3">Copiar</button></div>
-      <pre id="p3">Deu esse erro na instalação: [cole o texto ou descreva o que aparece na tela]. O que eu faço?</pre>
-    </div>
-    <div class="prompt glass rv">
-      <div class="prompt-h"><span><span class="t">Pedido 4</span> · a interface</span><button class="copy" type="button" data-copy="p4">Copiar</button></div>
-      <pre id="p4">Monta pra mim uma área de trabalho leve, com barra no topo e dock embaixo. Faz uma coisa por vez e me avisa o que mudou.</pre>
-    </div>
-    <div class="prompt glass rv">
-      <div class="prompt-h"><span><span class="t">Pedido 5</span> · app próprio</span><button class="copy" type="button" data-copy="p5">Copiar</button></div>
-      <pre id="p5">Faz um app nativo simples que grava áudio pelo microfone. Me explica como abrir e testar.</pre>
-    </div>
+<div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 1</span> · diagnóstico</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Meu notebook [modelo, ex.: Acer Aspire 5] não liga. Me ajuda a diagnosticar passo a passo, uma coisa por vez, começando pela bateria.</pre></div>
+<div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 2</span> · configurar o sistema</span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">Acabei de instalar o Debian 13 mínimo neste notebook. Configura o Wi-Fi, o som, o teclado em português e o brilho da tela. Faz uma coisa por vez e me avisa o que mudou.</pre></div>
+<div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 3</span> · a interface e a identidade visual</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Monta pra mim uma área de trabalho leve, com barra no topo e dock embaixo. Cria uma identidade visual própria, com papel de parede, ícones e cores combinando. Faz uma coisa por vez e me avisa o que mudou.</pre></div>
+<div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 4</span> · app próprio</span><button class="copy" type="button" data-copy="p4">Copiar</button></div><pre id="p4">Faz um app nativo simples que grava áudio pelo microfone. Me explica como abrir e testar.</pre></div>
+<div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 5</span> · quando dá erro</span><button class="copy" type="button" data-copy="p5">Copiar</button></div><pre id="p5">Deu esse erro: [cole o texto ou descreva o que aparece na tela]. O que eu faço?</pre></div>
   </div>
 </section>
 
@@ -118,7 +110,7 @@
     <ol class="guide">
       <li class="glass rv"><span class="gn">1</span><div><b>Anote o modelo do Wi-Fi e do som antes de formatar</b><span class="d">Se algo não funcionar depois, você sabe o que pedir pro Claude procurar.</span></div></li>
       <li class="glass rv"><span class="gn">2</span><div><b>Mude uma coisa por vez</b><span class="d">Assim, se algo quebrar, você sabe qual foi a causa.</span></div></li>
-      <li class="glass rv"><span class="gn">3</span><div><b>Anote o que você mudou</b><span class="d">Uma lista simples já ajuda a voltar atrás e a explicar o problema ao Claude.</span></div></li>
+      <li class="glass rv"><span class="gn">3</span><div><b>Leia o que o Claude vai rodar antes de aceitar</b><span class="d">Ele pede sua permissão a cada comando. Se algo parecer apagar arquivos seus, pergunte o motivo antes.</span></div></li>
     </ol>
   </div>
 </section>
@@ -128,8 +120,10 @@
   <h2 id="t10" class="rv">Glossário rápido</h2>
   <dl class="gloss">
     <div class="glass rv"><dt>Linux</dt><dd>Um sistema para computador, alternativo ao que vem de fábrica. Existem versões bem leves.</dd></div>
+    <div class="glass rv rv-d1"><dt>Debian</dt><dd>Uma das versões de Linux mais antigas e estáveis. A 13 é a mais recente.</dd></div>
+    <div class="glass rv"><dt>Pendrive bootável</dt><dd>Um pendrive com o instalador gravado, que o notebook consegue iniciar antes do sistema.</dd></div>
     <div class="glass rv rv-d1"><dt>Hash SHA256</dt><dd>Uma "impressão digital" do arquivo. Se bater com a do site, o arquivo está íntegro.</dd></div>
-    <div class="glass rv"><dt>Kernel</dt><dd>O núcleo do sistema. Um kernel mais novo reconhece mais peças, como o Wi-Fi.</dd></div>
-    <div class="glass rv rv-d1"><dt>Terminal</dt><dd>A tela onde você digita comandos. É onde o Claude Code roda.</dd></div>
+    <div class="glass rv"><dt>Terminal</dt><dd>A tela onde você digita comandos. É onde o Claude Code roda.</dd></div>
+    <div class="glass rv rv-d1"><dt>Claude Code</dt><dd>O Claude dentro do terminal, capaz de rodar comandos e mexer nos arquivos do computador. Exige uma conta paga.</dd></div>
   </dl>
 </section>
