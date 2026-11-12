@@ -30,6 +30,8 @@ DIAS = [
          desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
     dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude",
          desc="O guia pra reviver um notebook velho com um Debian 13 e o Claude Code, do pendrive à interface, com os pedidos prontos pra copiar."),
+    dict(n=7, slug="tv", kw="TV", curto="TV sem propaganda",
+         desc="Como desligar os apps de anúncio da smart TV Android e Google TV com o Claude Code, sem desinstalar nada, com o pedido pronto pra copiar."),
 ]
 TOTAL = 30
 DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)
