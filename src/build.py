@@ -32,6 +32,7 @@ DIAS = [
          desc="O guia pra reviver um notebook velho com um Debian 13 e o Claude Code, do pendrive à interface, com os pedidos prontos pra copiar."),
 ]
 TOTAL = 30
+DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)
 
 ICONS = {
     "Instagram": '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
@@ -183,6 +184,17 @@ def build_hub():
             cards.append(f'''<div class="dcard glass lockd rv"><div class="im">{n:02d}</div><div class="b"><span class="n">DIA {n:02d} · trancado</span><span class="t">Em breve</span></div></div>''')
     kws = {d["kw"]: d["slug"] for d in DIAS if d["kw"]}
     rel = {d["kw"]: d["n"] for d in DIAS if d["kw"]}
+    fd = day(DESTAQUE)
+    feat = f'''<a class="feat glass rv" href="../{fd["slug"]}/" data-lock-day="{fd["n"]}">
+  <div class="feat-im"><img src="../assets/img/capa-dia{fd["n"]:02d}.jpg" alt="Capa do vídeo do Dia {fd["n"]}" width="540" height="960"></div>
+  <div class="feat-b">
+    <span class="feat-tag">veio pelo vídeo do notebook?</span>
+    <span class="feat-n">DIA {fd["n"]:02d} · palavra {fd["kw"]}</span>
+    <span class="feat-t">{esc(fd["curto"])}</span>
+    <p>{esc(fd["desc"])}</p>
+    <span class="feat-go">Abrir o passo a passo do notebook →</span>
+  </div>
+</a>'''
     page = head("30 dias, 30 experimentos com Claude · @cobaia.dev",
                 "Todos os experimentos do @cobaia.dev com o Claude: um vídeo novo por dia, com o guia completo de cada um.",
                 "/30-dias", "hub", 1)
@@ -191,7 +203,10 @@ def build_hub():
   <span class="badge">PROJETO 30 DIAS</span>
   <p class="kick">eu testo antes de você</p>
   <h1>30 dias, <span class="r">30 experimentos</span> com Claude</h1>
-  <p class="lede">Um vídeo novo todo dia às 12h. Cada experimento tem aqui o guia completo, com tudo o que eu prometi no vídeo.</p>
+</div>
+{feat}
+<section class="outros" aria-labelledby="todos"><p class="eyebrow">os outros experimentos</p><h2 id="todos" class="feat-h2">Comentou em outro vídeo? Toque nele aqui embaixo</h2>
+  <p class="lede">Cada vídeo tem aqui o guia completo, com tudo o que eu prometi nele. Se você lembra a palavra que comentou, digite abaixo.</p>
   <div class="progress" aria-hidden="true"><i data-progress></i></div>
   <p class="note"><span data-done>{len(DIAS)}</span> de 30 liberados</p>
   <form class="find glass" id="find" autocomplete="off">
@@ -199,8 +214,7 @@ def build_hub():
     <input id="kw" name="kw" placeholder="ex.: MCP" maxlength="20" enterkeyhint="go">
     <p class="res" id="res" aria-live="polite"></p>
   </form>
-</div>
-<section aria-labelledby="todos"><h2 id="todos" class="sr">Todos os dias</h2><div class="grid30">{"".join(cards)}</div></section>
+<div class="grid30">{"".join(cards)}</div></section>
 {foot(1)}
 </main>
 {calendar(1)}
