@@ -2,8 +2,8 @@
 (function () {
   /* ===== CONFIGURAÇÃO: preencha aqui ===== */
   var CFG = {
-    guia: '',      // checkout Kiwify: Guia do seu tablet (R$ 27,90)
-    combo: '',     // checkout Kiwify: Guia + suporte, oferta de R$ 97,90
+    guia: 'https://pay.kiwify.com.br/KjZdaDl',      // checkout Kiwify: Guia do seu tablet (R$ 27,90)
+    combo: 'https://pay.kiwify.com.br/y20fMyy',     // checkout Kiwify: Guia + suporte, oferta de R$ 97,90
     upgrade: '',   // checkout Kiwify: Guia + suporte, oferta de R$ 70,00 (quem já comprou o guia)
     whatsapp: ''   // número com DDI e DDD, só dígitos. Ex.: 5511999999999
   };
