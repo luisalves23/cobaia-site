@@ -32,20 +32,38 @@
 
 <main id="main">
 
-<section class="hero" aria-labelledby="h1">
+<section class="hero2" aria-labelledby="h1">
   <div class="tag"><b class="day">Dia 08/30</b><span>você comentou <span class="kw">TABLET</span></span><span class="trust">3.894 pessoas ajudadas no notebook</span></div>
-  <!-- VÍDEO DE VENDA: troque src/poster pelo VSL de 30-60 s quando ele estiver pronto (assets/video/). Hoje: o Reel do Dia 08. -->
-  <div class="vsl">
-    <video src="../assets/img/tablet/abertura.mp4" data-full="../assets/video/dia08-reel.mp4" poster="../assets/video/dia08-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vídeo do Dia 08: o tablet que eu trouxe de volta"></video>
-    <button class="play" type="button" aria-label="Assistir o vídeo com som"><span></span></button>
-    <span class="snd">toque pra ouvir</span>
+  <div class="copy">
+    <h1 class="h1" id="h1"><span class="dead">A fabricante abandonou seu tablet.</span><span class="alive">Eu não.</span></h1>
+    <p class="sub">O PDF que não abre, a aula que trava. Me diz o modelo e eu te entrego o passo a passo feito pro seu tablet.</p>
+    <div class="ctas">
+      <a class="btn main" href="#oferta">Quero o guia para o meu modelo de tablet</a>
+      <p class="fine">R$ 27,90, pagamento único. Entrega média agora: <b class="eta" data-eta>22 min</b>. 7 dias de garantia.</p>
+      <a class="btn alt" href="o-mapa-do-tablet-velho.pdf" download>Pegar o guia genérico gratuito</a>
+    </div>
   </div>
-  <h1 class="h1" id="h1"><span class="dead">A fabricante abandonou seu tablet.</span><span class="alive">Eu não.</span></h1>
-  <p class="sub">O PDF que não abre, a aula que trava. Me diz o modelo e eu te entrego o passo a passo feito pro seu tablet.</p>
-  <div class="ctas">
-    <a class="btn main" href="#oferta">Quero o guia para o meu modelo de tablet</a>
-    <p class="fine">R$ 27,90, pagamento único. Entrega média agora: <b class="eta" data-eta>22 min</b>. 7 dias de garantia.</p>
-    <a class="btn alt" href="o-mapa-do-tablet-velho.pdf" download>Pegar o guia genérico gratuito</a>
+  <!-- VÍDEO DE VENDA 16:9: coloque o arquivo em assets/video/vsl-dia08.mp4 e preencha data-src. Sem controles: o play recomeça do zero com som. -->
+  <div class="player" data-src="">
+    <div class="card"><b>A fabricante abandonou<br>seu tablet.</b><span>Dia 08 de 30</span></div>
+    <button class="ov" type="button" aria-label="Assistir o vídeo do começo, com som"><i></i><span>Toque pra assistir com som</span></button>
+    <div class="prog" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section class="pin layers" aria-labelledby="h-niv">
+  <div class="stage">
+    <h2 id="h-niv" class="sr">Eu não vendo Android novo. Eu levo o seu tablet ao limite dele.</h2>
+    <div class="scene" aria-hidden="true"><div class="stack">
+      <div class="ly l-hw"><div class="pcb"><i class="soc"></i><i class="ram"></i><i class="batt-b"></i><i class="port"></i></div></div>
+      <div class="ly l-sys"><div class="sys"><span class="kern">núcleo do sistema</span><span>tela</span><span class="bloat">loja da fábrica</span><span>wi-fi</span><span class="bloat">assistente</span><span class="bloat">jogos pré-instalados</span><span>câmera</span><span class="bloat">notícias</span><span>áudio</span><span>bateria</span><span class="bloat">nuvem da marca</span><span>navegador</span><span class="bloat">"otimizador"</span></div></div>
+      <div class="ly l-ui"><div class="face f5"><div class="scrwrap" data-screen="5"></div></div><div class="face f13"><div class="scrwrap" data-screen="13"></div></div></div>
+    </div></div>
+    <div class="cap" aria-live="polite">
+      <p class="k" data-cap-k>Eu não vendo Android novo. <span>Eu levo o seu tablet ao limite dele.</span></p>
+      <p class="t" data-cap-t>Role e veja o seu tablet por dentro.</p>
+      <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
   </div>
 </section>
 
@@ -70,7 +88,7 @@
     <p class="lead dim">Cada modelo tem um arquivo próprio. O tutorial que salvou o tablet do vizinho pode travar o seu.</p>
     <p class="big">Então eu fiz diferente: <span>você me diz qual é o seu tablet, eu monto o caminho dele.</span></p>
   </div>
-  <div class="drawer" aria-hidden="true"><div class="slab"><img src="../assets/img/tablet/android5.jpg" alt="" width="720" height="733" loading="lazy"></div></div>
+  <div class="drawer" aria-hidden="true"><div class="slab dev"><div class="tabdev"><div class="scrwrap" data-screen="5"></div></div></div></div>
 </section>
 
 <section class="pin salto" aria-labelledby="h-salto">
@@ -80,11 +98,12 @@
     <p class="lbl">parado desde 2017</p>
     <div class="rail" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
     <p class="note">O hardware é o mesmo de 2017. Só o sistema mudou.</p>
-    <div class="fig">
-      <img data-i="0" class="on" src="../assets/img/tablet/android5.jpg" alt="Tela de informações do tablet: Android 5.0.2, sem atualização desde 2017" width="720" height="733">
-      <img data-i="1" src="../assets/img/tablet/salto.jpg" alt="O salto de sistema no meu tablet: Android 5 parado, 10, 11 estável e 13 em teste" width="720" height="787" loading="lazy">
-      <img data-i="2" src="../assets/img/tablet/flash.jpg" alt="O tablet gravando o sistema novo" width="720" height="707" loading="lazy">
-    </div>
+    <div class="fig dev" role="img" aria-label="A tela inicial do tablet mudando do Android 5 para o 10, o 11 e o 13"><div class="tabdev">
+      <div class="face on" data-i="0"><div class="scrwrap" data-screen="5"></div></div>
+      <div class="face" data-i="1"><div class="scrwrap" data-screen="10"></div></div>
+      <div class="face" data-i="2"><div class="scrwrap" data-screen="11"></div></div>
+      <div class="face" data-i="3"><div class="scrwrap" data-screen="13"></div></div>
+    </div></div>
   </div>
 </section>
 
@@ -100,37 +119,31 @@
   </div>
 </section>
 
-<section class="pin niveis" aria-labelledby="h-niv">
-  <div class="stage">
-    <div>
-      <h2 id="h-niv">Eu não vendo Android novo. Eu levo o seu tablet ao limite dele.</h2>
-      <p class="intro dim">Nem todo tablet ganha sistema novo. Todos podem melhorar.</p>
-    </div>
-    <div class="scene" aria-hidden="true"><div class="stack"><div class="ly ly3"></div><div class="ly ly2"></div><div class="ly ly1"></div></div></div>
-    <ol class="lvls">
-      <li class="on"><span class="n">1</span><div><b>Ajuste fino</b><p>Configurações escondidas e apps leves no lugar dos pesados.</p></div></li>
-      <li><span class="n">2</span><div><b>As entranhas</b><p>Com um computador e um cabo, a gente arranca os apps de fábrica que o tablet não deixa remover.</p></div></li>
-      <li><span class="n">3</span><div><b>Sistema novo</b><p>Se existe versão da comunidade pro seu modelo, o guia te leva até ela. Foi o que eu fiz: do 5 pro 11.</p></div></li>
-    </ol>
-    <p class="close">Quase todo tablet a partir do Android 5 chega ao nível 2.</p>
-  </div>
-</section>
+
 
 <section class="sec" aria-labelledby="h-ent">
   <div class="deliv">
-    <div class="phone" aria-hidden="true"><div class="screen"><div class="feed">
-      <div class="g-top">cobaia-dev.vercel.app/guia</div>
-      <div class="g-h">Guia do seu tablet</div>
-      <div class="g-m">Modelo: SM-T580, Wi-Fi</div>
-      <div class="g-card"><b>Raio-x do modelo</b>Android 8.1 de fábrica. Existe sistema da comunidade: você chega ao nível 3.</div>
-      <div class="g-card"><b>O plano do limite</b>Passo 6 de 14<div class="g-bar"><i></i></div></div>
-      <div class="g-card"><div class="g-step"><em class="ok">✓</em><span>Ative a depuração USB</span></div></div>
-      <div class="g-card"><div class="g-step"><em class="ok">✓</em><span>Instale o driver no computador</span></div></div>
-      <div class="g-card"><div class="g-step"><em>6</em><span>Confira se o computador enxerga o tablet</span></div><div class="g-code">adb devices</div></div>
-      <div class="g-card g-err"><b>Se aparecer "unauthorized"</b>Desbloqueie a tela do tablet e toque em Permitir. Depois rode o comando de novo.</div>
-      <div class="g-card"><b>Arquivos conferidos</b>Só o link original do autor, da variante Wi-Fi.</div>
-      <div class="g-card"><b>Rota de fuga</b>Como voltar ao sistema de fábrica em 4 passos.</div>
-    </div></div></div>
+    <div class="phone2" role="img" aria-label="Prévia do guia: uma página feita pro modelo do tablet, com raio-x, plano e passos ilustrados">
+      <i class="btn-a"></i><i class="btn-b"></i><i class="btn-c"></i>
+      <div class="glass2"><div class="island"></div><div class="sbar"><b>9:41</b><span><i></i><i></i></span></div>
+      <div class="gfeed">
+        <div class="gh"><span class="gtag">Seu guia</span><span class="gm">SM-T580, Wi-Fi</span></div>
+        <div class="gt">Galaxy Tab A 10.1</div>
+        <div class="gx"><div class="ring" style="--v:43"><b>6/14</b></div><div><b>Você está no nível 2</b><span>Este modelo chega ao nível 3: Android 11 da comunidade.</span></div></div>
+        <div class="glv"><i class="on"></i><i class="on"></i><i></i><span>1 ajuste</span><span>2 entranhas</span><span>3 sistema novo</span></div>
+        <div class="gs">
+          <div class="gsn">Passo 6</div>
+          <div class="gst">Confira se o computador enxerga o tablet</div>
+          <div class="gill"><div class="pc"><i></i></div><div class="cab"></div><div class="tb"><i></i></div></div>
+          <div class="gcode"><span>$</span> adb devices</div>
+          <div class="gok">Deve aparecer o número do tablet e a palavra <b>device</b>.</div>
+        </div>
+        <div class="gerr"><b>Apareceu "unauthorized"?</b><span>Desbloqueie a tela do tablet e toque em Permitir.</span></div>
+        <div class="gs dim"><div class="gsn">Passo 7</div><div class="gst">Remova os apps que a fábrica forçou</div></div>
+      </div>
+      <div class="lock"><i></i><b>O resto é do seu modelo</b><span>8 passos, a rota de fuga e os arquivos conferidos</span></div>
+      </div>
+    </div>
     <div>
       <h2 id="h-ent">Uma página feita só pro seu tablet</h2>
       <p class="lead">Um link pra abrir no celular e seguir no seu ritmo.</p>
@@ -226,6 +239,7 @@
   <a class="btn main" href="#oferta" tabindex="-1">Quero</a>
 </div></div>
 
+<script src="../assets/lp-screens.js"></script>
 <script src="../assets/lp-tablet.js"></script>
 </body>
 </html>
