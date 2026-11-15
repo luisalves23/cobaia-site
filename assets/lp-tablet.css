@@ -293,3 +293,9 @@ footer a{color:var(--dust)}
 .dor h2,.niveis h2{font-size:clamp(30px,5.4vw,60px)}
 @media (max-width:1099px){.pin .stage{padding-bottom:84px}}
 @media (min-width:900px){.dlgs{height:min(54svh,520px)}}
+
+/* revisão de conversão */
+.tag .trust{color:var(--paper);font-weight:650}
+.vsl{max-height:38svh}
+@media (min-width:900px){.vsl{max-height:78svh}}
+.plan .safe{margin:-4px 0 0;text-align:center;font-size:14px;color:var(--dust)}

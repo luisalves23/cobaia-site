@@ -39,7 +39,7 @@
   var vsl = D.querySelector('.vsl');
   if (vsl) {
     var v = vsl.querySelector('video'), pb = vsl.querySelector('.play');
-    pb.addEventListener('click', function () { v.muted = false; v.loop = false; v.currentTime = 0; v.controls = true; v.play(); vsl.classList.add('on'); });
+    pb.addEventListener('click', function () { if (v.dataset.full) { v.src = v.dataset.full; delete v.dataset.full; } v.muted = false; v.loop = false; v.currentTime = 0; v.controls = true; v.play(); vsl.classList.add('on'); });
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); }
   }
 
