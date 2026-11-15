@@ -2,9 +2,9 @@
 (function () {
   /* ===== CONFIGURAÇÃO: preencha aqui ===== */
   var CFG = {
-    guia: '',      // link do checkout Kiwify do guia (R$ 27,90)
-    combo: '',     // link do checkout guia + suporte (se vazio, usa o do guia)
-    suporte: '',   // link do checkout só do suporte (R$ 97,90)
+    guia: '',      // checkout Kiwify: Guia do seu tablet (R$ 27,90)
+    combo: '',     // checkout Kiwify: Guia + suporte, oferta de R$ 97,90
+    upgrade: '',   // checkout Kiwify: Guia + suporte, oferta de R$ 70,00 (quem já comprou o guia)
     whatsapp: ''   // número com DDI e DDD, só dígitos. Ex.: 5511999999999
   };
   /* ======================================= */
@@ -29,18 +29,10 @@
   if (nm) { nm.value = get(KN); nm.addEventListener('input', function () { set(KN, nm.value.trim()); paintWa(); }); }
 
   /* checkout */
-  function link(kind) { return CFG[kind] || (kind === 'combo' ? CFG.guia : ''); }
   D.querySelectorAll('[data-checkout]').forEach(function (a) {
-    var u = link(a.getAttribute('data-checkout'));
+    var u = CFG[a.getAttribute('data-checkout')];
     if (u) { a.href = u; a.rel = 'noopener'; }
-    a.addEventListener('click', function (e) {
-      var m = get(K);
-      if (!u) { e.preventDefault(); alertOff(a); return; }
-      if (!m && D.querySelector('[data-model-in]') && a.closest('.offer')) {
-        var i = D.getElementById('mdl');
-        if (i && !i.dataset.asked) { e.preventDefault(); i.dataset.asked = '1'; i.focus(); i.closest('.mdl').classList.add('need'); }
-      }
-    });
+    else a.addEventListener('click', function (e) { e.preventDefault(); alertOff(a); });
   });
   function alertOff(a) { var t = a.textContent; a.textContent = 'Abrindo em instantes'; setTimeout(function () { a.textContent = t; }, 1600); }
 
