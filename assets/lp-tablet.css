@@ -507,3 +507,9 @@ footer a{color:var(--dust)}
 .bigclock{display:flex;align-items:baseline;line-height:1;font-size:8.6cqw}
 .bigclock i{font-style:normal;color:#ffb4a8;opacity:.8;margin:0 .2cqw}
 .v13-date{font-size:1.9cqw;padding:1cqw 2cqw;white-space:nowrap}
+
+/* parcelas em destaque, valor cheio embaixo */
+.anchor .price small.full{display:block;font-size:.26em;font-weight:600;font-stretch:100%;letter-spacing:0;color:var(--dust);margin-top:.45em}
+.plan .full{margin:-6px 0 0;font-size:17px;color:var(--dust)}
+.plan .val small{font-size:20px}
+.fine .pz{color:var(--paper)}
