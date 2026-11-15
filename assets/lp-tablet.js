@@ -35,13 +35,13 @@
     setEta(true); setInterval(setEta, 20000);
   }
 
-  /* vídeo de venda: prévia muda ao abrir; o play recomeça do zero com som, sem controles */
+  /* vídeo de venda: prévia muda ao abrir; o play recomeça do zero com som; só pausar e tela cheia */
   var pl = D.querySelector('.player');
   if (pl) {
     var src = pl.getAttribute('data-src'), ov = pl.querySelector('.ov'), bar = pl.querySelector('.prog i'), vid = null;
     if (src) {
       vid = D.createElement('video'); vid.src = src; vid.muted = true; vid.playsInline = true; vid.setAttribute('playsinline', ''); vid.loop = true; vid.preload = 'auto';
-      vid.setAttribute('disablepictureinpicture', ''); vid.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback nofullscreen');
+      vid.setAttribute('disablepictureinpicture', ''); vid.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback');
       pl.insertBefore(vid, pl.firstChild); var cd = pl.querySelector('.card'); if (cd) cd.style.display = 'none'; vid.poster = src.replace('.mp4', '-poster.jpg'); if (!reduce) vid.play().catch(function () {});
       vid.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     }
@@ -53,7 +53,24 @@
       // barra que anda rápido no começo e devagar no fim
       vid.addEventListener('timeupdate', function () { if (!pl.classList.contains('on') || !vid.duration) return; var x = vid.currentTime / vid.duration; bar.style.width = ((1 - Math.pow(1 - x, 2.2)) * 100).toFixed(2) + '%'; });
       vid.addEventListener('ended', function () { bar.style.width = '100%'; var c = D.getElementById('oferta'); if (c) c.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
-      vid.addEventListener('pause', function () { if (pl.classList.contains('on') && !vid.ended) vid.play().catch(function () {}); });
+      // só pausar e tela cheia: sem avançar nem voltar
+      var ctl = D.createElement('div'); ctl.className = 'ctl';
+      ctl.innerHTML = '<button type="button" class="pp" aria-label="Pausar"></button><button type="button" class="fs" aria-label="Tela cheia"></button>';
+      pl.appendChild(ctl);
+      var pp = ctl.querySelector('.pp'), fs = ctl.querySelector('.fs');
+      function sync() { var p = vid.paused && !vid.ended; pl.classList.toggle('paused', p); pp.setAttribute('aria-label', p ? 'Continuar' : 'Pausar'); }
+      function toggle() { if (!pl.classList.contains('on')) return; if (vid.paused) vid.play().catch(function () {}); else vid.pause(); }
+      pp.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+      vid.style.pointerEvents = 'auto'; vid.addEventListener('click', toggle);
+      vid.addEventListener('play', sync); vid.addEventListener('pause', sync);
+      fs.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var full = D.fullscreenElement || D.webkitFullscreenElement;
+        if (full) { (D.exitFullscreen || D.webkitExitFullscreen).call(D); return; }
+        var req = pl.requestFullscreen || pl.webkitRequestFullscreen;
+        if (req) { var pr = req.call(pl); var rot = function () { try { screen.orientation.lock('landscape').catch(function () {}); } catch (x) {} }; if (pr && pr.then) pr.then(rot).catch(function () {}); else rot(); }
+        else if (vid.webkitEnterFullscreen) vid.webkitEnterFullscreen();
+      });
     }
   }
 
