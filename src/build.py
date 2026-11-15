@@ -237,29 +237,9 @@ var L=[].slice.call(document.querySelectorAll('.grid30 .lockd'));if(L.length>3){
     (ROOT / "30-dias").mkdir(exist_ok=True)
     (ROOT / "30-dias" / "index.html").write_text(page, encoding="utf-8")
 
-def build_landing(d):
-    """Página de venda: miolo em src/landing/<slug>.html e obrigado em src/landing/<slug>-obrigado.html."""
-    lp = ROOT / "src" / "landing"
-    title = "Seu tablet não morreu · Dia 08 · @cobaia.dev"
-    extra = '<link rel="stylesheet" href="{up}assets/tablet.css">\n'
-    def page(body, depth, path, t, desc, robots=""):
-        up = "../" * depth
-        h = head(t, desc, path, f'dia{d["n"]:02d}', depth, ' class="lp"')
-        h = h.replace("</head>", extra.format(up=up) + robots + "</head>")
-        h += topbar(depth) + '<main class="wrap">\n' + body.replace("{{UP}}", up)
-        h += foot(depth) + "</main>\n" + calendar(depth, d["n"])
-        h += f'<script src="{up}assets/site.js"></script>\n<script src="{up}assets/tablet.js"></script>\n</body>\n</html>\n'
-        return h
-    out = ROOT / d["slug"]
-    (out / "obrigado").mkdir(parents=True, exist_ok=True)
-    (out / "index.html").write_text(page((lp / f'{d["slug"]}.html').read_text(encoding="utf-8"), 1,
-        f'/{d["slug"]}', title, d["desc"]), encoding="utf-8")
-    (out / "obrigado" / "index.html").write_text(page((lp / f'{d["slug"]}-obrigado.html').read_text(encoding="utf-8"), 2,
-        f'/{d["slug"]}/obrigado', "Pagamento confirmado · @cobaia.dev", "Último passo pra receber o guia do seu tablet.",
-        '<meta name="robots" content="noindex">\n'), encoding="utf-8")
-
 if __name__ == "__main__":
     for d in DIAS:
-        build_landing(d) if d.get("landing") else build_day(d)
+        if not d.get("landing"):  # landing pages (ex.: /tablet) são escritas à mão
+            build_day(d)
     build_hub()
     print("ok:", ", ".join(d["slug"] for d in DIAS), "+ 30-dias")
