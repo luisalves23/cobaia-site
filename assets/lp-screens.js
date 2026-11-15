@@ -58,7 +58,7 @@
       var grid = ['web', 'pic', 'play', 'files', 'book', 'cal', 'note', 'pin', 'calc', 'clock'];
       var dock = ['phone', 'msg', 'cam', 'mail', 'gear'];
       return '<div class="scr v13">' + SB('14:32') +
-        '<div class="v13-top"><div class="bigclock"><b>14</b><b>32</b></div><div class="v13-date"><span>sex., 14 de nov.</span><span class="wx">28°</span></div></div>' +
+        '<div class="v13-top"><div class="bigclock"><b>14</b><i>:</i><b>32</b></div><div class="v13-date"><span>sex., 14 nov.</span><span class="wx">28°</span></div></div>' +
         '<div class="grid">' + grid.map(function (g) { return '<div class="app">' + ico(g, 'themed') + '</div>'; }).join('') + '</div>' +
         '<div class="dock">' + dock.map(function (g) { return ico(g, 'themed'); }).join('') + '</div>' +
         '<div class="pill-s m3"><i class="g"></i><span>Pesquisar</span><i class="mic"></i></div><div class="gest"></div></div>';

@@ -499,3 +499,11 @@ footer a{color:var(--dust)}
 .player .ov{background:rgba(12,12,12,.2)}
 @media (max-width:899px){.hero2 .player{order:-1;grid-row:2}.hero2 .tag{grid-row:1}.hero2{padding-bottom:28px}}
 .player .card b{display:none}
+.scrwrap{isolation:isolate}
+.layers.new .l-ui .face.f5{opacity:0}
+
+/* Android 13: relógio em linha e data abaixo, sem colidir com a grade */
+.v13-top{right:auto;width:27cqw;flex-direction:column;align-items:flex-start;gap:2.2cqw;top:9cqw}
+.bigclock{display:flex;align-items:baseline;line-height:1;font-size:8.6cqw}
+.bigclock i{font-style:normal;color:#ffb4a8;opacity:.8;margin:0 .2cqw}
+.v13-date{font-size:1.9cqw;padding:1cqw 2cqw;white-space:nowrap}

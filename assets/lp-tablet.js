@@ -42,7 +42,7 @@
     if (src) {
       vid = D.createElement('video'); vid.src = src; vid.muted = true; vid.playsInline = true; vid.setAttribute('playsinline', ''); vid.loop = true; vid.preload = 'auto';
       vid.setAttribute('disablepictureinpicture', ''); vid.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback nofullscreen');
-      pl.insertBefore(vid, pl.firstChild); if (!reduce) vid.play().catch(function () {});
+      pl.insertBefore(vid, pl.firstChild); var cd = pl.querySelector('.card'); if (cd) cd.style.display = 'none'; vid.poster = src.replace('.mp4', '-poster.jpg'); if (!reduce) vid.play().catch(function () {});
       vid.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     }
     ov.addEventListener('click', function () {
