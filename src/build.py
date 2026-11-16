@@ -32,6 +32,8 @@ DIAS = [
          desc="O guia pra reviver um notebook velho com um Debian 13 e o Claude Code, do pendrive à interface, com os pedidos prontos pra copiar."),
     dict(n=8, slug="tablet", kw="TABLET", curto="Ressuscitei um tablet abandonado", landing=True,
          desc="O mapa grátis pra ressuscitar o seu tablet velho e o passo a passo feito pro seu modelo, até o limite que ele aguenta."),
+    dict(n=9, slug="professor", kw="PROFESSOR", curto="O Claude virou meu professor particular",
+         desc="O passo a passo pra instalar o LearnHarness, ligar no Claude e estudar pro Enem com um professor que te testa, ensina e lembra o que revisar."),
 ]
 TOTAL = 30
 DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)
