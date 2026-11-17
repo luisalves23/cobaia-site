@@ -7,8 +7,14 @@
   // Dia 4 sai em 09/11/2026; um dia novo por dia a partir daí.
   /* EARLY: dias liberados antes das 12h a pedido do Luis (dia: horário UTC) */
   var EARLY = { 5: Date.UTC(2026, 10, 10, 11, 0, 0) };
+  /* HOLD: dias trancados até o Luis mandar liberar (tirar o número daqui libera).
+     Prévia: abrir a página com ?lab (vale para a aba inteira enquanto ela estiver aberta). */
+  var HOLD = { 10: true };
+  var LAB = false;
+  try { if (/[?&]lab\b/.test(location.search)) sessionStorage.setItem('cobaia-lab', '1'); LAB = sessionStorage.getItem('cobaia-lab') === '1'; } catch (e) { LAB = /[?&]lab\b/.test(location.search); }
+  function held(n) { return !!HOLD[n] && !LAB; }
   function releaseOf(n) { return EARLY[n] || Date.UTC(2026, 10, 5 + n, 15, 0, 0); }
-  function released(n) { return Date.now() >= releaseOf(n); }
+  function released(n) { return !held(n) && Date.now() >= releaseOf(n); }
   window.COBAIA = { releaseOf: releaseOf, released: released };
 
   /* página de um dia antes da hora: mostra contagem regressiva */
@@ -16,7 +22,10 @@
   if (day && !released(day)) {
     H.classList.add('prelaunch');
     var lk = D.querySelector('.lockscreen');
-    if (lk) {
+    if (lk && held(day)) {
+      lk.querySelector('.clock').style.display = 'none';
+      var lp = lk.querySelector('p'); if (lp) lp.textContent = 'A página libera junto com o vídeo. Segue o @cobaia.dev pra ver primeiro.';
+    } else if (lk) {
       var tick = function () {
         var s = Math.max(0, Math.floor((releaseOf(day) - Date.now()) / 1000));
         if (s === 0) { location.reload(); return; }
@@ -112,7 +121,7 @@
       var s = D.createElement('span');
       s.className = (released(n - 1) ? 'soon' : '');
       var dt = new Date(releaseOf(n));
-      s.innerHTML = '<b>' + String(n).padStart(2, '0') + '</b><small>' + String(dt.getUTCDate()).padStart(2, '0') + '/' + String(dt.getUTCMonth() + 1).padStart(2, '0') + '</small>';
+      s.innerHTML = '<b>' + String(n).padStart(2, '0') + '</b><small>' + (held(n) ? 'em breve' : String(dt.getUTCDate()).padStart(2, '0') + '/' + String(dt.getUTCMonth() + 1).padStart(2, '0')) + '</small>';
       s.setAttribute('aria-label', 'Dia ' + n + ', libera em breve');
       el.replaceWith(s);
     }
@@ -120,7 +129,7 @@
   /* cards e links de dias futuros */
   D.querySelectorAll('[data-lock-day]').forEach(function (el) {
     var n = +el.getAttribute('data-lock-day');
-    if (!released(n)) { el.classList.add('locked', 'lockd'); el.removeAttribute('href'); var d = el.querySelector('[data-when]'); if (d) d.textContent = d.getAttribute('data-when'); }
+    if (!released(n)) { el.classList.add('locked', 'lockd'); el.removeAttribute('href'); var d = el.querySelector('[data-when]'); if (d) d.textContent = held(n) ? 'DIA ' + String(n).padStart(2, '0') + ' · em breve' : d.getAttribute('data-when'); }
     else { el.classList.remove('locked', 'lockd'); }
   });
   var prog = D.querySelector('[data-progress]');
