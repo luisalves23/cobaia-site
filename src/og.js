@@ -16,13 +16,13 @@ const items = [
 ];
 const css = `@font-face{font-family:Anton;src:url(${A}fonts/anton-latin-400-normal.woff2)}@font-face{font-family:M;font-weight:700;src:url(${A}fonts/jetbrains-mono-latin-700-normal.woff2)}@font-face{font-family:S;font-style:italic;src:url(${A}fonts/instrument-serif-latin-400-italic.woff2)}
 *{margin:0;box-sizing:border-box}body{width:1200px;height:630px;overflow:hidden;color:#F2EEE6;background:radial-gradient(ellipse at 30% 40%,#2a0d0d 0%,#0c0c0c 65%);position:relative;font-family:M}
-.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(242,238,230,.1) 2px,transparent 2.6px);background-size:44px 44px}
+.dots{position:absolute;inset:18px;opacity:.4;background:linear-gradient(#F2EEE6,#F2EEE6) 0 0/26px 3px no-repeat,linear-gradient(#F2EEE6,#F2EEE6) 0 0/3px 26px no-repeat,linear-gradient(#F2EEE6,#F2EEE6) 100% 100%/26px 3px no-repeat,linear-gradient(#F2EEE6,#F2EEE6) 100% 100%/3px 26px no-repeat}
 .l{position:absolute;left:70px;top:70px;width:690px}.b{display:inline-block;font-family:Anton;font-size:34px;background:#FF2D2D;color:#0c0c0c;padding:4px 20px 1px;border-radius:30px}
 h1{font-family:Anton;font-weight:400;font-size:92px;line-height:.95;margin-top:34px}h1 span{color:#FF2D2D}
 .k{position:absolute;left:70px;bottom:62px;font-size:26px;color:#a7a29a}.k b{color:#F2EEE6;border:2px dashed #a7a29a;padding:2px 12px;border-radius:8px}
-.p{position:absolute;right:70px;top:50px;width:300px;height:530px;border-radius:34px;padding:8px;background:linear-gradient(160deg,rgba(255,255,255,.25),rgba(255,255,255,.05));box-shadow:0 30px 70px rgba(0,0,0,.6);transform:rotate(3deg)}
+.p{position:absolute;right:70px;top:50px;width:300px;height:530px;border-radius:34px;padding:8px;background:linear-gradient(160deg,rgba(255,255,255,.25),rgba(255,255,255,.05));box-shadow:0 0 0 4px #0c0c0c,0 0 0 7px #FF2D2D,0 0 0 15px #0c0c0c,0 0 0 18px #D23A3F,0 0 0 26px #0c0c0c,0 0 0 29px #8C2429,0 30px 70px rgba(0,0,0,.6);transform:rotate(0)}
 .p img{width:100%;height:100%;object-fit:cover;border-radius:27px}.h{position:absolute;right:70px;bottom:20px;font-size:22px;color:#77726c}
-.av{position:absolute;right:120px;top:150px;width:300px;height:300px;border-radius:50%;border:10px solid #FF2D2D;object-fit:cover}`;
+.av{position:absolute;right:120px;top:150px;width:300px;height:300px;border-radius:50%;border:8px solid #F2EEE6;box-shadow:0 0 0 10px #0c0c0c,0 0 0 16px #FF2D2D,0 0 0 26px #0c0c0c,0 0 0 31px #D23A3F;object-fit:cover}`;
 (async () => {
   fs.mkdirSync(R + '/assets/og', { recursive: true });
   const b = await chromium.launch(); const pg = await b.newPage({ viewport: { width: 1200, height: 630 } });
