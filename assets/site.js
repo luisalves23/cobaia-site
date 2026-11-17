@@ -6,15 +6,15 @@
   /* ---------- liberação diária: 12h de Brasília (15h UTC) ---------- */
   // Dia 4 sai em 09/11/2026; um dia novo por dia a partir daí.
   /* EARLY: dias liberados antes das 12h a pedido do Luis (dia: horário UTC) */
-  var EARLY = { 5: Date.UTC(2026, 10, 10, 11, 0, 0) };
+  var EARLY = { 5: Date.UTC(2026, 10, 10, 11, 0, 0), 10: Date.UTC(2026, 10, 17, 21, 30, 0) };
   /* HOLD: dias trancados até o Luis mandar liberar (tirar o número daqui libera).
-     Prévia: abrir a página com ?lab (vale para a aba inteira enquanto ela estiver aberta). */
-  var HOLD = { 10: true };
+     Prévia: abrir a página com ?lab (vale para a aba inteira enquanto ela estiver aberta; libera também antes da hora). */
+  var HOLD = {};
   var LAB = false;
   try { if (/[?&]lab\b/.test(location.search)) sessionStorage.setItem('cobaia-lab', '1'); LAB = sessionStorage.getItem('cobaia-lab') === '1'; } catch (e) { LAB = /[?&]lab\b/.test(location.search); }
   function held(n) { return !!HOLD[n] && !LAB; }
   function releaseOf(n) { return EARLY[n] || Date.UTC(2026, 10, 5 + n, 15, 0, 0); }
-  function released(n) { return !held(n) && Date.now() >= releaseOf(n); }
+  function released(n) { return (LAB && n <= 10) || (!held(n) && Date.now() >= releaseOf(n)); }
   window.COBAIA = { releaseOf: releaseOf, released: released };
 
   /* página de um dia antes da hora: mostra contagem regressiva */
@@ -182,4 +182,40 @@
     });
   }, { rootMargin: '0px 0px -8% 0px' }) : null;
   D.querySelectorAll('.rv,.glass,.menu,[data-count]').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+})();
+
+/* ===== identidade nova: contorno em leque, ponto vermelho e barra de progresso ===== */
+(function () {
+  var D = document, NS = 'http://www.w3.org/2000/svg';
+  // caminho do retângulo arredondado aberto no canto inferior esquerdo
+  function openRect(w, h, r, gap) {
+    r = Math.min(r, w / 2, h / 2);
+    return 'M0 ' + (h - r - gap) + ' L0 ' + r + ' A' + r + ' ' + r + ' 0 0 1 ' + r + ' 0 L' + (w - r) + ' 0 A' + r + ' ' + r + ' 0 0 1 ' + w + ' ' + r +
+      ' L' + w + ' ' + (h - r) + ' A' + r + ' ' + r + ' 0 0 1 ' + (w - r) + ' ' + h + ' L' + (r + gap) + ' ' + h;
+  }
+  function draw(el) {
+    var svg = el.querySelector(':scope>svg.fanline');
+    if (!svg) { svg = D.createElementNS(NS, 'svg'); svg.setAttribute('class', 'fanline'); svg.setAttribute('aria-hidden', 'true'); el.appendChild(svg); }
+    var w = el.offsetWidth, h = el.offsetHeight, r = parseFloat(getComputedStyle(el).borderTopLeftRadius) || 24, P = 14;
+    svg.setAttribute('viewBox', (-P) + ' ' + (-P) + ' ' + (w + 2 * P) + ' ' + (h + 2 * P));
+    var lines = [['#FF2D2D', 0, 30, 2.6], ['#D23A3F', 6, 58, 2], ['#8C2429', 12, 86, 2]];
+    svg.innerHTML = '';
+    lines.forEach(function (l) {
+      var p = D.createElementNS(NS, 'path'), o = l[1];
+      p.setAttribute('d', openRect(w + 2 * o, h + 2 * o, r + o, l[2])); p.setAttribute('transform', 'translate(' + (-o) + ' ' + (-o) + ')');
+      p.setAttribute('stroke', l[0]); p.setAttribute('stroke-width', l[3]);
+      svg.appendChild(p);
+      var L = p.getTotalLength(); p.style.setProperty('--L', L);
+    });
+  }
+  var fans = [].slice.call(D.querySelectorAll('.fan'));
+  fans.forEach(draw);
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function (es) { es.forEach(function (e) { draw(e.target); }); }); fans.forEach(function (f) { ro.observe(f); }); }
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -10% 0px' }) : null;
+  fans.forEach(function (f) { io ? io.observe(f) : f.classList.add('drawn'); });
+
+  // barra de progresso da leitura
+  var bar = D.createElement('div'); bar.className = 'readbar'; bar.setAttribute('aria-hidden', 'true'); bar.innerHTML = '<i></i>'; D.body.appendChild(bar);
+  var tick = function () { var m = D.documentElement.scrollHeight - innerHeight; bar.style.setProperty('--p', m > 0 ? Math.min(1, scrollY / m) : 0); };
+  addEventListener('scroll', tick, { passive: true }); addEventListener('resize', tick); tick();
 })();

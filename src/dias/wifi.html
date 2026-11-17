@@ -1,4 +1,4 @@
-{"titulo":"O Claude achou o ladrão do meu Wi-Fi","kicker":"o guia do Wi-Fi lento","h1":"Descubra o que está <span class=\"r\">roubando</span> o seu Wi-Fi","lede":"Você cola um pedido no Claude Code e o computador vira uma central de investigação: ele mede a velocidade, acha quem está usando a internet escondido e vê se o vizinho está no mesmo canal que você. Aqui está <b>o pedido exato e o passo a passo pra corrigir</b>.","meta":["leitura de 5 min","nível: zero código","Windows, Mac e Linux"]}
+{"titulo": "O Claude achou o ladrão do meu Wi-Fi", "kicker": "o guia completo do Wi-Fi lento", "h1": "Descubra o que deixa seu <em>Wi&#8209;Fi lento</em>", "lede": "Você cola um pedido no <span class=\"claude\">Claude</span> Code e o computador vira uma central de investigação: ele mede a velocidade, acha quem está usando a internet escondido e vê se o vizinho está no mesmo canal que você. Aqui está <b>o pedido exato e o passo a passo pra corrigir</b>.", "meta": ["leitura de 5 min", "nível: zero código", "Windows, Mac e Linux"]}
 ---
 <section aria-labelledby="t1">
   <p class="eyebrow">em 30 segundos</p>
@@ -12,67 +12,86 @@
 
 <section aria-labelledby="t2">
   <div class="read">
-    <p class="eyebrow">o que você precisa</p>
-    <h2 id="t2" class="rv">A lista</h2>
-    <ul class="rv" style="padding-left:20px;display:grid;gap:8px">
-      <li>Um computador (Windows, Mac ou Linux) <b>ligado no seu Wi-Fi</b>.</li>
-      <li>O <b>Claude Code</b> instalado e logado. Ele exige um plano Pro ou superior do Claude; o plano grátis não inclui.</li>
-      <li>A <b>senha do painel do roteador</b>, pra trocar o canal. Na maioria dos roteadores de operadora ela vem na etiqueta embaixo do aparelho.</li>
-      <li>A velocidade do seu plano (ex.: 500 Mega). Está na fatura ou no app da operadora.</li>
+    <p class="eyebrow">antes de começar</p>
+    <h2 id="t2" class="rv">O que você <em>vai precisar</em></h2>
+    <ul class="okl rv">
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>Um computador ligado no seu Wi-Fi (Windows, Mac ou Linux).</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>O <b>Claude Code</b> instalado e logado. Ele exige um plano Pro ou superior do Claude; o plano grátis não inclui.</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>A senha do painel do seu roteador, pra trocar o canal. Na maioria dos roteadores de operadora ela vem na etiqueta embaixo do aparelho.</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>A velocidade do seu plano (ex.: 500 Mega). Está na fatura ou no app da operadora.</div></li>
     </ul>
+    <div class="warn glass red rv">
+      <span class="big">!</span>
+      <p><b>O resultado varia de casa para casa.</b> Se o teste ligado no cabo também der metade do plano, aí o problema é com a operadora.</p>
+    </div>
   </div>
 </section>
 
 <section aria-labelledby="t3">
   <div class="read">
     <p class="eyebrow">entenda o problema</p>
-    <h2 id="t3" class="rv">Os 3 ladrões do <span class="r">Wi-Fi</span></h2>
+    <h2 id="t3" class="rv">Por que o Wi&#8209;Fi <em>fica lento</em></h2>
+    <p class="rv" style="color:var(--muted)">Quase sempre o problema está dentro de casa. São três os ladrões:</p>
     <ol class="guide">
-      <li class="glass rv"><span class="gn">1</span><div><b>O vizinho no mesmo canal</b><span class="d">O Wi-Fi conversa em canais, como rádio. Se a rede do vizinho está no mesmo canal que a sua, os dois sinais disputam o mesmo espaço e um atrapalha o outro. O nome técnico é interferência co-canal.</span></div></li>
-      <li class="glass rv"><span class="gn">2</span><div><b>Consumo em segundo plano</b><span class="d">Backup de fotos, atualização do sistema e sincronização na nuvem baixam e sobem arquivos sem avisar. Você sente a internet lenta e não sabe por quê.</span></div></li>
-      <li class="glass rv"><span class="gn">3</span><div><b>A banda errada</b><span class="d">A rede de 2,4 GHz alcança mais longe, mas é mais lenta e mais disputada. A de 5 GHz é bem mais rápida quando você está perto do roteador.</span></div></li>
+      <li class="glass rv"><span class="gn">1</span><div><b>Canal congestionado</b><span class="d">O Wi-Fi do vizinho usa o mesmo canal que o seu, e os dois sinais se atrapalham. É como duas rádios na mesma frequência.</span></div></li>
+      <li class="glass rv"><span class="gn">2</span><div><b>Consumo em segundo plano</b><span class="d">Backup de fotos, atualização do sistema e sincronização na nuvem usam a rede sem avisar. Você sente a internet lenta e não sabe por quê.</span></div></li>
+      <li class="glass rv"><span class="gn">3</span><div><b>Banda errada</b><span class="d">A rede de 2,4 GHz vai mais longe, mas é mais lenta e mais disputada que a de 5 GHz.</span></div></li>
     </ol>
   </div>
 </section>
 
 <section aria-labelledby="t4">
   <div class="read">
+    <p class="eyebrow">o que você veio buscar</p>
+    <h2 id="t4" class="rv">O prompt <em>exato</em></h2>
+    <p class="rv">Abra o <span class="claude">Claude</span> Code e cole. Troque <b>[SEU PLANO]</b> pela velocidade que você contrata.</p>
+    <div class="prompt glass rv fan"><div class="prompt-h"><span><span class="t">Cole no Claude Code</span> · a investigação</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Investigue por que meu Wi-Fi está lento. 1) Rode um teste de velocidade e compare com o meu plano de <mark>[SEU PLANO]</mark> Mega. 2) Liste os programas que estão usando a rede em segundo plano agora. 3) Analise as redes Wi-Fi ao redor e diga se alguma está no mesmo canal que a minha. 4) Me mostre um plano de correção em passos simples. Não mude nada sem a minha confirmação.</pre></div>
+    <div class="warn glass rv"><span class="big">!</span><p>O <span class="claude">Claude</span> pede permissão antes de rodar cada comando. Você lê o que ele vai fazer e aceita.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t5">
+  <p class="eyebrow">como funciona</p>
+  <h2 id="t5" class="rv">Três <em>investigações</em></h2>
+  <p class="rv" style="color:var(--muted);max-width:680px">Tudo roda no seu computador, com um pedido só.</p>
+  <div class="inv">
+    <div class="glass rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FF2D2D" stroke-width="2.2" stroke-linecap="round"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/><circle cx="12" cy="17" r="1.6" fill="#FF2D2D"/></svg></span><b>Teste de velocidade</b><p>Mede download, upload e latência e compara com o seu plano.</p></div>
+    <div class="glass rv rv-d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FF2D2D" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="11" rx="2"/><path d="M8 20h8M12 16v4"/><circle cx="17" cy="9" r="2.4" fill="#FF2D2D" stroke="none"/></svg></span><b>Quem está usando a rede</b><p>Mostra os programas que mais consomem internet neste momento.</p></div>
+    <div class="glass rv rv-d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FF2D2D" stroke-width="2.2" stroke-linecap="round"><path d="M3 18c2-9 4-9 6 0M9 18c2-9 4-9 6 0M15 18c2-9 4-9 6 0"/></svg></span><b>Canais de Wi-Fi</b><p>Lista as redes ao redor e o canal de cada uma, pra achar um canal livre.</p></div>
+  </div>
+  <p class="note rv">Os comandos mudam conforme o sistema (macOS, Windows ou Linux). O Claude escolhe os certos pro seu.</p>
+</section>
+
+<section aria-labelledby="t6">
+  <div class="read">
     <p class="eyebrow">o passo a passo</p>
-    <h2 id="t4" class="rv">Da instalação à <em>velocidade de volta</em></h2>
+    <h2 id="t6" class="rv">Da instalação à <em>velocidade de volta</em></h2>
     <div class="steps">
-      <div class="step rv"><span class="n">1</span><div><h3>Instale o Claude Code</h3><p>No Windows, abra o <b>PowerShell</b>; no Mac ou Linux, o <b>Terminal</b>. Cole o comando do seu sistema (bloco logo abaixo), aperte Enter, depois digite <code>claude</code> e entre na sua conta.</p></div></div>
-      <div class="step rv"><span class="n">2</span><div><h3>Fique no lugar onde a internet é ruim</h3><p>Leve o notebook pro cômodo onde o Wi-Fi sofre (o quarto, normalmente). É ali que o teste mostra a verdade.</p></div></div>
-      <div class="step rv"><span class="n">3</span><div><h3>Cole o pedido 1</h3><p>Copie o pedido mais embaixo, troque <b>[SEU PLANO]</b> pela velocidade que você contrata e cole no Claude Code.</p></div></div>
-      <div class="step rv"><span class="n">4</span><div><h3>Autorize cada comando</h3><p>O Claude pede licença antes de rodar cada comando. Leia o que ele vai fazer e aceite. Os comandos mudam conforme o sistema, e ele escolhe os certos pro seu.</p></div></div>
-      <div class="step rv"><span class="n">5</span><div><h3>Leia o diagnóstico</h3><p>Ele te mostra a velocidade contra o plano, os programas que mais estão usando a rede agora e as redes ao redor com o canal de cada uma.</p></div></div>
-      <div class="step rv"><span class="n">6</span><div><h3>Aplique uma correção por vez</h3><p>Siga o plano dele, confirmando cada mudança. Pra trocar o canal, use o pedido 2: ele te guia tela por tela no painel do roteador.</p></div></div>
-      <div class="step rv"><span class="n">7</span><div><h3>Teste de novo</h3><p>Use o pedido 3 no mesmo lugar. Ele refaz a medição e te mostra o antes e o depois lado a lado.</p></div></div>
+      <div class="step rv"><span class="n">1</span><div><h3>Instale o Claude Code</h3><p>No Windows, abra o <b>PowerShell</b>; no Mac ou Linux, o <b>Terminal</b>. Cole o comando do seu sistema (logo abaixo), aperte Enter, depois digite <code>claude</code> e entre na sua conta.</p></div></div>
+      <div class="step rv"><span class="n">2</span><div><h3>Fique onde a internet é ruim</h3><p>Leve o notebook pro cômodo onde o Wi-Fi sofre (o quarto, normalmente). É ali que o teste mostra a verdade.</p></div></div>
+      <div class="step rv"><span class="n">3</span><div><h3>Cole o prompt exato</h3><p>Troque <b>[SEU PLANO]</b> pela velocidade que você contrata e cole no Claude Code.</p></div></div>
+      <div class="step rv"><span class="n">4</span><div><h3>Autorize cada comando</h3><p>Leia o que ele vai rodar e aceite. Ele faz as três investigações e te mostra o diagnóstico.</p></div></div>
+      <div class="step rv"><span class="n">5</span><div><h3>Aplique uma correção por vez</h3><p>Siga o plano dele, confirmando cada mudança (lista logo abaixo).</p></div></div>
+      <div class="step rv"><span class="n">6</span><div><h3>Teste de novo</h3><p>No mesmo lugar, peça pro Claude refazer o teste e comparar com o primeiro.</p></div></div>
     </div>
     <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Windows</span> · PowerShell</span><button class="copy" type="button" data-copy="i1">Copiar</button></div><pre id="i1">irm https://claude.ai/install.ps1 | iex</pre></div>
     <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Mac e Linux</span> · Terminal</span><button class="copy" type="button" data-copy="i2">Copiar</button></div><pre id="i2">curl -fsSL https://claude.ai/install.sh | bash</pre></div>
   </div>
 </section>
 
-<section aria-labelledby="t5">
-  <div class="read">
-    <p class="eyebrow">o que você veio buscar</p>
-    <h2 id="t5" class="rv">Os pedidos <span class="r">exatos</span></h2>
-    <p class="rv">Cole no Claude Code, um de cada vez. Troque o que estiver entre colchetes.</p>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 1</span> · a investigação</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Investigue por que o meu Wi-Fi está lento. 1) Rode um teste de velocidade (download, upload e latência) três vezes e compare a mediana com o meu plano de [SEU PLANO] Mega. 2) Liste os programas que estão usando a rede em segundo plano agora, do que mais consome pro que menos consome. 3) Liste as redes Wi-Fi ao redor com o canal e a força do sinal de cada uma, e me diga se alguma está no mesmo canal que a minha e se estou na rede de 2,4 ou de 5 GHz. 4) Me mostre um plano de correção em passos simples, do que dá mais resultado pro que dá menos. Explique tudo pra quem não é técnico e não mude nada sem a minha confirmação.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 2</span> · trocar o canal</span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">Me guie tela por tela pra trocar o canal do meu roteador [MARCA E MODELO, está na etiqueta]. Me diga qual canal escolher com base nas redes que você encontrou, como abrir o painel pelo navegador e onde fica a opção. Antes de eu salvar, me lembre de tirar um print da configuração atual.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 3</span> · a prova</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Refaça o teste de velocidade três vezes, no mesmo lugar, e me mostre uma tabela com o antes e o depois: download, upload, latência e o canal. Diga o que mais fez diferença.</pre></div>
-  </div>
-</section>
-
-<section aria-labelledby="t6">
+<section aria-labelledby="t7b">
   <div class="read">
     <p class="eyebrow">resolver</p>
-    <h2 id="t6" class="rv">As correções mais comuns</h2>
-    <ol class="guide">
-      <li class="glass rv"><span class="gn">1</span><div><b>Trocar o canal do 2,4 GHz</b><span class="d">Use o 1, o 6 ou o 11, que são os três canais que não se sobrepõem. Fique no que tiver menos vizinhos fortes.</span></div></li>
-      <li class="glass rv"><span class="gn">2</span><div><b>Pausar ou agendar backup e atualização</b><span class="d">Deixe o backup de fotos e as atualizações rodando de madrugada, quando ninguém está usando a internet.</span></div></li>
-      <li class="glass rv"><span class="gn">3</span><div><b>Usar a rede de 5 GHz perto do roteador</b><span class="d">Se o roteador tem duas redes, conecte na de 5 GHz nos cômodos mais próximos dele. Longe e com parede no caminho, a de 2,4 GHz pode ser melhor.</span></div></li>
-    </ol>
+    <h2 id="t7b" class="rv">Confirme e <em>teste de novo</em></h2>
+    <p class="rv" style="color:var(--muted)">Uma mudança por vez. As correções mais comuns:</p>
+    <ul class="okl rv">
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Trocar o canal no painel do roteador (canais 1, 6 ou 11)</b><br><span style="color:var(--muted);font-size:15px">São os três canais do 2,4 GHz que não se sobrepõem. Fique no que tiver menos vizinhos fortes.</span></div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Pausar ou agendar backups e atualizações</b><br><span style="color:var(--muted);font-size:15px">Deixe rodando de madrugada, quando ninguém está usando a internet.</span></div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Conectar na rede de 5 GHz quando estiver perto do roteador</b><br><span style="color:var(--muted);font-size:15px">Longe e com parede no caminho, a de 2,4 GHz pode ser melhor.</span></div></li>
+    </ul>
+    <div class="warn glass rv"><span class="big">!</span><p>A troca de canal é feita no painel do roteador, que você abre pelo navegador. Peça pro <span class="claude">Claude</span> te guiar tela por tela e refazer o teste no final:</p></div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Extra</span> · trocar o canal</span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">Me guie tela por tela pra trocar o canal do meu roteador <mark>[MARCA E MODELO, está na etiqueta]</mark>. Me diga qual canal escolher com base nas redes que você encontrou, como abrir o painel pelo navegador e onde fica a opção. Antes de eu salvar, me lembre de tirar um print da configuração atual.</pre></div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Extra</span> · a prova</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Refaça o teste de velocidade três vezes, no mesmo lugar, e me mostre uma tabela com o antes e o depois: download, upload, latência e o canal. Diga o que mais fez diferença.</pre></div>
   </div>
 </section>
 
@@ -80,10 +99,7 @@
   <div class="read">
     <p class="eyebrow">cuidados</p>
     <h2 id="t7" class="rv">Leia antes de <span class="r">mexer</span></h2>
-    <div class="warn glass red rv">
-      <span class="big">!</span>
-      <p><b>Se no cabo também der metade do plano, o problema é da operadora.</b> Ligue o computador no roteador com um cabo de rede e faça o teste. Aí o caminho é ligar pra ela, com o resultado em mãos.</p>
-    </div>
+    
     <ol class="guide">
       <li class="glass rv"><span class="gn">1</span><div><b>Tire print antes de mudar</b><span class="d">Fotografe a tela do painel antes de salvar qualquer coisa. Se algo der errado, você volta como estava.</span></div></li>
       <li class="glass rv"><span class="gn">2</span><div><b>Não resete o roteador</b><span class="d">O reset apaga a configuração da operadora e pode deixar a casa sem internet até o técnico voltar.</span></div></li>

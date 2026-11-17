@@ -79,7 +79,7 @@ def head(title, desc, path, og, depth, extra_attr=""):
 def topbar(depth):
     up = "../" * depth
     return f'''<header class="top"><div class="bar glass">
-  <a class="brand" href="{up}30-dias/"><img src="{up}assets/img/avatar.jpg" alt="" width="34" height="34"><span>@cobaia.dev</span></a>
+  <a class="brand" href="{up}30-dias/"><span class="pf"><img src="{up}assets/img/avatar.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
   <button class="cal-btn" type="button" data-open-cal aria-haspopup="dialog" aria-controls="cal"><i class="dot"></i>30 dias</button>
 </div></header>
 '''
@@ -113,8 +113,8 @@ def redes_icones():
 def foot(depth):
     up = "../" * depth
     return f'''<div class="cta rv">
-  <img src="{up}assets/img/avatar.jpg" alt="Avatar do Cobaia, um rato de laboratório" width="96" height="96">
-  <h2>30 dias, 30 experimentos</h2>
+  <span class="pf"><img src="{up}assets/img/avatar.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
+  <h2>30 dias, <em>30 experimentos</em></h2>
   <p class="lede">Eu testo antes de você. Segue pra não perder o próximo.</p>
   <a class="stamp" href="{REDES[0][1]}" target="_blank" rel="noopener">@COBAIA.DEV</a>
   {redes_botoes()}
@@ -147,7 +147,7 @@ def hero(d, depth, kicker, h1, lede, meta):
     <p class="lede">{lede}</p>
     <div class="meta">{"".join(f"<span>{m}</span>" for m in meta)}</div>
   </div>
-  <div class="phone glass">
+  <div class="phone glass fan">
     <img src="{up}assets/img/capa-dia{d["n"]:02d}.jpg" alt="Capa do vídeo do Dia {d["n"]}" width="540" height="960">
     <div class="watch"><span>assistir</span>{redes_icones()}</div>
   </div>
@@ -191,7 +191,7 @@ def build_hub():
     kws = {d["kw"]: d["slug"] for d in DIAS if d["kw"]}
     rel = {d["kw"]: d["n"] for d in DIAS if d["kw"]}
     fd = day(DESTAQUE)
-    feat = f'''<a class="feat glass rv" href="../{fd["slug"]}/" data-lock-day="{fd["n"]}">
+    feat = f'''<a class="feat glass rv fan" href="../{fd["slug"]}/" data-lock-day="{fd["n"]}">
   <div class="feat-im"><img src="../assets/img/capa-dia{fd["n"]:02d}.jpg" alt="Capa do vídeo do Dia {fd["n"]}" width="540" height="960"></div>
   <div class="feat-b">
     <span class="feat-tag">veio pelo vídeo do notebook?</span>
@@ -208,7 +208,7 @@ def build_hub():
 <div class="hub-hero">
   <span class="badge">PROJETO 30 DIAS</span>
   <p class="kick">eu testo antes de você</p>
-  <h1>30 dias, <span class="r">30 experimentos</span> com Claude</h1>
+  <h1>30 dias, 30 experimentos <em>com o <span class="claude">Claude</span></em></h1>
 </div>
 {feat}
 <section class="outros" aria-labelledby="todos"><p class="eyebrow">os outros experimentos</p><h2 id="todos" class="feat-h2">Comentou em outro vídeo? Toque nele aqui embaixo</h2>
