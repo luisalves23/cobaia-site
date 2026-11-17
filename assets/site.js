@@ -6,7 +6,7 @@
   /* ---------- liberação diária: 12h de Brasília (15h UTC) ---------- */
   // Dia 4 sai em 09/11/2026; um dia novo por dia a partir daí.
   /* EARLY: dias liberados antes das 12h a pedido do Luis (dia: horário UTC) */
-  var EARLY = { 5: Date.UTC(2026, 10, 10, 11, 0, 0), 10: Date.UTC(2026, 10, 17, 21, 30, 0) };
+  var EARLY = { 5: Date.UTC(2026, 10, 10, 11, 0, 0), 10: Date.UTC(2026, 10, 17, 21, 0, 0) };
   /* HOLD: dias trancados até o Luis mandar liberar (tirar o número daqui libera).
      Prévia: abrir a página com ?lab (vale para a aba inteira enquanto ela estiver aberta; libera também antes da hora). */
   var HOLD = {};
