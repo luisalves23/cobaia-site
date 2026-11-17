@@ -34,6 +34,8 @@ DIAS = [
          desc="O mapa grátis pra ressuscitar o seu tablet velho e o passo a passo feito pro seu modelo, até o limite que ele aguenta."),
     dict(n=9, slug="professor", kw="PROFESSOR", curto="O Claude virou meu professor particular",
          desc="O passo a passo pra instalar o LearnHarness, ligar no Claude e estudar pro Enem com um professor que te testa, ensina e lembra o que revisar."),
+    dict(n=10, slug="wifi", kw="WIFI", curto="O Claude achou o ladrão do meu Wi-Fi",
+         desc="O pedido exato pro Claude Code investigar o seu Wi-Fi lento (velocidade, consumo escondido e canal do vizinho) e o passo a passo pra corrigir."),
 ]
 TOTAL = 30
 DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)

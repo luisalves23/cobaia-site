@@ -11,6 +11,7 @@ const items = [
   ['dia06', 'DIA 06/30', 'UM NOTEBOOK VELHO <span>RESSUSCITADO</span>', 'NOTEBOOK'],
   ['dia08', 'DIA 08/30', 'SEU TABLET <span>NÃO MORREU</span>', 'TABLET'],
   ['dia09', 'DIA 09/30', 'O CLAUDE VIROU MEU <span>PROFESSOR</span>', 'PROFESSOR'],
+  ['dia10', 'DIA 10/30', 'QUEM TÁ <span>ROUBANDO</span> SEU WI-FI?', 'WIFI'],
   ['hub', 'PROJETO 30 DIAS', '30 DIAS, <span>30 EXPERIMENTOS</span> COM CLAUDE', null],
 ];
 const css = `@font-face{font-family:Anton;src:url(${A}fonts/anton-latin-400-normal.woff2)}@font-face{font-family:M;font-weight:700;src:url(${A}fonts/jetbrains-mono-latin-700-normal.woff2)}@font-face{font-family:S;font-style:italic;src:url(${A}fonts/instrument-serif-latin-400-italic.woff2)}
