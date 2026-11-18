@@ -6,7 +6,8 @@
    Legado: guias de tablet entregues antes do cadastro ainda abrem com e-mail + senha das variáveis
      GUIA_<SLUG>_LOGIN e GUIA_<SLUG>_SENHA (cookie assinado com GUIA_SEGREDO).
    <SLUG> é a pasta do guia em maiúsculas, com "-" trocado por "_". */
-import { lerSessao, lerCompra, ativo } from './lib/compras.mjs';
+// lib/compras.mjs é ESM e o middleware é empacotado como CommonJS: import dinâmico.
+const libCompras = () => import('./lib/compras.mjs');
 
 export const config = { runtime: 'nodejs', matcher: ['/tablet/g/:path*', '/gta/guia/:path*'] };
 
@@ -98,6 +99,7 @@ async function legado(req, slug) {
 }
 
 export default async function middleware(req) {
+  const { lerSessao, lerCompra, ativo } = await libCompras();
   const url = new URL(req.url);
   const p = url.pathname;
   const email = lerSessao(req);
