@@ -1,6 +1,6 @@
 /* @cobaia.dev · Dia 11 · landing do guia de cortes de GTA VI */
 (function () {
-  var CHECKOUT = '';   // link do checkout da Kiwify (ex.: https://pay.kiwify.com.br/XXXXXXX). Vazio = botões levam à oferta.
+  var CHECKOUT = 'https://pay.kiwify.com.br/c5idh4y';   // link do checkout da Kiwify (ex.: https://pay.kiwify.com.br/XXXXXXX). Vazio = botões levam à oferta.
   var D = document, W = window;
   var calm = W.matchMedia && W.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
