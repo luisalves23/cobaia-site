@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pagamento confirmado | Guia de cortes de GTA VI | @cobaia.dev</title>
+<meta name="description" content="Digite o e-mail da compra e o guia abre na hora.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#140726">
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="stylesheet" href="../../assets/lp-gta.css">
+<style>
+.ty form{margin-top:26px;padding:26px;border-radius:26px;background:linear-gradient(180deg,rgba(123,32,143,.3),rgba(59,20,107,.15));box-shadow:inset 0 0 0 1px var(--line)}
+.ty label{display:block;font:700 12px var(--m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.ty input[type=email]{width:100%;font:500 18px var(--b);color:var(--cream);background:rgba(0,0,0,.35);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px}
+.ty input[type=email]:focus{outline:3px solid var(--yellow);outline-offset:2px}
+.ty .btn{width:100%;margin-top:16px}
+.ty .help{font-size:14px;color:var(--dim);margin:18px 0 0}
+.ty .help a{color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="me" href="../../30-dias/"><img src="../../assets/img/avatar.jpg" alt="" width="28" height="28">@cobaia.dev</a>
+  <span class="hud mid">Especial GTA VI</span>
+  <span class="hud rec"><i></i>Dia 11/30</span>
+</header>
+<main class="ty">
+  <div class="box">
+    <div class="tagrow"><span class="chip hot">Pagamento confirmado</span></div>
+    <h1 class="h1">Seu guia <span class="it">já</span> está pronto</h1>
+    <p class="sub" style="margin-bottom:0">Digite o e-mail que você usou na compra e o guia abre na hora. Se o Pix ainda estiver sendo confirmado, espere um minutinho e tente de novo.</p>
+    <form method="post" action="/api/entrar">
+      <label for="email">E-mail da compra</label>
+      <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="voce@email.com">
+      <input type="hidden" name="produto" value="gta">
+      <button class="btn main" type="submit">Abrir o meu guia
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="help">Já comprou antes? <a href="/acesso/">Entre aqui</a>. Pra voltar ao guia outro dia, é só abrir cobaia-dev.vercel.app/acesso e usar o mesmo e-mail.</p>
+    </form>
+    <div class="panel">
+      <h2>Enquanto o guia abre, deixe pronto</h2>
+      <ol>
+        <li>Um <b>computador</b> com Windows 10/11, Mac ou Linux, e uns 20 GB livres</li>
+        <li>A sua <b>assinatura do Claude</b> (Pro ou acima) com o login em mãos</li>
+        <li>O <b>@ da sua página de GTA</b> (ou 3 ideias de nome, o guia te ajuda a escolher)</li>
+      </ol>
+    </div>
+  </div>
+</main>
+<script>
+/* Se a Kiwify mandar o e-mail do comprador no link de redirecionamento, já deixa preenchido. */
+(function(){try{var q=new URLSearchParams(location.search);var e=q.get('email')||q.get('customer_email')||q.get('buyer_email')||q.get('Customer[email]');if(e){var i=document.getElementById('email');if(i&&!i.value)i.value=e;}}catch(_){}})();
+</script>
+</body>
+</html>

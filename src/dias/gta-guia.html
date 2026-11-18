@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<!-- Guia pago do Dia 11. Fonte: src/dias/gta-guia.html. O build copia para gta/guia/index.html (rota protegida pelo middleware). -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guia completo de cortes de GTA VI | @cobaia.dev</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#140726">
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="stylesheet" href="../../assets/lp-gta.css">
+<style>
+body{font-size:17.5px}
+.gtop{position:relative;padding:calc(96px + env(safe-area-inset-top,0px)) 0 56px;background:radial-gradient(120% 80% at 50% 100%,rgba(201,52,155,.5),rgba(20,7,38,0) 70%),var(--night)}
+.gtop .h1{font-size:clamp(44px,7vw,84px)}
+.gl{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(24px,5vw,64px);max-width:var(--max);margin:0 auto;padding:0 var(--pad) 80px}
+.toc{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding:4px 0}
+.toc p{font:700 11px var(--m);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc a{display:block;text-decoration:none;color:var(--muted);font-size:14.5px;line-height:1.35;padding:8px 10px;border-radius:10px}
+.toc a:hover,.toc a.on{background:rgba(255,244,232,.07);color:var(--cream)}
+.toc a.on{box-shadow:inset 3px 0 0 var(--pink)}
+.doc{max-width:720px;min-width:0}
+.doc section{padding:56px 0 8px;border-top:1px solid var(--line);scroll-margin-top:72px}
+.doc section:first-child{border-top:0;padding-top:8px}
+.doc .num{font:700 12px var(--m);letter-spacing:.12em;color:var(--pink);text-transform:uppercase;margin:0 0 10px}
+.doc h2{font:400 clamp(32px,4.4vw,48px)/1 var(--d);text-transform:uppercase;margin:0 0 18px}
+.doc h3{font:800 20px/1.3 var(--b);margin:34px 0 10px}
+.doc p,.doc li{color:#e6d9f0}
+.doc p{margin:0 0 14px}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 16px;display:grid;gap:8px}
+.doc b,.doc strong{color:var(--cream)}
+.doc a{color:var(--yellow)}
+.doc code{font:400 .88em var(--m);background:rgba(255,244,232,.08);padding:2px 6px;border-radius:6px;word-break:break-word}
+.cmd{position:relative;margin:12px 0 18px;border-radius:16px;background:#0d041b;box-shadow:inset 0 0 0 1px var(--line)}
+.cmd .lab{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 10px 9px 16px;border-bottom:1px solid var(--line);font:700 11px var(--m);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.cmd pre{margin:0;padding:14px 16px 16px;overflow-x:auto;font:400 14px/1.6 var(--m);color:var(--cream);white-space:pre-wrap;word-break:break-word}
+.cp{all:unset;cursor:pointer;font:700 12px var(--b);letter-spacing:0;text-transform:none;color:var(--ink);background:var(--yellow);border-radius:999px;padding:7px 12px;min-height:20px}
+.cp.ok{background:var(--ok)}
+.cp:focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+.asks .cmd{background:linear-gradient(180deg,rgba(123,32,143,.35),rgba(59,20,107,.25))}
+.asks .cmd pre{font-family:var(--b);font-size:15.5px}
+.note{margin:16px 0 20px;padding:16px 18px;border-radius:16px;background:rgba(255,180,88,.1);box-shadow:inset 3px 0 0 var(--yellow);font-size:16px}
+.note.red{background:rgba(243,106,120,.12);box-shadow:inset 3px 0 0 var(--pink)}
+.note.ok{background:rgba(61,220,132,.1);box-shadow:inset 3px 0 0 var(--ok)}
+.note p:last-child{margin:0}
+.see{font:400 14px var(--m);color:var(--ok)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 0}
+.tabs button{all:unset;cursor:pointer;font:800 14px var(--b);padding:10px 16px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+.tabs button[aria-selected=true]{background:var(--cream);color:var(--ink)}
+.tabs button:focus-visible{outline:3px solid var(--yellow)}
+.panel[hidden]{display:none}
+.chk{list-style:none;padding:0!important}
+.chk li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}
+.chk input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--pink)}
+.tbl2{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+.tbl2 th,.tbl2 td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl2 th{font:700 11px var(--m);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.wrapx{overflow-x:auto}
+.end2{margin-top:48px;padding:28px;border-radius:24px;background:var(--sunset);color:var(--ink)}
+.end2 h2{color:var(--ink)}
+.end2 p{color:var(--ink)!important}
+@media (max-width:900px){.gl{grid-template-columns:minmax(0,1fr)}.toc{position:static;max-height:none;padding:18px;border-radius:20px;box-shadow:inset 0 0 0 1px var(--line)}}
+@media print{.top,.toc,.cp{display:none}.gl{grid-template-columns:1fr}body{background:#fff;color:#000}.doc p,.doc li{color:#000}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="me" href="../../30-dias/"><img src="../../assets/img/avatar.jpg" alt="" width="28" height="28">@cobaia.dev</a>
+  <span class="hud mid">Guia completo · GTA VI</span>
+  <span class="hud rec"><i></i>Dia 11/30</span>
+</header>
+
+<div class="gtop"><div class="wrap">
+  <div class="tagrow"><span class="chip hot">Seu guia</span><span class="chip">atualizado em 18/11/2026</span></div>
+  <h1 class="h1">Da página vazia <span class="it">ao</span> primeiro corte postado</h1>
+  <p class="sub">Siga na ordem. Cada comando tem um botão de copiar e, embaixo dele, o que deve aparecer na tela. Se aparecer outra coisa, a saída está na seção <a href="#problemas" style="color:var(--yellow)">Deu erro?</a></p>
+</div></div>
+
+<div class="gl">
+<nav class="toc" aria-label="Seções do guia">
+  <p>Neste guia</p>
+  <ol>
+    <li><a href="#antes">0 · Antes de começar</a></li>
+    <li><a href="#pagina">1 · A página</a></li>
+    <li><a href="#permissao">2 · Streamers que liberam corte</a></li>
+    <li><a href="#instalar">3 · Instalar tudo</a></li>
+    <li><a href="#live">4 · Pegar a live</a></li>
+    <li><a href="#cortar">5 · Cortar com o Claude</a></li>
+    <li><a href="#ajustes">6 · Ajustes de GTA</a></li>
+    <li><a href="#postar">7 · Postar e crescer</a></li>
+    <li><a href="#pedidos">Caixa de pedidos</a></li>
+    <li><a href="#problemas">Deu erro?</a></li>
+  </ol>
+</nav>
+
+<main class="doc" id="main">
+
+<!-- 0 -->
+<section id="antes" aria-labelledby="t0">
+  <p class="num">Passo 0</p>
+  <h2 id="t0">Antes de começar</h2>
+  <p>Separe uma tarde pra montar tudo. Depois de instalado, o dia a dia é abrir a pasta, pedir os cortes e postar.</p>
+  <h3>O que você precisa</h3>
+  <ul class="chk">
+    <li><input type="checkbox" aria-label="feito"><span><b>Um computador</b> com Windows 10 ou 11, Mac ou Linux, e pelo menos <b>20 GB livres</b> (uma live de 4 horas em 1080p ocupa uns 5 a 8 GB, e a instalação ocupa outros 5).</span></li>
+    <li><input type="checkbox" aria-label="feito"><span><b>Assinatura paga do Claude</b> (Pro ou acima). O Claude Code, onde a skill roda, não funciona no plano grátis.</span></li>
+    <li><input type="checkbox" aria-label="feito"><span><b>Placa de vídeo NVIDIA</b> é opcional. Com ela, a transcrição de uma live longa sai em minutos. Sem ela também funciona, só que mais devagar (na seção 4 eu mostro como cortar a live em blocos pra não esperar horas).</span></li>
+    <li><input type="checkbox" aria-label="feito"><span>Um celular com <b>Instagram, TikTok e YouTube</b> pra postar.</span></li>
+  </ul>
+  <div class="note"><p><b>Sobre os 15 minutos do vídeo:</b> esse foi o meu tempo numa máquina com placa NVIDIA, contando a escolha dos cortes. Sem placa de vídeo, conte com mais tempo na transcrição. O resto do processo é igual.</p></div>
+  <h3>Como o processo funciona</h3>
+  <p>A skill <b>claude-shorts</b> (gratuita, licença MIT, feita por Agrici Daniel) ensina o Claude Code a fazer 10 etapas sozinho: confere o vídeo, transcreve palavra por palavra, lê a transcrição inteira, dá nota de 0 a 100 pra cada trecho, te mostra os melhores, ajusta o corte pra não pegar palavra pela metade, enquadra em pé, coloca legenda animada e exporta no formato de cada rede.</p>
+  <p>Você só faz três coisas: entrega a live, escolhe quais cortes quer e posta.</p>
+</section>
+
+<!-- 1 -->
+<section id="pagina" aria-labelledby="t1">
+  <p class="num">Passo 1</p>
+  <h2 id="t1">Uma página só de GTA</h2>
+  <p>Página de cortes cresce quando a pessoa entende em 1 segundo o que vai encontrar ali. Por isso é <b>uma página só pro assunto</b>, separada do seu perfil pessoal.</p>
+  <h3>Escolha o nome</h3>
+  <p>Regras: curto, fácil de digitar, com GTA ou o clima do jogo no nome, e <b>o mesmo @ nas três redes</b>. Confira se o @ está livre no Instagram, no TikTok e no YouTube antes de decidir.</p>
+  <p>Ideias pra adaptar: <code>gta6.cortesbr</code>, <code>cortes.gta6</code>, <code>vicecity.cortes</code>, <code>leonida.diario</code>, <code>gta6.melhoresmomentos</code>.</p>
+  <div class="note red"><p><b>Não use</b> a logo oficial, a arte da capa ou os personagens do jogo na foto de perfil. Isso é da Rockstar e pode derrubar a página. Faça uma foto própria: "GTA VI" escrito numa fonte sua sobre um pôr do sol, por exemplo. Dá pra pedir pro Claude criar a ideia e montar no Canva.</p></div>
+  <h3>A bio</h3>
+  <div class="cmd"><div class="lab"><span>Modelo de bio</span><button class="cp" type="button">Copiar</button></div><pre>🎮 Os melhores momentos das lives de GTA VI
+✂️ Cortes novos todo dia
+🎥 Créditos sempre aos streamers
+👇 Mande sua sugestão de live pra cortar</pre></div>
+  <h3>Configure em 5 minutos</h3>
+  <ol>
+    <li>Crie a conta no Instagram e mude pra <b>conta profissional, categoria Criador de conteúdo</b> (Configurações, Tipo de conta). É isso que libera as estatísticas.</li>
+    <li>Crie o mesmo @ no <b>TikTok</b> e um canal no <b>YouTube</b> pra Shorts.</li>
+    <li>Coloque a mesma foto e a mesma bio nas três.</li>
+    <li>Crie dois destaques no Instagram: <b>Streamers</b> (quem você corta, com o crédito) e <b>Sugestões</b>.</li>
+  </ol>
+  <h3>Os 9 primeiros quadrados</h3>
+  <p>Ninguém segue uma página vazia. Antes de divulgar, poste <b>de 6 a 9 cortes</b> ao longo de 2 ou 3 dias. Varie: um susto, uma risada, uma cena absurda, uma reação forte. Quem chega pelo primeiro corte olha a grade e decide seguir em segundos.</p>
+</section>
+
+<!-- 2 -->
+<section id="permissao" aria-labelledby="t2">
+  <p class="num">Passo 2</p>
+  <h2 id="t2">Streamers que liberam corte</h2>
+  <p>Esse passo é o que separa a página que cresce da página que cai. <b>Só corte live de quem libera.</b> Cortar sem permissão pode render denúncia de direitos autorais, e algumas denúncias apagam a conta.</p>
+  <p>A boa notícia: muito streamer grande <b>quer</b> ser cortado, porque corte leva gente nova pra live dele. A permissão costuma estar escrita.</p>
+  <h3>Onde a regra costuma estar</h3>
+  <ul>
+    <li><b>Twitch:</b> nos painéis abaixo do vídeo, na aba "Sobre". Procure por "cortes", "clips" ou "regras".</li>
+    <li><b>Chat da live:</b> muitos canais têm um comando como <code>!cortes</code>, <code>!regras</code> ou <code>!clips</code>. Digite e veja a resposta do bot.</li>
+    <li><b>YouTube:</b> na descrição do canal ou da live, e às vezes num comentário fixado.</li>
+    <li><b>Discord do streamer:</b> quase sempre tem um canal de regras ou de cortes.</li>
+    <li><b>Canal oficial de cortes:</b> se o streamer já tem um, ele costuma liberar cortes de fãs com regras (crédito, link, sem monetizar ou dividindo).</li>
+  </ul>
+  <h3>Não achou? Pergunte</h3>
+  <div class="cmd"><div class="lab"><span>Mensagem pra pedir permissão</span><button class="cp" type="button">Copiar</button></div><pre>Oi, [nome]! Eu comecei uma página de cortes de GTA VI (@[seu_arroba]) e queria postar cortes das suas lives, sempre com o seu nome e o link do canal na legenda. Você libera? Se tiver alguma regra (marcar, não monetizar, tamanho), eu sigo à risca. Valeu!</pre></div>
+  <p>Mande no Discord, no e-mail comercial ou na DM. <b>Sem resposta = não corta.</b></p>
+  <h3>Guarde a prova</h3>
+  <p>Tire print da regra ou da resposta e guarde numa pasta <code>permissoes</code>, com o nome do streamer e a data. Se um dia vier uma denúncia, você tem como contestar.</p>
+  <h3>O crédito em todo corte</h3>
+  <div class="cmd"><div class="lab"><span>Modelo de crédito</span><button class="cp" type="button">Copiar</button></div><pre>🎥 Live: [nome do streamer] → [link ou @ do canal]
+Corte autorizado pelo canal.</pre></div>
+  <div class="note"><p><b>Cuidado com a música.</b> Se tocar música de fundo no trecho cortado, o Instagram e o YouTube podem silenciar ou bloquear o vídeo. Prefira trechos com fala e som do jogo, ou peça pro Claude escolher momentos sem música (pedido na seção 6).</p></div>
+</section>
+
+<!-- 3 -->
+<section id="instalar" aria-labelledby="t3">
+  <p class="num">Passo 3</p>
+  <h2 id="t3">Instalar tudo</h2>
+  <p>São 3 partes: as ferramentas de vídeo, o Claude Code e a skill. Escolha o seu sistema:</p>
+  <div class="tabs" role="tablist" aria-label="Sistema">
+    <button role="tab" id="tb-w" aria-controls="pn-w" aria-selected="true">Windows</button>
+    <button role="tab" id="tb-m" aria-controls="pn-m" aria-selected="false" tabindex="-1">Mac</button>
+    <button role="tab" id="tb-l" aria-controls="pn-l" aria-selected="false" tabindex="-1">Linux</button>
+  </div>
+
+  <div class="panel" id="pn-w" role="tabpanel" aria-labelledby="tb-w">
+    <h3>3.1 Ligue o Linux dentro do Windows (WSL)</h3>
+    <p>A skill usa ferramentas de Linux. O Windows tem um Linux embutido, o WSL. Clique com o botão direito no menu Iniciar, abra o <b>Terminal (Administrador)</b> ou o <b>PowerShell (Administrador)</b> e cole:</p>
+    <div class="cmd"><div class="lab"><span>PowerShell (Administrador)</span><button class="cp" type="button">Copiar</button></div><pre>wsl --install</pre></div>
+    <p>Reinicie o computador quando ele pedir. Na volta, abre uma janela do <b>Ubuntu</b> pedindo um nome de usuário e uma senha. Crie e anote (a senha não aparece enquanto você digita, é normal).</p>
+    <p class="see">Deve aparecer no fim algo como: seunome@PC:~$</p>
+    <p>A partir daqui, <b>todos os comandos vão na janela do Ubuntu</b>. Pra abrir de novo depois, procure "Ubuntu" no menu Iniciar.</p>
+    <div class="note"><p><b>Tem placa NVIDIA?</b> Atualize o driver da NVIDIA no Windows (pelo GeForce Experience ou pelo site da NVIDIA). O WSL usa a placa direto pelo driver do Windows, não instale driver dentro do Ubuntu.</p></div>
+    <h3>3.2 Ferramentas de vídeo</h3>
+    <div class="cmd"><div class="lab"><span>Ubuntu</span><button class="cp" type="button">Copiar</button></div><pre>sudo apt update && sudo apt install -y ffmpeg jq git python3 python3-venv python3-pip curl rsync</pre></div>
+    <p>A skill precisa do Node.js 18 ou mais novo. O do Ubuntu pode vir velho, então instale a versão 22:</p>
+    <div class="cmd"><div class="lab"><span>Ubuntu</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs</pre></div>
+    <p>Confira:</p>
+    <div class="cmd"><div class="lab"><span>Ubuntu</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -version | head -1; node -v; python3 --version</pre></div>
+    <p class="see">Deve aparecer: ffmpeg version …, v22.…, Python 3.10 ou mais novo.</p>
+  </div>
+
+  <div class="panel" id="pn-m" role="tabpanel" aria-labelledby="tb-m" hidden>
+    <h3>3.1 Instale o Homebrew</h3>
+    <p>Abra o app <b>Terminal</b> (Cmd + espaço, digite Terminal). Se você ainda não tem o Homebrew, cole o comando da página <a href="https://brew.sh/pt-br/" target="_blank" rel="noopener">brew.sh</a> e siga o que ele pedir no final (ele mostra 2 linhas pra colar).</p>
+    <h3>3.2 Ferramentas de vídeo</h3>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>brew install ffmpeg jq git python node rsync</pre></div>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -version | head -1; node -v; python3 --version</pre></div>
+    <p class="see">Deve aparecer: ffmpeg version …, v18 ou mais novo, Python 3.10 ou mais novo.</p>
+    <div class="note"><p>Mac não tem placa NVIDIA, então a transcrição roda no processador. Nos Macs com chip M1, M2, M3 ou M4 ela vai bem; em Mac antigo, use os blocos de 1 hora da seção 4.</p></div>
+  </div>
+
+  <div class="panel" id="pn-l" role="tabpanel" aria-labelledby="tb-l" hidden>
+    <h3>3.1 Ferramentas de vídeo (Ubuntu, Debian e derivados)</h3>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>sudo apt update && sudo apt install -y ffmpeg jq git python3 python3-venv python3-pip curl rsync</pre></div>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs</pre></div>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -version | head -1; node -v; python3 --version</pre></div>
+    <p class="see">Deve aparecer: ffmpeg version …, v22.…, Python 3.10 ou mais novo.</p>
+    <p>Com placa NVIDIA, confira se o driver está ok com <code>nvidia-smi</code> (tem que mostrar o nome da placa).</p>
+  </div>
+
+  <h3>3.3 Instale o Claude Code</h3>
+  <p>No mesmo terminal (no Windows, o do Ubuntu):</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+  <p>Feche e abra o terminal de novo, depois digite <code>claude</code> e aperte Enter. Ele abre o navegador pra você entrar com a sua conta do Claude. Entre, volte ao terminal e digite <code>/exit</code> pra sair.</p>
+  <p class="see">Deve aparecer: a tela de boas-vindas do Claude Code, com o seu e-mail.</p>
+  <h3>3.4 Instale a skill claude-shorts</h3>
+  <p>Baixe a skill e instale as dependências dela. O segundo comando demora (de 5 a 20 minutos), porque baixa o modelo de transcrição e o motor de vídeo:</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>cd ~ && git clone https://github.com/AgriciDaniel/claude-shorts.git && cd claude-shorts</pre></div>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>bash setup.sh && bash install.sh</pre></div>
+  <p class="see">Deve aparecer no fim: Installed to: /home/…/.claude/skills/shorts</p>
+  <p>Agora o passo que <b>quase todo mundo esquece</b> e que faz a renderização falhar depois. O instalador copia a skill sem as peças do motor de vídeo, então instale elas na pasta da skill:</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>cd ~/.claude/skills/shorts/remotion && npm install && cd ~</pre></div>
+  <p class="see">Deve aparecer: added … packages (avisos amarelos de "deprecated" podem ser ignorados).</p>
+  <div class="note ok"><p><b>Pronto.</b> Essa parte só se faz uma vez.</p></div>
+</section>
+
+<!-- 4 -->
+<section id="live" aria-labelledby="t4">
+  <p class="num">Passo 4</p>
+  <h2 id="t4">Pegar a live</h2>
+  <p>Você precisa do arquivo de vídeo da live (o VOD, a gravação que fica no canal depois que a live acaba). <b>Só de streamer que libera corte</b>, como no passo 2.</p>
+  <h3>4.1 Crie a pasta de trabalho</h3>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>mkdir -p ~/cortes-gta/lives && cd ~/cortes-gta</pre></div>
+  <h3>4.2 Baixe a gravação</h3>
+  <p>A forma mais simples é o <b>yt-dlp</b>, um programa gratuito que baixa vídeos públicos da Twitch e do YouTube. Instale:</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>python3 -m venv ~/.ytdlp && ~/.ytdlp/bin/pip install -U yt-dlp && echo 'alias yt-dlp=~/.ytdlp/bin/yt-dlp' >> ~/.bashrc && source ~/.bashrc</pre></div>
+  <p>No Mac, troque por <code>brew install yt-dlp</code>. Agora copie o link da gravação (na Twitch, aba Vídeos do canal; no YouTube, a aba Ao vivo) e baixe em até 1080p:</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>yt-dlp -f "bv*[height<=1080]+ba/b[height<=1080]" --merge-output-format mp4 -o "lives/%(uploader)s-%(upload_date)s.%(ext)s" "COLE_O_LINK_AQUI"</pre></div>
+  <p class="see">Deve aparecer: uma barra de [download] chegando a 100% e o arquivo em lives/.</p>
+  <div class="note"><p>Se o streamer pede pra você usar só os clipes oficiais ou um arquivo que ele mesmo envia, siga a regra dele e coloque o arquivo na pasta <code>lives</code>.</p></div>
+  <h3>4.3 Sem placa de vídeo? Corte em blocos de 1 hora</h3>
+  <p>Transcrever 4 horas no processador pode levar horas. Em vez disso, pegue a parte que o chat mais comentou (ou vá de hora em hora). Este comando corta da 1ª à 2ª hora, sem perder qualidade e em segundos:</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -ss 01:00:00 -to 02:00:00 -i lives/NOME_DA_LIVE.mp4 -c copy lives/bloco-2.mp4</pre></div>
+  <p>Dica: na Twitch, os <b>clipes mais vistos</b> daquela live mostram onde estão os melhores momentos. Corte o bloco em volta deles.</p>
+</section>
+
+<!-- 5 -->
+<section id="cortar" aria-labelledby="t5">
+  <p class="num">Passo 5</p>
+  <h2 id="t5">Cortar com o Claude</h2>
+  <h3>5.1 Abra o Claude na pasta</h3>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>cd ~/cortes-gta && claude</pre></div>
+  <h3>5.2 O pedido</h3>
+  <p>No vídeo eu falei "corta essa live em cinco". Esse é o pedido completo que eu uso, já com o contexto de GTA. Troque o nome do arquivo e do streamer:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido pro Claude Code</span><button class="cp" type="button">Copiar</button></div><pre>/shorts lives/NOME_DA_LIVE.mp4
+
+Corta essa live em cinco. É uma live de GTA VI do streamer [NOME], em português, com a câmera dele num canto e o jogo na tela.
+Procure os momentos de susto, risada, reação forte e cena absurda do jogo. Cada corte precisa fazer sentido sozinho, pra quem nunca viu a live, e ter de 20 a 45 segundos.
+Limpe da legenda os vícios de fala em português (tipo, né, mano, é…, ãh) sem mudar os tempos.
+Me mostre a tabela com os candidatos antes de renderizar.</pre></div></div>
+  <h3>5.3 O que o Claude vai perguntar (e o que responder)</h3>
+  <div class="wrapx"><table class="tbl2">
+    <thead><tr><th>Ele pergunta</th><th>Responda</th></tr></thead>
+    <tbody>
+      <tr><td>Se pode seguir apesar de algum aviso (preflight)</td><td>Leia o aviso. "Pouco espaço" = libere espaço antes. Os outros, pode seguir.</td></tr>
+      <tr><td>O tipo de conteúdo (talking-head, screen, podcast)</td><td><b>screen</b> pra manter o jogo inteiro na tela, com a legenda embaixo. Se a graça do trecho é a reação do streamer, peça <b>talking-head</b> naquele corte.</td></tr>
+      <tr><td>Quais trechos você quer</td><td>Os números dos 5 melhores. Pule o que depende de contexto ("como eu falei antes…").</td></tr>
+      <tr><td>Estilo de legenda</td><td><b>bounce</b> (colorida, pulando) combina com jogo. <b>bold</b> se o trecho for mais falado.</td></tr>
+      <tr><td>Plataforma</td><td><b>all</b>: ele exporta uma versão pra cada rede.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Depois disso ele ajusta os cortes pra não pegar palavra pela metade, renderiza um por um e entrega os arquivos na pasta <code>shorts/</code>, com o final <code>_yt</code>, <code>_tt</code> e <code>_ig</code>.</p>
+  <h3>5.4 Mande pro celular</h3>
+  <p>No Windows, os arquivos ficam em <code>\\wsl$\Ubuntu\home\SEU_USUARIO\cortes-gta\shorts</code> (cole esse caminho na barra do Explorador de Arquivos). Mande pro celular pelo Google Drive, pelo WhatsApp pra você mesmo ou por cabo.</p>
+</section>
+
+<!-- 6 -->
+<section id="ajustes" aria-labelledby="t6">
+  <p class="num">Passo 6</p>
+  <h2 id="t6">Ajustes que deixam o corte com cara de GTA</h2>
+  <h3>Duração por rede</h3>
+  <div class="wrapx"><table class="tbl2">
+    <thead><tr><th>Rede</th><th>Comece com</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>TikTok</td><td>20 a 35 s</td><td>Corte curto é assistido até o fim mais vezes.</td></tr>
+      <tr><td>Reels</td><td>25 a 45 s</td><td>Dá espaço pra montar o susto e mostrar a reação.</td></tr>
+      <tr><td>Shorts</td><td>até 60 s</td><td>É o limite que a skill usa pro YouTube.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Depois de 2 semanas, olhe nas estatísticas quais durações seguraram mais gente e ajuste.</p>
+  <h3>Os 3 primeiros segundos</h3>
+  <p>A skill coloca um texto de gancho no começo de cada corte. Em GTA, o gancho que funciona promete o que vai acontecer sem entregar: <i>"ele não esperava por isso"</i>, <i>"a pior fuga da história de Vice City"</i>, <i>"o chat inteiro gritou"</i>. Peça pro Claude reescrever o gancho quando estiver genérico (pedido na caixa abaixo).</p>
+  <h3>8 pedidos de ajuste prontos</h3>
+  <p>Mande no mesmo chat, depois que ele mostrar a tabela ou entregar os cortes:</p>
+  <div class="asks">
+    <div class="cmd"><div class="lab"><span>1 · Mais trechos</span><button class="cp" type="button">Copiar</button></div><pre>Nenhum desses me convenceu. Analise de novo e me traga 10 candidatos, priorizando reação forte do streamer e cena inesperada do jogo.</pre></div>
+    <div class="cmd"><div class="lab"><span>2 · Gancho melhor</span><button class="cp" type="button">Copiar</button></div><pre>Reescreva o gancho do corte [N] em até 6 palavras, em português do Brasil, prometendo o que vai acontecer sem entregar o final.</pre></div>
+    <div class="cmd"><div class="lab"><span>3 · Começar antes</span><button class="cp" type="button">Copiar</button></div><pre>No corte [N], comece 4 segundos antes, pra dar tempo de entender a cena antes do susto.</pre></div>
+    <div class="cmd"><div class="lab"><span>4 · Versão TikTok</span><button class="cp" type="button">Copiar</button></div><pre>Faça uma versão do corte [N] com no máximo 30 segundos, mantendo o momento principal e cortando no fim de uma frase.</pre></div>
+    <div class="cmd"><div class="lab"><span>5 · Sem música</span><button class="cp" type="button">Copiar</button></div><pre>Descarte os trechos em que toca música de fundo e escolha outros no lugar.</pre></div>
+    <div class="cmd"><div class="lab"><span>6 · Trocar legenda</span><button class="cp" type="button">Copiar</button></div><pre>Renderize de novo o corte [N] com a legenda no estilo bold.</pre></div>
+    <div class="cmd"><div class="lab"><span>7 · Corrigir palavra</span><button class="cp" type="button">Copiar</button></div><pre>No corte [N], a legenda escreveu "[errado]" mas o certo é "[certo]". Corrija só o texto, sem mudar os tempos, e renderize de novo.</pre></div>
+    <div class="cmd"><div class="lab"><span>8 · Enquadramento</span><button class="cp" type="button">Copiar</button></div><pre>No corte [N], use o enquadramento talking-head pra focar na reação do streamer em vez da tela do jogo.</pre></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="postar" aria-labelledby="t7">
+  <p class="num">Passo 7</p>
+  <h2 id="t7">Postar todo dia sem virar escravo da página</h2>
+  <h3>A rotina de 30 minutos</h3>
+  <ol>
+    <li><b>5 min:</b> veja quais streamers liberados fizeram live ontem e baixe a gravação (deixe baixando enquanto faz outra coisa).</li>
+    <li><b>15 min:</b> peça os cortes, escolha os 5 e deixe renderizar.</li>
+    <li><b>10 min:</b> mande pro celular, programe os posts do dia nas três redes.</li>
+  </ol>
+  <p>Comece com <b>1 a 3 cortes por dia</b> por rede. Constância vale mais que volume: é melhor 2 por dia durante um mês do que 10 num dia e nada na semana seguinte.</p>
+  <h3>Legenda do post</h3>
+  <p>Peça pro Claude escrever, no mesmo chat:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · legenda dos posts</span><button class="cp" type="button">Copiar</button></div><pre>Escreva a legenda de cada corte pra Instagram e TikTok: uma primeira linha curta que dê vontade de assistir até o fim, uma pergunta pro público comentar, o crédito "🎥 Live: [NOME] → [LINK]" e 4 hashtags em português sobre GTA VI.</pre></div></div>
+  <h3>Horário</h3>
+  <p>Não existe horário mágico. Comece testando <b>perto do almoço e no começo da noite</b>, quando o público de games costuma estar no celular, e depois de 2 semanas use o que as estatísticas da sua página mostrarem (Instagram: Painel profissional, Público, Horários mais ativos).</p>
+  <h3>O que evitar</h3>
+  <ul>
+    <li>Cortar quem não libera, ou tirar o crédito.</li>
+    <li>Trecho com música de fundo protegida.</li>
+    <li>Repostar o mesmo corte várias vezes na mesma rede.</li>
+    <li>Usar a arte oficial do jogo como capa ou foto de perfil.</li>
+    <li>Comprar seguidor: derruba o alcance de tudo que vier depois.</li>
+  </ul>
+  <div class="note"><p><b>Sobre dinheiro:</b> página de cortes pode virar renda (programas de criador das redes, parcerias, divulgação), mas isso depende de muita constância e não tem garantia. Este guia te leva até a página no ar e postando todo dia. O resto é trabalho em cima dela.</p></div>
+</section>
+
+<!-- caixa -->
+<section id="pedidos" aria-labelledby="tp">
+  <p class="num">Bônus</p>
+  <h2 id="tp">Caixa de pedidos</h2>
+  <p>Todos os pedidos do guia num lugar só. Copie, troque o que está entre colchetes e cole no Claude Code.</p>
+  <div class="asks" data-box></div>
+</section>
+
+<!-- problemas -->
+<section id="problemas" aria-labelledby="te">
+  <p class="num">Socorro</p>
+  <h2 id="te">Deu erro?</h2>
+  <p>A regra de ouro: <b>copie a mensagem de erro inteira e cole no Claude Code</b>, pedindo "resolva esse erro". Ele lê, explica e corrige. Os mais comuns:</p>
+  <div class="wrapx"><table class="tbl2">
+    <thead><tr><th>Apareceu</th><th>Faça</th></tr></thead>
+    <tbody>
+      <tr><td><code>command not found: claude</code></td><td>Feche e abra o terminal. Se continuar, rode de novo o instalador do 3.3.</td></tr>
+      <tr><td><code>ffmpeg not found</code> ou <code>jq not found</code></td><td>Rode de novo o comando 3.2 do seu sistema.</td></tr>
+      <tr><td>Erro na renderização falando de <code>remotion</code> ou <code>node_modules</code></td><td>Você pulou o último comando do 3.4. Rode: <code>cd ~/.claude/skills/shorts/remotion && npm install</code></td></tr>
+      <tr><td>Erro de navegador ou <code>libnss3</code> na renderização (Windows/Linux)</td><td>Peça ao Claude: "instale as bibliotecas de sistema que o navegador do Remotion precisa no Ubuntu". Ele sabe quais são pra sua versão.</td></tr>
+      <tr><td>Transcrição muito lenta</td><td>Use blocos de 1 hora (seção 4.3) ou peça: "use o modelo small na transcrição".</td></tr>
+      <tr><td><code>CUDA out of memory</code></td><td>Sua placa tem pouca memória. Peça: "transcreva com o modelo small".</td></tr>
+      <tr><td><code>Low disk space</code></td><td>Apague lives antigas da pasta <code>lives</code> e a pasta temporária: <code>rm -rf /tmp/claude-shorts</code></td></tr>
+      <tr><td>yt-dlp dá erro 403 ou "unable to extract"</td><td>Atualize: <code>~/.ytdlp/bin/pip install -U yt-dlp</code> (no Mac, <code>brew upgrade yt-dlp</code>).</td></tr>
+      <tr><td>Legenda com palavra errada</td><td>Pedido 7 da seção 6.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="end2">
+    <h2>Travou mesmo assim?</h2>
+    <p>Me chama na DM do <b>@cobaia.dev</b> com o print do erro e o e-mail da compra. E quando o seu primeiro corte for ao ar, me marca: eu quero ver.</p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <span>© 2026 @cobaia.dev. Guia de uso pessoal, não compartilhe o seu acesso.</span>
+  <span>Skill <a href="https://github.com/AgriciDaniel/claude-shorts" target="_blank" rel="noopener">claude-shorts</a> de Agrici Daniel, licença MIT. GTA e Grand Theft Auto são marcas da Take-Two Interactive; este guia é independente.</span>
+</footer>
+
+<script>
+(function () {
+  var D = document;
+  /* caixa de pedidos: junta todos os pedidos do guia */
+  var box = D.querySelector('[data-box]');
+  if (box) D.querySelectorAll('section:not(#pedidos) .asks .cmd').forEach(function (c) { box.appendChild(c.cloneNode(true)); });
+  /* copiar */
+  D.addEventListener('click', function (e) {
+    var b = e.target.closest('.cp'); if (!b) return;
+    var t = b.closest('.cmd').querySelector('pre').innerText;
+    var done = function () { b.textContent = 'Copiado'; b.classList.add('ok'); setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () { fallback(t); done(); }); else { fallback(t); done(); }
+  });
+  function fallback(t) { var a = D.createElement('textarea'); a.value = t; a.style.position = 'fixed'; a.style.opacity = '0'; D.body.appendChild(a); a.select(); try { D.execCommand('copy'); } catch (x) {} a.remove(); }
+  /* abas do sistema, lembrando a escolha */
+  var tabs = [].slice.call(D.querySelectorAll('[role=tab]'));
+  function pick(t, focus) {
+    tabs.forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; D.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+    if (focus) t.focus();
+    try { localStorage.setItem('gta-os', t.id); } catch (x) {}
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(t); });
+    t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); } });
+  });
+  try { var s = localStorage.getItem('gta-os'), el = s && D.getElementById(s); if (el) pick(el); else if (/Mac/.test(navigator.platform)) pick(D.getElementById('tb-m')); else if (/Linux/.test(navigator.platform) && !/Android/.test(navigator.userAgent)) pick(D.getElementById('tb-l')); } catch (x) {}
+  /* marca a seção atual no índice */
+  var links = D.querySelectorAll('.toc a');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); }); }, { rootMargin: '-30% 0px -60% 0px' });
+    D.querySelectorAll('.doc section').forEach(function (s) { io.observe(s); });
+  }
+  /* checklist lembrado */
+  D.querySelectorAll('.chk input').forEach(function (c, i) {
+    try { c.checked = localStorage.getItem('gta-chk-' + i) === '1'; } catch (x) {}
+    c.addEventListener('change', function () { try { localStorage.setItem('gta-chk-' + i, c.checked ? '1' : '0'); } catch (x) {} });
+  });
+})();
+</script>
+</body>
+</html>
