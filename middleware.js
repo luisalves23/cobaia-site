@@ -1,11 +1,15 @@
-/* Guias pagos em /tablet/g/: só abrem com login.
-   O login e a senha ficam nas variáveis de ambiente da Vercel, nunca no repositório:
-     GUIA_SEGREDO          texto aleatório que assina o cookie de acesso
-     GUIA_<SLUG>_LOGIN     e-mail do comprador (ex.: GUIA_SM_T561M_R7Q2_LOGIN)
-     GUIA_<SLUG>_SENHA     senha do guia
-   <SLUG> é a pasta do guia em maiúsculas, com "-" trocado por "_". */
+/* Páginas pagas: só abrem para quem tem compra ativa (cadastro em lib/compras.mjs).
+   - /gta/guia/      comprador do produto "gta"
+   - /tablet/g/<slug>/  comprador do produto "tablet" com esse guia liberado no painel (/admin/)
+   A compra é conferida a cada abertura, direto na origem: reembolso ou chargeback cortam na hora.
 
-export const config = { matcher: ['/tablet/g/:path*'] };
+   Legado: guias de tablet entregues antes do cadastro ainda abrem com e-mail + senha das variáveis
+     GUIA_<SLUG>_LOGIN e GUIA_<SLUG>_SENHA (cookie assinado com GUIA_SEGREDO).
+   <SLUG> é a pasta do guia em maiúsculas, com "-" trocado por "_". */
+// lib/compras.mjs é ESM e o middleware é empacotado como CommonJS: import dinâmico.
+const libCompras = () => import('./lib/compras.mjs');
+
+export const config = { runtime: 'nodejs', matcher: ['/tablet/g/:path*', '/gta/guia/:path*'] };
 
 const enc = new TextEncoder();
 
@@ -60,7 +64,7 @@ function telaLogin(acao, erro, login) {
 <label for="s">Senha</label><input id="s" name="senha" type="password" autocomplete="current-password" required>
 ${erro ? '<p class="err" role="alert">E-mail ou senha não conferem. Confira e tente de novo.</p>' : ''}
 <button type="submit">Abrir o guia</button>
-<p class="help">Não conseguiu entrar? Responda a mensagem do WhatsApp em que recebeu este link.</p>
+<p class="help">Comprou pelo site? <a href="/acesso/?volta=${esc(acao)}" style="color:var(--paper)">Entre só com o e-mail da compra</a>. Não conseguiu? Responda a mensagem do WhatsApp em que recebeu este link.</p>
 </form></main></body></html>`;
   return new Response(html, {
     status: 401,
@@ -68,38 +72,55 @@ ${erro ? '<p class="err" role="alert">E-mail ou senha não conferem. Confira e t
   });
 }
 
-export default async function middleware(req) {
-  const url = new URL(req.url);
-  const slug = url.pathname.split('/')[3] || '';
-  const env = (k) => (typeof process !== 'undefined' && process.env ? process.env[k] : undefined);
+const NADA = undefined; // segue para a página estática
+const ir = (location) => new Response(null, { status: 303, headers: { location, 'cache-control': 'no-store' } });
+const encerrado = () => ir('/acesso/?erro=encerrado');
+
+async function legado(req, slug) {
+  const env = (k) => process.env[k];
   const chave = 'GUIA_' + slug.toUpperCase().replace(/[^A-Z0-9]/g, '_');
   const login = (env(chave + '_LOGIN') || '').trim().toLowerCase();
   const senha = env(chave + '_SENHA') || '';
   const segredo = env('GUIA_SEGREDO') || '';
-
-  // guia sem credencial configurada: não abre pra ninguém
-  if (!slug || !login || !senha || !segredo) return new Response('Não encontrado', { status: 404, headers: { 'cache-control': 'no-store' } });
-
+  if (!login || !senha || !segredo) return null; // sem legado pra esse guia
   const certo = await assinatura(slug, login, senha, segredo);
   const nomeCookie = 'guia_' + slug.replace(/[^a-z0-9]/gi, '_');
   const base = '/tablet/g/' + slug + '/';
-
   if (req.method === 'POST') {
     let l = '', s = '';
     try { const f = await req.formData(); l = String(f.get('login') || '').trim().toLowerCase(); s = String(f.get('senha') || ''); } catch (e) {}
     if (igual(l, login) && igual(s, senha)) {
-      return new Response(null, {
-        status: 303,
-        headers: {
-          location: base,
-          'cache-control': 'no-store',
-          'set-cookie': `${nomeCookie}=${certo}; Path=${base}; Max-Age=31536000; HttpOnly; Secure; SameSite=Lax`,
-        },
-      });
+      return new Response(null, { status: 303, headers: { location: base, 'cache-control': 'no-store', 'set-cookie': `${nomeCookie}=${certo}; Path=${base}; Max-Age=31536000; HttpOnly; Secure; SameSite=Lax` } });
     }
     return telaLogin(base, true, l);
   }
-
-  if (igual(lerCookie(req, nomeCookie), certo)) return; // segue pra página estática
+  if (igual(lerCookie(req, nomeCookie), certo)) return 'ok';
   return telaLogin(base, false, '');
+}
+
+export default async function middleware(req) {
+  const { lerSessao, lerCompra, ativo } = await libCompras();
+  const url = new URL(req.url);
+  const p = url.pathname;
+  const email = lerSessao(req);
+
+  if (p.startsWith('/gta/guia')) {
+    if (!email) return ir('/acesso/?produto=gta&volta=/gta/guia/');
+    const reg = await lerCompra('gta', email);
+    if (ativo(reg)) return NADA;
+    return reg ? encerrado() : ir('/acesso/?produto=gta&erro=nao-encontrado&email=' + encodeURIComponent(email));
+  }
+
+  // /tablet/g/<slug>/
+  const slug = p.split('/')[3] || '';
+  if (!slug) return new Response('Não encontrado', { status: 404, headers: { 'cache-control': 'no-store' } });
+  if (email) {
+    const reg = await lerCompra('tablet', email);
+    if (ativo(reg) && (reg.guias || []).includes(slug)) return NADA;
+    if (reg && !ativo(reg)) return encerrado();
+  }
+  const l = await legado(req, slug);
+  if (l === 'ok') return NADA;
+  if (l) return l;
+  return email ? ir('/minha-area/') : ir('/acesso/?produto=tablet&volta=' + encodeURIComponent('/tablet/g/' + slug + '/'));
 }

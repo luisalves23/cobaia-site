@@ -10,6 +10,13 @@
 <link rel="icon" href="../../assets/img/favicon.png">
 <link rel="preload" href="../../assets/fonts/archivo-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="../../assets/lp-tablet.css">
+<style>
+.entrar input[type=email]{width:100%;box-sizing:border-box;font:500 17px system-ui,sans-serif;color:#F2EEE6;background:rgba(0,0,0,.45);border:1px solid rgba(242,238,230,.18);border-radius:14px;padding:14px}
+.entrar input[type=email]:focus{outline:2px solid #FF2D2D;outline-offset:2px}
+.entrar button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;font-weight:800;font-size:18px;background:#FF2D2D;color:#0c0c0c;border-radius:14px;padding:14px 0}
+.entrar .fine{font-size:13px;opacity:.7;margin:12px 0 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
 </head>
 <body style="--life:1" data-static>
 <div class="glow" aria-hidden="true"></div>
@@ -21,7 +28,16 @@
 <main class="ty">
   <div class="tag"><b class="day">Pagamento confirmado</b></div>
   <h1 class="h1">Agora é comigo.</h1>
-  <p class="lead">Já recebi o modelo que você informou. Em média <b class="eta" data-eta>22 min</b>, o link do seu guia chega no WhatsApp que você deixou na compra.</p>
+  <p class="lead">Já recebi o modelo que você informou. Em média <b class="eta" data-eta>22 min</b>, o seu guia fica pronto. Ele aparece na sua área e eu te aviso no WhatsApp que você deixou na compra.</p>
+  <form class="box hot entrar" method="post" action="/api/entrar">
+    <h2>Abra a sua área agora</h2>
+    <p class="lead" style="margin:0 0 14px">Digite o e-mail que você usou na compra. Sem senha: é ali que o guia aparece quando ficar pronto.</p>
+    <input type="hidden" name="produto" value="tablet">
+    <label for="em" class="sr">E-mail da compra</label>
+    <input id="em" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="voce@email.com">
+    <button type="submit">Entrar na minha área</button>
+    <p class="fine">Volte quando quiser em <b>cobaia-dev.vercel.app/acesso</b> com o mesmo e-mail.</p>
+  </form>
   <div class="box">
     <h2>Enquanto isso, deixe pronto</h2>
     <ul>
