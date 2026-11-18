@@ -95,4 +95,19 @@
     new IntersectionObserver(function (es) { pastHero = !es[0].isIntersecting; upd(); }).observe(hero);
     new IntersectionObserver(function (es) { offerOn = es[0].isIntersecting; upd(); }).observe(offer);
   }
+
+  /* cortes reais: tocam só quando aparecem na tela (sem som, sem controles) */
+  (function () {
+    var vs = D.querySelectorAll('.res video, .clip video');
+    if (calm) { vs.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); }); return; }
+    if (!('IntersectionObserver' in W)) { vs.forEach(function (v) { v.preload = 'auto'; v.play().catch(function () {}); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; var p = v.play(); if (p) p.catch(function () {}); }
+        else v.pause();
+      });
+    }, { rootMargin: '200px 0px' });
+    vs.forEach(function (v) { io.observe(v); });
+  })();
 })();
