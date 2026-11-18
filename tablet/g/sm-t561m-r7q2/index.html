@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guia do Galaxy Tab E 9.6 (SM-T561M) · @cobaia.dev</title>
+<meta name="description" content="O guia completo do Samsung Galaxy Tab E 9.6 3G (SM-T561M): do ajuste sem computador ao Android 7.1.2, com rota de volta.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="icon" href="../../../assets/img/favicon.png">
+<link rel="preload" href="../../../assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<style>
+/* ---------- só desta página: guia premium do SM-T561M ---------- */
+.g-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:56px 24px}
+.g-hero>*{min-width:0}
+.g-hero .hcopy>*{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+.g-hero .hcopy>*:nth-child(2){animation-delay:.07s}.g-hero .hcopy>*:nth-child(3){animation-delay:.14s}.g-hero .hcopy>*:nth-child(4){animation-delay:.21s}.g-hero .hcopy>*:nth-child(5){animation-delay:.28s}
+.g-hero .kw b{font-family:var(--f-mono)}
+/* o tablet do comprador, desenhado em vidro */
+.tab{position:relative;max-width:360px;margin:0 auto;border-radius:34px;padding:22px 16px 26px;animation:up 1s cubic-bezier(.2,.8,.2,1) .2s both}
+.tab::before{content:"";position:absolute;left:50%;top:9px;width:6px;height:6px;border-radius:50%;background:rgba(242,238,230,.25);transform:translateX(-50%)}
+.tab::after{content:"";position:absolute;left:50%;bottom:8px;width:44px;height:10px;border-radius:6px;border:1.5px solid rgba(242,238,230,.25);transform:translateX(-50%)}
+.tab .scr{min-height:100%;border-radius:14px;background:linear-gradient(180deg,rgba(255,45,45,.14),rgba(0,0,0,.55) 45%);border:1px solid var(--line);padding:16px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.tab .mdl{font-family:var(--f-display);font-size:clamp(34px,5vw,46px);line-height:.95;letter-spacing:.5px}
+.tab .cod{font:700 12px var(--f-mono);color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.tab dl{margin:4px 0 0;display:grid;gap:7px}
+.tab dl div{display:flex;justify-content:space-between;gap:10px;font-size:13px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.tab dt{color:var(--dim);font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em}
+.tab dd{margin:0;text-align:right;font-weight:600}
+.tab .jump{margin-top:auto;padding-top:10px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center}
+.tab .jump span{font-family:var(--f-display);font-size:30px;line-height:1}
+.tab .jump small{display:block;font:600 10.5px var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.tab .jump .to span{color:var(--green)}
+.tab .jump i{font-style:normal;color:var(--red);font-size:22px}
+/* tabela comparativa */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;margin-top:6px}
+.cmpw{border-radius:20px;overflow:hidden;padding:0;margin-top:14px}
+.cmpw .scroll{overflow-x:auto}
+.cmp th,.cmp td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp thead th{font:700 11.5px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:rgba(0,0,0,.25)}
+.cmp tbody th{font-weight:700;width:30%}
+.cmp td{color:var(--muted)}
+.cmp .no{color:#ff8a8a}.cmp .ok{color:var(--green)}.cmp .mid{color:var(--paper)}
+.cmp .no::before{content:"✕ ";font-weight:800}.cmp .ok::before{content:"✓ ";font-weight:800}.cmp .mid::before{content:"~ ";font-weight:800;color:var(--dim)}
+/* rotas */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.route{display:flex;flex-direction:column;gap:10px;padding:24px;text-decoration:none}
+.route .rl{font-family:var(--f-display);font-size:64px;line-height:.85;color:var(--red)}
+.route h3{margin:0;font-size:22px;line-height:1.2}
+.route p{margin:0;color:var(--muted);font-size:15px}
+.route .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.route .pills span{font:600 11.5px var(--f-mono);padding:5px 9px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+.route .pills .hot{border-color:rgba(255,45,45,.5);color:var(--paper)}
+.route .go{font:700 13px var(--f-mono);color:var(--red)}
+.route:hover .go{text-decoration:underline}
+.verdict{margin-top:18px;padding:22px 24px;border-radius:20px}
+.verdict p{margin:0}
+.verdict b.g{color:var(--green)}
+/* marcar passo como feito */
+.done{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;margin-top:10px;font:700 12px var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em;padding:6px 11px 6px 8px;border-radius:20px;border:1px solid var(--line);transition:all .25s}
+.done::before{content:"";width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;display:inline-block;box-sizing:border-box}
+.done:hover{color:var(--paper);border-color:rgba(242,238,230,.3)}
+.done:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.done[aria-pressed="true"]{color:var(--green);border-color:rgba(34,192,99,.45);background:rgba(34,192,99,.08)}
+.done[aria-pressed="true"]::before{background:var(--green);border-color:var(--green);box-shadow:inset 0 0 0 3px var(--ink)}
+.step.ok h3{opacity:.65}
+.rprog{display:flex;align-items:center;gap:12px;margin:4px 0 18px;font:700 12px var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.rprog .track{flex:1;height:6px;border-radius:6px;background:rgba(242,238,230,.08);overflow:hidden}
+.rprog .track i{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+.rprog b{color:var(--paper)}
+/* arquivos que você vai juntar */
+.files{display:grid;gap:12px;margin-top:14px}
+.files .f{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 18px;border-radius:18px;align-items:start}
+.files .f .fi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--red-soft);color:var(--red);font:800 12px var(--f-mono);box-shadow:inset 0 0 0 1px rgba(255,45,45,.35)}
+.files .f b{display:block}
+.files .f span{color:var(--muted);font-size:15px}
+.files .f span b,.guide span.d b{display:inline;font-size:inherit}
+.files .f code,.read code,.step code,.guide code,.cmp code{font-family:var(--f-mono);font-size:.86em;background:rgba(242,238,230,.08);border:1px solid var(--line);border-radius:6px;padding:1px 6px;word-break:break-word}
+/* teclas */
+kbd{font:700 12.5px var(--f-mono);padding:2px 8px;border-radius:7px;border:1px solid rgba(242,238,230,.25);border-bottom-width:3px;background:rgba(242,238,230,.06);color:var(--paper);white-space:nowrap}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.keys .glass{padding:18px;border-radius:18px;display:flex;flex-direction:column;gap:8px}
+.keys .glass b{font-size:16px}
+.keys .glass span{color:var(--muted);font-size:14px}
+/* fontes */
+.src{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.src li{padding:12px 16px;border-radius:14px;font-size:15px;color:var(--muted)}
+.src a{color:var(--paper);font-weight:700;text-decoration-color:rgba(255,45,45,.6);text-underline-offset:3px;word-break:break-word}
+.src small{display:block;font-family:var(--f-mono);font-size:11.5px;color:var(--dim);margin-top:2px}
+.read p a,.step p a,.guide a,.files a,.warn a{text-decoration-color:rgba(255,45,45,.7);text-underline-offset:3px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.toc a{font:600 13px var(--f-body);text-decoration:none;padding:8px 13px;border-radius:20px;border:1px solid var(--line);background:rgba(0,0,0,.35);transition:border-color .2s}
+.toc a:hover{border-color:var(--red)}
+section{scroll-margin-top:90px}
+.read a,.step a,.files a{overflow-wrap:anywhere}
+.g-top .bar .who{font:700 12px var(--f-mono);color:var(--muted);padding:8px 14px;border-radius:30px;border:1px solid var(--line);background:rgba(0,0,0,.3);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:860px){
+  .g-hero{grid-template-columns:1fr;gap:34px;padding-top:36px}
+  .routes,.keys{grid-template-columns:1fr}
+  .tab{max-width:300px}
+}
+@media (max-width:520px){
+  .cmp{font-size:14px}.cmp th,.cmp td{padding:11px 10px}
+  .g-top .bar .who{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="top g-top"><div class="bar glass">
+  <a class="brand" href="../../../30-dias/"><span class="pf"><img src="../../../assets/img/avatar.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
+  <span class="who">guia premium · SM-T561M</span>
+</div></header>
+
+<main class="wrap">
+
+<div class="g-hero">
+  <div class="hcopy">
+    <div><span class="badge">GUIA PREMIUM</span> <span class="kw">feito pro <b>SM-T561M</b></span></div>
+    <p class="kick">o guia completo do seu Galaxy Tab E 9.6</p>
+    <h1>Leve o seu Tab E <em>até o limite</em></h1>
+    <p class="lede">Eu juntei o que a comunidade do mundo inteiro já descobriu sobre <b>exatamente o seu modelo</b>: o que dá pra fazer sem computador, o que dá pra tirar com um cabo e o caminho testado até o <b>Android 7.1.2</b>. Com a rota de volta pronta antes de cada passo arriscado.</p>
+    <div class="meta"><span>leitura de 25 min</span><span>3 rotas, do seguro ao profundo</span><span>pesquisa feita em 18/11/2026</span></div>
+  </div>
+  <div class="tab glass fan" aria-label="Ficha do seu tablet">
+    <div class="scr">
+      <span class="cod">codinome: gtel3g</span>
+      <span class="mdl">SM-T561M</span>
+      <dl>
+        <div><dt>Chip</dt><dd>Spreadtrum SC7730SE</dd></div>
+        <div><dt>Núcleos</dt><dd>4 × 1,3 GHz</dd></div>
+        <div><dt>Gráfico</dt><dd>Mali-400 MP2</dd></div>
+        <div><dt>Memória</dt><dd>1,5 GB</dd></div>
+        <div><dt>Espaço</dt><dd>8 GB + microSD</dd></div>
+        <div><dt>Tela</dt><dd>9,6" · 1280×800</dd></div>
+        <div><dt>Rede</dt><dd>Wi-Fi + chip 3G</dd></div>
+      </dl>
+      <div class="jump">
+        <div><span>4.4.4</span><small>Samsung parou</small></div>
+        <i aria-hidden="true">→</i>
+        <div class="to"><span>7.1.2</span><small>comunidade leva</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="toc rv" aria-label="Atalhos do guia">
+  <a href="#t1">Resumo</a><a href="#t2">Confirme o modelo</a><a href="#t3">A verdade em 2026</a><a href="#t4">Escolha a rota</a><a href="#ra">Rota A</a><a href="#rb">Rota B</a><a href="#rc">Rota C</a><a href="#volta">Rota de volta</a><a href="#trava">Deu erro</a><a href="#cuida">Manutenção</a><a href="#ia">Pedidos prontos</a><a href="#fontes">Fontes</a>
+</nav>
+
+<section aria-labelledby="t1">
+  <p class="eyebrow" style="margin-top:48px">em 30 segundos</p>
+  <h2 id="t1" class="rv">O resumo <em>do seu tablet</em></h2>
+  <div class="tldr">
+    <div class="glass rv"><span class="ic">01</span><p>O seu é o Tab E <b>com chip 3G</b>, processador Spreadtrum, codinome <b>gtel3g</b>. Ele é diferente do Tab E americano só Wi-Fi (SM-T560NU, processador Qualcomm). <b>Metade dos tutoriais da internet são daquele outro</b> e não servem no seu.</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>A Samsung parou no <b>Android 4.4.4</b>. O Google largou o 4.4: os serviços do Google pararam em agosto de 2023 e o WhatsApp saiu em janeiro de 2025. Em julho de 2026, <b>o mínimo da Play Store virou Android 7</b>.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>A comunidade fez um <b>LineageOS 14.1 (Android 7.1.2)</b> pro gtel3g. É exatamente o mínimo que o Google aceita hoje. Este guia te leva até lá, com <b>backup e caminho de volta</b> em cada etapa.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t2">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">passo zero</p>
+  <h2 id="t2" class="rv">Confirme que <em>é o seu</em></h2>
+  <p class="rv">Tudo a partir daqui vale <b>só pro SM-T561M</b>. Antes de qualquer coisa, confira três dados no próprio tablet:</p>
+  <ol class="guide">
+    <li class="glass rv"><span class="gn">1</span><div><b>Número do modelo</b><span class="d">Configurações, <b>Sobre o dispositivo</b>. Tem que estar escrito <code>SM-T561M</code>. Se aparecer SM-T560 ou SM-T560NU, pare e me chame: o caminho é outro.</span></div></li>
+    <li class="glass rv"><span class="gn">2</span><div><b>Versão do Android</b><span class="d">Na mesma tela. O normal é <code>4.4.4</code>.</span></div></li>
+    <li class="glass rv"><span class="gn">3</span><div><b>Versão da banda base / compilação</b><span class="d">Algo como <code>T561MUBU0APJ1</code>. Anote: é o “RG” do sistema que está nele e ajuda a achar o firmware original certo.</span></div></li>
+  </ol>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>Arquivo de Tab E “parecido” pode travar o seu.</b> Se um tutorial falar de Snapdragon, Qualcomm, <code>gtelwifiue</code> ou SM-T560NU, ele não é pro seu tablet. O seu é <code>gtel3g</code>, ponto.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="t3">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">o diagnóstico honesto</p>
+  <h2 id="t3" class="rv">A verdade sobre ele <em>em 2026</em></h2>
+  <p class="rv">O processador é o mesmo de 2015. O que mudou foi o mundo em volta. Esta é a diferença real entre deixar no Android de fábrica e subir pro 7.1.2 da comunidade:</p>
+</div>
+<div class="glass cmpw rv"><div class="scroll">
+  <table class="cmp">
+    <thead><tr><th scope="col">O que você quer usar</th><th scope="col">Android 4.4.4 (como está)</th><th scope="col">Android 7.1.2 (Rota C)</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Play Store e apps do Google</th><td class="no">Serviços do Google congelados desde agosto de 2023 (última versão 23.30.99)</td><td class="ok">Dentro do mínimo atual (Android 7.0 desde julho de 2026)</td></tr>
+      <tr><th scope="row">WhatsApp</th><td class="no">Deixou de funcionar em 1º de janeiro de 2025</td><td class="ok">Volta a instalar</td></tr>
+      <tr><th scope="row">Gmail</th><td class="no">Sem versão nova</td><td class="ok">O mínimo é Android 7.0</td></tr>
+      <tr><th scope="row">YouTube</th><td class="mid">Só pelo navegador ou por app alternativo</td><td class="mid">O app oficial não atualiza mais (exige Android 10). Use o navegador ou app alternativo</td></tr>
+      <tr><th scope="row">Sites com cadeado</th><td class="no">Muitos dão erro de certificado. Tem conserto na Rota A</td><td class="ok">O 7.1 já reconhece o certificado mais usado da internet</td></tr>
+      <tr><th scope="row">Chip 3G, câmera, som</th><td class="ok">Tudo funcionando</td><td class="mid">Depende da compilação. Teste cada um antes de apagar o backup</td></tr>
+      <tr><th scope="row">Banco e senhas</th><td class="no">Sem correção de segurança há anos</td><td class="no">A compilação é de 2018, também sem correção. Não use pra banco</td></tr>
+    </tbody>
+  </table>
+</div></div>
+<div class="read">
+  <p class="note rv">// fontes de cada linha no fim da página. Datas conferidas em 18/11/2026.</p>
+  <div class="warn glass rv"><span class="big">?</span><p><b>O que ele aguenta bem, em qualquer rota:</b> leitura, PDF, receitas, estudo, vídeo, música, chamadas por app leve e tela fixa de cozinha ou de mesa. <b>O que ele não aguenta:</b> jogos 3D atuais, dezenas de abas abertas e apps pesados ao mesmo tempo. São 1,5 GB de memória: um app grande por vez.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="t4">
+  <p class="eyebrow" style="margin-top:56px">o mapa</p>
+  <h2 id="t4" class="rv">Escolha <em>a sua rota</em></h2>
+  <div class="routes">
+    <a class="route glass rv" href="#ra"><span class="rl">A</span><h3>Ajuste fino</h3><p>Deixa o Android de fábrica mais leve, conserta os sites com erro e põe um navegador e um player que ainda funcionam.</p><div class="pills"><span class="hot">30 min</span><span>sem computador</span><span>risco zero</span></div><span class="go">Começar pela A →</span></a>
+    <a class="route glass rv rv-d1" href="#rb"><span class="rl">B</span><h3>Entranhas</h3><p>Com um cabo e um computador, desativa o que a Samsung não deixa tirar pelo menu. Tudo reversível.</p><div class="pills"><span class="hot">40 min</span><span>computador + cabo</span><span>risco baixo</span></div><span class="go">Ir pra B →</span></a>
+    <a class="route glass red rv rv-d2" href="#rc"><span class="rl">C</span><h3>Android 7.1.2</h3><p>Troca o sistema inteiro pelo LineageOS 14.1 da comunidade. Volta a ter Play Store, WhatsApp e Gmail.</p><div class="pills"><span class="hot">2 a 3 h</span><span>Windows + Odin</span><span>apaga tudo</span></div><span class="go">Ir pra C →</span></a>
+  </div>
+  <div class="read">
+    <div class="verdict glass rv"><p><b class="g">Minha recomendação pro seu caso:</b> faça a <b>A hoje</b>. Se ele já te servir, pare ali e aproveite. Se você precisa de <b>WhatsApp, Play Store ou apps de 2026</b>, vá direto pra <b>C</b>, que é o salto de verdade. A <b>B</b> só vale se você quiser ficar no Android de fábrica, mas mais limpo.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="ra-t" id="ra">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">rota A · sem computador</p>
+  <h2 id="ra-t" class="rv">Ajuste fino <em>em 30 minutos</em></h2>
+  <div class="rprog" data-prog="a" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/9</b></div>
+  <div class="steps" data-route="a">
+    <div class="step rv"><span class="n">1</span><div><h3>Comece do zero (opcional, mas vale)</h3><p>Se o tablet está cheio de app velho, o mais rápido é zerar. Faça backup de fotos e arquivos e vá em Configurações, <b>Backup e redefinir</b>, <b>Restaurar padrão de fábrica</b>. No Android 4.4 a Samsung ainda não tinha a trava de conta Google pós-reset, então não tem risco de bloqueio.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Destrave as opções escondidas</h3><p>Configurações, <b>Sobre o dispositivo</b>: toque 7 vezes em <b>Número de compilação</b>. Vai aparecer <b>Opções do desenvolvedor</b> no menu.</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Corte as animações</h3><p>Em Opções do desenvolvedor, ponha <b>Escala de animação da janela</b>, <b>de transição</b> e <b>duração do Animator</b> em <b>0,5x</b> (ou desligadas). É o ganho de agilidade mais perceptível do guia.</p></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>Limite o que roda escondido</h3><p>Ainda lá, em <b>Limite de processos em 2º plano</b>, escolha <b>No máximo 3 processos</b>. Com 1,5 GB de memória, isso evita que o tablet engasgue quando você troca de app. Se algum app que você usa precisa ficar ativo (música, por exemplo), volte pra <b>Limite padrão</b>.</p></div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>Desative o que você nunca abre</h3><p>Configurações, <b>Gerenciador de aplicativos</b>, aba <b>Todos</b>. Em cada app de fábrica que você não usa e que tem o botão <b>Desativar</b>, desative. Na dúvida, deixe. Nunca desative teclado, tela inicial, “Android System” nem os serviços do Google.</p></div></div>
+    <div class="step rv"><span class="n">6</span><div><h3>Conserte o erro de certificado dos sites</h3><p>O Android 4.4 não conhece o certificado <b>ISRG Root X1</b>, usado por boa parte dos sites. Dá pra ensinar a ele:</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>Baixe o arquivo oficial</b><span class="d">Num computador, baixe <a href="https://letsencrypt.org/certs/isrgrootx1.pem" target="_blank" rel="noopener">letsencrypt.org/certs/isrgrootx1.pem</a> e copie pro tablet pelo cabo (pasta Download).</span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Instale</b><span class="d">Configurações, <b>Segurança</b>, <b>Instalar do armazenamento</b>. Escolha o arquivo e dê o nome <code>ISRG Root X1</code>. Se o arquivo não aparecer na lista, renomeie pra <code>isrgrootx1.crt</code> e tente de novo.</span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Aceite o aviso</b><span class="d">O Android vai pedir um PIN de bloqueio de tela e depois mostrar “a rede pode ser monitorada”. Pra esse certificado oficial, o aviso é normal e pode ser ignorado.</span></div></li>
+      </ol></div></div>
+    <div class="step rv"><span class="n">7</span><div><h3>Troque o navegador</h3><p>O navegador de fábrica é de 2014. O <b>Firefox 68</b> foi a última linha que a Mozilla fez pro Android 4.4 e traz os próprios certificados, então abre os sites de hoje. Em Configurações, <b>Segurança</b>, ligue <b>Fontes desconhecidas</b>. Depois, no tablet, abra <a href="https://archive.mozilla.org/pub/mobile/releases/68.12.0/" target="_blank" rel="noopener">archive.mozilla.org/pub/mobile/releases/68.12.0</a>, entre na pasta <code>android-api-16</code>, depois em <code>pt-BR</code>, e baixe o arquivo que termina em <code>android-arm.apk</code>. É do servidor oficial da Mozilla.</p><p style="margin-top:8px">Ele não recebe correção desde 2020: use pra ler, estudar e ver receita. <b>Banco, nunca.</b></p></div></div>
+    <div class="step rv"><span class="n">8</span><div><h3>YouTube que ainda roda</h3><p>Duas saídas. A simples: <code>m.youtube.com</code> no Firefox. A melhor: o <b>SkyTube</b>, um app de código aberto que tem versões feitas pra Android 4.4. Baixe só da página oficial do projeto no GitHub (<a href="https://github.com/SkyTubeTeam/SkyTube/releases" target="_blank" rel="noopener">SkyTubeTeam/SkyTube</a>) e confira se a versão diz que aceita Android 4.4. Quando o YouTube muda algo, ele pode parar por uns dias até sair a correção.</p></div></div>
+    <div class="step rv"><span class="n">9</span><div><h3>Deixe o armazenamento respirar e reinicie</h3><p>Dos 8 GB, sobra pouco pra você. Mantenha pelo menos <b>20% livre</b>, mova fotos, vídeos e músicas pro <b>cartão microSD</b> e limpe o cache em Configurações, <b>Armazenamento</b>, <b>Dados em cache</b>. No Android 4.4 a maioria dos apps não consegue gravar no cartão, então use ele pra mídia. Depois, reinicie.</p></div></div>
+  </div>
+  <div class="warn glass rv"><span class="big">+</span><p><b>Faxina profunda sem apagar nada:</b> desligue, segure <kbd>Vol +</kbd> <kbd>Home</kbd> <kbd>Power</kbd> até aparecer o logo e solte. No menu da Samsung, use o volume pra ir até <b>wipe cache partition</b> e confirme com <kbd>Power</kbd>. Depois, <b>reboot system now</b>. Seus dados ficam. <b>Não toque em “wipe data/factory reset”</b>.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="rb-t" id="rb">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">rota B · computador e cabo</p>
+  <h2 id="rb-t" class="rv">Tirando o que <em>a Samsung forçou</em></h2>
+  <p class="rv">Aqui entra o <b>ADB</b>, o programa oficial do Android que deixa o computador mandar comandos pro tablet. Nesta rota a gente só <b>desativa</b>, que é reversível. Nada é apagado.</p>
+  <div class="rprog" data-prog="b" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/6</b></div>
+  <div class="steps" data-route="b">
+    <div class="step rv"><span class="n">1</span><div><h3>Prepare o computador</h3><p>No Windows, instale o <b>driver USB da Samsung</b> (no site de desenvolvedores da Samsung, “Samsung Android USB Driver”) e baixe o <b>SDK Platform-Tools</b> no site oficial de desenvolvedores Android. Descompacte, abra a pasta, clique na barra de endereço, digite <code>cmd</code> e Enter. No Linux: <code>sudo apt install -y adb</code>.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Ligue a depuração USB</h3><p>No tablet, em Opções do desenvolvedor, ative <b>Depuração USB</b>. Conecte com um cabo que <b>transfere dados</b> (cabo só de carga não serve). Vai aparecer uma pergunta na tela do tablet: marque “sempre” e toque em <b>OK</b>.</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Confirme que o computador está falando com o tablet certo</h3>
+      <div class="prompt cmd glass"><div class="prompt-h"><span><span class="t">Identidade do tablet</span></span><button class="copy" type="button" data-copy="b1">Copiar</button></div><pre id="b1">adb devices
+adb shell getprop ro.product.model
+adb shell getprop ro.product.device
+adb shell getprop ro.build.version.release
+adb shell getprop ro.build.PDA</pre></div>
+      <p>Tem que aparecer <code>device</code>, depois <code>SM-T561M</code>, <code>gtel3g</code>, <code>4.4.4</code> e a versão do firmware. <b>Se o segundo resultado não for gtel3g, pare.</b> Se aparecer <code>unauthorized</code>, desbloqueie o tablet e aceite a pergunta.</p></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>Salve a lista do que está instalado</h3>
+      <div class="prompt cmd glass"><div class="prompt-h"><span><span class="t">Lista completa</span></span><button class="copy" type="button" data-copy="b2">Copiar</button></div><pre id="b2">adb shell pm list packages -f &gt; pacotes-sm-t561m.txt</pre></div>
+      <p>Guarde esse arquivo: ele é o seu “antes”. Cole o conteúdo no <a href="#p2">Pedido 2</a> pra uma IA separar o que é seguro desativar.</p></div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>Desative um por vez</h3><p>Troque <code>NOME.DO.PACOTE</code> por um da lista. Depois de cada um, reinicie e use o tablet um pouco.</p>
+      <div class="prompt cmd glass"><div class="prompt-h"><span><span class="t">Desativar</span></span><button class="copy" type="button" data-copy="b3">Copiar</button></div><pre id="b3">adb shell pm disable-user NOME.DO.PACOTE</pre></div>
+      <div class="prompt cmd glass"><div class="prompt-h"><span><span class="t">Voltar atrás</span></span><button class="copy" type="button" data-copy="b4">Copiar</button></div><pre id="b4">adb shell pm enable NOME.DO.PACOTE</pre></div>
+      <p>Se aparecer <code>Permission Denial</code> ou <code>SecurityException</code>, o Android de fábrica não deixa mexer naquele item sem root. Deixe ele quieto e siga pro próximo.</p></div></div>
+    <div class="step rv"><span class="n">6</span><div><h3>Meça o antes e o depois</h3>
+      <div class="prompt cmd glass"><div class="prompt-h"><span><span class="t">Memória livre</span></span><button class="copy" type="button" data-copy="b5">Copiar</button></div><pre id="b5">adb shell cat /proc/meminfo | head -4</pre></div>
+      <p>Anote o <code>MemFree</code> e o <code>Cached</code> logo depois de reiniciar, antes e depois da faxina. É a prova de que valeu.</p></div></div>
+  </div>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>Lista do “nunca toque”</b>: tudo que começa com <code>android</code>, <code>com.android.systemui</code>, <code>com.android.phone</code>, <code>com.android.providers.*</code>, <code>com.google.android.gms</code>, <code>com.google.android.gsf</code>, a tela inicial (<code>launcher</code>) e o teclado em uso. Um desses desativado pode deixar o tablet sem ligar direito.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="rc-t" id="rc">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">rota C · sistema novo</p>
+  <h2 id="rc-t" class="rv">Do 4.4.4 <em>ao Android 7.1.2</em></h2>
+  <p class="rv">É a rota que muda o que o tablet consegue fazer. Você troca o sistema da Samsung pelo <b>LineageOS 14.1</b>, um Android 7.1.2 feito por voluntários pro gtel3g. É uma compilação <b>não oficial</b>, de abril de 2018: não vai receber atualização, mas coloca o tablet no mínimo que o Google ainda aceita.</p>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>Esta rota apaga o tablet inteiro.</b> Ela marca o contador de garantia da Samsung (Knox) de forma permanente, o que num tablet de 2015 já não faz diferença. Se algo der errado, existe a <a href="#volta">rota de volta</a>, e você vai deixar ela pronta <b>antes</b> de começar.</p></div>
+
+  <h3 class="rv" style="font-size:24px;margin:30px 0 4px">Os 4 arquivos que você junta antes</h3>
+  <div class="files">
+    <div class="f glass rv"><span class="fi">01</span><div><b>Firmware original do SM-T561M (o seguro)</b><span>Na página do seu modelo no <a href="https://www.sammobile.com/samsung/galaxy-tab-e/firmware/SM-T561M/ZTO/download/T561MUBU0APJ1/110147/" target="_blank" rel="noopener">SamMobile</a> (a região do Brasil é <code>ZTO</code>). Escolha a versão mais nova da sua região, de preferência igual ou mais nova que a que você anotou no passo zero. É um .zip grande com um arquivo <code>.tar.md5</code> dentro.</span></div></div>
+    <div class="f glass rv"><span class="fi">02</span><div><b>TWRP pro gtel3g (o recovery)</b><span>Da página oficial: <a href="https://twrp.me/samsung/gtel3g.html" target="_blank" rel="noopener">twrp.me/samsung/gtel3g</a>, que manda pros espelhos de download. Pegue o arquivo <b>.tar</b> mais recente, algo como <code>twrp-3.x.x-0-gtel3g.img.tar</code>. O TWRP do gtel3g tem mantenedor ativo e aparece como “Current” no site.</span></div></div>
+    <div class="f glass rv"><span class="fi">03</span><div><b>O sistema: LineageOS 14.1 pro gtel3g</b><span>O arquivo é <code>lineage-14.1-20180419-UNOFFICIAL-gtel3g.zip</code>. Baixe pelo link do autor no <a href="https://xdaforums.com/t/unofficial-rom-lineageos-14-1-for-galaxy-tab-e-sm-t561-sm-t560.3903780/" target="_blank" rel="noopener">tópico do XDA</a> ou pelo <a href="https://xdaforums.com/t/t560-t561-collection-of-roms-recoveries-and-more.4626579/" target="_blank" rel="noopener">tópico que reúne as ROMs do T560/T561</a>. Existe espelho no <a href="https://www.needrom.com/download/samsung-galaxy-tab-e-9-6-sm-t561-lineage-14-1/" target="_blank" rel="noopener">Needrom</a> (pede cadastro). Confira o nome exato do arquivo.</span></div></div>
+    <div class="f glass rv"><span class="fi">04</span><div><b>Apps do Google (opcional)</b><span>Se quiser Play Store: <b>OpenGApps</b>, plataforma <code>ARM</code>, Android <code>7.1</code>, variante <code>pico</code> (a menor, ideal pra 1,5 GB). O projeto parou, mas os arquivos seguem no <a href="https://sourceforge.net/projects/opengapps/files/arm/" target="_blank" rel="noopener">SourceForge oficial do OpenGApps</a>. Sem ele, o tablet fica mais leve e você instala apps pela F-Droid.</span></div></div>
+  </div>
+  <p class="rv" style="margin-top:14px">Do lado do computador: <b>Windows</b>, o <b>driver USB da Samsung</b> e o <b>Odin</b> (versão 3.13 ou 3.14). No tablet: <b>cartão microSD</b> de 4 GB ou mais e bateria acima de 60%.</p>
+
+  <h3 class="rv" style="font-size:24px;margin:30px 0 4px">As três combinações de botões</h3>
+</div>
+<div class="keys">
+  <div class="glass rv"><b>Modo download</b><span>Desligado, segure <kbd>Vol −</kbd> <kbd>Home</kbd> <kbd>Power</kbd>. No aviso, aperte <kbd>Vol +</kbd>.</span><span>Serve pra gravar com o Odin.</span></div>
+  <div class="glass rv rv-d1"><b>Recovery</b><span>Desligado, segure <kbd>Vol +</kbd> <kbd>Home</kbd> <kbd>Power</kbd> e solte quando aparecer o logo.</span><span>Abre o TWRP (ou o menu da Samsung).</span></div>
+  <div class="glass rv rv-d2"><b>Forçar desligar</b><span>Segure <kbd>Vol −</kbd> <kbd>Power</kbd> por uns 10 segundos.</span><span>Sai de qualquer tela travada.</span></div>
+</div>
+<div class="read">
+  <div class="rprog" data-prog="c" aria-live="polite" style="margin-top:28px"><span>seu progresso</span><span class="track"><i></i></span><b>0/10</b></div>
+  <div class="steps" data-route="c">
+    <div class="step rv"><span class="n">1</span><div><h3>Confira o codinome e faça o backup das suas coisas</h3><p>Rode o bloco “Identidade do tablet” da <a href="#rb">Rota B</a>. Só siga se aparecer <code>gtel3g</code>. Copie fotos, arquivos e o que importa pro computador: o tablet vai ser apagado.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Deixe os arquivos no lugar</h3><p>Copie o .zip do LineageOS e o do OpenGApps pro <b>cartão microSD</b>. Deixe o firmware original (descompactado) e o TWRP <code>.tar</code> numa pasta do computador. No Android 4.4 a Samsung ainda não tem a chave “desbloqueio OEM”: não precisa procurar.</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Entre no modo download e abra o Odin</h3><p>Com o tablet em modo download, conecte o cabo e abra o Odin como administrador. Feche Smart Switch e Kies se estiverem abertos. A primeira caixinha do Odin tem que ficar azul com <code>COM</code>. Se não ficar, troque o cabo ou a porta USB (prefira as de trás do gabinete).</p></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>Grave o TWRP</h3><p>No Odin, clique em <b>AP</b> (ou <b>PDA</b>, em versões antigas) e escolha o <code>.tar</code> do TWRP. Em <b>Options</b>, <b>desmarque Auto Reboot</b>. Clique em <b>Start</b> e espere o <b>PASS</b> verde.</p></div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>Pule direto pro TWRP (o passo que mais derruba gente)</h3><p>Se o tablet ligar o sistema da Samsung antes, ele apaga o TWRP e você repete tudo. Então: segure <kbd>Vol −</kbd> <kbd>Power</kbd> até a tela apagar e, <b>no mesmo instante</b>, troque pra <kbd>Vol +</kbd> <kbd>Home</kbd> <kbd>Power</kbd>. Solte quando aparecer o logo. Tem que abrir o TWRP. Se ele perguntar sobre modificar o sistema, deslize pra permitir.</p></div></div>
+    <div class="step rv"><span class="n">6</span><div><h3>Faça a foto do tablet atual (backup completo)</h3><p>No TWRP: <b>Backup</b>, em “Storage” escolha o <b>cartão microSD</b>, marque <b>todas as partições</b> oferecidas (Boot, System, Data e, se aparecerem, EFS e Modem) e deslize. Depois copie a pasta <code>TWRP</code> do cartão pro computador. <b>Esse backup guarda as informações de rede do chip</b>: não pule.</p></div></div>
+    <div class="step rv"><span class="n">7</span><div><h3>Apague o sistema antigo</h3><p><b>Wipe</b>, <b>Advanced Wipe</b>, marque <b>Dalvik / ART Cache</b>, <b>System</b>, <b>Data</b> e <b>Cache</b>. Deslize. Não marque o cartão microSD (é onde estão os seus arquivos).</p></div></div>
+    <div class="step rv"><span class="n">8</span><div><h3>Instale o Android 7.1.2</h3><p><b>Install</b>, escolha o cartão (botão “Select Storage”), toque no <code>lineage-14.1-...-gtel3g.zip</code>. Se for usar Play Store, toque em <b>Add more Zips</b> e escolha o OpenGApps pico. Deslize pra instalar os dois <b>na mesma leva, sem reiniciar no meio</b>.</p></div></div>
+    <div class="step rv"><span class="n">9</span><div><h3>Primeira inicialização: paciência</h3><p><b>Reboot System</b>. A primeira vez leva de <b>10 a 15 minutos</b> com o logo na tela. Deixe no carregador e não mexa. Se passar de 25 minutos, vá pra <a href="#trava">Deu erro</a>.</p></div></div>
+    <div class="step rv"><span class="n">10</span><div><h3>Teste tudo antes de apagar o backup</h3><p>Wi-Fi, <b>chip 3G com dados e SMS</b>, som no alto-falante e no fone, câmera de trás e da frente, brilho automático, carga, Bluetooth e GPS. Compare com a lista de problemas conhecidos nas últimas páginas do tópico do XDA. Se algo essencial pra você não funcionar, a <a href="#volta">rota de volta</a> leva 15 minutos.</p></div></div>
+  </div>
+
+  <h3 class="rv" style="font-size:24px;margin:36px 0 4px">Depois que ligou: o ajuste do 7.1.2</h3>
+  <ol class="guide">
+    <li class="glass rv"><span class="gn">1</span><div><b>Animações em 0,5x de novo</b><span class="d">Configurações, Sobre o tablet, 7 toques em “Número da versão”, depois Opções do desenvolvedor. Mesmo ajuste da Rota A.</span></div></li>
+    <li class="glass rv"><span class="gn">2</span><div><b>Play Store diz que o aparelho “não é certificado”?</b><span class="d">O Google tem uma página oficial pra registrar aparelhos com sistema da comunidade: <a href="https://www.google.com/android/uncertified/" target="_blank" rel="noopener">google.com/android/uncertified</a>. Ela pede o “ID do Google Services Framework”, que apps como o Device ID mostram. Depois de registrar, pode levar algumas horas.</span></div></li>
+    <li class="glass rv"><span class="gn">3</span><div><b>Sem GApps? Use a F-Droid</b><span class="d">A loja de apps livres <a href="https://f-droid.org" target="_blank" rel="noopener">f-droid.org</a> tem navegador, leitor de PDF, player de vídeo e o NewPipe (YouTube sem anúncio), todos leves.</span></div></li>
+    <li class="glass rv"><span class="gn">4</span><div><b>Um app pesado por vez</b><span class="d">Prefira as versões “Lite” e feche o que não está usando. São 1,5 GB de memória.</span></div></li>
+  </ol>
+
+  <h3 class="rv" style="font-size:24px;margin:36px 0 4px">Outros sistemas que a comunidade fez pro gtel3g</h3>
+  <p class="rv">Se o LineageOS 14.1 não te servir, estes são os outros caminhos que existem no fórum. Todos usam o mesmo TWRP e o mesmo processo; mude só o .zip.</p>
+  <dl class="gloss">
+    <div class="glass rv"><dt>Resurrection Remix</dt><dd>Não oficial pro gtel3g, com mais opções de personalização. <a href="https://xdaforums.com/t/unofficial-rom-resurrection-remix-3-6-5-for-samsung-galaxy-tab-e-gtel3g.4698037/" target="_blank" rel="noopener">Tópico no XDA</a>.</dd></div>
+    <div class="glass rv"><dt>dotOS 1.2 (7.1.2)</dt><dd>Porte pro T560/T561, <b>descontinuado pelo autor</b>. <a href="https://xdaforums.com/t/discontinued-port-rom-7-1-2-t-560-t-561-dotos-1-2-v4-galaxy-tab-e.4042095/" target="_blank" rel="noopener">Tópico no XDA</a>.</dd></div>
+    <div class="glass rv"><dt>AOSP 7.1.2</dt><dd>Android puro portado pro T560/T561. <a href="https://xdaforums.com/t/aosp-7-1-2-port-t560-t561.4799446/" target="_blank" rel="noopener">Tópico no XDA</a>.</dd></div>
+    <div class="glass rv"><dt>Kernel LineageOS 3.10.108</dt><dd>Kernel atualizado da comunidade pro T561, pra Android de fábrica, dotOS e ViperOS. Pra quem já está confortável. <a href="https://xdaforums.com/t/kernel-lineageos-_3-10-108-for-stock-dotos-viperos-on-sm-t561.4729465/" target="_blank" rel="noopener">Tópico no XDA</a>.</dd></div>
+    <div class="glass rv"><dt>Em construção</dt><dd>Há gente trabalhando em LineageOS 16 e 17.1 (Android 9 e 10) e num driver gráfico novo pro gtel3g. Hoje é só código-fonte, <b>sem arquivo pronto pra instalar</b>. Vale acompanhar: <a href="https://github.com/pedrocarvs26-ops/android_device_samsung_gtel3g" target="_blank" rel="noopener">árvore 17.1</a>, <a href="https://github.com/pedrocarvs26-ops/Lima-backport-sprd7730se" target="_blank" rel="noopener">driver Lima</a>.</dd></div>
+    <div class="glass rv"><dt>Linux de verdade</dt><dd>O gtel3g tem página no postmarketOS (Linux pra celular). É projeto de laboratório, não de uso diário. <a href="https://wiki.postmarketos.org/wiki/Samsung_Galaxy_Tab_E_9.6_(SM-T561)_(samsung-gtel3g)" target="_blank" rel="noopener">Página do aparelho</a>.</dd></div>
+  </dl>
+  <div class="warn glass rv"><span class="big">i</span><p><b>Como ler um tópico do XDA sem se perder:</b> leia o primeiro post (lista do que funciona) e as <b>5 últimas páginas</b> (os problemas de agora). Se o link do autor morreu, procure o nome exato do arquivo nas páginas do mesmo tópico: alguém costuma ter repostado. Fuja de arquivo com nome diferente do original.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="volta-t" id="volta">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">o paraquedas</p>
+  <h2 id="volta-t" class="rv">A rota <em>de volta</em></h2>
+  <p class="rv">Duas formas, da mais rápida pra mais garantida.</p>
+  <div class="steps">
+    <div class="step rv"><span class="n">1</span><div><h3>Restaurar a foto do TWRP</h3><p>Entre no TWRP (<kbd>Vol +</kbd> <kbd>Home</kbd> <kbd>Power</kbd>), <b>Restore</b>, escolha o backup do passo 6 e deslize. O tablet volta exatamente como estava, com tudo de antes.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Gravar o firmware original com o Odin</h3><p>Modo download, Odin aberto, cabo conectado. Se o firmware veio num arquivo só, coloque em <b>AP</b>. Se veio em 4 arquivos, cada um no seu botão: <code>BL</code>, <code>AP</code>, <code>CP</code>, <code>CSC</code>. Deixe <b>Auto Reboot</b> marcado e clique em <b>Start</b>. O tablet volta ao Android 4.4.4 de fábrica, zerado.</p></div></div>
+  </div>
+  <div class="warn glass rv"><span class="big">✓</span><p><b>O Tab E 3G é difícil de “matar” de vez.</b> Enquanto ele entrar no modo download, o Odin com o firmware original resolve. Por isso o arquivo 01 vem antes de tudo.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="trava-t" id="trava">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">deu erro</p>
+  <h2 id="trava-t" class="rv">Onde trava <em>e como sai</em></h2>
+  <ol class="guide">
+    <li class="glass rv"><span class="gn">1</span><div><b>O Odin não mostra o COM azul</b><span class="d">Reinstale o driver USB da Samsung, troque o cabo (tem que ser de dados), use uma porta USB de trás do computador e feche Smart Switch e Kies. Desconecte e reconecte com o tablet já em modo download.</span></div></li>
+    <li class="glass rv"><span class="gn">2</span><div><b>O Odin dá FAIL</b><span class="d">Leia a última linha da caixa de mensagens. “SW REV CHECK FAIL” quer dizer que o firmware é mais antigo que o do tablet: baixe a versão mais nova da sua região. Outros FAIL costumam ser cabo, porta ou arquivo corrompido (baixe de novo). Mande print no <a href="#p4">Pedido 4</a>.</span></div></li>
+    <li class="glass rv"><span class="gn">3</span><div><b>Abriu o menu da Samsung em vez do TWRP</b><span class="d">O sistema ligou antes e apagou o TWRP. Repita os passos 3, 4 e 5 da Rota C, com Auto Reboot desmarcado e a troca de botões bem rápida.</span></div></li>
+    <li class="glass rv"><span class="gn">4</span><div><b>Logo do LineageOS girando pra sempre</b><span class="d">Espere 25 minutos na primeira vez. Se continuar: TWRP, Wipe (Dalvik, System, Data, Cache) e instale de novo o sistema e o GApps juntos. GApps errado (versão diferente de 7.1 ou não ARM) é a causa mais comum.</span></div></li>
+    <li class="glass rv"><span class="gn">5</span><div><b>Wi-Fi conecta, mas os sites dão erro de segurança</b><span class="d">Confira a <b>data e a hora</b> do tablet. Bateria muito descarregada zera o relógio, e certificado com data errada nunca é aceito. Ligue “Data e hora automáticas”.</span></div></li>
+    <li class="glass rv"><span class="gn">6</span><div><b>O chip 3G não pega depois da troca</b><span class="d">Veja no tópico se é problema conhecido da compilação. Se for algo que você precisa, restaure o backup do TWRP (inclui EFS e Modem) ou volte ao firmware original.</span></div></li>
+    <li class="glass rv"><span class="gn">7</span><div><b>A bateria está estufada ou a tampa abrindo</b><span class="d">Pare de carregar e de usar na hora. Bateria de 2015 estufada é risco de fogo. A troca é barata em assistência; a peça costuma ter o código <code>EB-BT561ABE</code> (confira na sua).</span></div></li>
+  </ol>
+</div>
+</section>
+
+<section aria-labelledby="cuida-t" id="cuida">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">pra durar mais 5 anos</p>
+  <h2 id="cuida-t" class="rv">Manutenção <em>sem mistério</em></h2>
+  <ul class="okl rv">
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Reinicie uma vez por semana.</b> Libera a memória que os apps vão prendendo.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>20% de espaço livre, sempre.</b> Com a memória interna cheia, um aparelho antigo grava e lê bem mais devagar.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Bateria entre 20% e 80% no dia a dia.</b> Se ele virar tela fixa de cozinha, não deixe 24 horas no carregador: um timer de tomada de algumas horas por dia já ajuda a bateria velha.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Limpe a porta de carga</b> com um palito de madeira, sem metal. Poeira ali causa “carrega e não carrega”.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Wi-Fi como conexão principal.</b> As operadoras estão desligando o 3G aos poucos. O chip funciona enquanto a sua mantiver a rede, mas não conte com ele pra sempre.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Nada de banco, e-mail principal ou senhas importantes</b> nele. Nenhuma das rotas recebe correção de segurança.</div></li>
+  </ul>
+  <h3 class="rv" style="font-size:24px;margin:36px 0 4px">Uma segunda vida pra ele</h3>
+  <ul class="okl rv">
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Tela da cozinha:</b> receitas abertas, relógio grande e timer. Em Opções do desenvolvedor, “Permanecer ativo” deixa a tela acesa no carregador.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Estação de estudo:</b> PDF, videoaula e anotações, sem as notificações do celular.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Leitor de livros e quadrinhos:</b> a tela de 9,6" é ótima pra isso.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Porta-retrato e caixa de som</b> da sala, tocando música do cartão microSD.</div></li>
+  </ul>
+</div>
+</section>
+
+<section aria-labelledby="ia-t" id="ia">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">seu assistente</p>
+  <h2 id="ia-t" class="rv">Pedidos prontos <em>pra IA</em></h2>
+  <p class="rv">Eu uso o <span class="claude">Claude</span> pra garimpar fórum. Você pode usar o plano gratuito de qualquer assistente que pesquise na web. Os pedidos já vêm com o seu modelo; troque só o que estiver em destaque.</p>
+  <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 1</span> · app compatível</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Meu tablet é um Samsung Galaxy Tab E 9.6 3G, modelo SM-T561M (codinome gtel3g), com Android <mark>[4.4.4 ou 7.1.2]</mark>. Quero usar o app <mark>[nome do app]</mark>. Qual é a última versão oficial que aceita essa versão do Android? Me dê o link da fonte oficial ou de um site que mostra a versão mínima de Android (como o APKMirror) e diga se essa versão ainda funciona hoje. Se não souber, diga que não sabe.</pre></div>
+  <div class="prompt glass rv" id="p2"><div class="prompt-h"><span><span class="t">Pedido 2</span> · o que desativar</span><button class="copy" type="button" data-copy="p2t">Copiar</button></div><pre id="p2t">Meu tablet é um Samsung SM-T561M (gtel3g) com Android 4.4.4 de fábrica. Esta é a lista de pacotes instalados: <mark>[cole o conteúdo do pacotes-sm-t561m.txt]</mark>. Separe em três grupos: seguros de desativar com "adb shell pm disable-user", que eu devo deixar em paz, e os que você não tem certeza. Explique cada um em uma linha. Nunca coloque no primeiro grupo nada do sistema, do telefone, do teclado, da tela inicial ou dos serviços do Google.</pre></div>
+  <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 3</span> · tópico em checklist</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Vou colar o primeiro post e as últimas páginas de um tópico do XDA sobre o Samsung SM-T561 (gtel3g). Transforme em: 1) lista do que funciona e do que não funciona, 2) passos numerados de instalação, 3) avisos do autor. Traduza pro português. Não acrescente passos que não estão no texto. <mark>[cole o texto aqui]</mark></pre></div>
+  <div class="prompt glass rv" id="p4"><div class="prompt-h"><span><span class="t">Pedido 4</span> · erro no Odin ou no TWRP</span><button class="copy" type="button" data-copy="p4t">Copiar</button></div><pre id="p4t">Estou instalando o TWRP e o LineageOS 14.1 num Samsung SM-T561M (gtel3g), que veio com Android 4.4.4. Estou no passo <mark>[descreva o passo]</mark> e apareceu isto: <mark>[cole a mensagem ou descreva a tela]</mark>. O que significa e qual é o próximo passo mais seguro? Se houver risco de travar o tablet, me avise antes.</pre></div>
+  <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 5</span> · conferir se o tablet está bem</span><button class="copy" type="button" data-copy="p5">Copiar</button></div><pre id="p5">Instalei o LineageOS 14.1 num Samsung SM-T561M (gtel3g). Me dê um roteiro de teste de 10 minutos pra conferir Wi-Fi, dados 3G, SMS, som, câmeras, sensores, GPS, Bluetooth e carga. Pra cada item, diga o que é normal e o que indica problema.</pre></div>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>A IA erra.</b> Ela pode inventar link, arquivo ou versão. Confira tudo no tópico original e nunca baixe arquivo de um link que só a IA mostrou.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="gl-t">
+  <p class="eyebrow" style="margin-top:56px">palavras do guia</p>
+  <h2 id="gl-t" class="rv">Glossário <em>rápido</em></h2>
+  <dl class="gloss">
+    <div class="glass rv"><dt>gtel3g</dt><dd>O codinome do seu tablet entre os desenvolvedores. É a palavra que você procura nos fóruns.</dd></div>
+    <div class="glass rv"><dt>Firmware original</dt><dd>O sistema da Samsung, do jeito que veio de fábrica. É o seu paraquedas.</dd></div>
+    <div class="glass rv"><dt>Odin</dt><dd>Programa de Windows que grava arquivos em aparelhos Samsung pelo modo download.</dd></div>
+    <div class="glass rv"><dt>TWRP</dt><dd>Um mini sistema à parte que instala, apaga e faz backup do sistema principal.</dd></div>
+    <div class="glass rv"><dt>LineageOS</dt><dd>O Android feito por voluntários. A versão 14.1 é o Android 7.1.</dd></div>
+    <div class="glass rv"><dt>GApps</dt><dd>O pacote com Play Store e apps do Google. Os sistemas da comunidade vêm sem.</dd></div>
+    <div class="glass rv"><dt>Wipe</dt><dd>Apagar partes do aparelho. Obrigatório ao trocar de sistema.</dd></div>
+    <div class="glass rv"><dt>EFS / Modem</dt><dd>Onde ficam os dados de rede do chip. Por isso entram no backup.</dd></div>
+    <div class="glass rv"><dt>Bootloop</dt><dd>Quando o tablet fica preso no logo, reiniciando sem terminar de ligar.</dd></div>
+    <div class="glass rv"><dt>Knox</dt><dd>O contador de garantia da Samsung. Marca de vez quando se grava um recovery da comunidade.</dd></div>
+  </dl>
+</section>
+
+<section aria-labelledby="fontes-t" id="fontes">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">de onde veio cada informação</p>
+  <h2 id="fontes-t" class="rv">Fontes <em>conferidas</em></h2>
+  <ul class="src">
+    <li class="glass rv"><a href="https://twrp.me/samsung/gtel3g.html" target="_blank" rel="noopener">TWRP oficial do gtel3g</a><small>status “Current”, mantenedor KrutosX, instalação pelo Odin e o aviso de pular direto pro recovery</small></li>
+    <li class="glass rv"><a href="https://github.com/TeamWin/android_device_samsung_gtel3g" target="_blank" rel="noopener">Código do TWRP pro gtel3g (TeamWin)</a><small>árvore oficial do aparelho</small></li>
+    <li class="glass rv"><a href="https://xdaforums.com/t/unofficial-rom-lineageos-14-1-for-galaxy-tab-e-sm-t561-sm-t560.3903780/" target="_blank" rel="noopener">XDA · LineageOS 14.1 pro Galaxy Tab E (SM-T561/SM-T560)</a><small>tópico do sistema da Rota C</small></li>
+    <li class="glass rv"><a href="https://xdaforums.com/t/t560-t561-collection-of-roms-recoveries-and-more.4626579/" target="_blank" rel="noopener">XDA · coleção de ROMs e recoveries do T560/T561</a><small>reúne os arquivos da comunidade</small></li>
+    <li class="glass rv"><a href="https://xdaforums.com/t/recovery-twrp-samsung-tab-e-sm-t560-sm-t561-sm-t560nu-sm-t377p-update-13-4-2016.3302935/" target="_blank" rel="noopener">XDA · tópico histórico do TWRP pro Tab E</a><small>discussões de instalação e problemas</small></li>
+    <li class="glass rv"><a href="https://www.needrom.com/download/samsung-galaxy-tab-e-9-6-sm-t561-lineage-14-1/" target="_blank" rel="noopener">Needrom · espelho do LineageOS 14.1 gtel3g</a><small>nome do arquivo, ordem de instalação e primeira inicialização de 10 a 15 min</small></li>
+    <li class="glass rv"><a href="https://www.sammobile.com/samsung/galaxy-tab-e/firmware/SM-T561M/ZTO/download/T561MUBU0APJ1/110147/" target="_blank" rel="noopener">SamMobile · firmware SM-T561M, região ZTO (Brasil)</a><small>firmware original pra rota de volta</small></li>
+    <li class="glass rv"><a href="https://9to5google.com/2023/07/24/google-play-services-android-kitkat" target="_blank" rel="noopener">9to5Google · Play Services encerra o Android 4.4</a><small>agosto de 2023, última versão 23.30.99</small></li>
+    <li class="glass rv"><a href="https://bgr.com/2225995/why-some-android-phones-no-longer-have-google-play-support/" target="_blank" rel="noopener">BGR · Play Store passa a exigir Android 7</a><small>julho de 2026</small></li>
+    <li class="glass rv"><a href="https://tech-ish.com/2026/07/24/youtube-gmail-google-app-old-android-versions/" target="_blank" rel="noopener">Tech-ish · YouTube exige Android 10, Gmail exige Android 7</a><small>julho de 2026</small></li>
+    <li class="glass rv"><a href="https://www.gsmarena.com/newscomm-65834p2.php" target="_blank" rel="noopener">GSMArena · WhatsApp deixa o Android 4.4</a><small>1º de janeiro de 2025</small></li>
+    <li class="glass rv"><a href="https://voxelmanip.se/2024/09/17/installing-lets-encrypt-certificates-on-old-android/" target="_blank" rel="noopener">Instalando o certificado Let's Encrypt em Android antigo</a><small>passo a passo do certificado da Rota A</small></li>
+    <li class="glass rv"><a href="https://www.jucktion.com/youtube-old-android-device" target="_blank" rel="noopener">YouTube num Android 4.4 em 2025</a><small>SkyTube com versões pra 4.4</small></li>
+    <li class="glass rv"><a href="https://support.mozilla.org/en-US/kb/forum-response-end-support-android-5-6-and-7" target="_blank" rel="noopener">Mozilla · fim do suporte a Android 5, 6 e 7</a><small>por que o Firefox atual não serve e o 68 sim</small></li>
+    <li class="glass rv"><a href="https://github.com/pedrocarvs26-ops/android_device_samsung_gtel3g" target="_blank" rel="noopener">GitHub · LineageOS 17.1 em construção pro gtel3g</a><small>ficha técnica do aparelho e trabalho em andamento</small></li>
+    <li class="glass rv"><a href="https://www.gsmarena.com/samsung_galaxy_tab_e_9_6-7295.php" target="_blank" rel="noopener">GSMArena · ficha do Galaxy Tab E 9.6</a><small>tela, bateria e cartão de memória</small></li>
+  </ul>
+</div>
+</section>
+
+<div class="cta rv">
+  <span class="pf"><img src="../../../assets/img/avatar.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
+  <h2>Travou? <em>Me chama</em></h2>
+  <p class="lede">Responda a mensagem do WhatsApp em que você recebeu este link, com um print da tela e o número do passo. Eu te digo o próximo movimento.</p>
+  <a class="stamp" href="https://www.instagram.com/cobaia.dev/" target="_blank" rel="noopener">@COBAIA.DEV</a>
+</div>
+<footer><span>© 2026 @cobaia.dev</span><span>guia feito pro SM-T561M · pesquisa de 18/11/2026</span></footer>
+</main>
+
+<script src="../../../assets/site.js"></script>
+<script>
+/* marcar passos como feitos (fica salvo só neste aparelho) */
+(function(){
+  var KEY='cobaia-t561m-feito', st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){st={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  document.querySelectorAll('[data-route]').forEach(function(box){
+    var r=box.getAttribute('data-route'),steps=[].slice.call(box.children),prog=document.querySelector('[data-prog="'+r+'"]');
+    function paint(){var n=0;steps.forEach(function(s,i){var on=!!st[r+i];s.classList.toggle('ok',on);var b=s.querySelector('.done');b.setAttribute('aria-pressed',on?'true':'false');b.lastChild.textContent=on?'feito':'marcar como feito';if(on)n++;});
+      if(prog){prog.querySelector('i').style.width=(n/steps.length*100)+'%';prog.querySelector('b').textContent=n+'/'+steps.length;}}
+    steps.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.className='done';b.appendChild(document.createTextNode(''));
+      b.addEventListener('click',function(){st[r+i]=!st[r+i];save();paint();});s.querySelector('h3').parentNode.appendChild(b);});
+    paint();
+  });
+})();
+</script>
+</body>
+</html>
