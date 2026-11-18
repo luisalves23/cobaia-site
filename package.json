@@ -1,0 +1,9 @@
+{
+  "name": "cobaia-site",
+  "private": true,
+  "description": "Site do @cobaia.dev. Só as funções de /api e o middleware usam dependências; as páginas continuam HTML puro.",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@vercel/blob": "2.9.0"
+  }
+}

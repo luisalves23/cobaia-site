@@ -30,6 +30,33 @@
           "value": "no-referrer"
         }
       ]
+    },
+    {
+      "source": "/(acesso|minha-area|admin|gta/guia)/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/acesso/",
+      "destination": "/api/acesso"
+    },
+    {
+      "source": "/minha-area/",
+      "destination": "/api/area"
+    },
+    {
+      "source": "/admin/",
+      "destination": "/api/admin"
     }
   ]
 }
