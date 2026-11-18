@@ -246,4 +246,8 @@ if __name__ == "__main__":
         if not d.get("landing"):  # landing pages (ex.: /tablet) são escritas à mão
             build_day(d)
     build_hub()
+    # guias pagos: página inteira escrita à mão, copiada para a rota protegida pelo middleware
+    for src, dst in [("gta-guia.html", "gta/guia/index.html")]:
+        (ROOT / dst).parent.mkdir(parents=True, exist_ok=True)
+        (ROOT / dst).write_text((ROOT / "src" / "dias" / src).read_text(encoding="utf-8"), encoding="utf-8")
     print("ok:", ", ".join(d["slug"] for d in DIAS), "+ 30-dias")
