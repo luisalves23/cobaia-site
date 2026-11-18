@@ -11,7 +11,7 @@
 <link rel="icon" href="../../assets/img/favicon.png">
 <link rel="stylesheet" href="../../assets/lp-gta.css">
 <style>
-body{font-size:17.5px}
+body{font-size:17.5px;padding-bottom:70px}
 .gtop{position:relative;padding:calc(96px + env(safe-area-inset-top,0px)) 0 56px;background:radial-gradient(120% 80% at 50% 100%,rgba(201,52,155,.5),rgba(20,7,38,0) 70%),var(--night)}
 .gtop .h1{font-size:clamp(44px,7vw,84px)}
 .gl{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(24px,5vw,64px);max-width:var(--max);margin:0 auto;padding:0 var(--pad) 80px}
@@ -61,6 +61,38 @@ body{font-size:17.5px}
 .end2{margin-top:48px;padding:28px;border-radius:24px;background:var(--sunset);color:var(--ink)}
 .end2 h2{color:var(--ink)}
 .end2 p{color:var(--ink)!important}
+.end2 a.bt2{display:inline-block;margin-top:6px;font:800 16px var(--b);color:var(--cream);background:var(--violet,#3B146B);padding:13px 20px;border-radius:999px;text-decoration:none}
+.welc{max-width:760px}
+.welc .sub{max-width:640px}
+.sign{display:flex;align-items:center;gap:12px;margin:22px 0 0;font-size:15px;color:var(--muted)}
+.sign img{width:42px;height:42px;border-radius:50%;box-shadow:0 0 0 2px var(--pink)}
+.sign b{color:var(--cream)}
+.inbox{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:30px 0 0}
+.inbox div{padding:16px 14px;border-radius:18px;background:rgba(255,244,232,.06);box-shadow:inset 0 0 0 1px var(--line)}
+.inbox b{display:block;font:400 34px/1 var(--d);color:var(--yellow)}
+.inbox span{display:block;margin-top:6px;font-size:13.5px;line-height:1.35;color:#e6d9f0}
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 0}
+.road div{padding:14px 16px;border-radius:16px;background:linear-gradient(180deg,rgba(123,32,143,.4),rgba(59,20,107,.2))}
+.road i{display:block;font:700 11px var(--m);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:4px}
+.road span{font-size:14.5px;color:var(--cream)}
+@media (max-width:700px){.inbox{grid-template-columns:repeat(2,minmax(0,1fr))}.road{grid-template-columns:1fr}}
+.sup{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60}
+.sup>button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;height:54px;padding:0 18px 0 14px;border-radius:999px;background:var(--sunset);color:var(--ink);font:800 15px var(--b);box-shadow:0 12px 30px rgba(20,7,38,.55)}
+.sup>button svg{width:24px;height:24px}
+.sup>button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+.sup .box{position:absolute;right:0;bottom:66px;width:min(340px,calc(100vw - 36px));max-height:min(70vh,560px);overflow:auto;padding:22px 20px 18px;border-radius:22px;background:#1b0a33;box-shadow:inset 0 0 0 1px var(--line),0 24px 60px rgba(0,0,0,.6)}
+.sup .box[hidden]{display:none}
+.sup h2{font:400 28px/1 var(--d);text-transform:uppercase;margin:0 0 8px;color:var(--cream)}
+.sup p{font-size:15px;color:#e6d9f0;margin:0 0 14px}
+.sup .dm{display:flex;justify-content:center;align-items:center;gap:8px;font:800 16px var(--b);color:var(--ink);background:var(--yellow);padding:13px 16px;border-radius:14px;text-decoration:none}
+.sup .x{all:unset;cursor:pointer;position:absolute;top:12px;right:14px;font:700 22px/1 var(--b);color:var(--dim);padding:4px}
+.sup details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.sup summary{cursor:pointer;font:700 14px var(--b);color:var(--muted)}
+.sup dl{margin:10px 0 0;font-size:14px}
+.sup dt{color:var(--cream);font-weight:700;margin-top:10px}
+.sup dd{margin:2px 0 0;color:#cdbedb}
+.sup code{font:400 .86em var(--m);background:rgba(255,244,232,.08);padding:1px 5px;border-radius:5px;word-break:break-word}
+@media print{.sup{display:none}}
 @media (max-width:900px){.gl{grid-template-columns:minmax(0,1fr)}.toc{position:static;max-height:none;padding:18px;border-radius:20px;box-shadow:inset 0 0 0 1px var(--line)}}
 @media print{.top,.toc,.cp{display:none}.gl{grid-template-columns:1fr}body{background:#fff;color:#000}.doc p,.doc li{color:#000}}
 </style>
@@ -73,9 +105,23 @@ body{font-size:17.5px}
 </header>
 
 <div class="gtop"><div class="wrap">
-  <div class="tagrow"><span class="chip hot">Seu guia</span><span class="chip">atualizado em 18/11/2026</span></div>
-  <h1 class="h1">Da página vazia <span class="it">ao</span> primeiro corte postado</h1>
-  <p class="sub">Siga na ordem. Cada comando tem um botão de copiar e, embaixo dele, o que deve aparecer na tela. Se aparecer outra coisa, a saída está na seção <a href="#problemas" style="color:var(--yellow)">Deu erro?</a></p>
+  <div class="welc">
+  <div class="tagrow"><span class="chip hot">Parabéns, é seu</span><span class="chip">Acesso vitalício</span><span class="chip">atualizado em 18/11/2026</span></div>
+  <h1 class="h1">Bem-vindo à sua <span class="it">página</span> de cortes</h1>
+  <p class="sub">Aqui está o caminho completo, da página vazia ao primeiro corte de GTA VI postado: a página certa, os streamers que liberam, a instalação, os pedidos prontos pro Claude e a rotina pra postar todo dia. Siga na ordem, no seu ritmo. O acesso é seu pra sempre, e toda atualização do guia aparece aqui sem custo.</p>
+  <div class="inbox" aria-label="O que tem no guia">
+    <div><b>8</b><span>passos, do nome da página ao post</span></div>
+    <div><b>10</b><span>pedidos prontos pra colar no Claude</span></div>
+    <div><b>3</b><span>modelos: bio, permissão e crédito</span></div>
+    <div><b>30</b><span>minutos por dia, depois de montado</span></div>
+  </div>
+  <div class="road" aria-label="Seu plano">
+    <div><i>Hoje</i><span>Página criada e tudo instalado (passos 0 a 3)</span></div>
+    <div><i>Amanhã</i><span>Seus primeiros 5 cortes prontos (passos 4 a 6)</span></div>
+    <div><i>Primeira semana</i><span>Grade com 9 cortes e rotina rodando (passo 7)</span></div>
+  </div>
+  <p class="sign"><img src="../../assets/img/avatar.jpg" alt="" width="42" height="42"><span>Montei esse guia com o mesmo processo que eu uso. Cada comando tem botão de copiar e, embaixo, o que deve aparecer na sua tela. <b>Luiz, @cobaia.dev</b></span></p>
+  </div>
 </div></div>
 
 <div class="gl">
@@ -91,7 +137,6 @@ body{font-size:17.5px}
     <li><a href="#ajustes">6 · Ajustes de GTA</a></li>
     <li><a href="#postar">7 · Postar e crescer</a></li>
     <li><a href="#pedidos">Caixa de pedidos</a></li>
-    <li><a href="#problemas">Deu erro?</a></li>
   </ol>
 </nav>
 
@@ -343,32 +388,37 @@ Me mostre a tabela com os candidatos antes de renderizar.</pre></div></div>
   <div class="asks" data-box></div>
 </section>
 
-<!-- problemas -->
-<section id="problemas" aria-labelledby="te">
-  <p class="num">Socorro</p>
-  <h2 id="te">Deu erro?</h2>
-  <p>A regra de ouro: <b>copie a mensagem de erro inteira e cole no Claude Code</b>, pedindo "resolva esse erro". Ele lê, explica e corrige. Os mais comuns:</p>
-  <div class="wrapx"><table class="tbl2">
-    <thead><tr><th>Apareceu</th><th>Faça</th></tr></thead>
-    <tbody>
-      <tr><td><code>command not found: claude</code></td><td>Feche e abra o terminal. Se continuar, rode de novo o instalador do 3.3.</td></tr>
-      <tr><td><code>ffmpeg not found</code> ou <code>jq not found</code></td><td>Rode de novo o comando 3.2 do seu sistema.</td></tr>
-      <tr><td>Erro na renderização falando de <code>remotion</code> ou <code>node_modules</code></td><td>Você pulou o último comando do 3.4. Rode: <code>cd ~/.claude/skills/shorts/remotion && npm install</code></td></tr>
-      <tr><td>Erro de navegador ou <code>libnss3</code> na renderização (Windows/Linux)</td><td>Peça ao Claude: "instale as bibliotecas de sistema que o navegador do Remotion precisa no Ubuntu". Ele sabe quais são pra sua versão.</td></tr>
-      <tr><td>Transcrição muito lenta</td><td>Use blocos de 1 hora (seção 4.3) ou peça: "use o modelo small na transcrição".</td></tr>
-      <tr><td><code>CUDA out of memory</code></td><td>Sua placa tem pouca memória. Peça: "transcreva com o modelo small".</td></tr>
-      <tr><td><code>Low disk space</code></td><td>Apague lives antigas da pasta <code>lives</code> e a pasta temporária: <code>rm -rf /tmp/claude-shorts</code></td></tr>
-      <tr><td>yt-dlp dá erro 403 ou "unable to extract"</td><td>Atualize: <code>~/.ytdlp/bin/pip install -U yt-dlp</code> (no Mac, <code>brew upgrade yt-dlp</code>).</td></tr>
-      <tr><td>Legenda com palavra errada</td><td>Pedido 7 da seção 6.</td></tr>
-    </tbody>
-  </table></div>
-  <div class="end2">
-    <h2>Travou mesmo assim?</h2>
-    <p>Me chama na DM do <b>@cobaia.dev</b> com o print do erro e o e-mail da compra. E quando o seu primeiro corte for ao ar, me marca: eu quero ver.</p>
-  </div>
-</section>
+<div class="end2">
+  <h2>Seu primeiro corte foi ao ar?</h2>
+  <p>Me marca no post ou me manda o link no direct do <b>@cobaia.dev</b>. Eu quero ver, e os melhores eu reposto nos stories.</p>
+  <a class="bt2" href="https://ig.me/m/cobaia.dev" target="_blank" rel="noopener">Mandar no direct</a>
+</div>
 
 </main>
+</div>
+
+<div class="sup" data-sup>
+  <button type="button" aria-expanded="false" aria-controls="sup-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Suporte</button>
+  <div class="box" id="sup-box" role="dialog" aria-label="Suporte" hidden>
+    <button class="x" type="button" aria-label="Fechar">×</button>
+    <h2>Fala comigo</h2>
+    <p>Qualquer dúvida em qualquer passo, me chama no direct do @cobaia.dev. Mande o print da tela e o e-mail da compra que eu te respondo.</p>
+    <a class="dm" href="https://ig.me/m/cobaia.dev" target="_blank" rel="noopener">Abrir o direct</a>
+    <details>
+      <summary>Ou resolva em 1 minuto</summary>
+      <p style="margin:10px 0 0;font-size:14px">Copie a mensagem que apareceu, cole no Claude Code e peça "resolva esse erro". Os casos mais comuns:</p>
+      <dl>
+        <dt><code>command not found: claude</code></dt><dd>Feche e abra o terminal. Se continuar, rode de novo o instalador do 3.3.</dd>
+        <dt><code>ffmpeg</code> ou <code>jq</code> not found</dt><dd>Rode de novo o comando 3.2 do seu sistema.</dd>
+        <dt>Renderização falando de <code>remotion</code></dt><dd>Rode o último comando do 3.4: <code>cd ~/.claude/skills/shorts/remotion && npm install</code></dd>
+        <dt>Erro de navegador ou <code>libnss3</code></dt><dd>Peça ao Claude: "instale as bibliotecas que o navegador do Remotion precisa no Ubuntu".</dd>
+        <dt>Transcrição lenta ou <code>CUDA out of memory</code></dt><dd>Use os blocos de 1 hora (4.3) ou peça: "transcreva com o modelo small".</dd>
+        <dt><code>Low disk space</code></dt><dd>Apague lives antigas da pasta <code>lives</code> e rode <code>rm -rf /tmp/claude-shorts</code></dd>
+        <dt>yt-dlp com erro 403</dt><dd>Atualize: <code>~/.ytdlp/bin/pip install -U yt-dlp</code> (Mac: <code>brew upgrade yt-dlp</code>).</dd>
+        <dt>Palavra errada na legenda</dt><dd>Use o pedido 7 do passo 6.</dd>
+      </dl>
+    </details>
+  </div>
 </div>
 
 <footer>
@@ -407,6 +457,15 @@ Me mostre a tabela com os candidatos antes de renderizar.</pre></div></div>
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); }); }, { rootMargin: '-30% 0px -60% 0px' });
     D.querySelectorAll('.doc section').forEach(function (s) { io.observe(s); });
+  }
+  /* botão de suporte */
+  var sup = D.querySelector('[data-sup]');
+  if (sup) {
+    var sb = sup.querySelector('button'), box = sup.querySelector('.box');
+    var set = function (on) { box.hidden = !on; sb.setAttribute('aria-expanded', on); };
+    sb.addEventListener('click', function () { set(box.hidden); });
+    sup.querySelector('.x').addEventListener('click', function () { set(false); sb.focus(); });
+    D.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) { set(false); sb.focus(); } });
   }
   /* checklist lembrado */
   D.querySelectorAll('.chk input').forEach(function (c, i) {
