@@ -48,5 +48,9 @@
     </div>
   </div>
 </main>
+<script>
+/* Se a Kiwify mandar o e-mail do comprador no link de redirecionamento, já deixa preenchido. */
+(function(){try{var q=new URLSearchParams(location.search);var e=q.get('email')||q.get('customer_email')||q.get('buyer_email')||q.get('Customer[email]');if(e){var i=document.getElementById('email');if(i&&!i.value)i.value=e;}}catch(_){}})();
+</script>
 </body>
 </html>
