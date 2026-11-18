@@ -30,8 +30,8 @@ DIAS = [
          desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
     dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude",
          desc="O guia pra reviver um notebook velho com um Debian 13, do pendrive à interface, com os comandos pra fazer à mão e os pedidos prontos pro Claude Code."),
-    dict(n=8, slug="tablet", kw="TABLET", curto="Ressuscitei um tablet abandonado",
-         desc="O guia completo pra ressuscitar o seu tablet velho: como descobrir o modelo, os 3 níveis, o passo a passo de cada um e os pedidos prontos pra copiar."),
+    dict(n=8, slug="tablet", kw="TABLET", curto="Ressuscitei um tablet abandonado", landing=True,
+         desc="O mapa grátis pra ressuscitar o seu tablet velho e o passo a passo feito pro seu modelo, até o limite que ele aguenta."),
     dict(n=9, slug="professor", kw="PROFESSOR", curto="O Claude virou meu professor particular",
          desc="O passo a passo pra instalar o LearnHarness, ligar no Claude e estudar pro Enem com um professor que te testa, ensina e lembra o que revisar."),
     dict(n=10, slug="wifi", kw="WIFI", curto="O Claude achou o ladrão do meu Wi-Fi",
@@ -243,6 +243,7 @@ var L=[].slice.call(document.querySelectorAll('.grid30 .lockd'));if(L.length>3){
 
 if __name__ == "__main__":
     for d in DIAS:
-        build_day(d)
+        if not d.get("landing"):  # landing pages (ex.: /tablet) são escritas à mão
+            build_day(d)
     build_hub()
     print("ok:", ", ".join(d["slug"] for d in DIAS), "+ 30-dias")

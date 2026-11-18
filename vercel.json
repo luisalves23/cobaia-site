@@ -2,8 +2,6 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
-    { "source": "/tablet/obrigado/", "destination": "/tablet/", "permanent": true },
-    { "source": "/tablet/o-mapa-do-tablet-velho.pdf", "destination": "/tablet/", "permanent": true },
     { "source": "/", "destination": "/30-dias/", "permanent": false }
   ],
   "headers": [
