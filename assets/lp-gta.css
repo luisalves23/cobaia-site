@@ -356,3 +356,6 @@ footer a{color:var(--muted)}
 .rc figcaption{margin-top:12px;text-align:center;font:700 12px var(--m);letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
 @media (max-width:900px){.rrow{justify-content:flex-start}.rc{flex-basis:40vw}.rc:nth-child(odd){transform:none}}
 
+
+.fine s,.stick s{opacity:.7}
+.price .was{margin:0;letter-spacing:.02em}
