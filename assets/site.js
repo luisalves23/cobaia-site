@@ -13,7 +13,8 @@
   var LAB = false;
   try { if (/[?&]lab\b/.test(location.search)) sessionStorage.setItem('cobaia-lab', '1'); LAB = sessionStorage.getItem('cobaia-lab') === '1'; } catch (e) { LAB = /[?&]lab\b/.test(location.search); }
   function held(n) { return !!HOLD[n] && !LAB; }
-  function releaseOf(n) { return EARLY[n] || Date.UTC(2026, 10, 5 + n, 15, 0, 0); }
+  /* a partir do Dia 11 a série atrasou dois dias (Dia 11 em 18/11, Dia 12 em 19/11) */
+  function releaseOf(n) { return EARLY[n] || Date.UTC(2026, 10, (n >= 11 ? 7 : 5) + n, 15, 0, 0); }
   function released(n) { return (LAB && n <= 10) || (!held(n) && Date.now() >= releaseOf(n)); }
   window.COBAIA = { releaseOf: releaseOf, released: released };
 

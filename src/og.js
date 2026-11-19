@@ -9,9 +9,11 @@ const items = [
   ['dia04', 'DIA 04/30', '19 MIL E-MAILS <span>LIMPOS</span>', 'LIMPAR'],
   ['dia05', 'DIA 05/30', 'MCP: A TOMADA <span>PADRÃO</span> DA IA', 'MCP'],
   ['dia06', 'DIA 06/30', 'UM NOTEBOOK VELHO <span>RESSUSCITADO</span>', 'NOTEBOOK'],
+  ['dia07', 'DIA 07/30', 'O NOTEBOOK DO LIXO <span>RODA SEUS APPS?</span>', null],
   ['dia08', 'DIA 08/30', 'SEU TABLET <span>NÃO MORREU</span>', 'TABLET'],
   ['dia09', 'DIA 09/30', 'O CLAUDE VIROU MEU <span>PROFESSOR</span>', 'PROFESSOR'],
   ['dia10', 'DIA 10/30', 'QUEM TÁ <span>ROUBANDO</span> SEU WI-FI?', 'WIFI'],
+  ['dia11', 'DIA 11/30', 'UMA LIVE DE GTA VI VIRA <span>5 CORTES</span>', 'GTA'],
   ['dia12', 'DIA 12/30', 'O CLAUDE CODE EM <span>352 IAs</span>', 'CLAUDE'],
   ['hub', 'PROJETO 30 DIAS', '30 DIAS, <span>30 EXPERIMENTOS</span> COM CLAUDE', null],
 ];
