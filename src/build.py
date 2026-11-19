@@ -36,6 +36,8 @@ DIAS = [
          desc="O passo a passo pra instalar o LearnHarness, ligar no Claude e estudar pro Enem com um professor que te testa, ensina e lembra o que revisar."),
     dict(n=10, slug="wifi", kw="WIFI", curto="O Claude achou o ladrão do meu Wi-Fi",
          desc="O pedido exato pro Claude Code investigar o seu Wi-Fi lento (velocidade, consumo escondido e canal do vizinho) e o passo a passo pra corrigir."),
+    dict(n=12, slug="omniroute", kw="CLAUDE", curto="O Claude Code ligado em 352 IAs",
+         desc="O guia gratuito do OmniRoute: instalar do zero, ligar as IAs grátis no Claude Code e os limites que ninguém te conta."),
 ]
 TOTAL = 30
 DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)
