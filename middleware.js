@@ -1,11 +1,11 @@
-/* Guias pagos em /tablet/g/: só abrem com login.
+/* Guias pagos em /tablet/g/ e /cortes/g/: só abrem com login.
    O login e a senha ficam nas variáveis de ambiente da Vercel, nunca no repositório:
      GUIA_SEGREDO          texto aleatório que assina o cookie de acesso
      GUIA_<SLUG>_LOGIN     e-mail do comprador (ex.: GUIA_SM_T561M_R7Q2_LOGIN)
      GUIA_<SLUG>_SENHA     senha do guia
    <SLUG> é a pasta do guia em maiúsculas, com "-" trocado por "_". */
 
-export const config = { matcher: ['/tablet/g/:path*'] };
+export const config = { matcher: ['/tablet/g/:path*', '/cortes/g/:path*'] };
 
 const enc = new TextEncoder();
 
@@ -31,6 +31,7 @@ function lerCookie(req, nome) {
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 function telaLogin(acao, erro, login) {
+  const tablet = acao.startsWith('/tablet/');
   const html = `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -55,12 +56,12 @@ function telaLogin(acao, erro, login) {
 <main class="lg"><form class="glass" method="post" action="${esc(acao)}">
 <span class="badge">GUIA PREMIUM</span>
 <h1>Entre no seu <em>guia</em></h1>
-<p class="s">Use o e-mail da compra e a senha que chegou junto com este link.</p>
+<p class="s">${tablet ? 'Use o e-mail da compra e a senha que chegou junto com este link.' : 'Use o e-mail e a senha que estão na sua área de membros.'}</p>
 <label for="l">E-mail</label><input id="l" name="login" type="email" autocomplete="username" inputmode="email" required value="${esc(login || '')}">
 <label for="s">Senha</label><input id="s" name="senha" type="password" autocomplete="current-password" required>
 ${erro ? '<p class="err" role="alert">E-mail ou senha não conferem. Confira e tente de novo.</p>' : ''}
 <button type="submit">Abrir o guia</button>
-<p class="help">Não conseguiu entrar? Responda a mensagem do WhatsApp em que recebeu este link.</p>
+<p class="help">${tablet ? 'Não conseguiu entrar? Responda a mensagem do WhatsApp em que recebeu este link.' : 'Não conseguiu entrar? Me chama no direct do @cobaia.dev.'}</p>
 </form></main></body></html>`;
   return new Response(html, {
     status: 401,
@@ -70,7 +71,8 @@ ${erro ? '<p class="err" role="alert">E-mail ou senha não conferem. Confira e t
 
 export default async function middleware(req) {
   const url = new URL(req.url);
-  const slug = url.pathname.split('/')[3] || '';
+  const partes = url.pathname.split('/');
+  const slug = partes[3] || '';
   const env = (k) => (typeof process !== 'undefined' && process.env ? process.env[k] : undefined);
   const chave = 'GUIA_' + slug.toUpperCase().replace(/[^A-Z0-9]/g, '_');
   const login = (env(chave + '_LOGIN') || '').trim().toLowerCase();
@@ -82,7 +84,7 @@ export default async function middleware(req) {
 
   const certo = await assinatura(slug, login, senha, segredo);
   const nomeCookie = 'guia_' + slug.replace(/[^a-z0-9]/gi, '_');
-  const base = '/tablet/g/' + slug + '/';
+  const base = '/' + partes[1] + '/g/' + slug + '/';
 
   if (req.method === 'POST') {
     let l = '', s = '';

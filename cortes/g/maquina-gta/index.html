@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Máquina de Cortes do GTA VI · @cobaia.dev</title>
+<meta name="description" content="O guia completo pra montar uma página de cortes de GTA VI com o Claude, do zero ao primeiro post.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="icon" href="../../../assets/img/favicon.png">
+<link rel="preload" href="../../../assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<style>
+.g-hero{padding-block:56px 16px;max-width:820px}
+.g-hero h1{margin:14px 0 10px}
+.guia{max-width:820px}
+.guia h2.mod{display:flex;align-items:center;gap:14px;margin:64px 0 8px;scroll-margin-top:90px}
+.guia h2.mod .num{font-family:var(--f-display);color:var(--red);font-size:1.4em;line-height:1}
+.guia h2.parte{margin:12px 0 0;font-size:clamp(34px,7vw,52px)}
+.guia p.part{margin-top:80px}
+.guia h3{margin:34px 0 8px;font-size:21px}
+.guia p,.guia li{color:var(--muted);font-size:17px;line-height:1.6}
+.guia b{color:var(--paper)}
+.guia ol,.guia ul{padding-left:22px;display:grid;gap:6px}
+.guia code{font-family:var(--f-mono);font-size:.88em;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:6px;padding:1px 6px;word-break:break-word}
+.guia .prompt{margin:14px 0}
+.guia .prompt pre{white-space:pre-wrap;word-break:break-word}
+.guia .tw{border-radius:20px;overflow:hidden;padding:0;margin:14px 0}
+.guia .tw .scroll{overflow-x:auto}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:15px}
+.cmp th,.cmp td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{font:700 11.5px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:rgba(0,0,0,.25)}
+.cmp tbody th{font-weight:700}
+.cmp td{color:var(--muted)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.toc a{font:600 12.5px var(--f-mono);padding:7px 11px;border-radius:20px;border:1px solid var(--line);color:var(--muted);text-decoration:none}
+.toc a:hover{color:var(--paper);border-color:var(--red)}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="top"><div class="bar glass">
+  <a class="brand" href="../../../30-dias/"><span class="pf"><img src="../../../assets/img/avatar.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
+  <span class="who">guia premium · cortes GTA VI</span>
+</div></header>
+<main class="wrap">
+<div class="g-hero">
+  <span class="badge">GUIA PREMIUM</span>
+  <h1>Máquina de cortes do <em>GTA VI</em></h1>
+  <p class="lede">Uma página de GTA VI que recebe, todo dia, os 5 melhores momentos das lives já cortados em pé, com legenda, título e o texto do post prontos. Do zero ao primeiro post, com tudo pra copiar e colar.</p>
+  <nav class="toc" aria-label="Atalhos do guia"><a href="#m0">O que você vai ter no fim</a><a href="#m1">A base (30 minutos)</a><a href="#m2">A máquina de cortes no seu Claude</a><a href="#m3">Postando</a><a href="#m4">Piloto automático</a><a href="#m5">A máquina que melhora sozinha</a><a href="#m6">O que faz um corte bombar</a><a href="#m7">Deu erro? (as 8 travas mais comuns)</a><a href="#m8">ViceScale do zero ao post</a></nav>
+</div>
+<article class="guia">
+<h2 id="m0" class="mod"><span class="num">0</span>O que você vai ter no fim</h2>
+<p>Uma página de GTA VI que recebe, todo dia, os 5 melhores momentos das lives do jogo já cortados em pé, com o rosto do streamer em cima, o jogo embaixo, legenda palavra por palavra, título-gancho e a legenda do post escrita, prontos pra agendar no Instagram, TikTok e YouTube Shorts.</p>
+<p>Tudo isso com a nossa máquina, que roda no seu Claude e não custa nada além da assinatura do Claude Pro. A Parte 1 deste guia leva você do zero até o primeiro post.</p>
+<p>Na Parte 2 tem um bônus: o passo a passo completo da ferramenta paga que o mercado de páginas de GTA está usando, pra quem quiser escalar várias páginas.</p>
+<p>---</p>
+<p class="eyebrow part">Parte 1</p><h2 class="parte">O caminho grátis, do zero ao primeiro post</h2>
+<p>---</p>
+<h2 id="m1" class="mod"><span class="num">1</span>A base (30 minutos)</h2>
+<h3>A assinatura do Claude</h3>
+<ol><li>Entre em claude.ai e crie a conta.</li><li>Clique no seu nome (canto de baixo) &gt; Upgrade &gt; Pro.</li></ol>
+<p>O Pro inclui o Claude Code, que é o Claude que trabalha dentro do seu computador.</p>
+<h3>A página no Instagram</h3>
+<ol><li>No app do Instagram: seu perfil &gt; nome no topo &gt; Adicionar conta &gt; Criar nova conta.</li><li>Nome de usuário que diga o assunto: gtavi.cortesbr, vicecity.diario, momentosgtavi.</li><li>Nome do perfil: "GTA VI Cortes BR". Bio: "Os melhores momentos das lives de GTA VI, todo dia 🎮".</li><li>Foto: um personagem ou a logo do jogo recortada em fundo colorido.</li><li>Menu ☰ &gt; Ferramentas e controles para criadores (ou Tipo de conta) &gt; Mudar para conta profissional &gt; Criador de conteúdo &gt; categoria "Criador de vídeo game".</li></ol>
+<h3>O mesmo no TikTok e no YouTube</h3>
+<ul><li>TikTok: crie a conta com o mesmo nome. Perfil &gt; ☰ &gt; Configurações &gt; Conta &gt; Mudar para Conta Empresa ou deixe pessoal (as duas postam igual).</li><li>YouTube: no app, seu perfil &gt; Criar um canal. Os cortes vão como Shorts.</li></ul>
+<p>Mesmo corte nas três redes = três chances de viralizar com o mesmo trabalho.</p>
+<h3>Onde estão os momentos</h3>
+<p>O GTA VI acabou de sair e as maiores lives do mundo estão nele. Os brasileiros que mais puxam público agora: Alanzoka (Twitch), Davy Jones (Kick), Gaules, Liminha, BT0, Flow Games, Caique Gamer e Skorpion Gamer. Pra ver quem está no ar: twitch.tv &gt; Procurar &gt; Grand Theft Auto VI &gt; ordenar por "Espectadores (maior para menor)". A máquina faz essa busca sozinha.</p>
+<p>---</p>
+<h2 id="m2" class="mod"><span class="num">2</span>A máquina de cortes no seu Claude</h2>
+<h3>O que a máquina faz</h3>
+<p>A máquina tem uma skill (um "manual de trabalho" que o Claude segue) e 5 ferramentas:</p>
+<ul><li>Lista os clipes mais vistos do GTA VI nas últimas 24 horas na Twitch. São os momentos que o próprio público já marcou como os melhores.</li><li>Acha os picos do chat de uma live (a hora em que todo mundo mandou KKKK ou ????).</li><li>Acha os picos do áudio (grito, explosão, risada).</li><li>Monta o vídeo em pé com o rosto do streamer em cima e o jogo embaixo.</li><li>Põe legenda palavra por palavra com a palavra falada em amarelo, título-gancho nos 3 primeiros segundos e o @ do streamer.</li></ul>
+<p>O Claude junta tudo, escolhe os melhores, escreve as legendas dos posts e anota tudo numa planilha pra aprender o que funciona na sua página.</p>
+<p>Comandos que você vai usar:</p>
+<ul><li><code>/top</code> faz os 5 cortes com os momentos mais vistos do dia (o mais usado).</li><li><code>/gta LINK</code> acha e corta os melhores momentos de uma live específica.</li><li><code>/relatorio</code> lê os números da semana e ajusta a máquina.</li></ul>
+<h3>Instalando os programas (Windows, 15 minutos)</h3>
+<ol><li>Clique com o botão direito no menu Iniciar &gt; Terminal (ou PowerShell).</li><li>Cole uma linha por vez e espere terminar:</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">winget install Git.Git
+winget install Python.Python.3.12
+winget install OpenJS.NodeJS.LTS
+winget install Gyan.FFmpeg
+winget install yt-dlp.yt-dlp</pre></div>
+<ol><li>Feche o Terminal e abra de novo (pra ele enxergar os programas novos).</li><li>Cole:</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">npm install -g @anthropic-ai/claude-code
+python -m pip install faster-whisper</pre></div>
+<ol><li>Confira se deu certo. Cada linha precisa mostrar um número de versão:</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">claude --version
+ffmpeg -version
+yt-dlp --version
+python --version</pre></div>
+<p>No Mac: instale o Homebrew (brew.sh) e rode <code>brew install git python node ffmpeg yt-dlp</code>, depois os comandos do passo 4 trocando <code>python</code> por <code>python3</code>. No Mac, o piloto automático do Módulo 4 é feito pedindo ao Claude: "agenda o /top pra rodar todo dia às 6h no meu Mac".</p>
+<h3>O Claude monta a máquina pra você</h3>
+<ol><li>No Terminal:</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p4">Copiar</button></div><pre id="p4">cd C:\
+claude</pre></div>
+<ol><li>Copie o texto inteiro do bloco abaixo, do "Monte a minha máquina" até o último "===FIM===", cole no Claude (Ctrl+V) e aperte Enter. Quando ele pedir permissão pra criar a pasta e os arquivos, escolha "Sim, e não perguntar de novo".</li><li>Em menos de um minuto ele cria a pasta <code>C:\cortes-gta</code> com a skill, os 5 scripts, os comandos <code>/top</code>, <code>/gta</code> e <code>/relatorio</code>, o playbook e o piloto automático.</li><li>Feche o Claude com <code>/exit</code>.</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Instalador da máquina</span></span><button class="copy" type="button" data-copy="p5">Copiar</button></div><pre id="p5" style="max-height:360px;overflow:auto">Monte a minha máquina de cortes de GTA VI. Crie a pasta C:\cortes-gta (no Mac, ~/cortes-gta) e, dentro dela, cada arquivo abaixo com o conteúdo EXATO que está entre as linhas ===INÍCIO=== e ===FIM===, sem mudar nada. No fim, liste os arquivos criados e confirme que estão todos lá. Não rode nenhum script ainda.
+
+ARQUIVO: .claude/skills/gta-cortes/SKILL.md
+===INÍCIO===
+---
+name: gta-cortes
+description: Máquina de cortes de GTA VI. Use quando o usuário pedir cortes, clipes ou shorts de lives de GTA VI, os melhores momentos do dia, ou o relatório da página de cortes.
+---
+
+# Máquina de cortes do GTA VI
+
+Você é o editor-chefe de uma página de cortes de GTA VI. Seu trabalho é achar os momentos que mais vão prender, cortar no formato de clipe de live e deixar tudo pronto pra postar. Sempre leia `playbook.md` (raiz do projeto) antes de escolher momentos e títulos: ele guarda o que já funcionou nesta página.
+
+## Ferramentas (pasta scripts/ desta skill)
+- `twitch_top_clips.py`: clipes mais vistos do jogo nas últimas horas (o público já marcou o momento). Precisa de TWITCH_CLIENT_ID e TWITCH_CLIENT_SECRET.
+- `picos_chat.py`: picos do chat de um VOD (JSON baixado com `TwitchDownloaderCLI chatdownload --id &lt;id_do_vod&gt; -o chat.json`).
+- `picos_audio.py`: trechos mais altos do áudio.
+- `layout_facecam.py`: monta 1080x1920 com o rosto do streamer em cima e o jogo embaixo.
+- `legenda.py`: legenda palavra por palavra (destaque na palavra falada), título-gancho nos 3 primeiros segundos e @ do streamer.
+
+## Fluxo A: momentos do dia (comando /top)
+1. Rode `twitch_top_clips.py --horas 24 --top 20 --idioma pt` (se vier pouca coisa, repita com `--idioma todos`).
+2. Descarte o que o playbook manda evitar, clipe de menos de 8 s e clipe com cara de spoiler da história. Fique com os N melhores (padrão 5), no máximo 2 do mesmo streamer.
+3. Baixe cada um com `yt-dlp -o "brutos/%(id)s.%(ext)s" URL`.
+4. Siga o "Acabamento" abaixo.
+
+## Fluxo B: uma live inteira (comando /gta)
+1. Descubra a duração com `yt-dlp --print duration URL`. Se for VOD da Twitch, baixe também o chat com o TwitchDownloaderCLI.
+2. Baixe o áudio e rode `picos_audio.py`. Se tiver chat, rode `picos_chat.py`. Junte as duas listas: momento que aparece nas duas vale mais.
+3. Pra cada candidato, baixe só o trecho com `yt-dlp --download-sections "*INICIO-FIM" -o "brutos/%(id)s_INICIO.%(ext)s" URL` (de 40 a 60 s em volta do pico).
+4. Transcreva os candidatos e dê nota de 0 a 10 em: gancho nos 2 primeiros segundos, emoção (susto, risada, raiva), clareza sem contexto, final que fecha. Fique com os N melhores (padrão 5).
+5. Siga o "Acabamento".
+
+## Acabamento (os dois fluxos)
+1. Recorte cada momento pra 25 a 45 s: começa no segundo em que algo acontece, nunca em silêncio ou explicação. Termina logo depois da reação.
+2. Tire um quadro (`ffmpeg -ss 3 -i bruto.mp4 -frames:v 1 quadro.jpg`), olhe a imagem e ache a caixa da facecam (X Y largura altura). Rode `layout_facecam.py` com `--cam`. Sem facecam, rode sem `--cam`.
+3. Escreva o título-gancho: até 5 palavras, caixa alta, prometendo o momento sem contar o final ("ELE NÃO ESPERAVA ISSO", "O CARRO VOOU", "CHAT NÃO ACREDITOU"). Use os padrões que o playbook diz que funcionam.
+4. Rode `legenda.py` com o título e o @ do streamer.
+5. Salve em `cortes/AAAA-MM-DD/01.mp4`, `02.mp4`...
+6. Escreva `cortes/AAAA-MM-DD/posts.md`: pra cada corte, legenda do post (1ª linha com "GTA VI" + streamer + o momento; uma pergunta que puxe comentário; @ do streamer; 3 a 5 hashtags) e o horário sugerido (espalhe entre 7h e 1h, com mais posts à noite).
+7. Acrescente uma linha por corte em `historico.csv` (data, arquivo, streamer, título, tipo de momento, duração, fonte, horário).
+8. Se o conector Metricool estiver ativo, agende cada corte nos horários sugeridos para Instagram, TikTok e YouTube. Se ele pedir o vídeo por link, avise o usuário e deixe o posts.md pronto pra agendar à mão.
+9. Mostre no fim uma tabela: arquivo, streamer, título, duração, nota.
+
+## Relatório (comando /relatorio)
+1. Pelo conector Metricool (ou com os números que o usuário colar), pegue de cada post dos últimos 7 dias: visualizações, retenção/tempo médio, compartilhamentos, salvamentos e seguidores ganhos.
+2. Cruze com `historico.csv`: qual streamer, tipo de momento, padrão de título, duração e horário rendem mais.
+3. Atualize `playbook.md` com no máximo 5 regras novas, cada uma com o número que a sustenta, e apague regra que os números desmentiram.
+4. Responda em 5 linhas: o que dobrar, o que parar, quais streamers seguir, melhor horário, melhor duração.
+
+## Regras fixas
+- Nunca poste o clipe cru: sempre layout, título e legenda. É isso que faz Instagram e TikTok entregarem como conteúdo seu.
+- Sem spoiler de história. Sem streamer que pede pra não cortar.
+===FIM===
+
+ARQUIVO: .claude/skills/gta-cortes/scripts/twitch_top_clips.py
+===INÍCIO===
+"""Lista os clipes mais vistos de um jogo na Twitch (os momentos que o público já marcou).
+Uso: python twitch_top_clips.py --horas 24 --top 20 --idioma pt
+Precisa das variáveis TWITCH_CLIENT_ID e TWITCH_CLIENT_SECRET (app grátis em dev.twitch.tv/console)."""
+import argparse, json, os, sys, urllib.parse, urllib.request
+from datetime import datetime, timedelta, timezone
+
+def req(url, headers=None, data=None):
+    r = urllib.request.Request(url, headers=headers or {}, data=data)
+    with urllib.request.urlopen(r, timeout=30) as f:
+        return json.loads(f.read().decode())
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("--jogo", default="Grand Theft Auto VI")
+    p.add_argument("--horas", type=int, default=24)
+    p.add_argument("--top", type=int, default=20)
+    p.add_argument("--idioma", default="pt", help="pt, en ou todos")
+    p.add_argument("--saida", default="clipes.json")
+    a = p.parse_args()
+    cid, sec = os.environ.get("TWITCH_CLIENT_ID"), os.environ.get("TWITCH_CLIENT_SECRET")
+    if not cid or not sec:
+        sys.exit("Defina TWITCH_CLIENT_ID e TWITCH_CLIENT_SECRET (veja o guia, Aula 2.2).")
+    tok = req("https://id.twitch.tv/oauth2/token", data=urllib.parse.urlencode(
+        {"client_id": cid, "client_secret": sec, "grant_type": "client_credentials"}).encode())["access_token"]
+    h = {"Client-Id": cid, "Authorization": "Bearer " + tok}
+    jogos = req("https://api.twitch.tv/helix/games?name=" + urllib.parse.quote(a.jogo), h)["data"]
+    if not jogos:
+        sys.exit(f"Jogo '{a.jogo}' não encontrado na Twitch.")
+    gid = jogos[0]["id"]
+    fim = datetime.now(timezone.utc); ini = fim - timedelta(hours=a.horas)
+    base = {"game_id": gid, "first": 100, "started_at": ini.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "ended_at": fim.strftime("%Y-%m-%dT%H:%M:%SZ")}
+    clipes, cursor = [], None
+    for _ in range(5):  # até 500 clipes, já vêm do mais visto pro menos visto
+        q = dict(base, **({"after": cursor} if cursor else {}))
+        r = req("https://api.twitch.tv/helix/clips?" + urllib.parse.urlencode(q), h)
+        clipes += r["data"]; cursor = r.get("pagination", {}).get("cursor")
+        if not cursor: break
+    if a.idioma != "todos":
+        clipes = [c for c in clipes if c.get("language", "").startswith(a.idioma)]
+    clipes.sort(key=lambda c: c["view_count"], reverse=True)
+    out = [{"url": c["url"], "streamer": c["broadcaster_name"], "views": c["view_count"],
+            "titulo": c["title"], "duracao": c["duration"], "criado": c["created_at"],
+            "vod_id": c.get("video_id"), "vod_offset": c.get("vod_offset")} for c in clipes[:a.top]]
+    json.dump(out, open(a.saida, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    for i, c in enumerate(out, 1):
+        print(f"{i:2d}. {c['views']:&gt;7} views  {c['streamer']:&lt;18} {c['titulo'][:60]}")
+
+if __name__ == "__main__":
+    main()
+===FIM===
+
+ARQUIVO: .claude/skills/gta-cortes/scripts/picos_chat.py
+===INÍCIO===
+"""Acha os momentos em que o chat da live explodiu (risada, susto, hype).
+Entrada: o JSON do chat baixado com o TwitchDownloaderCLI (chatdownload).
+Uso: python picos_chat.py chat.json --top 10 --saida picos_chat.json"""
+import argparse, json, re
+from collections import Counter
+
+REACOES = re.compile(r"(k{3,}|KEKW|LUL|OMEGALUL|LMAO|PogU|Pog|POGGERS|monkaS|WTF|\?{3,}|HAHA|AHH+|NOO+|SOCORRO|MEU DEUS|CLIPA|CLIP)", re.I)
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("chat"); p.add_argument("--top", type=int, default=10)
+    p.add_argument("--janela", type=int, default=10, help="segundos por janela")
+    p.add_argument("--saida", default="picos_chat.json")
+    a = p.parse_args()
+    dados = json.load(open(a.chat, encoding="utf-8"))
+    msgs, reac = Counter(), Counter()
+    for c in dados.get("comments", []):
+        t = int(c.get("content_offset_seconds", 0)) // a.janela
+        corpo = (c.get("message") or {}).get("body", "")
+        msgs[t] += 1
+        if REACOES.search(corpo): reac[t] += 1
+    if not msgs: raise SystemExit("Chat vazio.")
+    media = sum(msgs.values()) / max(len(msgs), 1)
+    nota = {t: (msgs[t] / media) + 2 * (reac[t] / max(msgs[t], 1)) for t in msgs}
+    escolhidos = []
+    for t in sorted(nota, key=nota.get, reverse=True):
+        if all(abs(t - e) * a.janela &gt; 60 for e in escolhidos):  # momentos com 1 min de distância
+            escolhidos.append(t)
+        if len(escolhidos) == a.top: break
+    out = []
+    for t in escolhidos:
+        pico = t * a.janela
+        # o chat reage uns 5 a 15 s depois do lance: o corte começa antes do pico
+        out.append({"pico_s": pico, "inicio_s": max(pico - 35, 0), "fim_s": pico + 10,
+                    "msgs": msgs[t], "reacoes": reac[t], "nota": round(nota[t], 2)})
+    json.dump(out, open(a.saida, "w", encoding="utf-8"), indent=1)
+    for o in out:
+        m, s = divmod(o["pico_s"], 60); h, m = divmod(m, 60)
+        print(f"{h:02d}:{m:02d}:{s:02d}  nota {o['nota']:5}  {o['msgs']} msgs, {o['reacoes']} reações")
+
+if __name__ == "__main__":
+    main()
+===FIM===
+
+ARQUIVO: .claude/skills/gta-cortes/scripts/picos_audio.py
+===INÍCIO===
+"""Acha os trechos mais altos do áudio (grito, explosão, risada).
+Uso: python picos_audio.py live.mp4 --top 10 --saida picos_audio.json"""
+import argparse, json, re, subprocess, tempfile, os
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("video"); p.add_argument("--top", type=int, default=10)
+    p.add_argument("--saida", default="picos_audio.json")
+    a = p.parse_args()
+    tmp = tempfile.mktemp(suffix=".txt")
+    filtro = ("aresample=8000,asetnsamples=8000,astats=metadata=1:reset=1,"
+              f"ametadata=print:key=lavfi.astats.Overall.RMS_level:file='{tmp.replace(chr(92), '/')}'")
+    subprocess.run(["ffmpeg", "-v", "error", "-i", a.video, "-vn", "-af", filtro, "-f", "null", "-"], check=True)
+    seg, niveis = None, []
+    for linha in open(tmp, encoding="utf-8"):
+        m = re.search(r"pts_time:([\d.]+)", linha)
+        if m: seg = float(m.group(1))
+        m = re.search(r"RMS_level=(-?[\d.]+|-inf)", linha)
+        if m and seg is not None and m.group(1) != "-inf":
+            niveis.append((int(seg), float(m.group(1))))
+    os.remove(tmp)
+    if not niveis: raise SystemExit("Sem áudio.")
+    media = sum(n for _, n in niveis) / len(niveis)
+    escolhidos = []
+    for s, n in sorted(niveis, key=lambda x: x[1], reverse=True):
+        if all(abs(s - e["pico_s"]) &gt; 60 for e in escolhidos):
+            escolhidos.append({"pico_s": s, "inicio_s": max(s - 20, 0), "fim_s": s + 15,
+                               "db_acima_da_media": round(n - media, 1)})
+        if len(escolhidos) == a.top: break
+    json.dump(escolhidos, open(a.saida, "w", encoding="utf-8"), indent=1)
+    for e in escolhidos:
+        print(f"{e['pico_s']//3600:02d}:{e['pico_s']%3600//60:02d}:{e['pico_s']%60:02d}  +{e['db_acima_da_media']} dB")
+
+if __name__ == "__main__":
+    main()
+===FIM===
+
+ARQUIVO: .claude/skills/gta-cortes/scripts/layout_facecam.py
+===INÍCIO===
+"""Monta o corte no layout de clipe de live: rosto do streamer em cima, jogo embaixo (1080x1920).
+Uso: python layout_facecam.py entrada.mp4 saida.mp4 --cam X Y L A
+X Y L A = posição e tamanho da facecam no vídeo original, em pixels.
+Sem --cam, faz só o jogo centralizado em tela cheia.
+Dica: tire um quadro com  ffmpeg -ss 5 -i entrada.mp4 -frames:v 1 quadro.jpg  e peça pro Claude achar a facecam."""
+import argparse, subprocess
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("entrada"); p.add_argument("saida")
+    p.add_argument("--cam", nargs=4, type=int, metavar=("X", "Y", "L", "A"))
+    p.add_argument("--altura_cam", type=int, default=608, help="altura da faixa do rosto (o resto é jogo)")
+    a = p.parse_args()
+    if a.cam:
+        x, y, w, h = a.cam
+        hg = 1920 - a.altura_cam
+        f = (f"[0:v]crop={w}:{h}:{x}:{y},scale=1080:{a.altura_cam}:force_original_aspect_ratio=increase,"
+             f"crop=1080:{a.altura_cam}[cam];"
+             f"[0:v]crop=ih*1080/{hg}:ih:(iw-ih*1080/{hg})/2:0,scale=1080:{hg}[jogo];"
+             f"[cam][jogo]vstack=inputs=2,setsar=1[v]")
+    else:
+        f = "[0:v]crop=ih*9/16:ih:(iw-ih*9/16)/2:0,scale=1080:1920,setsar=1[v]"
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", a.entrada, "-filter_complex", f, "-map", "[v]",
+                    "-map", "0:a?", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+                    "-c:a", "aac", "-b:a", "160k", "-r", "30", a.saida], check=True)
+    print("ok:", a.saida)
+
+if __name__ == "__main__":
+    main()
+===FIM===
+
+ARQUIVO: .claude/skills/gta-cortes/scripts/legenda.py
+===INÍCIO===
+"""Transcreve, gera legenda palavra por palavra e título-gancho nos 3 primeiros segundos, e grava no vídeo.
+Uso: python legenda.py vertical.mp4 final.mp4 --titulo "ELE NÃO ESPERAVA ISSO" --streamer "@nome"
+Precisa: pip install faster-whisper"""
+import argparse, os, subprocess, tempfile
+
+def ts(s):
+    h = int(s // 3600); m = int(s % 3600 // 60); return f"{h}:{m:02d}:{s % 60:05.2f}"
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("entrada"); p.add_argument("saida")
+    p.add_argument("--titulo", default=""); p.add_argument("--streamer", default="")
+    p.add_argument("--modelo", default="small"); p.add_argument("--idioma", default="", help="pt, en... vazio = detecta sozinho"); p.add_argument("--palavras", type=int, default=3)
+    p.add_argument("--cor", default="&amp;H0000E5FF", help="cor da palavra falada (ASS, BGR)")
+    a = p.parse_args()
+    from faster_whisper import WhisperModel
+    m = WhisperModel(a.modelo, device="auto", compute_type="int8")
+    segs, _ = m.transcribe(a.entrada, language=a.idioma or None, word_timestamps=True, vad_filter=True)
+    pal = [w for s in segs for w in (s.words or [])]
+    cab = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Leg,Arial Black,78,&amp;H00FFFFFF,&amp;H00FFFFFF,&amp;H00000000,&amp;H64000000,-1,0,0,0,100,100,0,0,1,7,3,2,60,60,560,1
+Style: Tit,Arial Black,84,&amp;H00FFFFFF,&amp;H00FFFFFF,&amp;H00000000,&amp;HC8000000,-1,0,0,0,100,100,0,0,3,18,0,8,60,60,700,1
+Style: Arr,Arial,40,&amp;H00FFFFFF,&amp;H00FFFFFF,&amp;H00000000,&amp;H64000000,-1,0,0,0,100,100,0,0,1,3,1,9,40,40,40,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    ev = []
+    if a.titulo:
+        ev.append(f"Dialogue: 1,{ts(0)},{ts(3)},Tit,,0,0,0,,{a.titulo.upper()}")
+    if a.streamer:
+        ev.append(f"Dialogue: 1,{ts(0)},{ts(9999)},Arr,,0,0,0,,{a.streamer}")
+    for i in range(0, len(pal), a.palavras):
+        grupo = pal[i:i + a.palavras]
+        for j, w in enumerate(grupo):
+            fim = grupo[j + 1].start if j + 1 &lt; len(grupo) else w.end
+            txt = " ".join((f"{{\\c{a.cor}}}{x.word.strip().upper()}{{\\c&amp;H00FFFFFF&amp;}}" if k == j
+                            else x.word.strip().upper()) for k, x in enumerate(grupo))
+            ev.append(f"Dialogue: 0,{ts(w.start)},{ts(max(fim, w.start + 0.05))},Leg,,0,0,0,,{txt}")
+    tmp = tempfile.mkdtemp(); ass = os.path.join(tmp, "leg.ass")
+    open(ass, "w", encoding="utf-8").write(cab + "\n".join(ev) + "\n")
+    caminho = ass.replace("\\", "/").replace(":", "\\:")
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", a.entrada, "-vf", f"ass='{caminho}'",
+                    "-c:v", "libx264", "-crf", "20", "-preset", "medium", "-c:a", "copy", a.saida], check=True)
+    print("ok:", a.saida, f"({len(pal)} palavras)")
+
+if __name__ == "__main__":
+    main()
+===FIM===
+
+ARQUIVO: .claude/commands/top.md
+===INÍCIO===
+Use a skill gta-cortes, Fluxo A, pra fazer os cortes com os momentos mais vistos de GTA VI das últimas 24 horas. Quantidade e ajustes: $ARGUMENTS (se vazio, 5 cortes).
+===FIM===
+
+ARQUIVO: .claude/commands/gta.md
+===INÍCIO===
+Use a skill gta-cortes, Fluxo B, pra fazer os cortes desta live: $ARGUMENTS (se não disser a quantidade, 5 cortes).
+===FIM===
+
+ARQUIVO: .claude/commands/relatorio.md
+===INÍCIO===
+Use a skill gta-cortes, seção Relatório, pra analisar os últimos 7 dias da página e atualizar o playbook. Observações: $ARGUMENTS
+===FIM===
+
+ARQUIVO: playbook.md
+===INÍCIO===
+# Playbook da página (o /relatorio atualiza este arquivo)
+
+## Ponto de partida (antes de ter números próprios)
+- Começar no auge: o primeiro segundo já é o lance.
+- 30 a 45 s, um momento só. (OpusClip, 13,5 mi de clipes, jan-mar/2026: mediana dos virais 41 s; 80% com legenda na tela.)
+- Título promete o momento sem contar o final.
+- Mais posts à noite e de madrugada, quando o público de game está online.
+
+## Funcionou nesta página
+(vazio até o primeiro /relatorio)
+
+## Evitar
+(vazio até o primeiro /relatorio)
+===FIM===
+
+ARQUIVO: historico.csv
+===INÍCIO===
+data,arquivo,streamer,titulo,tipo_momento,duracao_s,fonte,horario_post
+===FIM===
+
+ARQUIVO: rodar-todo-dia.bat
+===INÍCIO===
+@echo off
+cd /d %~dp0
+claude -p "Use a skill gta-cortes, Fluxo A, pra fazer 5 cortes com os momentos mais vistos de GTA VI das últimas 24 horas." --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+===FIM===</pre></div>
+<p>Só pro comando /gta (ler o chat das lives): baixe o TwitchDownloaderCLI em github.com/lay295/TwitchDownloader &gt; Releases &gt; o arquivo que termina em <code>CLI-...-Windows-x64.zip</code>, extraia e coloque o <code>TwitchDownloaderCLI.exe</code> dentro de <code>C:\cortes-gta</code>. Ou peça ao Claude: "baixa o TwitchDownloaderCLI mais recente pra Windows e coloca nesta pasta".</p>
+<h3>A chave grátis da Twitch (5 minutos, uma vez só)</h3>
+<p>É o que deixa a máquina ver os clipes mais vistos do dia.</p>
+<ol><li>Faça login na Twitch e ative a verificação em duas etapas (Configurações &gt; Segurança e privacidade). O painel de desenvolvedor exige.</li><li>Entre em dev.twitch.tv/console &gt; Aplicativos &gt; Registrar seu aplicativo.</li><li>Nome: "cortes-gta-seunome". URL de redirecionamento OAuth: <code>http://localhost</code>. Categoria: "Application Integration". Tipo de cliente: Confidencial. Criar.</li><li>Clique em Gerenciar. Copie o <b>ID do cliente</b>. Clique em <b>Novo segredo</b> e copie.</li><li>No Terminal, cole (trocando pelos seus):</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p6">Copiar</button></div><pre id="p6">setx TWITCH_CLIENT_ID "cole-o-id-aqui"
+setx TWITCH_CLIENT_SECRET "cole-o-segredo-aqui"</pre></div>
+<ol><li>Feche e abra o Terminal de novo.</li></ol>
+<h3>O primeiro corte</h3>
+<ol><li>No Terminal:</li></ol>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p7">Copiar</button></div><pre id="p7">cd C:\cortes-gta
+claude</pre></div>
+<ol><li>Na primeira vez, o Claude abre o navegador pra você entrar na sua conta. Depois pergunta se confia na pasta: responda que sim.</li><li>Digite <code>/top</code> e aperte Enter.</li><li>O Claude vai pedir permissão pra rodar os comandos. Escolha a opção "Sim, e não perguntar de novo" pra cada tipo de comando. Na segunda vez ele já roda direto.</li><li>Espere. No fim aparece uma tabela com os cortes, e eles estão em <code>C:\cortes-gta\cortes\</code> dentro da pasta com a data de hoje, junto do <code>posts.md</code> com a legenda de cada um.</li></ol>
+<p>Quanto demora: a transcrição é a parte mais lenta. Em PC sem placa de vídeo, conte alguns minutos por corte. Deixe rodando e vá fazer outra coisa.</p>
+<h3>Ajustando com uma frase</h3>
+<p>O Claude entende português normal. Exemplos:</p>
+<ul><li>"O corte 3 ficou fraco, troca por outro momento."</li><li>"Começa o corte 1 dois segundos antes."</li><li>"A facecam ficou cortada no 2, ajusta."</li><li>"Muda os títulos pra algo mais engraçado."</li><li>"Faz mais 5, mas só do Alanzoka."</li></ul>
+<h3>Uma live específica</h3>
+<p>Achou uma live boa? Copie o link (Twitch, YouTube ou Kick) e:</p>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p8">Copiar</button></div><pre id="p8">/gta https://www.twitch.tv/videos/NUMERO</pre></div>
+<p>A máquina mede o chat e o áudio da live inteira, escolhe os picos, baixa só esses trechos e corta.</p>
+<p>---</p>
+<h2 id="m3" class="mod"><span class="num">3</span>Postando</h2>
+<h3>Agendando tudo de uma vez com o Metricool (recomendado)</h3>
+<ol><li>Crie a conta grátis em metricool.com.</li><li>Conecte Instagram, TikTok e YouTube (botões "Conectar" no painel).</li><li>Vá em Planejamento &gt; Criar post. Marque as três redes, envie o vídeo, cole a legenda do <code>posts.md</code> e escolha o horário sugerido. Repita pros 5 cortes.</li></ol>
+<p>O plano grátis já agenda. Confira no site o limite de posts por mês do seu plano.</p>
+<p>Atalho: no claude.ai, em Configurações &gt; Conectores, ative o conector do Metricool. Com ele ativo, a máquina pode agendar sozinha no fim do <code>/top</code> e ler seus números no <code>/relatorio</code>. Se o seu Claude Code não enxergar o conector, siga agendando pelo painel, que dá no mesmo.</p>
+<h3>Postando à mão</h3>
+<ul><li>Instagram: + &gt; Reel &gt; escolha o vídeo &gt; Avançar &gt; cole a legenda &gt; Compartilhar. Em "Capa", escolha o quadro com o título.</li><li>TikTok: + &gt; Carregar &gt; vídeo &gt; Avançar &gt; cole a legenda &gt; Publicar.</li><li>YouTube: + &gt; Enviar vídeo &gt; escolha o vídeo (ele entra como Short sozinho) &gt; título curto com "GTA VI" &gt; Enviar.</li></ul>
+<h3>Horários</h3>
+<p>Espalhe os 5 cortes entre 7h e 1h, com mais posts à noite e de madrugada, que é quando o público de game está online. Depois de 1 semana, o <code>/relatorio</code> te diz os seus melhores horários.</p>
+<p>---</p>
+<h2 id="m4" class="mod"><span class="num">4</span>Piloto automático</h2>
+<p>Pra máquina fazer os cortes sozinha todo dia de manhã:</p>
+<ol><li>Menu Iniciar &gt; Agendador de Tarefas &gt; Criar Tarefa Básica.</li><li>Nome: "Cortes GTA". Disparador: Diariamente, às 6h.</li><li>Ação: Iniciar um programa &gt; Procurar &gt; <code>C:\cortes-gta\rodar-todo-dia.bat</code>.</li><li>Concluir. Deixe o PC ligado (ou em suspensão com "Despertar o computador" marcado na aba Condições da tarefa).</li></ol>
+<p>Antes de ligar o piloto, rode o <code>/top</code> à mão pelo menos uma vez e aprove todas as permissões.</p>
+<p>Sua rotina vira: acordar, abrir a pasta do dia, conferir os 5 cortes e agendar (10 minutos).</p>
+<p>---</p>
+<h2 id="m5" class="mod"><span class="num">5</span>A máquina que melhora sozinha</h2>
+<p>Uma vez por semana, no Claude, dentro de <code>C:\cortes-gta</code>:</p>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Copie e cole</span></span><button class="copy" type="button" data-copy="p9">Copiar</button></div><pre id="p9">/relatorio</pre></div>
+<p>Se o Metricool estiver conectado, ele busca os números sozinho. Se não, cole os números de cada post (visualizações, compartilhamentos, salvamentos, seguidores ganhos) que aparecem em "Ver insights" no Instagram.</p>
+<p>O Claude cruza com a planilha <code>historico.csv</code> (tudo que foi postado: streamer, tipo de momento, título, duração, horário) e reescreve o <code>playbook.md</code>, o arquivo de regras que a máquina lê antes de cada corte. Na semana seguinte ela já escolhe momentos e títulos parecidos com os que bombaram na sua página.</p>
+<p>---</p>
+<h2 id="m6" class="mod"><span class="num">6</span>O que faz um corte bombar</h2>
+<ul><li>Começa no auge: o primeiro segundo já é o lance. Nada de "e aí, galera".</li><li>Título que promete o momento sem contar o final: "ELE NÃO ESPERAVA ISSO", "O CARRO VOOU", "O CHAT NÃO ACREDITOU".</li><li>30 a 45 segundos, um momento só. Numa análise da OpusClip com 13,5 milhões de clipes (jan a mar de 2026), os virais tiveram mediana de 41 segundos, e 80% tinham legenda na tela.</li><li>Nunca o clipe cru. Layout, título e legenda são o que fazem Instagram e TikTok tratarem o vídeo como seu e mostrarem pra quem não te segue. A máquina já faz isso.</li><li>Volume no começo: 5 por dia enquanto o jogo é o assunto do momento.</li><li>Responda os comentários na primeira hora. Comentário puxa entrega.</li><li>Fixe nos destaques/primeiro post o melhor corte da semana: é o que o visitante novo vê.</li></ul>
+<p>Cuidado em uma linha: pule spoiler da história e streamer que pede pra não cortar. O resto, posta.</p>
+<p>---</p>
+<h2 id="m7" class="mod"><span class="num">7</span>Deu erro? (as 8 travas mais comuns)</h2>
+<ol><li><b>"comando não reconhecido"</b>: feche e abra o Terminal. Se continuar, rode de novo o <code>winget install</code> daquele programa.</li><li><b>O Claude pede permissão toda hora</b>: escolha "Sim, e não perguntar de novo". Ou rode <code>claude --allowedTools "Bash,Read,Write,Edit"</code>.</li><li><b>Erro 401 ou "TWITCH_CLIENT_ID" no /top</b>: refaça a Aula 2.4 e abra um Terminal novo.</li><li><b>yt-dlp com erro 403 ou "Unable to extract"</b>: rode <code>yt-dlp -U</code> pra atualizar.</li><li><b>Transcrição muito lenta</b>: peça "usa o modelo base na legenda" (mais rápido, um pouco menos preciso).</li><li><b>Facecam no lugar errado</b>: diga "a facecam está no canto [tal], refaz o corte 2".</li><li><b>Pouco clipe em português no /top</b>: diga "/top 5 de todos os idiomas". A legenda sai no idioma da fala; se quiser em português, peça "traduz a legenda pra português".</li><li><b>Qualquer outro erro</b>: copie a mensagem inteira, cole no Claude e escreva "deu esse erro, resolve". Ele corrige na hora na maioria dos casos. Se não resolver, comente aqui na aula com o print.</li></ol>
+<p>---</p>
+<p class="eyebrow part">Parte 2</p><h2 class="parte">Bônus: o caminho pago que o mercado está usando</h2>
+<p>Muita página grande de GTA está usando uma ferramenta paga chamada ViceScale. Ela não substitui a sua máquina: é outro jeito de trabalhar, mais focado em volume e em várias páginas ao mesmo tempo. Aqui está o passo a passo completo, do zero ao post, pra você decidir se vale pra você.</p>
+<div class="glass tw"><div class="scroll"><table class="cmp"><thead><tr><th></th><th>Sua máquina (Parte 1)</th><th>ViceScale</th></tr></thead><tbody><tr><th>Custo extra</th><td>R$ 0</td><td>A partir de R$ 97,90 por mês</td></tr><tr><th>Instalação</th><td>No seu PC</td><td>Nenhuma, roda no navegador</td></tr><tr><th>De onde vêm os vídeos</th><td>Lives e clipes mais vistos do dia</td><td>Biblioteca e busca de vídeos virais da ferramenta</td></tr><tr><th>Postagem</th><td>Metricool ou à mão</td><td>Automática pela ferramenta</td></tr><tr><th>Melhor pra</th><td>Começar com custo zero</td><td>Várias páginas e volume</td></tr></tbody></table></div></div>
+<h2 id="m8" class="mod"><span class="num">8</span>ViceScale do zero ao post</h2>
+<h3>O que ela faz</h3>
+<p>O ViceScale (vicescale.com) é uma ferramenta brasileira feita pra páginas de GTA VI. Tem biblioteca com mais de 1.500 vídeos do jogo, busca de vídeos que estão viralizando, editor de cortes, templates de post, uma função que transforma um vídeo em várias variações (Scale) e agendamento automático no Instagram, TikTok, YouTube e Facebook. E tem conector pro Claude, então você comanda tudo conversando.</p>
+<p>Planos em 19/11/2026: Pro, R$ 97,90 por mês (2 contas); Escala, R$ 197,90 por mês (4 contas). Sem fidelidade. (O Cobaia não tem ligação com a ferramenta.)</p>
+<h3>Assinando e conectando suas redes</h3>
+<ol><li>Entre em vicescale.com, escolha o plano e assine.</li><li>No painel, conecte as contas da página (Instagram, TikTok e YouTube). Se ainda não criou a página, faça antes as Aulas 1.2 e 1.3.</li><li>Preencha nome, foto e perfil da página nas configurações. É isso que a ferramenta usa nos templates.</li></ol>
+<h3>Ligando o ViceScale no Claude</h3>
+<ol><li>No claude.ai, abra uma conversa, clique no + da caixa de mensagem &gt; Conectores &gt; Adicionar conector personalizado.</li><li>Nome: ViceScale.</li><li>No site do ViceScale, abra a opção "Claude" no menu e copie o link do conector.</li><li>Cole o link no Claude e clique em Continuar. Faça login quando pedir.</li></ol>
+<h3>O pedido que gera os posts</h3>
+<p>Cole no Claude, trocando o que está entre colchetes:</p>
+<div class="prompt glass"><div class="prompt-h"><span><span class="t">Pedido pro ViceScale</span></span><button class="copy" type="button" data-copy="p10">Copiar</button></div><pre id="p10">Usa o ViceScale pra buscar os 20 vídeos de GTA VI que mais viralizaram nas últimas 24 horas. Pra cada um, cria um post no template [nome do seu template], com título-gancho de até 5 palavras em caixa alta, legenda em português começando com "GTA VI", uma pergunta pro público e 4 hashtags. Agenda 5 por dia entre 7h e 1h, com mais posts à noite.</pre></div>
+<p>Quando o Claude perguntar se pode usar a ferramenta, clique em "Sempre permitir". Em poucos minutos os posts aparecem no painel do ViceScale, já agendados.</p>
+<h3>Deixando com a sua cara</h3>
+<p>Antes de liberar a agenda, abra 2 ou 3 posts no editor do ViceScale e confira o título e o primeiro segundo. A ferramenta acelera, mas é a sua escolha de momento e de título que faz a página crescer. Dica: prefira vídeo de live (com reação do streamer) a vídeo de outra página, que perde alcance no Instagram e no TikTok.</p>
+<p>Quer também os cortes das lives brasileiras? Rode a sua máquina (Parte 1) e suba os cortes no ViceScale pra ele agendar junto.</p>
+<h3>A rotina diária no ViceScale</h3>
+<ol><li>De manhã, abra o Claude e rode o pedido da Aula 8.4 de novo (ou só "faz a leva de hoje igual ontem").</li><li>Confira 2 ou 3 posts no painel e libere a agenda (10 minutos).</li><li>Uma vez por semana, peça ao Claude: "usa o ViceScale pra me dizer quais posts da semana tiveram mais visualizações e compartilhamentos, e o que eles têm em comum". Use a resposta pra ajustar o template e os títulos da semana seguinte.</li></ol>
+<p>---</p>
+
+</article>
+<div class="cta">
+  <span class="pf"><img src="../../../assets/img/avatar.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
+  <h2>Travou? <em>Me chama</em></h2>
+  <p class="lede">Copie o erro, cole no Claude e escreva "deu esse erro, resolve". Se não resolver, me chama no direct com o print.</p>
+  <a class="stamp" href="https://www.instagram.com/cobaia.dev/" target="_blank" rel="noopener">@COBAIA.DEV</a>
+</div>
+<footer><span>© 2026 @cobaia.dev</span><span>Acesso pessoal e intransferível. Em caso de reembolso, o acesso é cancelado.</span></footer>
+</main>
+<script src="../../../assets/site.js"></script>
+</body>
+</html>
