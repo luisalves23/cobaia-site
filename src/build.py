@@ -250,4 +250,15 @@ if __name__ == "__main__":
     for src, dst in [("gta-guia.html", "gta/guia/index.html")]:
         (ROOT / dst).parent.mkdir(parents=True, exist_ok=True)
         (ROOT / dst).write_text((ROOT / "src" / "dias" / src).read_text(encoding="utf-8"), encoding="utf-8")
+    # skills que vão junto com os guias: zip fixo (mesma data em tudo) pra não mudar a cada build
+    import zipfile
+    for skill, dst in [("cortes-gta", "gta/guia/cortes-gta.zip")]:
+        base = ROOT / "src" / "skills" / skill
+        with zipfile.ZipFile(ROOT / dst, "w", zipfile.ZIP_DEFLATED) as z:
+            for f in sorted(base.rglob("*")):
+                if f.is_file() and "__pycache__" not in f.parts:
+                    info = zipfile.ZipInfo(f"{skill}/{f.relative_to(base).as_posix()}", (2026, 1, 1, 0, 0, 0))
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    info.external_attr = (0o755 if f.suffix in (".py", ".sh") else 0o644) << 16
+                    z.writestr(info, f.read_bytes())
     print("ok:", ", ".join(d["slug"] for d in DIAS), "+ 30-dias")

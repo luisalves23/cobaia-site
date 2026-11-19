@@ -95,6 +95,33 @@ body{font-size:17.5px;padding-bottom:70px}
 @media print{.sup{display:none}}
 @media (max-width:900px){.gl{grid-template-columns:minmax(0,1fr)}.toc{position:static;max-height:none;padding:18px;border-radius:20px;box-shadow:inset 0 0 0 1px var(--line)}}
 @media print{.top,.toc,.cp{display:none}.gl{grid-template-columns:1fr}body{background:#fff;color:#000}.doc p,.doc li{color:#000}}
+.flow{list-style:none;padding:0!important;margin:18px 0 22px;display:grid;gap:0!important;counter-reset:f}
+.flow li{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:0 0 18px}
+.flow li:before{counter-increment:f;content:counter(f);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--sunset);color:var(--ink);font:400 22px var(--d)}
+.flow li:not(:last-child):after{content:"";position:absolute;left:21px;top:48px;bottom:4px;width:2px;background:var(--line)}
+.flow b{display:block;font-size:17px}
+.flow span{display:block;font-size:15.5px;color:#d9c9e6}
+.flow em{font-style:normal;font:700 11px var(--m);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.flow em.cl{background:rgba(243,106,120,.18);color:var(--pink)}
+.flow em.vc{background:rgba(255,180,88,.16);color:var(--yellow)}
+.vs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0 20px}
+.vs>div{padding:20px 18px;border-radius:20px;background:rgba(255,244,232,.05);box-shadow:inset 0 0 0 1px var(--line)}
+.vs>div.rec{background:linear-gradient(180deg,rgba(123,32,143,.45),rgba(59,20,107,.2));box-shadow:inset 0 0 0 1.5px var(--pink)}
+.vs h3{margin:0 0 4px!important;font:400 28px/1 var(--d)!important;text-transform:uppercase}
+.vs .pr{font:700 12px var(--m);letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin:0 0 12px}
+.vs ul{padding-left:18px;gap:6px;font-size:15px}
+.vs a.go{display:inline-block;margin-top:4px;font:800 14px var(--b);color:var(--ink);background:var(--yellow);padding:9px 14px;border-radius:999px;text-decoration:none}
+.shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 8px}
+.shots figure{margin:0}
+.shots img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line)}
+.shots figcaption{font-size:13px;color:var(--dim);margin-top:6px;line-height:1.35}
+.dl{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:14px 0 18px;padding:18px;border-radius:20px;background:var(--sunset);color:var(--ink)}
+.dl a{font:800 17px var(--b);color:var(--cream)!important;background:var(--ink);padding:14px 20px;border-radius:999px;text-decoration:none}
+.dl span{font-size:14.5px;color:var(--ink)!important;flex:1;min-width:180px}
+.time{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0 18px}
+.time div{padding:12px;border-radius:14px;background:rgba(255,244,232,.05);box-shadow:inset 0 0 0 1px var(--line);font-size:13.5px;color:#d9c9e6}
+.time b{display:block;font:400 26px/1 var(--d);color:var(--cream);margin-bottom:4px}
+@media (max-width:700px){.vs{grid-template-columns:1fr}.time{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -106,21 +133,21 @@ body{font-size:17.5px;padding-bottom:70px}
 
 <div class="gtop"><div class="wrap">
   <div class="welc">
-  <div class="tagrow"><span class="chip hot">Parabéns, é seu</span><span class="chip">Acesso vitalício</span><span class="chip">atualizado em 18/11/2026</span></div>
-  <h1 class="h1">Bem-vindo à sua <span class="it">página</span> de cortes</h1>
-  <p class="sub">Aqui está o caminho completo, da página vazia ao primeiro corte de GTA VI postado: a página certa, os streamers que liberam, a instalação, os pedidos prontos pro Claude e a rotina pra postar todo dia. Siga na ordem, no seu ritmo. O acesso é seu pra sempre, e toda atualização do guia aparece aqui sem custo.</p>
+  <div class="tagrow"><span class="chip hot">Parabéns, é seu</span><span class="chip">Acesso vitalício</span><span class="chip">atualizado em 19/11/2026</span></div>
+  <h1 class="h1">Você manda o <span class="it">link.</span> O Claude devolve os cortes.</h1>
+  <p class="sub">Este guia monta, no seu computador, uma máquina de cortes de GTA VI: ela baixa a live, lê o chat pra achar os momentos em que todo mundo riu ou gritou, escolhe os melhores, monta o vídeo vertical com a câmera do streamer e o jogo empilhados, legenda e gancho, e escreve o texto do post. Você revisa, agenda e acompanha os números. Tem o caminho grátis, com a skill que eu fiz pra isso, e o pago, com o OpusClip.</p>
   <div class="inbox" aria-label="O que tem no guia">
-    <div><b>8</b><span>passos, do nome da página ao post</span></div>
-    <div><b>10</b><span>pedidos prontos pra colar no Claude</span></div>
-    <div><b>3</b><span>modelos: bio, permissão e crédito</span></div>
-    <div><b>30</b><span>minutos por dia, depois de montado</span></div>
+    <div><b>1</b><span>skill pronta pra baixar, a cortes-gta</span></div>
+    <div><b>2</b><span>caminhos: grátis no seu PC ou pago na nuvem</span></div>
+    <div><b>9</b><span>passos, da página vazia aos números</span></div>
+    <div><b>~20</b><span>minutos seus por live, depois de montado</span></div>
   </div>
   <div class="road" aria-label="Seu plano">
-    <div><i>Hoje</i><span>Página criada e tudo instalado (passos 0 a 3)</span></div>
-    <div><i>Amanhã</i><span>Seus primeiros 5 cortes prontos (passos 4 a 6)</span></div>
-    <div><i>Primeira semana</i><span>Grade com 9 cortes e rotina rodando (passo 7)</span></div>
+    <div><i>Hoje · 1 hora</i><span>Página criada e tudo instalado (passos 1 a 3)</span></div>
+    <div><i>Primeira live</i><span>Seus primeiros cortes prontos e agendados (passos 4 a 6)</span></div>
+    <div><i>Toda semana</i><span>O Claude lê os seus números e ajusta os próximos cortes (passos 7 e 8)</span></div>
   </div>
-  <p class="sign"><img src="../../assets/img/avatar.jpg" alt="" width="42" height="42"><span>Montei esse guia com o mesmo processo que eu uso. Cada comando tem botão de copiar e, embaixo, o que deve aparecer na sua tela. <b>Luiz, @cobaia.dev</b></span></p>
+  <p class="sign"><img src="../../assets/img/avatar.jpg" alt="" width="42" height="42"><span>Cada comando tem botão de copiar e, embaixo, o que deve aparecer na sua tela. Travou em algum ponto, o botão Suporte no canto fala direto comigo. <b>Luiz, @cobaia.dev</b></span></p>
   </div>
 </div></div>
 
@@ -128,93 +155,115 @@ body{font-size:17.5px;padding-bottom:70px}
 <nav class="toc" aria-label="Seções do guia">
   <p>Neste guia</p>
   <ol>
-    <li><a href="#antes">0 · Antes de começar</a></li>
+    <li><a href="#como">0 · Como a máquina funciona</a></li>
     <li><a href="#pagina">1 · A página</a></li>
-    <li><a href="#permissao">2 · Streamers que liberam corte</a></li>
-    <li><a href="#instalar">3 · Instalar tudo</a></li>
-    <li><a href="#live">4 · Pegar a live</a></li>
-    <li><a href="#cortar">5 · Cortar com o Claude</a></li>
-    <li><a href="#ajustes">6 · Ajustes de GTA</a></li>
-    <li><a href="#postar">7 · Postar e crescer</a></li>
+    <li><a href="#quem">2 · Quem cortar</a></li>
+    <li><a href="#instalar">3 · Instalar (uma vez)</a></li>
+    <li><a href="#cortar">4 · Cortar a primeira live</a></li>
+    <li><a href="#ajustar">5 · Revisar e ajustar</a></li>
+    <li><a href="#pago">6 · Caminho pago: OpusClip</a></li>
+    <li><a href="#postar">7 · Postar nas 3 redes</a></li>
+    <li><a href="#numeros">8 · Melhorar com os números</a></li>
+    <li><a href="#rotina">9 · A rotina do dia</a></li>
     <li><a href="#pedidos">Caixa de pedidos</a></li>
   </ol>
 </nav>
 
-<main class="doc" id="main">
+<main class="doc" id="conteudo">
 
 <!-- 0 -->
-<section id="antes" aria-labelledby="t0">
+<section id="como" aria-labelledby="t0">
   <p class="num">Passo 0</p>
-  <h2 id="t0">Antes de começar</h2>
-  <p>Separe uma tarde pra montar tudo. Depois de instalado, o dia a dia é abrir a pasta, pedir os cortes e postar.</p>
+  <h2 id="t0">Como a máquina funciona</h2>
+  <p>Depois de montado, cada live passa por 7 etapas. Quase todas rodam sozinhas. As marcadas como <b>você</b> levam poucos minutos.</p>
+  <ol class="flow">
+    <li><div><b>Você cola o link da live <em class="vc">você · 10 s</em></b><span>VOD da Twitch, live encerrada do YouTube ou o arquivo que você gravou.</span></div></li>
+    <li><div><b>Baixa o áudio e o chat <em class="cl">automático</em></b><span>Só o áudio, que é leve. O vídeo inteiro de uma live de 6 horas passa de 10 GB; o áudio dá uns 300 MB.</span></div></li>
+    <li><div><b>Acha os picos <em class="cl">automático</em></b><span>Compara cada momento com os 5 minutos anteriores: chat acelerando, enxurrada de KKKK, LUL e "???", e a voz do streamer subindo (grito, risada). É assim que um editor humano acharia, só que em 1 minuto.</span></div></li>
+    <li><div><b>O Claude escolhe <em class="cl">automático</em></b><span>Transcreve só os candidatos, lê o que foi dito e o que o chat escreveu, descarta o que precisa de contexto e escolhe de 3 a 8 cortes, com o gancho de cada um.</span></div></li>
+    <li><div><b>Monta os vídeos <em class="cl">automático</em></b><span>Baixa só os pedaços escolhidos, acha a câmera do streamer olhando um print da tela e monta o 9:16: câmera em cima, jogo embaixo, legenda palavra a palavra, gancho, crédito e volume no padrão das redes. Escreve o texto do post de cada rede.</span></div></li>
+    <li><div><b>Você revisa e agenda <em class="vc">você · 10 a 15 min</em></b><span>Assiste, pede ajuste em português ("começa 2 segundos antes", "troca o gancho"), e agenda nas 3 redes.</span></div></li>
+    <li><div><b>Os números voltam pro Claude <em class="vc">você · 5 min por semana</em></b><span>Você manda os números da semana e ele escreve o que funcionou num arquivo que lê antes de cada corte novo.</span></div></li>
+  </ol>
+  <h3>Assim fica um corte</h3>
+  <div class="shots">
+    <figure><img src="../../assets/gta/corte1.jpg" alt="Corte vertical de exemplo" loading="lazy"><figcaption>Gancho na emenda, ação no 1º segundo</figcaption></figure>
+    <figure><img src="../../assets/gta/corte2.jpg" alt="Corte vertical de exemplo" loading="lazy"><figcaption>Legenda grande, palavra falada em destaque</figcaption></figure>
+    <figure><img src="../../assets/gta/corte3.jpg" alt="Corte vertical de exemplo" loading="lazy"><figcaption>15 a 35 segundos, termina na reação</figcaption></figure>
+  </div>
+
+  <h3>Escolha o seu caminho</h3>
+  <div class="vs">
+    <div class="rec">
+      <h3>Grátis</h3>
+      <p class="pr">skill cortes-gta · roda no seu PC</p>
+      <ul>
+        <li>Lê o chat da live pra achar os picos (o diferencial pra GTA)</li>
+        <li>Layout jogo + câmera, legenda, gancho e crédito</li>
+        <li>Sem limite de lives nem de cortes</li>
+        <li>Custo: só a assinatura do Claude que você já tem</li>
+        <li>Precisa de um PC razoável e de instalar (passo 3)</li>
+      </ul>
+      <a class="go" href="#instalar">Começar pelo grátis</a>
+    </div>
+    <div>
+      <h3>Pago</h3>
+      <p class="pr">OpusClip · roda na nuvem</p>
+      <ul>
+        <li>Não instala nada pesado, roda até em notebook fraco</li>
+        <li>Acompanha o rosto e a ação sozinho, nota de viralização</li>
+        <li>Agenda e posta direto no TikTok, YouTube e Instagram</li>
+        <li>Não lê o chat; o link precisa ser do YouTube ou um arquivo</li>
+        <li>Custo: plano pago em dólar, com limite de horas por mês</li>
+      </ul>
+      <a class="go" href="#pago">Ver o pago</a>
+    </div>
+  </div>
+  <p><b>Minha recomendação:</b> comece pelo grátis. Ele foi feito pra live de GTA e não tem limite. Vá pro pago se o seu computador for fraco (menos de 8 GB de memória) ou se você quiser postar nas 3 redes sem abrir nenhum app.</p>
+
   <h3>O que você precisa</h3>
   <ul class="chk">
-    <li><input type="checkbox" aria-label="feito"><span><b>Um computador</b> com Windows 10 ou 11, Mac ou Linux, e pelo menos <b>20 GB livres</b> (uma live de 4 horas em 1080p ocupa uns 5 a 8 GB, e a instalação ocupa outros 5).</span></li>
-    <li><input type="checkbox" aria-label="feito"><span><b>Assinatura paga do Claude</b> (Pro ou acima). O Claude Code, onde a skill roda, não funciona no plano grátis.</span></li>
-    <li><input type="checkbox" aria-label="feito"><span><b>Placa de vídeo NVIDIA</b> é opcional. Com ela, a transcrição de uma live longa sai em minutos. Sem ela também funciona, só que mais devagar (na seção 4 eu mostro como cortar a live em blocos pra não esperar horas).</span></li>
-    <li><input type="checkbox" aria-label="feito"><span>Um celular com <b>Instagram, TikTok e YouTube</b> pra postar.</span></li>
+    <li><input type="checkbox" id="k1"><label for="k1">Um <b>computador</b> com Windows 10/11, Mac ou Linux, 8 GB de memória ou mais e uns 20 GB livres. Só celular não dá: a skill roda no computador.</label></li>
+    <li><input type="checkbox" id="k2"><label for="k2">A <b>assinatura do Claude</b> Pro ou acima. Uma live inteira gasta pouco do seu limite, porque o trabalho pesado é feito por programas, não pelo Claude.</label></li>
+    <li><input type="checkbox" id="k3"><label for="k3">Uma <b>conta no Instagram, no TikTok e no YouTube</b> pra página (passo 1).</label></li>
   </ul>
-  <div class="note"><p><b>Sobre os 15 minutos do vídeo:</b> esse foi o meu tempo numa máquina com placa NVIDIA, contando a escolha dos cortes. Sem placa de vídeo, conte com mais tempo na transcrição. O resto do processo é igual.</p></div>
-  <h3>Como o processo funciona</h3>
-  <p>A skill <b>claude-shorts</b> (gratuita, licença MIT, feita por Agrici Daniel) ensina o Claude Code a fazer 10 etapas sozinho: confere o vídeo, transcreve palavra por palavra, lê a transcrição inteira, dá nota de 0 a 100 pra cada trecho, te mostra os melhores, ajusta o corte pra não pegar palavra pela metade, enquadra em pé, coloca legenda animada e exporta no formato de cada rede.</p>
-  <p>Você só faz três coisas: entrega a live, escolhe quais cortes quer e posta.</p>
+  <div class="note"><p><b>No vídeo eu usei a claude-shorts.</b> Ela é ótima pra vídeo de fala (podcast, react), mas não lê o chat e não monta o jogo com a câmera do streamer. Pra live de GTA, a cortes-gta faz melhor. Se você já instalou a claude-shorts, pode manter as duas.</p></div>
 </section>
 
 <!-- 1 -->
 <section id="pagina" aria-labelledby="t1">
-  <p class="num">Passo 1</p>
-  <h2 id="t1">Uma página só de GTA</h2>
-  <p>Página de cortes cresce quando a pessoa entende em 1 segundo o que vai encontrar ali. Por isso é <b>uma página só pro assunto</b>, separada do seu perfil pessoal.</p>
-  <h3>Escolha o nome</h3>
-  <p>Regras: curto, fácil de digitar, com GTA ou o clima do jogo no nome, e <b>o mesmo @ nas três redes</b>. Confira se o @ está livre no Instagram, no TikTok e no YouTube antes de decidir.</p>
-  <p>Ideias pra adaptar: <code>gta6.cortesbr</code>, <code>cortes.gta6</code>, <code>vicecity.cortes</code>, <code>leonida.diario</code>, <code>gta6.melhoresmomentos</code>.</p>
-  <div class="note red"><p><b>Não use</b> a logo oficial, a arte da capa ou os personagens do jogo na foto de perfil. Isso é da Rockstar e pode derrubar a página. Faça uma foto própria: "GTA VI" escrito numa fonte sua sobre um pôr do sol, por exemplo. Dá pra pedir pro Claude criar a ideia e montar no Canva.</p></div>
-  <h3>A bio</h3>
-  <div class="cmd"><div class="lab"><span>Modelo de bio</span><button class="cp" type="button">Copiar</button></div><pre>🎮 Os melhores momentos das lives de GTA VI
-✂️ Cortes novos todo dia
-🎥 Créditos sempre aos streamers
-👇 Mande sua sugestão de live pra cortar</pre></div>
-  <h3>Configure em 5 minutos</h3>
-  <ol>
-    <li>Crie a conta no Instagram e mude pra <b>conta profissional, categoria Criador de conteúdo</b> (Configurações, Tipo de conta). É isso que libera as estatísticas.</li>
-    <li>Crie o mesmo @ no <b>TikTok</b> e um canal no <b>YouTube</b> pra Shorts.</li>
-    <li>Coloque a mesma foto e a mesma bio nas três.</li>
-    <li>Crie dois destaques no Instagram: <b>Streamers</b> (quem você corta, com o crédito) e <b>Sugestões</b>.</li>
-  </ol>
-  <h3>Os 9 primeiros quadrados</h3>
-  <p>Ninguém segue uma página vazia. Antes de divulgar, poste <b>de 6 a 9 cortes</b> ao longo de 2 ou 3 dias. Varie: um susto, uma risada, uma cena absurda, uma reação forte. Quem chega pelo primeiro corte olha a grade e decide seguir em segundos.</p>
+  <p class="num">Passo 1 · 15 minutos</p>
+  <h2 id="t1">A página</h2>
+  <p>Uma página de cortes cresce pelo nome que as pessoas lembram e pelo ritmo de post. Faça as 3 contas com o <b>mesmo @</b>, pra quem te acha numa rede te achar nas outras.</p>
+  <h3>1.1 Nome, bio e foto com o Claude</h3>
+  <p>Abra o Claude (no navegador ou no app) e cole:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · nome e bio</span><button class="cp" type="button">Copiar</button></div><pre>Vou abrir uma página de cortes de lives de GTA VI no TikTok, no Instagram e no YouTube Shorts, em português. Me dê 15 nomes curtos (até 15 letras), fáceis de falar e de digitar, sem "oficial" e sem marca registrada. Separe em 3 estilos: sério, engraçado e com gíria. Depois, pro nome que eu escolher, escreva a bio de cada rede (Instagram até 150 caracteres, TikTok até 80) e me diga o que pôr na foto de perfil pra ela ser lida bem pequena.</pre></div></div>
+  <p>Confira se o @ está livre nas 3 redes antes de decidir. Na foto, nada da arte oficial do jogo nem do logo: um símbolo seu ou o nome em letra grossa, com as cores do pôr do sol de Vice City.</p>
+  <h3>1.2 Ajuste cada conta</h3>
+  <ul>
+    <li><b>Instagram:</b> mude pra conta profissional (Configurações › Tipo de conta e ferramentas › Mudar pra conta profissional › Criador). É isso que libera o agendamento grátis e os números do passo 8.</li>
+    <li><b>TikTok:</b> conta comum já serve. O agendador fica no TikTok Studio, no navegador.</li>
+    <li><b>YouTube:</b> crie um canal com o nome da página na sua conta Google. Shorts é só vídeo vertical de até 3 minutos.</li>
+  </ul>
+  <div class="note"><p><b>Antes da 1ª live cortada,</b> poste 2 ou 3 vídeos de aquecimento: "o que a Rockstar já confirmou", contagem regressiva, Vice City comparada com Miami real. Conta que estreia sem nenhum post é mostrada pra menos gente.</p></div>
 </section>
 
 <!-- 2 -->
-<section id="permissao" aria-labelledby="t2">
-  <p class="num">Passo 2</p>
-  <h2 id="t2">Streamers que liberam corte</h2>
-  <p>Esse passo é o que separa a página que cresce da página que cai. <b>Só corte live de quem libera.</b> Cortar sem permissão pode render denúncia de direitos autorais, e algumas denúncias apagam a conta.</p>
-  <p>A boa notícia: muito streamer grande <b>quer</b> ser cortado, porque corte leva gente nova pra live dele. A permissão costuma estar escrita.</p>
-  <h3>Onde a regra costuma estar</h3>
-  <ul>
-    <li><b>Twitch:</b> nos painéis abaixo do vídeo, na aba "Sobre". Procure por "cortes", "clips" ou "regras".</li>
-    <li><b>Chat da live:</b> muitos canais têm um comando como <code>!cortes</code>, <code>!regras</code> ou <code>!clips</code>. Digite e veja a resposta do bot.</li>
-    <li><b>YouTube:</b> na descrição do canal ou da live, e às vezes num comentário fixado.</li>
-    <li><b>Discord do streamer:</b> quase sempre tem um canal de regras ou de cortes.</li>
-    <li><b>Canal oficial de cortes:</b> se o streamer já tem um, ele costuma liberar cortes de fãs com regras (crédito, link, sem monetizar ou dividindo).</li>
-  </ul>
-  <h3>Não achou? Pergunte</h3>
-  <div class="cmd"><div class="lab"><span>Mensagem pra pedir permissão</span><button class="cp" type="button">Copiar</button></div><pre>Oi, [nome]! Eu comecei uma página de cortes de GTA VI (@[seu_arroba]) e queria postar cortes das suas lives, sempre com o seu nome e o link do canal na legenda. Você libera? Se tiver alguma regra (marcar, não monetizar, tamanho), eu sigo à risca. Valeu!</pre></div>
-  <p>Mande no Discord, no e-mail comercial ou na DM. <b>Sem resposta = não corta.</b></p>
-  <h3>Guarde a prova</h3>
-  <p>Tire print da regra ou da resposta e guarde numa pasta <code>permissoes</code>, com o nome do streamer e a data. Se um dia vier uma denúncia, você tem como contestar.</p>
-  <h3>O crédito em todo corte</h3>
-  <div class="cmd"><div class="lab"><span>Modelo de crédito</span><button class="cp" type="button">Copiar</button></div><pre>🎥 Live: [nome do streamer] → [link ou @ do canal]
-Corte autorizado pelo canal.</pre></div>
-  <div class="note"><p><b>Cuidado com a música.</b> Se tocar música de fundo no trecho cortado, o Instagram e o YouTube podem silenciar ou bloquear o vídeo. Prefira trechos com fala e som do jogo, ou peça pro Claude escolher momentos sem música (pedido na seção 6).</p></div>
+<section id="quem" aria-labelledby="t2">
+  <p class="num">Passo 2 · 10 minutos</p>
+  <h2 id="t2">Quem cortar</h2>
+  <p>A escolha de streamer pesa mais que a edição. Procure 3 a 5 canais com: live longa e frequente, chat movimentado (é o que a skill usa pra achar os picos), câmera ligada e muita gente assistindo os cortes dele em outras páginas.</p>
+  <p>O sinal mais simples de que dá pra cortar: já existem páginas de corte postando aquele streamer faz tempo, com vídeos no ar. Muitos streamers grandes inclusive incentivam, porque corte leva gente pra live. Dê o crédito na tela (a skill põe sozinha) e no texto do post. Se algum dia um streamer pedir pra tirar, tire e pare de cortar aquele canal. É isso.</p>
+  <p>O Claude pesquisa pra você. No Claude, com a busca na web ligada:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · achar streamers</span><button class="cp" type="button">Copiar</button></div><pre>Pesquise na web os streamers brasileiros que mais fizeram live de GTA VI nos últimos 7 dias, na Twitch e no YouTube. Pra cada um, me diga: média de gente assistindo, quantas horas de live por semana, se usa câmera, se o VOD fica disponível depois da live e se já existem páginas de corte postando ele no TikTok e no Instagram (com exemplos). Monte uma tabela com os 10 melhores pra uma página de cortes nova começar, e destaque 3 que estão crescendo mas ainda têm pouca página de corte.</pre></div></div>
+  <div class="note"><p><b>Dica de quem começa:</b> streamer gigante tem 30 páginas cortando a mesma live. Um médio que está crescendo tem 2 ou 3. É mais fácil aparecer no segundo.</p></div>
 </section>
 
 <!-- 3 -->
 <section id="instalar" aria-labelledby="t3">
-  <p class="num">Passo 3</p>
-  <h2 id="t3">Instalar tudo</h2>
-  <p>São 3 partes: as ferramentas de vídeo, o Claude Code e a skill. Escolha o seu sistema:</p>
+  <p class="num">Passo 3 · 30 a 40 minutos, só uma vez</p>
+  <h2 id="t3">Instalar (uma vez)</h2>
+  <p>Três partes: as ferramentas de vídeo, o Claude Code (o Claude que mexe no seu computador) e a skill. Escolha o seu sistema:</p>
   <div class="tabs" role="tablist" aria-label="Sistema">
     <button role="tab" id="tb-w" aria-controls="pn-w" aria-selected="true">Windows</button>
     <button role="tab" id="tb-m" aria-controls="pn-m" aria-selected="false" tabindex="-1">Mac</button>
@@ -222,169 +271,200 @@ Corte autorizado pelo canal.</pre></div>
   </div>
 
   <div class="panel" id="pn-w" role="tabpanel" aria-labelledby="tb-w">
-    <h3>3.1 Ligue o Linux dentro do Windows (WSL)</h3>
-    <p>A skill usa ferramentas de Linux. O Windows tem um Linux embutido, o WSL. Clique com o botão direito no menu Iniciar, abra o <b>Terminal (Administrador)</b> ou o <b>PowerShell (Administrador)</b> e cole:</p>
-    <div class="cmd"><div class="lab"><span>PowerShell (Administrador)</span><button class="cp" type="button">Copiar</button></div><pre>wsl --install</pre></div>
-    <p>Reinicie o computador quando ele pedir. Na volta, abre uma janela do <b>Ubuntu</b> pedindo um nome de usuário e uma senha. Crie e anote (a senha não aparece enquanto você digita, é normal).</p>
-    <p class="see">Deve aparecer no fim algo como: seunome@PC:~$</p>
-    <p>A partir daqui, <b>todos os comandos vão na janela do Ubuntu</b>. Pra abrir de novo depois, procure "Ubuntu" no menu Iniciar.</p>
-    <div class="note"><p><b>Tem placa NVIDIA?</b> Atualize o driver da NVIDIA no Windows (pelo GeForce Experience ou pelo site da NVIDIA). O WSL usa a placa direto pelo driver do Windows, não instale driver dentro do Ubuntu.</p></div>
-    <h3>3.2 Ferramentas de vídeo</h3>
-    <div class="cmd"><div class="lab"><span>Ubuntu</span><button class="cp" type="button">Copiar</button></div><pre>sudo apt update && sudo apt install -y ffmpeg jq git python3 python3-venv python3-pip curl rsync</pre></div>
-    <p>A skill precisa do Node.js 18 ou mais novo. O do Ubuntu pode vir velho, então instale a versão 22:</p>
-    <div class="cmd"><div class="lab"><span>Ubuntu</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs</pre></div>
-    <p>Confira:</p>
-    <div class="cmd"><div class="lab"><span>Ubuntu</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -version | head -1; node -v; python3 --version</pre></div>
-    <p class="see">Deve aparecer: ffmpeg version …, v22.…, Python 3.10 ou mais novo.</p>
+    <h3>3.1 Ferramentas de vídeo</h3>
+    <p>Clique com o botão direito no menu Iniciar e abra o <b>Terminal</b> (ou o PowerShell). Cole os 3 de uma vez e aceite o que ele pedir:</p>
+    <div class="cmd"><div class="lab"><span>PowerShell</span><button class="cp" type="button">Copiar</button></div><pre>winget install -e --id Git.Git
+winget install -e --id Python.Python.3.12
+winget install -e --id Gyan.FFmpeg</pre></div>
+    <p><b>Feche e abra o Terminal de novo</b> (senão ele não enxerga o que acabou de instalar) e confira:</p>
+    <div class="cmd"><div class="lab"><span>PowerShell</span><button class="cp" type="button">Copiar</button></div><pre>python --version; ffmpeg -version | Select-Object -First 1; git --version</pre></div>
+    <p class="see">Deve aparecer: Python 3.12…, ffmpeg version …, git version …</p>
+    <h3>3.2 Claude Code</h3>
+    <div class="cmd"><div class="lab"><span>PowerShell</span><button class="cp" type="button">Copiar</button></div><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
+    <p>Feche e abra o Terminal, digite <code>claude</code> e aperte Enter. Ele abre o navegador pra você entrar com a sua conta do Claude. Entre e volte pro Terminal.</p>
+    <p class="see">Deve aparecer: a tela de boas-vindas do Claude Code, com o seu e-mail.</p>
+    <h3>3.3 A skill cortes-gta</h3>
+    <div class="dl"><a href="cortes-gta.zip" download>Baixar a cortes-gta.zip</a><span>Skill grátis pra quem comprou o guia. Ela fica salva na sua pasta Downloads.</span></div>
+    <p>Abra outra janela do Terminal (deixe o Claude Code quieto na outra) e cole:</p>
+    <div class="cmd"><div class="lab"><span>PowerShell</span><button class="cp" type="button">Copiar</button></div><pre>New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null; Expand-Archive -Force "$HOME\Downloads\cortes-gta.zip" "$HOME\.claude\skills"; Get-ChildItem "$HOME\.claude\skills\cortes-gta"</pre></div>
+    <p class="see">Deve aparecer: fontes, memoria, referencias, scripts, requirements.txt e SKILL.md.</p>
   </div>
 
   <div class="panel" id="pn-m" role="tabpanel" aria-labelledby="tb-m" hidden>
-    <h3>3.1 Instale o Homebrew</h3>
-    <p>Abra o app <b>Terminal</b> (Cmd + espaço, digite Terminal). Se você ainda não tem o Homebrew, cole o comando da página <a href="https://brew.sh/pt-br/" target="_blank" rel="noopener">brew.sh</a> e siga o que ele pedir no final (ele mostra 2 linhas pra colar).</p>
-    <h3>3.2 Ferramentas de vídeo</h3>
-    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>brew install ffmpeg jq git python node rsync</pre></div>
-    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -version | head -1; node -v; python3 --version</pre></div>
-    <p class="see">Deve aparecer: ffmpeg version …, v18 ou mais novo, Python 3.10 ou mais novo.</p>
-    <div class="note"><p>Mac não tem placa NVIDIA, então a transcrição roda no processador. Nos Macs com chip M1, M2, M3 ou M4 ela vai bem; em Mac antigo, use os blocos de 1 hora da seção 4.</p></div>
+    <h3>3.1 Ferramentas de vídeo</h3>
+    <p>Abra o app <b>Terminal</b> (Cmd + espaço, digite Terminal). Se ainda não tem o Homebrew, cole o comando da página <a href="https://brew.sh/pt-br/" target="_blank" rel="noopener">brew.sh</a> e rode as 2 linhas que ele mostra no final. Depois:</p>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>brew install ffmpeg python git</pre></div>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>python3 --version; ffmpeg -version | head -1</pre></div>
+    <p class="see">Deve aparecer: Python 3.10 ou mais novo e ffmpeg version …</p>
+    <h3>3.2 Claude Code</h3>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+    <p>Feche e abra o Terminal, digite <code>claude</code> e aperte Enter. Ele abre o navegador pra você entrar. Entre e volte pro Terminal.</p>
+    <p class="see">Deve aparecer: a tela de boas-vindas do Claude Code, com o seu e-mail.</p>
+    <h3>3.3 A skill cortes-gta</h3>
+    <div class="dl"><a href="cortes-gta.zip" download>Baixar a cortes-gta.zip</a><span>Skill grátis pra quem comprou o guia. Se o Safari descompactar sozinho, tudo bem, o comando abaixo cobre os dois casos.</span></div>
+    <p>Numa janela nova do Terminal:</p>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>mkdir -p ~/.claude/skills && if [ -f ~/Downloads/cortes-gta.zip ]; then unzip -o ~/Downloads/cortes-gta.zip -d ~/.claude/skills; else cp -R ~/Downloads/cortes-gta ~/.claude/skills/; fi && ls ~/.claude/skills/cortes-gta</pre></div>
+    <p class="see">Deve aparecer: SKILL.md fontes memoria referencias requirements.txt scripts</p>
   </div>
 
   <div class="panel" id="pn-l" role="tabpanel" aria-labelledby="tb-l" hidden>
     <h3>3.1 Ferramentas de vídeo (Ubuntu, Debian e derivados)</h3>
-    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>sudo apt update && sudo apt install -y ffmpeg jq git python3 python3-venv python3-pip curl rsync</pre></div>
-    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs</pre></div>
-    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -version | head -1; node -v; python3 --version</pre></div>
-    <p class="see">Deve aparecer: ffmpeg version …, v22.…, Python 3.10 ou mais novo.</p>
-    <p>Com placa NVIDIA, confira se o driver está ok com <code>nvidia-smi</code> (tem que mostrar o nome da placa).</p>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>sudo apt update && sudo apt install -y ffmpeg python3 python3-pip python3-venv git unzip curl</pre></div>
+    <h3>3.2 Claude Code</h3>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+    <p>Feche e abra o terminal, digite <code>claude</code>, entre com a sua conta e volte.</p>
+    <h3>3.3 A skill cortes-gta</h3>
+    <div class="dl"><a href="cortes-gta.zip" download>Baixar a cortes-gta.zip</a><span>Skill grátis pra quem comprou o guia.</span></div>
+    <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>mkdir -p ~/.claude/skills && unzip -o ~/Downloads/cortes-gta.zip -d ~/.claude/skills && ls ~/.claude/skills/cortes-gta</pre></div>
+    <p class="see">Deve aparecer: SKILL.md fontes memoria referencias requirements.txt scripts</p>
   </div>
 
-  <h3>3.3 Instale o Claude Code</h3>
-  <p>No mesmo terminal (no Windows, o do Ubuntu):</p>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
-  <p>Feche e abra o terminal de novo, depois digite <code>claude</code> e aperte Enter. Ele abre o navegador pra você entrar com a sua conta do Claude. Entre, volte ao terminal e digite <code>/exit</code> pra sair.</p>
-  <p class="see">Deve aparecer: a tela de boas-vindas do Claude Code, com o seu e-mail.</p>
-  <h3>3.4 Instale a skill claude-shorts</h3>
-  <p>Baixe a skill e instale as dependências dela. O segundo comando demora (de 5 a 20 minutos), porque baixa o modelo de transcrição e o motor de vídeo:</p>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>cd ~ && git clone https://github.com/AgriciDaniel/claude-shorts.git && cd claude-shorts</pre></div>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>bash setup.sh && bash install.sh</pre></div>
-  <p class="see">Deve aparecer no fim: Installed to: /home/…/.claude/skills/shorts</p>
-  <p>Agora o passo que <b>quase todo mundo esquece</b> e que faz a renderização falhar depois. O instalador copia a skill sem as peças do motor de vídeo, então instale elas na pasta da skill:</p>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>cd ~/.claude/skills/shorts/remotion && npm install && cd ~</pre></div>
-  <p class="see">Deve aparecer: added … packages (avisos amarelos de "deprecated" podem ser ignorados).</p>
-  <div class="note ok"><p><b>Pronto.</b> Essa parte só se faz uma vez.</p></div>
+  <h3>3.4 O Claude termina a instalação</h3>
+  <p>Daqui pra frente você não digita mais comando. Crie uma pasta pros cortes e abra o Claude Code nela:</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>mkdir cortes-gta-lives
+cd cortes-gta-lives
+claude</pre></div>
+  <p>E peça:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · terminar a instalação</span><button class="cp" type="button">Copiar</button></div><pre>Use a skill cortes-gta. Rode o checar dela e instale tudo o que faltar, inclusive o TwitchDownloaderCLI pro chat da Twitch e o streamlink. No fim, rode o checar de novo e me mostre o resultado.</pre></div></div>
+  <p>Ele vai pedir permissão pra rodar comandos. Leia e aperte Enter pra aceitar (ou escolha a opção de não perguntar de novo pra esta pasta).</p>
+  <p class="see">Deve aparecer no fim: "Tudo certo." com OK em ffmpeg, yt-dlp, faster-whisper, numpy, TwitchDownloaderCLI e streamlink.</p>
+  <div class="note ok"><p><b>Pronto, isso só se faz uma vez.</b> Da próxima vez é só abrir o Terminal, entrar na pasta (<code>cd cortes-gta-lives</code>) e digitar <code>claude</code>.</p></div>
 </section>
 
 <!-- 4 -->
-<section id="live" aria-labelledby="t4">
+<section id="cortar" aria-labelledby="t4">
   <p class="num">Passo 4</p>
-  <h2 id="t4">Pegar a live</h2>
-  <p>Você precisa do arquivo de vídeo da live (o VOD, a gravação que fica no canal depois que a live acaba). <b>Só de streamer que libera corte</b>, como no passo 2.</p>
-  <h3>4.1 Crie a pasta de trabalho</h3>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>mkdir -p ~/cortes-gta/lives && cd ~/cortes-gta</pre></div>
-  <h3>4.2 Baixe a gravação</h3>
-  <p>A forma mais simples é o <b>yt-dlp</b>, um programa gratuito que baixa vídeos públicos da Twitch e do YouTube. Instale:</p>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>python3 -m venv ~/.ytdlp && ~/.ytdlp/bin/pip install -U yt-dlp && echo 'alias yt-dlp=~/.ytdlp/bin/yt-dlp' >> ~/.bashrc && source ~/.bashrc</pre></div>
-  <p>No Mac, troque por <code>brew install yt-dlp</code>. Agora copie o link da gravação (na Twitch, aba Vídeos do canal; no YouTube, a aba Ao vivo) e baixe em até 1080p:</p>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>yt-dlp -f "bv*[height<=1080]+ba/b[height<=1080]" --merge-output-format mp4 -o "lives/%(uploader)s-%(upload_date)s.%(ext)s" "COLE_O_LINK_AQUI"</pre></div>
-  <p class="see">Deve aparecer: uma barra de [download] chegando a 100% e o arquivo em lives/.</p>
-  <div class="note"><p>Se o streamer pede pra você usar só os clipes oficiais ou um arquivo que ele mesmo envia, siga a regra dele e coloque o arquivo na pasta <code>lives</code>.</p></div>
-  <h3>4.3 Sem placa de vídeo? Corte em blocos de 1 hora</h3>
-  <p>Transcrever 4 horas no processador pode levar horas. Em vez disso, pegue a parte que o chat mais comentou (ou vá de hora em hora). Este comando corta da 1ª à 2ª hora, sem perder qualidade e em segundos:</p>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>ffmpeg -ss 01:00:00 -to 02:00:00 -i lives/NOME_DA_LIVE.mp4 -c copy lives/bloco-2.mp4</pre></div>
-  <p>Dica: na Twitch, os <b>clipes mais vistos</b> daquela live mostram onde estão os melhores momentos. Corte o bloco em volta deles.</p>
+  <h2 id="t4">Cortar a primeira live</h2>
+  <h3>4.1 Pegue o link</h3>
+  <ul>
+    <li><b>Twitch:</b> no canal do streamer, aba <b>Vídeos</b> › clique na live passada › copie o link. Tem que ter <code>/videos/</code> e um número. Alguns canais apagam o VOD ou deixam só pra inscrito; aí escolha outro streamer ou grave ao vivo (4.4).</li>
+    <li><b>YouTube:</b> o link da live depois que ela terminou (aba <b>Ao vivo</b> do canal).</li>
+    <li><b>Arquivo:</b> uma gravação que você tem no computador. Se gravou pelo 4.4, o chat vem junto.</li>
+  </ul>
+  <h3>4.2 Peça os cortes</h3>
+  <p>No Claude Code, aberto na pasta <code>cortes-gta-lives</code>:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · cortar a live</span><button class="cp" type="button">Copiar</button></div><pre>/cortes-gta Corta essa live: COLE_O_LINK_AQUI
+O streamer é @NOME_DO_CANAL. Quero de 5 a 8 cortes. Me mostre a lista com o gancho e o motivo de cada um antes de montar.</pre></div></div>
+  <p>Troque o link e o nome. Agora ele trabalha sozinho, e você acompanha na tela. Numa live de 4 a 6 horas, em um computador comum:</p>
+  <div class="time">
+    <div><b>5–15 min</b>baixar áudio e chat (depende da sua internet)</div>
+    <div><b>1–2 min</b>achar os picos</div>
+    <div><b>3–8 min</b>transcrever os candidatos</div>
+    <div><b>3–6 min</b>baixar os pedaços e montar</div>
+  </div>
+  <p>São estimativas: computador mais fraco demora mais na transcrição, internet lenta demora mais no download. A primeira vez demora uns minutos a mais porque baixa o modelo de transcrição.</p>
+  <h3>4.3 O que ele te mostra</h3>
+  <p>Primeiro a lista: "c03, 1:42:10, fuga da polícia que termina no mar, chat explodiu em KKKK, gancho: <i>Ele achou que a polícia tinha desistido</i>". Você responde "pode montar" ou "tira o 2 e o 5". Depois, os vídeos prontos na pasta <code>prontos</code>, dentro da pasta da live, cada um com um <code>.txt</code> do lado com o texto do post de cada rede.</p>
+  <p>Pra abrir a pasta: no Windows, peça "abre a pasta dos cortes prontos no Explorer"; no Mac, "abre no Finder".</p>
+  <div class="note"><p><b>Quer pular a aprovação da lista?</b> Tire a última frase do pedido. Ele escolhe e já monta.</p></div>
+  <h3>4.4 Gravar a live enquanto ela acontece</h3>
+  <p>Pra streamer que apaga o VOD, ou pra você ter o chat completo:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · gravar ao vivo</span><button class="cp" type="button">Copiar</button></div><pre>/cortes-gta Grava a live de twitch.tv/NOME_DO_CANAL com o chat, numa pasta com a data de hoje. Quando a live acabar, corta ela do jeito de sempre.</pre></div></div>
+  <p>Deixe o computador ligado e o Claude Code aberto. Ocupa de 3 a 6 GB por hora de live. Quer cortes no meio da live? Peça "corta o que já foi gravado até agora" a cada 1 ou 2 horas.</p>
 </section>
 
 <!-- 5 -->
-<section id="cortar" aria-labelledby="t5">
-  <p class="num">Passo 5</p>
-  <h2 id="t5">Cortar com o Claude</h2>
-  <h3>5.1 Abra o Claude na pasta</h3>
-  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>cd ~/cortes-gta && claude</pre></div>
-  <h3>5.2 O pedido</h3>
-  <p>No vídeo eu falei "corta essa live em cinco". Esse é o pedido completo que eu uso, já com o contexto de GTA. Troque o nome do arquivo e do streamer:</p>
-  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido pro Claude Code</span><button class="cp" type="button">Copiar</button></div><pre>/shorts lives/NOME_DA_LIVE.mp4
-
-Corta essa live em cinco. É uma live de GTA VI do streamer [NOME], em português, com a câmera dele num canto e o jogo na tela.
-Procure os momentos de susto, risada, reação forte e cena absurda do jogo. Cada corte precisa fazer sentido sozinho, pra quem nunca viu a live, e ter de 20 a 45 segundos.
-Limpe da legenda os vícios de fala em português (tipo, né, mano, é…, ãh) sem mudar os tempos.
-Me mostre a tabela com os candidatos antes de renderizar.</pre></div></div>
-  <h3>5.3 O que o Claude vai perguntar (e o que responder)</h3>
-  <div class="wrapx"><table class="tbl2">
-    <thead><tr><th>Ele pergunta</th><th>Responda</th></tr></thead>
-    <tbody>
-      <tr><td>Se pode seguir apesar de algum aviso (preflight)</td><td>Leia o aviso. "Pouco espaço" = libere espaço antes. Os outros, pode seguir.</td></tr>
-      <tr><td>O tipo de conteúdo (talking-head, screen, podcast)</td><td><b>screen</b> pra manter o jogo inteiro na tela, com a legenda embaixo. Se a graça do trecho é a reação do streamer, peça <b>talking-head</b> naquele corte.</td></tr>
-      <tr><td>Quais trechos você quer</td><td>Os números dos 5 melhores. Pule o que depende de contexto ("como eu falei antes…").</td></tr>
-      <tr><td>Estilo de legenda</td><td><b>bounce</b> (colorida, pulando) combina com jogo. <b>bold</b> se o trecho for mais falado.</td></tr>
-      <tr><td>Plataforma</td><td><b>all</b>: ele exporta uma versão pra cada rede.</td></tr>
-    </tbody>
-  </table></div>
-  <p>Depois disso ele ajusta os cortes pra não pegar palavra pela metade, renderiza um por um e entrega os arquivos na pasta <code>shorts/</code>, com o final <code>_yt</code>, <code>_tt</code> e <code>_ig</code>.</p>
-  <h3>5.4 Mande pro celular</h3>
-  <p>No Windows, os arquivos ficam em <code>\\wsl$\Ubuntu\home\SEU_USUARIO\cortes-gta\shorts</code> (cole esse caminho na barra do Explorador de Arquivos). Mande pro celular pelo Google Drive, pelo WhatsApp pra você mesmo ou por cabo.</p>
+<section id="ajustar" aria-labelledby="t5">
+  <p class="num">Passo 5 · 5 a 10 minutos</p>
+  <h2 id="t5">Revisar e ajustar</h2>
+  <p>Assista cada corte uma vez, no celular de preferência (mande pra você mesmo). Pergunte: a ação começa no 1º segundo? Eu entenderia sem ter visto a live? O final tem a reação? Se algo estiver errado, peça em português. Ele refaz só aquele corte em menos de um minuto.</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · início e fim</span><button class="cp" type="button">Copiar</button></div><pre>No corte 03, começa 2 segundos antes e termina logo depois da risada dele. Refaz só esse.</pre></div></div>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · gancho</span><button class="cp" type="button">Copiar</button></div><pre>Me dá 5 opções de gancho pro corte 02, até 6 palavras, que contem a situação sem entregar o final. Depois usa a que você acha mais forte e refaz.</pre></div></div>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · câmera e layout</span><button class="cp" type="button">Copiar</button></div><pre>No corte 01 a câmera ficou cortando o rosto dele. Olha de novo o print da tela, acerta a caixa da câmera e refaz. Se ele não estiver com câmera nesse trecho, usa o layout jogo.</pre></div></div>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · legenda errada</span><button class="cp" type="button">Copiar</button></div><pre>Na legenda do corte 04, onde aparece "COMANDO" é "CONVOY", e o nome do streamer se escreve assim: NOME. Corrige a transcrição e refaz.</pre></div></div>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · achar um momento específico</span><button class="cp" type="button">Copiar</button></div><pre>Tem um momento perto de 2:15:00 em que ele bate o carro no avião. Acha esse trecho, transcreve e monta como mais um corte.</pre></div></div>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · identidade da página</span><button class="cp" type="button">Copiar</button></div><pre>Daqui pra frente, usa nos cortes a cor #F36A78 no destaque do gancho e #FFB458 na palavra falada da legenda, e o crédito no formato "live de @canal". Anota isso no aprendizados da skill pra valer sempre.</pre></div></div>
+  <div class="note"><p><b>Os 3 motivos que mais derrubam um corte:</b> começar devagar ("ô chat, olha isso"), precisar de contexto ("lembra daquele cara de ontem?") e gancho que entrega o final. Se um corte tem um desses, peça pra ajustar ou descarte. Mais vale 3 bons que 8 médios.</p></div>
 </section>
 
 <!-- 6 -->
-<section id="ajustes" aria-labelledby="t6">
-  <p class="num">Passo 6</p>
-  <h2 id="t6">Ajustes que deixam o corte com cara de GTA</h2>
-  <h3>Duração por rede</h3>
-  <div class="wrapx"><table class="tbl2">
-    <thead><tr><th>Rede</th><th>Comece com</th><th>Por quê</th></tr></thead>
-    <tbody>
-      <tr><td>TikTok</td><td>20 a 35 s</td><td>Corte curto é assistido até o fim mais vezes.</td></tr>
-      <tr><td>Reels</td><td>25 a 45 s</td><td>Dá espaço pra montar o susto e mostrar a reação.</td></tr>
-      <tr><td>Shorts</td><td>até 60 s</td><td>É o limite que a skill usa pro YouTube.</td></tr>
-    </tbody>
-  </table></div>
-  <p>Depois de 2 semanas, olhe nas estatísticas quais durações seguraram mais gente e ajuste.</p>
-  <h3>Os 3 primeiros segundos</h3>
-  <p>A skill coloca um texto de gancho no começo de cada corte. Em GTA, o gancho que funciona promete o que vai acontecer sem entregar: <i>"ele não esperava por isso"</i>, <i>"a pior fuga da história de Vice City"</i>, <i>"o chat inteiro gritou"</i>. Peça pro Claude reescrever o gancho quando estiver genérico (pedido na caixa abaixo).</p>
-  <h3>8 pedidos de ajuste prontos</h3>
-  <p>Mande no mesmo chat, depois que ele mostrar a tabela ou entregar os cortes:</p>
-  <div class="asks">
-    <div class="cmd"><div class="lab"><span>1 · Mais trechos</span><button class="cp" type="button">Copiar</button></div><pre>Nenhum desses me convenceu. Analise de novo e me traga 10 candidatos, priorizando reação forte do streamer e cena inesperada do jogo.</pre></div>
-    <div class="cmd"><div class="lab"><span>2 · Gancho melhor</span><button class="cp" type="button">Copiar</button></div><pre>Reescreva o gancho do corte [N] em até 6 palavras, em português do Brasil, prometendo o que vai acontecer sem entregar o final.</pre></div>
-    <div class="cmd"><div class="lab"><span>3 · Começar antes</span><button class="cp" type="button">Copiar</button></div><pre>No corte [N], comece 4 segundos antes, pra dar tempo de entender a cena antes do susto.</pre></div>
-    <div class="cmd"><div class="lab"><span>4 · Versão TikTok</span><button class="cp" type="button">Copiar</button></div><pre>Faça uma versão do corte [N] com no máximo 30 segundos, mantendo o momento principal e cortando no fim de uma frase.</pre></div>
-    <div class="cmd"><div class="lab"><span>5 · Sem música</span><button class="cp" type="button">Copiar</button></div><pre>Descarte os trechos em que toca música de fundo e escolha outros no lugar.</pre></div>
-    <div class="cmd"><div class="lab"><span>6 · Trocar legenda</span><button class="cp" type="button">Copiar</button></div><pre>Renderize de novo o corte [N] com a legenda no estilo bold.</pre></div>
-    <div class="cmd"><div class="lab"><span>7 · Corrigir palavra</span><button class="cp" type="button">Copiar</button></div><pre>No corte [N], a legenda escreveu "[errado]" mas o certo é "[certo]". Corrija só o texto, sem mudar os tempos, e renderize de novo.</pre></div>
-    <div class="cmd"><div class="lab"><span>8 · Enquadramento</span><button class="cp" type="button">Copiar</button></div><pre>No corte [N], use o enquadramento talking-head pra focar na reação do streamer em vez da tela do jogo.</pre></div>
-  </div>
+<section id="pago" aria-labelledby="t6">
+  <p class="num">Passo 6 · opcional</p>
+  <h2 id="t6">Caminho pago: OpusClip</h2>
+  <p>O OpusClip corta na nuvem: você manda o link, ele devolve clipes verticais com legenda, acompanha o rosto e a ação, dá uma nota de viralização pra cada um e pode agendar direto nas redes. Com o conector dele, o Claude Code controla tudo isso por você.</p>
+  <h3>6.1 O plano</h3>
+  <p>Crie a conta em <a href="https://www.opus.pro/pricing" target="_blank" rel="noopener">opus.pro</a>. O plano grátis serve pra testar no site, mas o conector com o Claude e a montagem dos vídeos por ele precisam de um plano pago (Pro ou acima), cobrado em dólar e com limite de horas de vídeo por mês. Confira o preço do dia na página de planos antes de assinar.</p>
+  <h3>6.2 Ligue o OpusClip no Claude Code</h3>
+  <p>Num Terminal (fora do Claude Code):</p>
+  <div class="cmd"><div class="lab"><span>Terminal</span><button class="cp" type="button">Copiar</button></div><pre>claude mcp add --transport http opusclip https://mcp.opus.pro/mcp</pre></div>
+  <p>Abra o Claude Code, digite <code>/mcp</code>, escolha <b>opusclip</b> e faça o login no navegador quando ele abrir.</p>
+  <p class="see">Deve aparecer em /mcp: opusclip · connected</p>
+  <h3>6.3 Peça os cortes</h3>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · cortar pelo OpusClip</span><button class="cp" type="button">Copiar</button></div><pre>Use o OpusClip pra cortar essa live: COLE_O_LINK_AQUI
+Clipes verticais 9:16 de 15 a 40 segundos, legenda em português, layout com o jogo e a câmera do streamer. Me mostre os 8 com maior nota, com o gancho e o motivo de cada um. Pra cada um, escreva o texto do post do TikTok, do Reels e do Shorts com crédito pra @NOME_DO_CANAL, seguindo o referencias/postagem.md da skill cortes-gta.</pre></div></div>
+  <div class="note"><p><b>Live da Twitch:</b> o OpusClip aceita links do YouTube e de outras plataformas de vídeo, e arquivos. Se o link da Twitch não for aceito, peça ao Claude: "baixa essa live da Twitch com a cortes-gta e sobe o arquivo no OpusClip". Ele baixa e usa o link de envio do OpusClip.</p></div>
+  <h3>6.4 O melhor dos dois</h3>
+  <p>O OpusClip não lê o chat. A cortes-gta lê. Juntando os dois, a skill grátis acha os picos pelo chat e o OpusClip monta só esses trechos, o que também gasta menos das suas horas do plano:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · chat + OpusClip</span><button class="cp" type="button">Copiar</button></div><pre>/cortes-gta Baixa e acha os picos dessa live: COLE_O_LINK_AQUI. Escolhe os 6 melhores momentos, baixa só esses trechos com 10 segundos de folga e manda cada trecho pro OpusClip montar com legenda em português. Depois agenda pelo OpusClip nas redes conectadas, um a cada 3 horas a partir das 12h de amanhã.</pre></div></div>
+  <div class="note red"><p><b>Agendamento automático:</b> o OpusClip só posta nas contas que você conectou no site dele (Configurações › Contas sociais). Sem isso, ele monta os clipes e você agenda como no passo 7.</p></div>
 </section>
 
 <!-- 7 -->
 <section id="postar" aria-labelledby="t7">
-  <p class="num">Passo 7</p>
-  <h2 id="t7">Postar todo dia sem virar escravo da página</h2>
-  <h3>A rotina de 30 minutos</h3>
-  <ol>
-    <li><b>5 min:</b> veja quais streamers liberados fizeram live ontem e baixe a gravação (deixe baixando enquanto faz outra coisa).</li>
-    <li><b>15 min:</b> peça os cortes, escolha os 5 e deixe renderizar.</li>
-    <li><b>10 min:</b> mande pro celular, programe os posts do dia nas três redes.</li>
-  </ol>
-  <p>Comece com <b>1 a 3 cortes por dia</b> por rede. Constância vale mais que volume: é melhor 2 por dia durante um mês do que 10 num dia e nada na semana seguinte.</p>
-  <h3>Legenda do post</h3>
-  <p>Peça pro Claude escrever, no mesmo chat:</p>
-  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · legenda dos posts</span><button class="cp" type="button">Copiar</button></div><pre>Escreva a legenda de cada corte pra Instagram e TikTok: uma primeira linha curta que dê vontade de assistir até o fim, uma pergunta pro público comentar, o crédito "🎥 Live: [NOME] → [LINK]" e 4 hashtags em português sobre GTA VI.</pre></div></div>
-  <h3>Horário</h3>
-  <p>Não existe horário mágico. Comece testando <b>perto do almoço e no começo da noite</b>, quando o público de games costuma estar no celular, e depois de 2 semanas use o que as estatísticas da sua página mostrarem (Instagram: Painel profissional, Público, Horários mais ativos).</p>
-  <h3>O que evitar</h3>
+  <p class="num">Passo 7 · 10 minutos por dia</p>
+  <h2 id="t7">Postar nas 3 redes</h2>
+  <p>O mesmo vídeo vai pro TikTok, pro Reels e pro Shorts. O texto de cada rede já está no <code>.txt</code> ao lado do vídeo.</p>
+  <h3>7.1 Quanto e quando</h3>
   <ul>
-    <li>Cortar quem não libera, ou tirar o crédito.</li>
-    <li>Trecho com música de fundo protegida.</li>
-    <li>Repostar o mesmo corte várias vezes na mesma rede.</li>
-    <li>Usar a arte oficial do jogo como capa ou foto de perfil.</li>
-    <li>Comprar seguidor: derruba o alcance de tudo que vier depois.</li>
+    <li>Começo: <b>2 a 4 cortes por dia</b> em cada rede, com 2 horas ou mais entre eles.</li>
+    <li>Horários de partida (Brasília): <b>12h, 18h e 21h</b>. Em 2 semanas os seus números mostram os seus.</li>
+    <li>Lance quente de estreia ou de evento grande: poste no mesmo dia. Corte de GTA perde força em 24 horas.</li>
   </ul>
-  <div class="note"><p><b>Sobre dinheiro:</b> página de cortes pode virar renda (programas de criador das redes, parcerias, divulgação), mas isso depende de muita constância e não tem garantia. Este guia te leva até a página no ar e postando todo dia. O resto é trabalho em cima dela.</p></div>
+  <h3>7.2 Agendar de graça</h3>
+  <table class="tbl2"><thead><tr><th>Rede</th><th>Onde agendar</th></tr></thead><tbody>
+    <tr><td><b>Instagram</b> (e Facebook)</td><td>Meta Business Suite (business.facebook.com ou o app) › Criar Reel › Programar. Precisa da conta profissional do 1.2.</td></tr>
+    <tr><td><b>YouTube Shorts</b></td><td>YouTube Studio › Criar › Enviar vídeos › Visibilidade › Programar.</td></tr>
+    <tr><td><b>TikTok</b></td><td>No computador, tiktok.com/tiktokstudio › Enviar › Programar. Agenda até 10 dias antes.</td></tr>
+  </tbody></table>
+  <p>Com 5 cortes, agendar tudo nas 3 redes leva uns 10 minutos. Peça ao Claude a grade pronta:</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · grade de postagem</span><button class="cp" type="button">Copiar</button></div><pre>Monta a grade de postagem dos cortes prontos de hoje: qual corte vai em qual horário (12h, 15h, 18h, 21h), começando pelo mais forte, nas 3 redes. Pra cada um, me dá o texto do TikTok, do Reels e o título e a descrição do Shorts prontos pra copiar.</pre></div></div>
+  <h3>7.3 Agendar pelo Claude (opcional)</h3>
+  <p>Se você usa um agendador com conector pro Claude, como o Metricool, ligue o conector no Claude (Configurações › Conectores) e peça: "agenda os cortes de hoje nos horários da grade nas 3 redes". O vídeo precisa estar num link público ou já enviado pro agendador. Confira o limite de posts do plano grátis do agendador.</p>
+  <h3>7.4 O texto do post</h3>
+  <ul>
+    <li>1ª linha: um gancho diferente do que está no vídeo ("O chat avisou e ele não ouviu").</li>
+    <li>Crédito: "live de @canal".</li>
+    <li>Uma chamada: "segue pra ver o próximo" ou "comenta qual streamer a gente corta amanhã".</li>
+    <li>3 a 5 hashtags: #gta6 #gtavi, o nome do streamer e o tema.</li>
+  </ul>
+  <p>Depois de postar, fique 15 minutos respondendo comentário. Isso sozinho já empurra o vídeo.</p>
 </section>
 
-<!-- caixa -->
+<!-- 8 -->
+<section id="numeros" aria-labelledby="t8">
+  <p class="num">Passo 8 · 5 minutos por semana</p>
+  <h2 id="t8">Melhorar com os números</h2>
+  <p>É aqui que a sua página para de depender de sorte. Toda semana, junte os números de cada corte e entregue pro Claude. Ele compara os melhores com os piores e escreve no arquivo <code>aprendizados.md</code> da skill o que funcionou. Na próxima live, ele lê esse arquivo antes de escolher os cortes.</p>
+  <h3>8.1 Onde pegar os números</h3>
+  <ul>
+    <li><b>Instagram:</b> no app, abra cada Reel › Ver insights. Ou, no computador, Meta Business Suite › Insights › Conteúdo › Exportar.</li>
+    <li><b>YouTube:</b> YouTube Studio › Estatísticas › Conteúdo › Shorts (dá pra exportar em CSV no ícone de download do modo avançado).</li>
+    <li><b>TikTok:</b> TikTok Studio › Estatísticas › Conteúdo.</li>
+  </ul>
+  <p>Print também serve: o Claude lê imagem. Se preferir automático, conectores como Windsor.ai e Metricool trazem os números do Instagram, TikTok e YouTube direto pro Claude.</p>
+  <div class="asks"><div class="cmd"><div class="lab"><span>Pedido · revisão da semana</span><button class="cp" type="button">Copiar</button></div><pre>/cortes-gta Revisão da semana. Os números dos cortes estão nesses arquivos/prints: (arraste aqui). Monta a tabela por corte (views, retenção ou tempo médio, compartilhamentos, seguidores ganhos, streamer, tipo de momento, duração, layout, gancho e horário), compara os 30% melhores com os 30% piores e atualiza o aprendizados.md. No fim, me diz em 3 linhas o que muda nos próximos cortes e qual streamer eu deveria cortar mais e qual largar.</pre></div></div>
+  <div class="note"><p><b>Os 3 números que importam:</b> quanto da 1ª visualização passa dos 3 segundos (é o gancho), o tempo médio assistido comparado com a duração (é a edição) e os compartilhamentos (é o que faz o vídeo viajar). Curtida importa menos do que parece.</p></div>
+</section>
+
+<!-- 9 -->
+<section id="rotina" aria-labelledby="t9">
+  <p class="num">Passo 9</p>
+  <h2 id="t9">A rotina do dia</h2>
+  <ul class="chk">
+    <li><input type="checkbox" id="r1"><label for="r1"><b>Manhã (2 min):</b> cole no Claude Code os links das lives da noite anterior e peça os cortes (passo 4). Vá fazer outra coisa.</label></li>
+    <li><input type="checkbox" id="r2"><label for="r2"><b>Depois (10 min):</b> assista, peça os ajustes (passo 5) e agende o dia nas 3 redes (passo 7).</label></li>
+    <li><input type="checkbox" id="r3"><label for="r3"><b>Depois de cada post (15 min):</b> responda os comentários.</label></li>
+    <li><input type="checkbox" id="r4"><label for="r4"><b>Domingo (5 min):</b> revisão da semana com os números (passo 8).</label></li>
+    <li><input type="checkbox" id="r5"><label for="r5"><b>Toda semana:</b> rode de novo o pedido do passo 2 pra achar streamer novo crescendo.</label></li>
+  </ul>
+  <div class="note"><p><b>Expectativa honesta:</b> as primeiras 2 semanas são de teste. É normal ter corte com 300 visualizações e corte com 30 mil no mesmo dia. Quem posta todo dia e ajusta pelos números costuma achar o padrão da página em 3 a 4 semanas. Ninguém controla o algoritmo; o que você controla é escolher bem, postar sempre e aprender rápido, e é exatamente isso que essa máquina faz.</p></div>
+</section>
+
+<!-- pedidos -->
 <section id="pedidos" aria-labelledby="tp">
-  <p class="num">Bônus</p>
+  <p class="num">Atalho</p>
   <h2 id="tp">Caixa de pedidos</h2>
-  <p>Todos os pedidos do guia num lugar só. Copie, troque o que está entre colchetes e cole no Claude Code.</p>
+  <p>Todos os pedidos do guia num lugar só, na ordem em que você usa.</p>
   <div class="asks" data-box></div>
 </section>
 
@@ -406,16 +486,17 @@ Me mostre a tabela com os candidatos antes de renderizar.</pre></div></div>
     <a class="dm" href="https://ig.me/m/cobaia.dev" target="_blank" rel="noopener">Abrir o direct</a>
     <details>
       <summary>Ou resolva em 1 minuto</summary>
-      <p style="margin:10px 0 0;font-size:14px">Copie a mensagem que apareceu, cole no Claude Code e peça "resolva esse erro". Os casos mais comuns:</p>
+      <p style="margin:10px 0 0;font-size:14px">Quase todo erro o próprio Claude Code resolve: copie a mensagem de erro, cole nele e peça "resolve esse erro". Os casos mais comuns:</p>
       <dl>
-        <dt><code>command not found: claude</code></dt><dd>Feche e abra o terminal. Se continuar, rode de novo o instalador do 3.3.</dd>
-        <dt><code>ffmpeg</code> ou <code>jq</code> not found</dt><dd>Rode de novo o comando 3.2 do seu sistema.</dd>
-        <dt>Renderização falando de <code>remotion</code></dt><dd>Rode o último comando do 3.4: <code>cd ~/.claude/skills/shorts/remotion && npm install</code></dd>
-        <dt>Erro de navegador ou <code>libnss3</code></dt><dd>Peça ao Claude: "instale as bibliotecas que o navegador do Remotion precisa no Ubuntu".</dd>
-        <dt>Transcrição lenta ou <code>CUDA out of memory</code></dt><dd>Use os blocos de 1 hora (4.3) ou peça: "transcreva com o modelo small".</dd>
-        <dt><code>Low disk space</code></dt><dd>Apague lives antigas da pasta <code>lives</code> e rode <code>rm -rf /tmp/claude-shorts</code></dd>
-        <dt>yt-dlp com erro 403</dt><dd>Atualize: <code>~/.ytdlp/bin/pip install -U yt-dlp</code> (Mac: <code>brew upgrade yt-dlp</code>).</dd>
-        <dt>Palavra errada na legenda</dt><dd>Use o pedido 7 do passo 6.</dd>
+        <dt><code>claude</code>, <code>python</code> ou <code>ffmpeg</code> não reconhecido</dt><dd>Feche e abra o Terminal. Se continuar, rode de novo o 3.1 ou o 3.2 do seu sistema.</dd>
+        <dt>No Windows, <code>python</code> abre a Microsoft Store</dt><dd>Use <code>py</code> no lugar de <code>python</code>, ou peça ao Claude: "use o py".</dd>
+        <dt>Erro 403 ou "Sign in to confirm" ao baixar</dt><dd>Peça: "atualiza o yt-dlp e tenta de novo". Se for do YouTube e continuar, peça pra usar os cookies do seu navegador.</dd>
+        <dt>VOD da Twitch "sub-only" ou não encontrado</dt><dd>O streamer deixou só pra inscritos ou apagou. Grave ao vivo pelo 4.4.</dd>
+        <dt>Chat não veio</dt><dd>Peça: "instala o TwitchDownloaderCLI e baixa o chat de novo". Sem chat ainda funciona, pelo áudio.</dd>
+        <dt>Transcrição lenta</dt><dd>Peça: "transcreve com o modelo base".</dd>
+        <dt>Erro de CUDA ou cuDNN</dt><dd>Peça: "transcreve sem a GPU".</dd>
+        <dt>Pouco espaço no disco</dt><dd>Peça: "apaga os arquivos de áudio e os trechos das lives com mais de 7 dias, mantém a pasta prontos".</dd>
+        <dt>A skill não aparece no /cortes-gta</dt><dd>Confira se a pasta ficou em <code>.claude/skills/cortes-gta</code> (e não <code>cortes-gta/cortes-gta</code>) e reabra o Claude Code.</dd>
       </dl>
     </details>
   </div>
@@ -423,9 +504,8 @@ Me mostre a tabela com os candidatos antes de renderizar.</pre></div></div>
 
 <footer>
   <span>© 2026 @cobaia.dev. Guia de uso pessoal, não compartilhe o seu acesso.</span>
-  <span>Skill <a href="https://github.com/AgriciDaniel/claude-shorts" target="_blank" rel="noopener">claude-shorts</a> de Agrici Daniel, licença MIT. GTA e Grand Theft Auto são marcas da Take-Two Interactive; este guia é independente.</span>
+  <span>Skill cortes-gta por @cobaia.dev. Fonte Anton sob licença SIL OFL. OpusClip é um serviço independente, sem relação com este guia. GTA e Grand Theft Auto são marcas da Take-Two Interactive; este guia é independente.</span>
 </footer>
-
 <script>
 (function () {
   var D = document;
