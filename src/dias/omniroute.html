@@ -1,0 +1,166 @@
+{"titulo": "O Claude Code ligado em 352 IAs, inclusive grátis", "kicker": "o guia gratuito do OmniRoute", "h1": "O <span class=\"claude\">Claude</span> Code ligado em <em>352 IAs</em>", "lede": "O OmniRoute é um programa gratuito que roda no seu computador e fica no meio do caminho: o <span class=\"claude\">Claude</span> Code manda o pedido pra ele, e ele escolhe qual IA responde, troca de IA sozinho quando uma cai ou bate o limite, e aceita várias opções grátis. Aqui está <b>a instalação do zero, as IAs grátis que valem a pena e o que ninguém te conta</b>.", "meta": ["leitura de 8 min", "nível: iniciante", "Windows, Mac e Linux"]}
+---
+<section aria-labelledby="t1">
+  <p class="eyebrow">em 30 segundos</p>
+  <h2 id="t1">O resumo do vídeo</h2>
+  <div class="tldr">
+    <div class="glass rv"><span class="ic">01</span><p>O OmniRoute é <b>open source (licença MIT) e grátis</b>. Ele roda na sua máquina e vira um endereço só, o <code>localhost:20128</code>, que conversa com centenas de provedores de IA.</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>Você liga as contas que tem (ou as grátis), aponta o <span class="claude">Claude</span> Code pra ele e <b>ele troca de IA sozinho</b> quando uma acaba a cota ou cai.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>A verdade que importa: com as opções grátis, <b>quem responde não é o Claude</b>, são outros modelos (GLM, Kimi, Gemini, Llama...). A ferramenta é a mesma; o cérebro muda.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t2">
+  <div class="read">
+    <p class="eyebrow">entenda antes de instalar</p>
+    <h2 id="t2" class="rv">O que o OmniRoute <em>faz de verdade</em></h2>
+    <p class="rv">Pense numa central telefônica. O <span class="claude">Claude</span> Code é o telefone. Normalmente ele liga direto pra Anthropic. Com o OmniRoute, ele liga pra central que roda no seu computador, e a central passa a ligação pra quem estiver disponível: uma conta grátis do Gemini, o Groq, o OpenRouter, a sua assinatura, um modelo rodando no seu próprio PC.</p>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>Um endereço pra tudo</b><span class="d">Todo programa que aceita "endereço compatível com OpenAI" ou com a API da Anthropic passa a usar <code>http://localhost:20128</code>. Você configura as chaves uma vez, num painel, e não em cada ferramenta.</span></div></li>
+      <li class="glass rv rv-d1"><span class="gn">2</span><div><b>Troca automática (fallback)</b><span class="d">Se a IA da vez dá erro, estoura o limite ou fica lenta, ele passa o pedido pra próxima da lista sem você fazer nada. É isso que faz as cotas grátis renderem.</span></div></li>
+      <li class="glass rv rv-d2"><span class="gn">3</span><div><b>Modelo "auto"</b><span class="d">Em vez de escolher a IA, você pede o modelo <code>auto</code> e ele decide entre as que você ligou. Tem variações como <code>auto/coding</code>, <code>auto/fast</code> e <code>auto/cheap</code>.</span></div></li>
+      <li class="glass rv rv-d3"><span class="gn">4</span><div><b>Painel com o gasto</b><span class="d">Mostra quanto cada IA usou, quanto de cota grátis sobrou e quais estão fora do ar.</span></div></li>
+    </ol>
+    <div class="warn glass rv"><span class="big">!</span><p><b>Sobre o "352":</b> é o número do site oficial. O repositório no GitHub já fala em 394, porque eles contam de jeitos diferentes (chat, imagem, áudio, busca, modelos locais). A conta muda toda semana. O que importa é que tem muita opção, e várias com plano grátis.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t3">
+  <div class="read">
+    <p class="eyebrow">antes de começar</p>
+    <h2 id="t3" class="rv">O que você <em>vai precisar</em></h2>
+    <ul class="okl rv">
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>Um computador com Windows, Mac ou Linux. Dá pra rodar até no Android, pelo Termux, mas comece pelo computador.</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>O <b>Node.js 22 ou 24</b> (versão LTS). Baixe em <b>nodejs.org</b>. Versões antigas, como a 18 ou a 20, não servem.</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>O <b>Claude Code</b> instalado (o comando está no passo 4).</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>Uma conta em pelo menos um provedor grátis. O mais simples pra começar é a chave do <b>Google AI Studio</b> (Gemini).</div></li>
+    </ul>
+    <div class="warn glass red rv">
+      <span class="big">!</span>
+      <p><b>Não precisa de cartão pra começar</b>, mas alguns provedores pedem (o Cerebras, por exemplo, só libera o crédito grátis com cartão cadastrado). Se pedirem cartão e você não quiser, pule pro próximo da lista.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="t4">
+  <div class="read">
+    <p class="eyebrow">o passo a passo</p>
+    <h2 id="t4" class="rv">Da instalação ao <em>Claude Code rodando</em></h2>
+    <div class="steps">
+      <div class="step rv"><span class="n">1</span><div><h3>Confira o Node.js</h3><p>No Windows, abra o <b>PowerShell</b>; no Mac ou Linux, o <b>Terminal</b>. Digite <code>node -v</code>. Se aparecer <b>v22</b> ou <b>v24</b>, siga. Se der erro ou mostrar outra versão, instale o LTS pelo nodejs.org e abra o terminal de novo.</p></div></div>
+      <div class="step rv"><span class="n">2</span><div><h3>Instale o OmniRoute</h3><p>Cole o comando abaixo. Avisos amarelos de <code>npm warn</code> são normais e podem ser ignorados.</p></div></div>
+    </div>
+    <div class="prompt glass rv fan"><div class="prompt-h"><span><span class="t">Terminal</span> · instalar</span><button class="copy" type="button" data-copy="c1">Copiar</button></div><pre id="c1">npm install -g omniroute</pre></div>
+    <div class="warn glass rv"><span class="big">!</span><p><b>Deu erro falando de "scripts" ou "allow-scripts"?</b> Isso acontece no npm 11 ou mais novo, que bloqueia os scripts de instalação. O OmniRoute precisa deles. Use este comando no lugar (se o aviso do npm citar outros nomes, troque pelos nomes que ele mostrar):</p></div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Só se der erro</span> · npm 11</span><button class="copy" type="button" data-copy="c1b">Copiar</button></div><pre id="c1b">npm install -g --allow-scripts=omniroute,keytar,onnxruntime-node,@parcel/watcher,@swc/core,protobufjs,esbuild omniroute</pre></div>
+    <div class="steps">
+      <div class="step rv"><span class="n">3</span><div><h3>Ligue o servidor</h3><p>Digite <code>omniroute</code> e deixe essa janela aberta. Enquanto ela estiver aberta, o OmniRoute está funcionando. Abra o painel no navegador: <b>http://localhost:20128/dashboard</b>.</p></div></div>
+    </div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Terminal</span> · ligar (deixe aberto)</span><button class="copy" type="button" data-copy="c2">Copiar</button></div><pre id="c2">omniroute</pre></div>
+    <div class="steps">
+      <div class="step rv"><span class="n">4</span><div><h3>Instale o Claude Code (se ainda não tem)</h3><p>Abra <b>outra</b> janela de terminal, porque a primeira está ocupada com o servidor. Cole o comando do seu sistema.</p></div></div>
+    </div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Windows</span> · PowerShell</span><button class="copy" type="button" data-copy="i1">Copiar</button></div><pre id="i1">irm https://claude.ai/install.ps1 | iex</pre></div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Mac e Linux</span> · Terminal</span><button class="copy" type="button" data-copy="i2">Copiar</button></div><pre id="i2">curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+    <div class="steps">
+      <div class="step rv"><span class="n">5</span><div><h3>Ligue pelo menos uma IA</h3><p>No painel: <b>Providers</b> → <b>+ Add Provider</b> → escolha o provedor → cole a chave dele (ou faça o login que ele pedir). A lista das que valem a pena está na próxima seção.</p></div></div>
+      <div class="step rv"><span class="n">6</span><div><h3>Abra o Claude Code pelo OmniRoute</h3><p>Na segunda janela, digite o comando abaixo. Ele confere se o servidor está de pé, coloca o endereço e a chave certos e abre o <span class="claude">Claude</span> Code já apontado pro OmniRoute, sem mexer na sua configuração normal.</p></div></div>
+    </div>
+    <div class="prompt glass rv fan"><div class="prompt-h"><span><span class="t">Terminal</span> · abrir o Claude Code</span><button class="copy" type="button" data-copy="c3">Copiar</button></div><pre id="c3">omniroute launch</pre></div>
+    <div class="steps">
+      <div class="step rv"><span class="n">7</span><div><h3>Teste com um pedido simples</h3><p>Dentro do Claude Code, peça algo pequeno, como "crie um arquivo ola.txt escrito oi". Depois olhe no painel do OmniRoute qual IA respondeu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="t5">
+  <div class="read">
+    <p class="eyebrow">o que você veio buscar</p>
+    <h2 id="t5" class="rv">As IAs <em>grátis</em> que valem ligar</h2>
+    <p class="rv" style="color:var(--muted)">Ligue duas ou três, não uma só. É a soma delas, com a troca automática, que faz o grátis aguentar uma tarde de trabalho.</p>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>Gemini (Google AI Studio)</b><span class="d">O começo mais fácil: entra com a conta Google, gera uma chave em aistudio.google.com e cola no painel. Os limites variam por modelo e por projeto.</span></div></li>
+      <li class="glass rv"><span class="gn">2</span><div><b>Groq</b><span class="d">Muito rápido. Conta grátis em console.groq.com, gera a chave e cola. Tem limite por minuto, então funciona melhor como reserva.</span></div></li>
+      <li class="glass rv"><span class="gn">3</span><div><b>OpenRouter (modelos ":free")</b><span class="d">Um catálogo grande de modelos com final <code>:free</code>. A cota grátis é dividida com todo mundo e acaba rápido em horário de pico.</span></div></li>
+      <li class="glass rv"><span class="gn">4</span><div><b>NVIDIA NIM</b><span class="d">Modelos como GLM e MiniMax, com cerca de 40 pedidos por minuto grátis.</span></div></li>
+      <li class="glass rv"><span class="gn">5</span><div><b>Pollinations e OpenCode Free</b><span class="d">Não pedem chave nenhuma. Bons pra testar se tudo está ligado, mas a disponibilidade oscila e alguns recusam programas de terceiros.</span></div></li>
+      <li class="glass rv"><span class="gn">6</span><div><b>Ollama ou LM Studio (no seu PC)</b><span class="d">O modelo roda no seu próprio computador: grátis de verdade e nada sai da sua máquina. Precisa de um PC com memória e placa de vídeo boas; em máquina fraca fica lento demais pro Claude Code.</span></div></li>
+    </ol>
+    <div class="warn glass rv"><span class="big">!</span><p>No painel tem a página <b>/dashboard/free-tiers</b>, que mostra quanto de cota grátis você ainda tem em cada IA ligada. Olhe ela antes de reclamar que "parou de funcionar".</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t6">
+  <div class="read">
+    <p class="eyebrow">pra ir além</p>
+    <h2 id="t6" class="rv">Escolher a IA <em>na mão</em></h2>
+    <p class="rv">O <code>omniroute launch</code> usa o modo automático. Se você quer fixar uma IA, tem dois jeitos:</p>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Jeito rápido</span> · uma IA só, nesta sessão</span><button class="copy" type="button" data-copy="c4">Copiar</button></div><pre id="c4">omniroute run claude --model <mark>[provedor/modelo]</mark></pre></div>
+    <p class="rv" style="color:var(--muted)">Troque <b>[provedor/modelo]</b> por um nome da lista de modelos do painel, no formato <code>provedor/modelo</code> (por exemplo <code>glm/glm-5.2</code>).</p>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Jeito com perfis</span> · um atalho por IA</span><button class="copy" type="button" data-copy="c5">Copiar</button></div><pre id="c5">omniroute setup-claude
+omniroute launch --profile <mark>[nome-do-perfil]</mark></pre></div>
+    <p class="rv" style="color:var(--muted)">O <code>setup-claude</code> cria um perfil pra cada modelo que você ligou (nomes como <code>glm52</code> ou <code>kimi-k27</code>), sem mexer na sua configuração normal do Claude Code. Use <code>omniroute setup-claude --dry-run</code> pra ver o que ele vai criar antes.</p>
+    <details class="rv"><summary>Quero configurar à mão, sem o comando launch</summary><p>O Claude Code lê três variáveis quando abre. Pegue a chave em <b>Dashboard → Endpoints</b> e, no Mac ou Linux, rode antes de abrir o <code>claude</code>:</p>
+    <div class="prompt glass"><div class="prompt-h"><span><span class="t">Mac e Linux</span> · manual</span><button class="copy" type="button" data-copy="c6">Copiar</button></div><pre id="c6">export ANTHROPIC_BASE_URL=http://localhost:20128
+export ANTHROPIC_AUTH_TOKEN=<mark>[SUA CHAVE DO OMNIROUTE]</mark>
+export ANTHROPIC_MODEL=<mark>[provedor/modelo]</mark>
+claude</pre></div>
+    <p>O endereço vai <b>sem</b> o <code>/v1</code> no final; com ele, não funciona. As variáveis só valem na hora em que o Claude Code abre: mudou alguma, feche e abra de novo.</p></details>
+    <details class="rv"><summary>Como confiro se o servidor está respondendo?</summary><p>Com o <code>omniroute</code> rodando, este comando lista as IAs ligadas. Se aparecer a lista, está tudo certo:</p>
+    <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · teste</span><button class="copy" type="button" data-copy="c7">Copiar</button></div><pre id="c7">curl http://localhost:20128/v1/models -H "Authorization: Bearer <mark>[SUA CHAVE]</mark>"</pre></div></details>
+  </div>
+</section>
+
+<section aria-labelledby="t7">
+  <div class="read">
+    <p class="eyebrow">o que ninguém te conta</p>
+    <h2 id="t7" class="rv">Os limites, <span class="r">sem enfeite</span></h2>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>Grátis não é Claude de graça</b><span class="d">O Claude Code é só a ferramenta. Com as IAs grátis, quem pensa é outro modelo. Muitos são bons pra tarefas simples, mas em projeto grande você vai notar a diferença: erram mais, se perdem em arquivos longos e às vezes não sabem usar as ferramentas do Claude Code direito.</span></div></li>
+      <li class="glass rv rv-d1"><span class="gn">2</span><div><b>Instalar não basta</b><span class="d">O próprio projeto avisa: numa instalação nova pode não ter nenhuma IA disponível. Sem ligar pelo menos um provedor, o Claude Code abre e não recebe resposta.</span></div></li>
+      <li class="glass rv rv-d2"><span class="gn">3</span><div><b>As cotas mudam toda semana</b><span class="d">Os números de "tokens grátis por mês" são uma estimativa somando várias contas diferentes, não um presente do OmniRoute. Cada provedor pode cortar o grátis quando quiser.</span></div></li>
+      <li class="glass rv rv-d3"><span class="gn">4</span><div><b>Janela de contexto</b><span class="d">O Claude Code acha que todo modelo desconhecido aguenta 200 mil tokens. Se o modelo que você escolheu aguenta menos, a conversa quebra no meio. Os perfis do <code>setup-claude</code> já acertam isso pra você; mais um motivo pra usar.</span></div></li>
+      <li class="glass rv"><span class="gn">5</span><div><b>É um programa grande</b><span class="d">Tem painel, banco de dados, servidor de MCP, compressão e muito mais. Você não precisa de quase nada disso pra começar. Ignore o resto até o básico funcionar.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="t8">
+  <div class="read">
+    <p class="eyebrow">cuidados</p>
+    <h2 id="t8" class="rv">Leia antes de <span class="r">usar no trabalho</span></h2>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>Seu código vai pra quem responde</b><span class="d">As chaves ficam guardadas criptografadas no seu computador, mas o pedido em si vai pro provedor escolhido. Vários planos grátis podem usar o que você manda pra treinar modelos, e alguns registram todos os pedidos. Não mande senha, dado de cliente ou código da empresa por IA grátis.</span></div></li>
+      <li class="glass rv rv-d1"><span class="gn">2</span><div><b>Cuidado com os provedores "Web"</b><span class="d">Opções como ChatGPT Web, Claude Web e Gemini Web usam o login do seu navegador, e isso pode ir contra os termos desses serviços. O próprio OmniRoute marca alguns provedores como "avoid" e tira eles do modo automático. Se usar, é por sua conta e risco de bloqueio da conta.</span></div></li>
+      <li class="glass rv rv-d2"><span class="gn">3</span><div><b>Não crie contas extras pra furar limite</b><span class="d">Os termos da maioria dos provedores proíbem, e você pode perder todas.</span></div></li>
+      <li class="glass rv rv-d3"><span class="gn">4</span><div><b>Deixe só no seu computador</b><span class="d">Use pelo endereço <code>localhost</code>. Não libere a porta 20128 no roteador nem rode num servidor público sem senha: quem achar o endereço usa as suas chaves e gasta as suas cotas.</span></div></li>
+      <li class="glass rv"><span class="gn">5</span><div><b>Baixe só do lugar oficial</b><span class="d">O pacote no npm é <code>omniroute</code>, o site é omniroute.online e o código está em github.com/cheaper-inference/OmniRoute. Fuja de "versão premium" ou instalador vindo de link de terceiro.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="t9">
+  <div class="read rv">
+    <p class="eyebrow">dúvidas dos comentários</p>
+    <h2 id="t9">Perguntas frequentes</h2>
+    <details><summary>O OmniRoute é de graça mesmo?</summary><p>Sim. O programa é open source, licença MIT, e roda no seu computador sem assinatura. Existe uma versão hospedada paga (OmniRoute Cloud), mas você não precisa dela. O que pode custar dinheiro são as IAs pagas, se você ligar alguma.</p></details>
+    <details><summary>Vou usar o Claude de graça?</summary><p>Não. Com as opções grátis você usa a ferramenta do Claude Code com outros modelos. Pra o Claude responder, você precisa ligar uma conta ou chave da Anthropic, e aí paga normalmente.</p></details>
+    <details><summary>Preciso do plano Pro do Claude?</summary><p>Pra usar o Claude Code com as IAs do OmniRoute, não: ele usa a chave do OmniRoute no lugar do login da Anthropic. Se quiser o modelo Claude no meio da lista, aí sim precisa de assinatura ou chave da Anthropic.</p></details>
+    <details><summary>Fechei o terminal e parou tudo. Por quê?</summary><p>O servidor só funciona com a janela do <code>omniroute</code> aberta. Abra de novo e deixe rodando. Existe versão de desktop e Docker pra ficar sempre ligado, mas pra começar o terminal basta.</p></details>
+    <details><summary>Funciona com outras ferramentas além do Claude Code?</summary><p>Sim: Codex, Cursor, Cline, Aider, OpenCode, Gemini CLI e qualquer programa que aceite um endereço compatível com OpenAI. Pra esses, use <code>http://localhost:20128/v1</code> (agora com o <code>/v1</code>), a chave do painel e o modelo <code>auto</code>.</p></details>
+    <details><summary>Deu "Ambiguous model" no Claude Code. E agora?</summary><p>Acontece quando você ligou duas contas do Claude ao mesmo tempo e o OmniRoute não sabe qual usar. Escolha o modelo com o nome completo (com o prefixo do provedor), como no passo "Escolher a IA na mão".</p></details>
+    <details><summary>Roda no celular?</summary><p>Roda no Android pelo Termux (<code>pkg install nodejs && npx -y omniroute</code>), mas pra usar com o Claude Code o caminho mais tranquilo é o computador.</p></details>
+  </div>
+</section>
+
+<section aria-labelledby="t10">
+  <div class="read">
+    <p class="eyebrow">fontes</p>
+    <h2 id="t10" class="rv">Onde eu <em>conferi</em> tudo</h2>
+    <ul class="okl rv">
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>Site oficial: <a href="https://www.omniroute.online/pt-BR/" target="_blank" rel="noopener">omniroute.online/pt-BR</a></div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div>Código e documentação: <a href="https://github.com/cheaper-inference/OmniRoute" target="_blank" rel="noopener">github.com/cheaper-inference/OmniRoute</a> (guia do Claude Code e guia das cotas grátis)</div></li>
+    </ul>
+    <p class="note rv">Conferido em 19/11/2026. O projeto atualiza quase todo dia; se um comando mudar, vale o que estiver no site oficial.</p>
+  </div>
+</section>
