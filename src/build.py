@@ -30,12 +30,16 @@ DIAS = [
          desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
     dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude",
          desc="O guia pra reviver um notebook velho com um Debian 13, do pendrive à interface, com os comandos pra fazer à mão e os pedidos prontos pro Claude Code."),
+    dict(n=7, slug="qual-app", kw=None, curto="O notebook do lixo roda seus apps?",
+         desc="O jeito simples de descobrir se os seus apps rodam no notebook velho com Debian, app por app, e o pedido pronto pro Claude Code instalar tudo."),
     dict(n=8, slug="tablet", kw="TABLET", curto="Ressuscitei um tablet abandonado", landing=True,
          desc="O mapa grátis pra ressuscitar o seu tablet velho e o passo a passo feito pro seu modelo, até o limite que ele aguenta."),
     dict(n=9, slug="professor", kw="PROFESSOR", curto="O Claude virou meu professor particular",
          desc="O passo a passo pra instalar o LearnHarness, ligar no Claude e estudar pro Enem com um professor que te testa, ensina e lembra o que revisar."),
     dict(n=10, slug="wifi", kw="WIFI", curto="O Claude achou o ladrão do meu Wi-Fi",
          desc="O pedido exato pro Claude Code investigar o seu Wi-Fi lento (velocidade, consumo escondido e canal do vizinho) e o passo a passo pra corrigir."),
+    dict(n=11, slug="gta", kw="GTA", curto="Uma live de GTA VI vira 5 cortes", landing=True,
+         desc="O passo a passo pra cortar live de GTA VI com o Claude: a skill, o pedido e os cinco cortes prontos em pé e com legenda."),
     dict(n=12, slug="omniroute", kw="CLAUDE", curto="O Claude Code ligado em 352 IAs",
          desc="O guia gratuito do OmniRoute: instalar do zero, ligar as IAs grátis no Claude Code e os limites que ninguém te conta."),
 ]
@@ -140,7 +144,7 @@ def prev_next(n, depth):
 
 def hero(d, depth, kicker, h1, lede, meta):
     up = "../" * depth
-    kw = f'<span class="kw">você comentou <b>{d["kw"]}</b></span>' if d["kw"] else '<span class="kw">o primeiro experimento</span>'
+    kw = f'<span class="kw">você comentou <b>{d["kw"]}</b></span>' if d["kw"] else ('<span class="kw">o primeiro experimento</span>' if d["n"] == 1 else '<span class="kw">a pergunta do vídeo</span>')
     return f'''<div class="hero">
   <div class="hcopy">
     <div><span class="badge">DIA {d["n"]:02d}/30</span>{kw}</div>
