@@ -6,6 +6,11 @@
       "source": "/",
       "destination": "/30-dias/",
       "permanent": false
+    },
+    {
+      "source": "/claude/",
+      "destination": "/omniroute/",
+      "permanent": false
     }
   ],
   "headers": [
