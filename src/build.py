@@ -82,7 +82,7 @@ def topbar(depth):
     up = "../" * depth
     return f'''<header class="top"><div class="bar glass">
   <a class="brand" href="{up}30-dias/"><span class="pf"><img src="{up}assets/img/avatar.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
-  <button class="cal-btn" type="button" data-open-cal aria-haspopup="dialog" aria-controls="cal"><i class="dot"></i>30 dias</button>
+  <div class="bar-r"><div class="bar-soc">{"".join(f'<a class="soc" href="{u}" target="_blank" rel="noopener" aria-label="{n}">{ICONS[n]}</a>' for n, u in REDES[1:])}</div><button class="cal-btn" type="button" data-open-cal aria-haspopup="dialog" aria-controls="cal"><i class="dot"></i>30 dias</button></div>
 </div></header>
 '''
 
@@ -181,47 +181,61 @@ def build_day(d):
     out.parent.mkdir(exist_ok=True)
     out.write_text(page, encoding="utf-8")
 
+# dias com landing page escrita à mão (fora de DIAS): n, caminho, palavra, título curto, descrição
+LANDINGS = [
+    dict(n=11, path="gta", kw="GTA", curto="Uma live de GTA VI vira 5 cortes",
+         desc="O guia pra montar uma página de cortes de GTA VI com o Claude, da página vazia ao primeiro corte postado."),
+]
+
 def build_hub():
-    cards = []
-    for n in range(1, TOTAL + 1):
-        d = day(n)
-        if d:
-            k = f'<span class="k">{d["kw"]}</span>' if d["kw"] else ""
-            cards.append(f'''<a class="dcard glass rv" href="../{d["slug"]}/" data-lock-day="{n}">{k}<div class="im"><img src="../assets/img/capa-dia{n:02d}.jpg" alt="" loading="lazy" width="540" height="960"></div><div class="b"><span class="n" data-when="DIA {n:02d} · libera às 12h">DIA {n:02d}</span><span class="t">{esc(d["curto"])}</span></div></a>''')
-        else:
-            cards.append(f'''<div class="dcard glass lockd rv"><div class="im">{n:02d}</div><div class="b"><span class="n">DIA {n:02d} · trancado</span><span class="t">Em breve</span></div></div>''')
-    kws = {d["kw"]: d["slug"] for d in DIAS if d["kw"]}
-    rel = {d["kw"]: d["n"] for d in DIAS if d["kw"]}
-    fd = day(DESTAQUE)
-    feat = f'''<a class="feat glass rv fan" href="../{fd["slug"]}/" data-lock-day="{fd["n"]}">
-  <div class="feat-im"><img src="../assets/img/capa-dia{fd["n"]:02d}.jpg" alt="Capa do vídeo do Dia {fd["n"]}" width="540" height="960"></div>
+    itens = {}
+    for d in DIAS:
+        itens[d["n"]] = dict(n=d["n"], href=f'../{d["slug"]}/', kw=d["kw"], curto=d["curto"], desc=d["desc"])
+    for l in LANDINGS:
+        itens[l["n"]] = dict(n=l["n"], href=f'../{l["path"]}/', kw=l["kw"], curto=l["curto"], desc=l["desc"])
+    DEST = (6, 8)  # guias em destaque: notebook e tablet
+    feats = []
+    for n in DEST:
+        it = itens[n]
+        tag = "veio pelo vídeo do notebook?" if n == 6 else "veio pelo vídeo do tablet?"
+        go = "Abrir o passo a passo do notebook →" if n == 6 else "Abrir o passo a passo do tablet →"
+        feats.append(f'''<a class="feat glass rv fan" href="{it["href"]}" data-lock-day="{n}">
+  <div class="feat-im"><img src="../assets/img/capa-dia{n:02d}.jpg" alt="Capa do vídeo do Dia {n}" width="540" height="960"></div>
   <div class="feat-b">
-    <span class="feat-tag">veio pelo vídeo do notebook?</span>
-    <span class="feat-n">DIA {fd["n"]:02d} · palavra {fd["kw"]}</span>
-    <span class="feat-t">{esc(fd["curto"])}</span>
-    <p>{esc(fd["desc"])}</p>
-    <span class="feat-go">Abrir o passo a passo do notebook →</span>
+    <span class="feat-tag">{tag}</span>
+    <span class="feat-n">DIA {n:02d} · palavra {it["kw"]}</span>
+    <span class="feat-t">{esc(it["curto"])}</span>
+    <p>{esc(it["desc"])}</p>
+    <span class="feat-go">{go}</span>
   </div>
-</a>'''
-    page = head("30 dias, 30 experimentos com Claude · @cobaia.dev",
+</a>''')
+    cards = []
+    for n in sorted(itens):
+        if n in DEST: continue
+        it = itens[n]
+        k = f'<span class="k">{it["kw"]}</span>' if it["kw"] else ""
+        cards.append(f'''<a class="dcard glass rv" href="{it["href"]}" data-lock-day="{n}">{k}<div class="im"><img src="../assets/img/capa-dia{n:02d}.jpg" alt="Capa do vídeo do Dia {n}" loading="lazy" width="540" height="960"></div><div class="b"><span class="n" data-when="DIA {n:02d} · libera às 12h">DIA {n:02d}</span><span class="t">{esc(it["curto"])}</span></div></a>''')
+    kws = {it["kw"]: it["href"] for it in itens.values() if it["kw"]}
+    rel = {it["kw"]: it["n"] for it in itens.values() if it["kw"]}
+    chips = "".join(f'<a class="kwchip" href="{it["href"]}" data-lock-day="{it["n"]}">{it["kw"]}</a>' for it in sorted(itens.values(), key=lambda x: x["n"]) if it["kw"])
+    page = head("Projeto 30 dias · 30 experimentos com o Claude · @cobaia.dev",
                 "Todos os experimentos do @cobaia.dev com o Claude: um vídeo novo por dia, com o guia completo de cada um.",
                 "/30-dias", "hub", 1)
     page += topbar(1) + f'''<main class="wrap">
 <div class="hub-hero">
-  <span class="badge">PROJETO 30 DIAS</span>
-  <p class="kick">eu testo antes de você</p>
-  <h1>30 dias, 30 experimentos <em>com o <span class="claude">Claude</span></em></h1>
-</div>
-{feat}
-<section class="outros" aria-labelledby="todos"><p class="eyebrow">os outros experimentos</p><h2 id="todos" class="feat-h2">Comentou em outro vídeo? Toque nele aqui embaixo</h2>
-  <p class="lede">Cada vídeo tem aqui o guia completo, com tudo o que eu prometi nele. Se você lembra a palavra que comentou, digite abaixo.</p>
-  <div class="progress" aria-hidden="true"><i data-progress></i></div>
-  <p class="note"><span data-done>{len(DIAS)}</span> de 30 liberados</p>
+  <h1>Projeto <em>30 dias</em></h1>
+  <p class="kick">30 experimentos com o <span class="claude">Claude</span></p>
   <form class="find glass" id="find" autocomplete="off">
-    <label for="kw">Comentou uma palavra? Digite aqui:</label>
-    <input id="kw" name="kw" placeholder="ex.: MCP" maxlength="20" enterkeyhint="go">
+    <label for="kw">Comentou uma palavra? Digite ou toque nela:</label>
+    <input id="kw" name="kw" placeholder="ex.: NOTEBOOK" maxlength="20" enterkeyhint="go">
+    <div class="kwchips">{chips}</div>
     <p class="res" id="res" aria-live="polite"></p>
   </form>
+</div>
+{"".join(feats)}
+<section class="outros" aria-labelledby="todos"><h2 id="todos" class="feat-h2">Os outros dias</h2>
+  <div class="progress" aria-hidden="true"><i data-progress></i></div>
+  <p class="note"><span data-done>{len(itens)}</span> de 30 liberados</p>
 <div class="grid30">{"".join(cards)}</div></section>
 {foot(1)}
 </main>
@@ -232,10 +246,10 @@ def build_hub():
 function norm(s){{return s.trim().toUpperCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');}}
 function look(go){{var w=norm(i.value);if(!w){{r.textContent='';return;}}var s=K[w];
  if(s&&!COBAIA.released(N[w])){{r.textContent='Essa página libera às 12h, junto com o vídeo.';return;}}
- if(s){{if(go)location.href='../'+s+'/';else r.innerHTML='Achei: <a href="../'+s+'/">abrir o guia de '+w+' →</a>';}}
- else r.textContent='Ainda não tem essa palavra. Confere a grafia ou procura no calendário.';}}
+ if(s){{if(go)location.href=s;else r.innerHTML='Achei: <a href="'+s+'">abrir o guia de '+w+' →</a>';}}
+ else r.textContent='Ainda não tem essa palavra. Confere a grafia ou procura nos dias abaixo.';}}
 i.addEventListener('input',function(){{look(false)}});
-var L=[].slice.call(document.querySelectorAll('.grid30 .lockd'));if(L.length>3){{L.slice(3).forEach(function(e){{e.hidden=true}});var t=document.createElement('button');t.type='button';t.className='dcard glass lockd more';t.setAttribute('data-open-cal','');t.innerHTML='<div class="im">+'+(L.length-3)+'</div><div class="b"><span class="n">trancados</span><span class="t" style="filter:none">Ver calendário</span></div>';L[2].after(t);t.addEventListener('click',function(){{document.querySelector('.cal-btn').click()}});}}f.addEventListener('submit',function(e){{e.preventDefault();look(true)}});}})();
+f.addEventListener('submit',function(e){{e.preventDefault();look(true)}});}})();
 </script>
 </body>
 </html>
