@@ -38,6 +38,8 @@ DIAS = [
          desc="O pedido exato pro Claude Code investigar o seu Wi-Fi lento (velocidade, consumo escondido e canal do vizinho) e o passo a passo pra corrigir."),
     dict(n=12, slug="omniroute", kw="CLAUDE", curto="O Claude Code ligado em 352 IAs",
          desc="O guia gratuito do OmniRoute: instalar do zero, ligar as IAs grátis no Claude Code e os limites que ninguém te conta."),
+    dict(n=13, slug="humano", kw="HUMANO", curto="O Claude escreve sem cara de IA",
+         desc="O guia gratuito do Anti-Robô: o pedido que levanta os padrões de texto de IA, a skill que guarda as regras e os pedidos prontos pra escrever como gente."),
 ]
 TOTAL = 30
 DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)
