@@ -1,0 +1,97 @@
+{"titulo": "Fatura do cartão vira planilha com o Claude", "kicker": "o guia gratuito da PLANILHA", "h1": "Descubra pra onde vai o <em>seu salário</em> com o <span class=\"claude\">Claude</span>", "lede": "Você manda o PDF da fatura e o <span class=\"claude\">Claude</span> devolve uma planilha pronta: gastos por categoria, plano pra sair das dívidas, reserva de emergência e as assinaturas que você nem usa. Aqui está <b>o pedido exato pra copiar e colar</b> e o passo a passo.", "meta": ["leitura de 5 min", "nível: zero código", "funciona no plano grátis"]}
+---
+<style>
+.tbl2{width:100%;border-collapse:collapse;margin:8px 0 22px;font-size:15px}
+.tbl2 th,.tbl2 td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl2 th{font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.tbl2 td:first-child{font-weight:700;white-space:nowrap}
+.tblw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+</style>
+
+<section aria-labelledby="t1">
+  <p class="eyebrow">em 30 segundos</p>
+  <h2 id="t1">O resumo do vídeo</h2>
+  <div class="tldr">
+    <div class="glass rv"><span class="ic">01</span><p>Você anexa o <b>PDF da fatura do cartão</b> (ou o extrato do banco) e pede uma planilha. O <span class="claude">Claude</span> separa cada compra em categoria: mercado, delivery, transporte, assinaturas.</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>Ele não para na planilha: monta um <b>plano pra sair das dívidas</b>, começando pela de juros mais alto, e calcula a sua <b>reserva de emergência</b>.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>E acha as <b>assinaturas que você esqueceu</b> de cancelar, com o valor por mês e por ano.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t2">
+  <div class="read">
+    <p class="eyebrow">antes de começar</p>
+    <h2 id="t2" class="rv">O que você <em>vai precisar</em></h2>
+    <ul class="okl rv">
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Uma conta do <span class="claude">Claude</span></b>. Funciona no plano grátis: ele lê PDF e cria o arquivo de Excel.</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>O PDF da fatura do cartão</b> (baixe no app do banco) ou o <b>extrato</b> do mês. Se o seu banco só deixa tirar print, serve também.</div></li>
+      <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Meta do dia</b>: um arquivo .xlsx com os seus gastos separados e uma lista do que dá pra cortar. Leva uns 5 minutos.</div></li>
+    </ul>
+    <div class="warn glass rv"><span class="big">!</span><p><b>Cuide dos seus dados.</b> A fatura tem nome, final do cartão e as suas compras. Se preferir, apague o seu nome e o número do cartão do PDF antes de anexar. O Cobaia nunca pede a sua fatura: o exemplo do vídeo é de uma pessoa fictícia.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t3">
+  <div class="read">
+    <p class="eyebrow">o passo a passo</p>
+    <h2 id="t3" class="rv">Da fatura à planilha em <em>3 passos</em></h2>
+    <div class="steps">
+      <div class="step rv"><span class="n">1</span><div><h3>Abra um chat novo no <span class="claude">Claude</span></h3><p>Entre em claude.ai (ou no app) e comece uma conversa nova.</p></div></div>
+      <div class="step rv"><span class="n">2</span><div><h3>Anexe o PDF</h3><p>Toque no clipe e envie a fatura do cartão ou o extrato do mês.</p></div></div>
+      <div class="step rv"><span class="n">3</span><div><h3>Cole o pedido abaixo e envie</h3><p>O <span class="claude">Claude</span> devolve o arquivo .xlsx pra baixar. Abra no Excel, no Google Planilhas ou no celular.</p></div></div>
+    </div>
+    <div class="prompt glass rv fan"><div class="prompt-h"><span><span class="t">O pedido</span> · copiar e colar</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Você é meu planejador financeiro pessoal. Com base no arquivo anexado:
+
+1. Monte uma planilha de Excel com uma aba "Lançamentos" (data, descrição, categoria, valor) e uma aba "Resumo" com o total por categoria (mercado, delivery, transporte, assinaturas, contas da casa, outros), a porcentagem de cada uma, o total do mês e um gráfico de pizza. Use fórmulas, não números fixos.
+
+2. Numa aba "Assinaturas", liste todas as cobranças recorrentes, com valor mensal e anual, e marque em vermelho as que parecem esquecidas ou repetidas.
+
+3. Numa aba "Dívidas", organize minhas dívidas da de juros mais alto pra de juros mais baixo e diga qual pagar primeiro. (Se eu não tiver passado minhas dívidas, me pergunte.)
+
+4. Numa aba "Reserva", calcule uma reserva de emergência de 6 meses dos meus gastos e quanto guardar por mês pra chegar lá em 24 meses.
+
+No fim, me diga em 3 frases simples onde eu mais posso economizar.</pre></div>
+    <div class="warn glass rv"><span class="big">!</span><p><b>Se ele perguntar das dívidas, responda.</b> Passe o que você deve, o valor e o juro de cada uma (o app do banco mostra). Sem isso, a aba "Dívidas" fica genérica.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t4">
+  <div class="read">
+    <p class="eyebrow">o que vem no arquivo</p>
+    <h2 id="t4" class="rv">As <em>abas</em> da planilha</h2>
+    <div class="tblw rv"><table class="tbl2"><thead><tr><th>Aba</th><th>O que tem</th><th>Pra que serve</th></tr></thead><tbody>
+      <tr><td>Lançamentos</td><td>Data, descrição, categoria e valor de cada compra</td><td>Ver tudo num lugar só e corrigir categoria errada.</td></tr>
+      <tr><td>Resumo</td><td>Total por categoria, porcentagem, total do mês e gráfico de pizza</td><td>Enxergar de uma vez onde o dinheiro vai.</td></tr>
+      <tr><td>Assinaturas</td><td>Cobranças recorrentes, valor por mês e por ano, as esquecidas em vermelho</td><td>Decidir o que cancelar hoje.</td></tr>
+      <tr><td>Dívidas</td><td>Da juros mais alto pra mais baixo, com a ordem de pagamento</td><td>Gastar menos com juros.</td></tr>
+      <tr><td>Reserva</td><td>6 meses dos seus gastos e quanto guardar por mês</td><td>Ter um colchão pra imprevisto.</td></tr>
+    </tbody></table></div>
+  </div>
+</section>
+
+<section aria-labelledby="t5">
+  <div class="read">
+    <p class="eyebrow">antes de confiar</p>
+    <h2 id="t5" class="rv">Confira <em>os números</em></h2>
+    <p class="rv">A IA erra conta e categoria. Faça sempre estas três conferências:</p>
+    <ol class="guide">
+      <li class="glass rv"><span class="gn">1</span><div><b>O total bate com a fatura?</b><span class="d">Compare o total do mês da aba "Resumo" com o valor da fatura. Se não bater, peça: "O total está diferente da fatura. Revise os lançamentos."</span></div></li>
+      <li class="glass rv rv-d1"><span class="gn">2</span><div><b>As categorias fazem sentido?</b><span class="d">Compra de nome estranho pode cair em "outros". Peça pra reclassificar o que você reconhece.</span></div></li>
+      <li class="glass rv rv-d2"><span class="gn">3</span><div><b>As assinaturas são mesmo esquecidas?</b><span class="d">Ele marca o que parece repetido. Quem decide o que cancelar é você.</span></div></li>
+    </ol>
+    <h3 class="rv">O número do vídeo</h3>
+    <p class="rv">Segundo uma pesquisa da Bango, com 6.400 consumidores, o brasileiro gasta em média <b>R$ 1.416 por ano</b> em assinaturas digitais, e cerca de <b>32%</b> disso vai pra serviço que a pessoa não usa. A conta de R$ 450 por ano do vídeo vem dessa média (32% de R$ 1.416). A sua pode ser maior ou menor: a planilha mostra o seu valor de verdade.</p>
+    <div class="warn glass rv"><span class="big">!</span><p><b>Isso não é consultoria financeira.</b> É uma ajuda pra organizar as contas. Confira os números antes de decidir qualquer coisa, e procure um profissional pra decisões grandes.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t6">
+  <div class="read">
+    <p class="eyebrow">pra ir além</p>
+    <h2 id="t6" class="rv">Pedidos <em>de bônus</em></h2>
+    <p class="rv">Na mesma conversa, com a planilha pronta, é só colar um destes:</p>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Bônus 1</span> · cortar gastos</span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">Com base na planilha, me dê uma lista dos 5 gastos que eu posso cortar ou reduzir sem fazer falta, com quanto eu economizo por mês e por ano em cada um.</pre></div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Bônus 2</span> · meta do mês</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Monte uma meta de gastos por categoria pro próximo mês, com base nesta fatura, e uma aba "Acompanhamento" pra eu ir preenchendo ao longo do mês e ver se estou dentro.</pre></div>
+    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Bônus 3</span> · Black Friday</span><button class="copy" type="button" data-copy="p4">Copiar</button></div><pre id="p4">Estou pensando em fazer uma compra grande na Black Friday. Com base no meu resumo de gastos e na minha reserva, me diga quanto cabe no orçamento sem eu entrar em dívida.</pre></div>
+  </div>
+</section>

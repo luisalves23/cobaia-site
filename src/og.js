@@ -14,6 +14,7 @@ const items = [
   ['dia10', 'DIA 10/30', 'QUEM TÁ <span>ROUBANDO</span> SEU WI-FI?', 'WIFI'],
   ['dia12', 'DIA 12/30', 'O CLAUDE CODE EM <span>352 IAs</span>', 'CLAUDE'],
   ['dia13', 'DIA 13/30', 'O CLAUDE SEM <span>CARA DE ROBÔ</span>', 'HUMANO'],
+  ['dia14', 'DIA 14/30', 'SEU SALÁRIO SOME. <span>ONDE?</span>', 'PLANILHA'],
   ['hub', 'PROJETO 30 DIAS', '30 DIAS, <span>30 EXPERIMENTOS</span> COM CLAUDE', null],
 ];
 const css = `@font-face{font-family:Anton;src:url(${A}fonts/anton-latin-400-normal.woff2)}@font-face{font-family:M;font-weight:700;src:url(${A}fonts/jetbrains-mono-latin-700-normal.woff2)}@font-face{font-family:S;font-style:italic;src:url(${A}fonts/instrument-serif-latin-400-italic.woff2)}

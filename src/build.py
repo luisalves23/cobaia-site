@@ -40,6 +40,8 @@ DIAS = [
          desc="O guia gratuito do OmniRoute: instalar do zero, ligar as IAs grátis no Claude Code e os limites que ninguém te conta."),
     dict(n=13, slug="humano", kw="HUMANO", curto="O Claude escreve sem cara de IA",
          desc="O guia gratuito do Anti-Robô: o pedido que levanta os padrões de texto de IA, a skill que guarda as regras e os pedidos prontos pra escrever como gente."),
+    dict(n=14, slug="planilha", kw="PLANILHA", curto="O Claude mostrou pra onde vai o salário",
+         desc="O pedido exato pra transformar a fatura do cartão numa planilha com gastos por categoria, plano pra sair das dívidas, reserva de emergência e as assinaturas esquecidas."),
 ]
 TOTAL = 30
 DESTAQUE = 6  # dia em destaque no topo da página principal (o vídeo que viralizou)
