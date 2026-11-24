@@ -1,6 +1,6 @@
 /* Páginas pagas: só abrem para quem tem compra ativa (cadastro em lib/compras.mjs).
    - /gta/guia/      comprador do produto "gta"
-   - /notebook/guia/ comprador do produto "notebook", ou do "notebook-suporte" com o brinde do guia (10 primeiros)
+   - /notebook/guia/ comprador do produto "notebook" ou "notebook-suporte" (o suporte sempre leva o guia)
    - /tablet/g/<slug>/  comprador do produto "tablet" com esse guia liberado no painel (/admin/)
    A compra é conferida a cada abertura, direto na origem: reembolso ou chargeback cortam na hora.
 
@@ -109,7 +109,6 @@ export default async function middleware(req) {
     if (!email) return ir('/acesso/?produto=notebook&volta=/notebook/guia/');
     const regs = await Promise.all(['notebook', 'notebook-suporte'].map((k) => lerCompra(k, email)));
     if (regs.some((r) => r && abreGuiaNotebook(r))) return NADA;
-    if (regs.some((r) => r && ativo(r))) return ir('/minha-area/'); // só o suporte, sem o brinde
     return regs.some(Boolean) ? encerrado() : ir('/acesso/?produto=notebook&erro=nao-encontrado&email=' + encodeURIComponent(email));
   }
 

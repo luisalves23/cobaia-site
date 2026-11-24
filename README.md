@@ -23,5 +23,6 @@ Quem compra entra em `/acesso/` só com o e-mail da compra e vê tudo em `/minha
 ## Notebook Ressuscitado (/notebook)
 - `/notebook/` é a landing de vendas (escrita à mão, fora do `build.py`). Links de checkout em `CHECKOUT` no fim do HTML.
 - `/notebook/guia/` é o guia pago, gerado por `python3 src/notebook_guia.py` a partir de `src/notebook-guia/` (aulas em `aulas.html`; o conteúdo dos `<pre>` é escrito cru e escapado pelo script).
-- Produtos `notebook` (guia) e `notebook-suporte` (suporte). As 10 primeiras compras do suporte ganham o guia (`brindeGuia`, contado em `contarSuporte`); `/api/vagas` mostra as vagas na landing.
-- Webhooks: `/api/kiwify?produto=notebook` e `/api/kiwify?produto=notebook-suporte`. Variável `WHATSAPP_SUPORTE` (55 + DDD + número) mostra o botão de WhatsApp na área do comprador do suporte.
+- Produtos `notebook` (guia) e `notebook-suporte` (suporte, sempre com o guia junto). O suporte também pode vir como order bump no checkout do guia: o webhook do guia reconhece "suporte pessoal" (ou `KIWIFY_SUPORTE_ID`) e registra os dois.
+- Suporte: é o produto de suporte que já existia na Kiwify ("Suporte pessoal do Luis", vale pra qualquer serviço), com webhook `/api/kiwify?produto=suporte`. Quem compra pelo botão da página /notebook leva `src=notebook` no checkout; o webhook vê isso em `TrackingParameters` e registra também `notebook-suporte`, que libera o guia. Comprado por outro lugar, fica só o suporte (o guia pode ser liberado à mão em /admin/).
+- Webhooks: `/api/kiwify?produto=notebook` (guia) e `/api/kiwify?produto=suporte` (suporte). Variável `WHATSAPP_SUPORTE` (55 + DDD + número) mostra o botão de WhatsApp na área do comprador do suporte.

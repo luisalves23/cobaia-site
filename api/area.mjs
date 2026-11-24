@@ -19,10 +19,11 @@ ${guias.map((g) => `<a class="bt" href="/tablet/g/${esc(g)}/">Abrir o guia${guia
   }
   if (p.suporte) {
     const zap = String(process.env.WHATSAPP_SUPORTE || '').replace(/\D/g, '');
-    const msg = encodeURIComponent('Oi, Luis! Comprei o guia do notebook com suporte (' + reg.email + '). Vamos começar?');
-    return `<div class="prod"><span class="pill">Suporte ativo${reg.brindeGuia ? ' · guia de brinde' : ''}</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p>
-${reg.brindeGuia ? '<p>Você foi uma das 10 primeiras compras do suporte: o guia completo veio junto.</p><a class="bt" href="/notebook/guia/">Abrir o guia</a>' : ''}
-${zap ? `<a class="bt alt" href="https://wa.me/${zap}?text=${msg}" target="_blank" rel="noopener">Falar com o Luis no WhatsApp</a>` : '<p>O Luis vai te chamar no WhatsApp que você deixou na compra.</p>'}</div>`;
+    const doNotebook = reg.produto === 'notebook-suporte';
+    const msg = encodeURIComponent('Oi, Luis! Comprei o suporte pessoal' + (doNotebook ? ' do notebook' : '') + ' (' + reg.email + '). Vamos começar?');
+    return `<div class="prod"><span class="pill">${doNotebook ? 'Suporte ativo · guia incluído' : 'Suporte ativo'}</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p>
+${p.guia ? `<a class="bt" href="${esc(p.guia)}">Abrir o guia</a>` : ''}
+${zap ? `<a class="bt${p.guia ? ' alt' : ''}" href="https://wa.me/${zap}?text=${msg}" target="_blank" rel="noopener">Chamar o Luis no WhatsApp</a>` : '<p>O Luis vai te chamar no WhatsApp que você deixou na compra.</p>'}</div>`;
   }
   return `<div class="prod"><span class="pill">Liberado</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p><a class="bt" href="${esc(p.destino)}">Abrir o guia</a></div>`;
 }
@@ -30,8 +31,10 @@ ${zap ? `<a class="bt alt" href="https://wa.me/${zap}?text=${msg}" target="_blan
 export async function GET(request) {
   const email = lerSessao(request);
   if (!email) return redirecionar('/acesso/');
-  const regs = await comprasAtivas(email);
+  let regs = await comprasAtivas(email);
   if (!regs.length) return redirecionar('/acesso/?erro=nao-encontrado&email=' + encodeURIComponent(email));
+  // o suporte comprado pela página do notebook gera dois registros; mostra só o cartão do notebook
+  if (regs.some((r) => r.produto === 'notebook-suporte')) regs = regs.filter((r) => r.produto !== 'suporte');
   regs.sort((a, b) => Number(ativo(b)) - Number(ativo(a)));
   const corpo = `
 <span class="badge">MINHA ÁREA</span>
