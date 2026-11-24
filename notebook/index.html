@@ -30,13 +30,14 @@
 <main>
 <!-- 1. HERÓI -->
 <div class="wrap hero2">
-  <span class="pill"><i></i>Mais de 340 mil pessoas viram esse notebook voltar</span>
+  <span class="pill"><i></i>Mais de 600 mil visualizações no vídeo desse notebook</span>
   <h1>Seu notebook velho <span class="g">não é lixo.</span></h1>
   <p class="lead">Antes de gastar <b>R$ 2.500</b> num notebook novo, ressuscite o seu. Ele volta <b>rápido</b>, com <b>cara de Mac</b> e <b>seguro até 2030</b>. Sem trocar nenhuma peça, mesmo que você nunca tenha formatado um computador.</p>
   <div class="ctas" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a class="btn" href="#prova">Quero ver a prova real</a>
     <a class="btn ghost" href="#como">Como funciona</a>
   </div>
+  <p class="aovivo" hidden><i></i><span data-on></span><span data-vis></span></p>
   <div class="vid" data-v="v-4gb-dock"><span class="tag good">notebook ressuscitado · vídeo real</span></div>
   <a class="down" href="#prova"><i></i>role pra ver o antes</a>
 </div>
@@ -72,7 +73,7 @@
     <div class="vid w3" data-v="v-gta"><div class="cap">Vídeo pesado sem travar</div></div>
     <div class="vid w3" data-v="v-lado"><div class="cap">Os dois tocando vídeo ao mesmo tempo</div></div>
   </div>
-  <div class="seen"><span>🔥 O vídeo desse notebook passou de <b>340 mil visualizações</b>, e a pergunta mais comum foi: "como eu faço isso no meu?"</span></div>
+  <div class="seen"><span>🔥 O vídeo desse notebook passou de <b>600 mil visualizações</b> e <b>23 mil comentários</b>. A pergunta mais comum: "como eu faço isso no meu?"</span></div>
 </div></section>
 
 <!-- 4. DOR -->
@@ -181,6 +182,7 @@
   <p class="eyebrow">preço de lançamento</p>
   <h2 id="h-planos">Escolha como você quer ressuscitar.</h2>
   <p class="sub" id="promo-txt">Promoção até 30/11. No dia 1º de dezembro o preço volta ao normal.</p>
+  <p class="aovivo" hidden><i></i><span data-on></span><span data-vis></span></p>
   <div class="timer" id="timer" aria-label="Tempo até o fim da promoção">
     <div class="glass"><b data-t="d">0</b><span>dias</span></div>
     <div class="glass"><b data-t="h">0</b><span>horas</span></div>
@@ -294,6 +296,28 @@
     });
   }
   precos(false);
+
+  /* Medidor real (api/ao-vivo.mjs): sinal a cada 60 s enquanto a aba está aberta */
+  (function(){
+    var id = null, novo = 0;
+    try { id = localStorage.getItem('nb-id'); } catch(e){}
+    if (!id) { id = (Date.now().toString(36) + Math.random().toString(36).slice(2, 12)).replace(/[^a-z0-9]/g, ''); novo = 1; try { localStorage.setItem('nb-id', id); } catch(e){} }
+    function sinal(){ if (document.visibilityState !== 'hidden') fetch('/api/ao-vivo?id=' + id + (novo ? '&novo=1' : ''), { method: 'POST', keepalive: true }).catch(function(){}); novo = 0; }
+    function n(x){ return x.toLocaleString('pt-BR'); }
+    function ler(){
+      fetch('/api/ao-vivo').then(function(r){ return r.json(); }).then(function(d){
+        var on = Math.max(d.online || 0, 1);
+        document.querySelectorAll('.aovivo').forEach(function(el){
+          el.querySelector('[data-on]').textContent = n(on) + (on === 1 ? ' pessoa nesta página agora' : ' pessoas nesta página agora');
+          el.querySelector('[data-vis]').textContent = d.visitas >= 100 ? n(d.visitas) + ' visitas desde o lançamento' : '';
+          el.hidden = false;
+        });
+      }).catch(function(){});
+    }
+    sinal(); setTimeout(ler, 1500);
+    setInterval(sinal, 60000); setInterval(ler, 30000);
+    document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') sinal(); });
+  })();
   var FIM = new Date('2026-12-01T02:59:59Z').getTime(); // 30/11 23:59:59 em Brasília
 
   document.querySelectorAll('[data-checkout]').forEach(function(a){
