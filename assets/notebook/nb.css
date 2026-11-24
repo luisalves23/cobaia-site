@@ -204,7 +204,11 @@ footer a{color:var(--mu)}
 .pain p{margin:0;color:var(--mu)}.pain b{color:var(--tx);display:block;margin-bottom:2px}
 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
 .cmp>div{padding:30px}
-.cmp .new{opacity:.85}
+.cmp .new{opacity:.6}
+.cmp .new .p{font-size:clamp(30px,3.6vw,44px);color:var(--di)}
+.cmp .new .p s{text-decoration-thickness:4px;text-decoration-color:#ff3b3b}
+.cmp .sub{margin:-6px 0 14px;color:var(--mu);font-weight:700}
+.price .val .x{font-size:26px;margin-right:6px;color:var(--mu);font-weight:800;letter-spacing:0}
 .cmp h3{font:800 16px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin:0 0 8px}
 .cmp .p{font:900 clamp(44px,6vw,72px)/1 var(--f);letter-spacing:-.04em;margin:0 0 14px}
 .cmp ul{margin:0;padding-left:20px;color:var(--mu)}

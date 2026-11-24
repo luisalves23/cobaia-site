@@ -170,8 +170,8 @@
   <p class="eyebrow">faça a conta</p>
   <h2 id="h-cmp">Notebook novo ou o seu, de volta?</h2>
   <div class="cmp">
-    <div class="glass new"><h3>Comprar um novo</h3><p class="p">R$ 2.500</p><ul><li>Parcela no cartão por meses</li><li>O velho continua na gaveta</li><li>Daqui a uns anos, o mesmo problema</li></ul></div>
-    <div class="glass us"><h3>Ressuscitar o seu</h3><p class="p">R$ 37,90</p><ul><li>Pagamento único, menos que uma pizza</li><li>Nenhuma peça pra comprar</li><li>Atualizações de segurança até 2030</li></ul></div>
+    <div class="glass us"><h3>Ressuscitar o seu</h3><p class="p" data-cmp="guia">R$ 37,90</p><p class="sub" data-cmp-sub="guia">pagamento único</p><ul><li>Menos que uma pizza</li><li>Nenhuma peça pra comprar</li><li>Atualizações de segurança até 2030</li></ul></div>
+    <div class="glass new"><h3>Comprar um novo</h3><p class="p"><s>R$ 2.500</s></p><p class="sub">ou 12x de R$ 208,33</p><ul><li>Parcela no cartão por um ano</li><li>O velho continua na gaveta</li><li>Daqui a uns anos, o mesmo problema</li></ul></div>
   </div>
   <p class="pct">Ressuscitar o seu custa <b>1,5%</b> do preço de um notebook novo.<br><span style="color:var(--mu);font-weight:700;font-size:.75em">Com R$ 37,90 você não compra nem uma peça nova pra ele.</span></p>
 </div></section>
@@ -192,7 +192,7 @@
       <h3>Guia completo</h3>
       <p style="color:var(--mu);margin:0">Você faz sozinho, no seu ritmo.</p>
       <div class="val" data-preco="guia"><span class="de" data-de>de R$ 97,90 por</span><br><small>R$</small>37,90</div>
-      <p class="pix">pagamento único · Pix ou cartão</p>
+      <p class="pix" data-pix="guia">pagamento único · Pix ou cartão</p>
       <ul>
         <li><b>As 8 fases</b>, do pendrive ao notebook pronto</li>
         <li><b>Os 2 visuais</b>: o leve e o completo com cara de Mac</li>
@@ -208,7 +208,7 @@
       <h3>Suporte pessoal do Luis</h3>
       <p style="color:var(--mu);margin:0">Eu pego na sua mão do início ao fim.</p>
       <div class="val" data-preco="suporte"><span class="de" data-de>de R$ 197,90 por</span><br><small>R$</small>97,90</div>
-      <p class="pix">pagamento único · Pix ou cartão</p>
+      <p class="pix" data-pix="suporte">pagamento único · Pix ou cartão</p>
       <span class="inc">🎁 O guia completo vem junto: 2 pelo preço de 1</span>
       <ul>
         <li><b>Eu no seu WhatsApp</b>, acompanhando cada fase</li>
@@ -267,7 +267,33 @@
 <script>
 (function(){
   /* Links de checkout da Kiwify: cole aqui quando os produtos estiverem criados. */
-  var CHECKOUT = { guia: '', suporte: '' };
+  var CHECKOUT = { guia: '', suporte: 'https://pay.kiwify.com.br/BRKaYbv' };
+  /* Preços. "parcela" é o valor da parcela que o checkout da Kiwify mostra (ex.: '4,62'); vazio mostra só o preço à vista. */
+  var PRECO = {
+    guia:    { de: '97,90',  por: '37,90', n: 12, parcela: '', depois: { por: '97,90',  parcela: '' } },
+    suporte: { de: '197,90', por: '97,90', n: 12, parcela: '', depois: { por: '197,90', parcela: '' } }
+  };
+  function precos(fim){
+    Object.keys(PRECO).forEach(function(k){
+      var p = PRECO[k], por = fim ? p.depois.por : p.por, parc = fim ? p.depois.parcela : p.parcela;
+      var de = fim ? '' : '<span class="de">de R$ ' + p.de + ' por</span><br>';
+      var val = document.querySelector('[data-preco="' + k + '"]');
+      var pix = document.querySelector('[data-pix="' + k + '"]');
+      if (parc) {
+        val.innerHTML = de + '<span class="x">' + p.n + 'x</span><small>R$</small>' + parc;
+        pix.textContent = 'ou R$ ' + por + ' à vista no Pix';
+      } else {
+        val.innerHTML = de + '<small>R$</small>' + por;
+        pix.textContent = 'pagamento único · Pix ou cartão';
+      }
+      var c = document.querySelector('[data-cmp="' + k + '"]');
+      if (c) {
+        c.innerHTML = parc ? p.n + 'x R$ ' + parc : 'R$ ' + por;
+        document.querySelector('[data-cmp-sub="' + k + '"]').textContent = parc ? 'ou R$ ' + por + ' à vista' : 'pagamento único';
+      }
+    });
+  }
+  precos(false);
   var FIM = new Date('2026-12-01T02:59:59Z').getTime(); // 30/11 23:59:59 em Brasília
 
   document.querySelectorAll('[data-checkout]').forEach(function(a){
@@ -300,8 +326,7 @@
     if (r <= 0) {
       t.style.display = 'none';
       document.getElementById('promo-txt').textContent = 'Preço normal.';
-      document.querySelector('[data-preco="guia"]').innerHTML = '<small>R$</small>97,90';
-      document.querySelector('[data-preco="suporte"]').innerHTML = '<small>R$</small>197,90';
+      precos(true);
       return;
     }
     var s = Math.floor(r/1000);
