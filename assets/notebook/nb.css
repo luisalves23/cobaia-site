@@ -234,3 +234,5 @@ footer a{color:var(--mu)}
 @media (max-width:520px){.aovivo [data-vis]{flex-basis:100%;text-align:center}.aovivo [data-vis]:not(:empty)::before{content:""}}
 .cta-mid{display:flex;flex-direction:column;align-items:center;gap:10px;margin:40px 0 0;text-align:center}
 .cta-mid span{color:var(--mu);font-size:14px}
+.price li.no{color:var(--di);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
+.price li.no::before{content:"✕";color:#ff5a4d}
