@@ -126,7 +126,7 @@ h2{font:900 clamp(30px,4.6vw,52px)/1.05 var(--f);letter-spacing:-.03em;margin:0 
 .price h3{font:900 26px var(--f);margin:0 0 6px;letter-spacing:-.02em}
 .price .de{color:var(--di);text-decoration:line-through;font:700 18px var(--f);letter-spacing:0}
 .price .val{font:900 56px/1 var(--f);letter-spacing:-.04em;margin:8px 0 4px}
-.price .val small{font-size:22px;vertical-align:top;margin-right:4px;font-weight:800}
+.price .val small{font-size:1em;vertical-align:baseline;margin-right:.18em;font-weight:500;letter-spacing:-.02em}
 .gift{margin:0 0 18px;padding:12px 14px;border-radius:14px;background:rgba(255,214,10,.08);border:1px solid rgba(255,214,10,.35);font-size:15px}
 .gift b{display:block;color:#ffe066}
 .gift span{color:var(--mu)}
