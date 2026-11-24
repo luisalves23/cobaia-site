@@ -270,8 +270,8 @@
   var CHECKOUT = { guia: 'https://pay.kiwify.com.br/PB5kqVM', suporte: 'https://pay.kiwify.com.br/BRKaYbv' };
   /* Preços. "parcela" é o valor da parcela que o checkout da Kiwify mostra (ex.: '4,62'); vazio mostra só o preço à vista. */
   var PRECO = {
-    guia:    { de: '97,90',  por: '37,90', n: 12, parcela: '', depois: { por: '97,90',  parcela: '' } },
-    suporte: { de: '197,90', por: '97,90', n: 12, parcela: '', depois: { por: '197,90', parcela: '' } }
+    guia:    { de: '97,90',  por: '37,90', n: 3, parcela: '13,53', depois: { por: '97,90',  parcela: '' } },
+    suporte: { de: '197,90', por: '97,90', n: 12, parcela: '10,13', depois: { por: '197,90', parcela: '' } }
   };
   function precos(fim){
     Object.keys(PRECO).forEach(function(k){
