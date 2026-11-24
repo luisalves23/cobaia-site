@@ -41,8 +41,8 @@ export async function GET() {
     const velhos = on.filter((b) => agora - new Date(b.uploadedAt).getTime() > 10 * 60_000).slice(0, 500).map((b) => b.url);
     if (velhos.length) await del(velhos).catch(() => {});
     const visitas = (await listarTudo('ao-vivo/visitas/', 100)).length;
-    return json({ online, visitas }, 200, 'public, s-maxage=20, stale-while-revalidate=40');
+    return json({ ok: true, online, visitas }, 200, 'public, s-maxage=20, stale-while-revalidate=40');
   } catch (e) {
-    return json({ online: 0, visitas: 0 }, 200, 'public, s-maxage=10');
+    return json({ ok: false, online: 0, visitas: 0 }, 200, 'public, s-maxage=10');
   }
 }
