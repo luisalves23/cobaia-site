@@ -19,3 +19,9 @@ Quem compra entra em `/acesso/` só com o e-mail da compra e vê tudo em `/minha
 - Painel em `/admin/` (chave `ADMIN_CHAVE`): consultar comprador, liberar guia de tablet pronto, registrar compra antiga, revogar.
 - Variáveis na Vercel: `GUIA_SEGREDO`, `BLOB_READ_WRITE_TOKEN` (criada pelo Blob), `KIWIFY_TOKEN` (token do webhook; vários separados por vírgula), `ADMIN_CHAVE`.
 - Produto novo: adicione em `PRODUTOS` (`lib/compras.mjs`) e o caminho do guia no `matcher` do `middleware.js`.
+
+## Notebook Ressuscitado (/notebook)
+- `/notebook/` é a landing de vendas (escrita à mão, fora do `build.py`). Links de checkout em `CHECKOUT` no fim do HTML.
+- `/notebook/guia/` é o guia pago, gerado por `python3 src/notebook_guia.py` a partir de `src/notebook-guia/` (aulas em `aulas.html`; o conteúdo dos `<pre>` é escrito cru e escapado pelo script).
+- Produtos `notebook` (guia) e `notebook-suporte` (suporte). As 10 primeiras compras do suporte ganham o guia (`brindeGuia`, contado em `contarSuporte`); `/api/vagas` mostra as vagas na landing.
+- Webhooks: `/api/kiwify?produto=notebook` e `/api/kiwify?produto=notebook-suporte`. Variável `WHATSAPP_SUPORTE` (55 + DDD + número) mostra o botão de WhatsApp na área do comprador do suporte.

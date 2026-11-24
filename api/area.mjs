@@ -17,6 +17,13 @@ ${guias.map((g) => `<a class="bt" href="/tablet/g/${esc(g)}/">Abrir o guia${guia
 <p>Seu pagamento entrou. Agora eu monto o passo a passo pro seu modelo exato. Quando ficar pronto, ele aparece aqui nesta página e eu te aviso no WhatsApp da compra.</p>
 <a class="bt alt" href="/tablet/o-mapa-do-tablet-velho.pdf" download>Enquanto isso: baixar o mapa do tablet (PDF)</a></div>`;
   }
+  if (p.suporte) {
+    const zap = String(process.env.WHATSAPP_SUPORTE || '').replace(/\D/g, '');
+    const msg = encodeURIComponent('Oi, Luis! Comprei o guia do notebook com suporte (' + reg.email + '). Vamos começar?');
+    return `<div class="prod"><span class="pill">Suporte ativo${reg.brindeGuia ? ' · guia de brinde' : ''}</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p>
+${reg.brindeGuia ? '<p>Você foi uma das 10 primeiras compras do suporte: o guia completo veio junto.</p><a class="bt" href="/notebook/guia/">Abrir o guia</a>' : ''}
+${zap ? `<a class="bt alt" href="https://wa.me/${zap}?text=${msg}" target="_blank" rel="noopener">Falar com o Luis no WhatsApp</a>` : '<p>O Luis vai te chamar no WhatsApp que você deixou na compra.</p>'}</div>`;
+  }
   return `<div class="prod"><span class="pill">Liberado</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p><a class="bt" href="${esc(p.destino)}">Abrir o guia</a></div>`;
 }
 

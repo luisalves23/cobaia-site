@@ -37,7 +37,7 @@
       ]
     },
     {
-      "source": "/(acesso|minha-area|admin|gta/guia)/(.*)",
+      "source": "/(acesso|minha-area|admin|gta/guia|notebook/guia)/(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",

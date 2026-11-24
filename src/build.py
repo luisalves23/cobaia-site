@@ -28,7 +28,7 @@ DIAS = [
          desc="Os dois prompts pra limpar a caixa de entrada e receber o resumo da noite com o Claude no Gmail e na Agenda."),
     dict(n=5, slug="mcp", kw="MCP", curto="O Claude montou meu post no Canva",
          desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
-    dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude",
+    dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude", landing=True,
          desc="O guia pra reviver um notebook velho com um Debian 13, do pendrive à interface, com os comandos pra fazer à mão e os pedidos prontos pro Claude Code."),
     dict(n=8, slug="tablet", kw="TABLET", curto="Ressuscitei um tablet abandonado", landing=True,
          desc="O mapa grátis pra ressuscitar o seu tablet velho e o passo a passo feito pro seu modelo, até o limite que ele aguenta."),
