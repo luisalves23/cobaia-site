@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guia · Notebook Ressuscitado</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#07080b">
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="stylesheet" href="/assets/notebook/nb.css">
+<style>
+body{overflow:hidden}
+.app{display:grid;grid-template-columns:320px 1fr;height:100vh;height:100dvh}
+/* menu lateral */
+.side{border-right:1px solid var(--ln);background:rgba(10,11,15,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;min-height:0}
+.side .hd{padding:18px 18px 12px;border-bottom:1px solid var(--ln)}
+.side .hd a{display:flex;gap:10px;align-items:center;text-decoration:none;font-weight:800;font-size:15px}
+.side .hd img{width:28px;height:28px;border-radius:50%}
+.prog{margin-top:14px}
+.prog .bar{height:6px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6a4d,#ff3b3b);transition:width .4s}
+.prog small{display:block;margin-top:6px;font:700 12px var(--mono);color:var(--mu)}
+.trilha{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:14px;padding:4px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--ln)}
+.trilha button{all:unset;cursor:pointer;text-align:center;font:800 13px var(--f);padding:8px 6px;border-radius:9px;color:var(--mu)}
+.trilha button[aria-pressed="true"]{background:rgba(255,255,255,.12);color:var(--tx);box-shadow:inset 0 0 0 1px var(--ln2)}
+.nav{overflow:auto;padding:10px 10px 30px;flex:1}
+.nav .f{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ac2);margin:16px 10px 6px}
+.nav a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:var(--mu);font-size:14.5px;line-height:1.35;padding:8px 10px;border-radius:10px}
+.nav a:hover{background:rgba(255,255,255,.05);color:var(--tx)}
+.nav a[aria-current="page"]{background:rgba(255,59,59,.12);color:var(--tx);box-shadow:inset 0 0 0 1px rgba(255,59,59,.35)}
+.nav a .ck{flex:0 0 16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid var(--di)}
+.nav a.ok .ck{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px #0b0c10}
+.side .ft{padding:12px 18px;border-top:1px solid var(--ln);font-size:13px;color:var(--di);display:flex;justify-content:space-between;gap:8px}
+.side .ft a{color:var(--mu)}
+/* conteúdo */
+.main{overflow:auto;min-height:0;scroll-behavior:smooth}
+.mtop{display:none}
+.aula{display:none;max-width:780px;margin:0 auto;padding:44px 28px 40px}
+.aula.on{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.aula .k{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ac2);margin:0 0 10px}
+.aula h1{font:900 clamp(30px,4.4vw,44px)/1.08 var(--f);letter-spacing:-.03em;margin:0 0 14px}
+.aula h2{font:800 22px/1.25 var(--f);letter-spacing:-.01em;margin:34px 0 10px}
+.aula h3{font:800 18px var(--f);margin:24px 0 6px}
+.aula p,.aula li{color:#d4d4da}
+.aula p.lead{font-size:19px;color:var(--mu)}
+.aula ol,.aula ul{padding-left:22px}
+.aula li{margin:6px 0}
+.aula code{font:500 .9em var(--mono);background:rgba(255,255,255,.07);border:1px solid var(--ln);padding:1px 6px;border-radius:6px;color:#fff}
+.aula kbd{font:700 .85em var(--mono);background:#1b1d24;border:1px solid var(--ln2);border-bottom-width:3px;padding:1px 7px;border-radius:7px}
+.aula a{color:#8ec1ff}
+.aula img{border-radius:14px;border:1px solid var(--ln2);margin:16px 0}
+.aula table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+.aula th,.aula td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--ln);vertical-align:top}
+.aula th{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mu)}
+.tw{overflow-x:auto}
+.scrim{display:none}
+/* blocos de comando */
+.cmd{position:relative;margin:14px 0 18px;border-radius:14px;border:1px solid var(--ln2);background:#0b0d12;overflow:hidden}
+.cmd .t{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-bottom:1px solid var(--ln);font:700 12px var(--mono);color:var(--mu);background:rgba(255,255,255,.03)}
+.cmd .t button{all:unset;cursor:pointer;font:800 13px var(--f);color:var(--tx);padding:6px 12px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid var(--ln2)}
+.cmd .t button.ok{background:rgba(48,209,88,.18);border-color:rgba(48,209,88,.5)}
+.cmd pre{margin:0;padding:14px;overflow-x:auto;font:400 14px/1.55 var(--mono);color:#e8e8ee;white-space:pre}
+.cmd.long pre{max-height:340px}
+/* avisos */
+.box{margin:18px 0;padding:14px 16px 14px 48px;border-radius:14px;position:relative;font-size:16px}
+.box::before{position:absolute;left:16px;top:13px;font-size:18px}
+.box p{margin:4px 0}
+.box.dica{background:rgba(100,168,255,.08);border:1px solid rgba(100,168,255,.3)}.box.dica::before{content:"💡"}
+.box.atencao{background:rgba(255,214,10,.07);border:1px solid rgba(255,214,10,.35)}.box.atencao::before{content:"⚠️"}
+.box.perigo{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.4)}.box.perigo::before{content:"⛔"}
+.box.certo{background:rgba(48,209,88,.07);border:1px solid rgba(48,209,88,.35)}.box.certo::before{content:"✅"}
+.only{display:none}
+body[data-trilha="leve"] .only.leve,body[data-trilha="mac"] .only.mac{display:block}
+span.only{display:none}body[data-trilha="leve"] span.only.leve,body[data-trilha="mac"] span.only.mac{display:inline}
+.tri-tag{display:inline-block;font:800 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:7px;margin-bottom:8px}
+.tri-tag.leve{background:rgba(255,106,77,.15);color:#ff9a85}.tri-tag.mac{background:rgba(100,168,255,.15);color:#9cc8ff}
+/* checklist e quiz */
+.chk{list-style:none;padding:0!important}
+.chk li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--ln);margin:8px 0}
+.chk input{width:20px;height:20px;margin-top:3px;accent-color:#30d158;flex:0 0 auto}
+.quiz{padding:20px;margin:18px 0}
+.quiz fieldset{border:0;padding:0;margin:0 0 18px}
+.quiz legend{font:800 17px var(--f);margin-bottom:10px}
+.quiz label{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid var(--ln);margin:6px 0;cursor:pointer}
+.quiz label:has(input:checked){border-color:rgba(255,59,59,.6);background:rgba(255,59,59,.08)}
+.quiz input{accent-color:#ff3b3b}
+.res{display:none;margin-top:6px}
+.res.on{display:block}
+/* rodapé da aula */
+.pn{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--ln)}
+.pn .btn{padding:13px 20px;font-size:15px}
+@media (max-width:900px){
+  body{overflow:auto}
+  .app{display:block;height:auto}
+  .side{position:fixed;inset:0 20% 0 0;z-index:40;transform:translateX(-105%);transition:transform .25s;max-width:360px}
+  .side.open{transform:none;box-shadow:30px 0 80px rgba(0,0,0,.7)}
+  .scrim{position:fixed;inset:0;z-index:39;background:rgba(0,0,0,.5);display:none}
+  .scrim.on{display:block}
+  .main{overflow:visible}
+  .mtop{display:flex;position:sticky;top:0;z-index:30;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(7,8,11,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--ln)}
+  .mtop button{all:unset;cursor:pointer;font:800 14px var(--f);padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid var(--ln2)}
+  .mtop span{font:700 12px var(--mono);color:var(--mu)}
+  .aula{padding:26px 16px 40px}
+}
+</style>
+</head>
+<body data-trilha="leve">
+<div class="glow" aria-hidden="true"></div>
+<div class="app">
+  <aside class="side" id="side" aria-label="Fases do guia">
+    <div class="hd">
+      <a href="/minha-area/"><img src="/assets/img/avatar.jpg" alt="" width="28" height="28"><span>Notebook Ressuscitado</span></a>
+      <div class="prog"><div class="bar"><i id="pbar"></i></div><small id="ptxt">0% concluído</small></div>
+      <div class="trilha" role="group" aria-label="Sua trilha">
+        <button type="button" data-set-trilha="leve" aria-pressed="true">Trilha Leve</button>
+        <button type="button" data-set-trilha="mac" aria-pressed="false">Trilha Mac</button>
+      </div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="ft"><a href="/minha-area/">Minha área e suporte</a><a href="/api/sair">Sair</a></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <main class="main" id="main">
+    <div class="mtop"><button type="button" id="abrir">☰ Fases</button><span id="mpos"></span></div>
+<!-- =========================== FASE 0 =========================== -->
+<section class="aula" id="bem-vindo" data-fase="Fase 0 · Antes de começar" data-titulo="Bem-vindo: como usar este guia">
+<p class="k">Fase 0 · passo 1</p>
+<h1>Bem-vindo. Vamos tirar esse notebook da gaveta.</h1>
+<p class="lead">Este guia leva você do notebook parado até um Debian 13 rápido, bonito e com atualizações de segurança até 2030. Um passo por tela, sem pular nada.</p>
+<h2>Como funciona</h2>
+<ul>
+<li><b>Menu de fases</b> à esquerda (no celular, no botão <b>☰ Fases</b>). Cada fase tem passos curtos.</li>
+<li><b>Trilha</b>: o seletor no topo do menu troca entre <b>Leve</b> e <b>Mac</b>. Só os passos que mudam são trocados. O teste do próximo passo escolhe a sua.</li>
+<li><b>Copiar</b>: todo comando tem um botão <b>Copiar</b>. No terminal do Debian, cole com <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> (o <kbd>Ctrl</kbd>+<kbd>V</kbd> sozinho não funciona no terminal) e aperte <kbd>Enter</kbd>.</li>
+<li><b>Progresso</b>: ao terminar um passo, clique em <b>Concluí, próximo passo</b>. O guia lembra onde você parou neste navegador.</li>
+</ul>
+<h2>Duas regras que evitam 90% dos problemas</h2>
+<ol>
+<li><b>Um comando por vez.</b> Cole, espere terminar (o cursor volta a piscar numa linha nova) e só então vá pro próximo.</li>
+<li><b>Leia o que aparece.</b> Se surgir a palavra <code>erro</code>, <code>E:</code> ou <code>falhou</code>, pare e vá na Fase 7, que tem as soluções dos problemas mais comuns.</li>
+</ol>
+<div class="box dica"><p><b>Abra este guia em outro aparelho.</b> Durante a instalação o notebook fica ocupado. Deixe o guia aberto no celular ou em outro computador e entre com o mesmo e-mail da compra.</p></div>
+<div class="box certo"><p><b>Comprou com suporte?</b> O botão de WhatsApp está na sua área: <a href="/minha-area/">Minha área</a>. Me chame antes de começar a Fase 1 que eu acompanho com você.</p></div>
+</section>
+
+<section class="aula" id="nivel" data-fase="Fase 0 · Antes de começar" data-titulo="Descubra o nível do seu notebook">
+<p class="k">Fase 0 · passo 2</p>
+<h1>Qual é o nível do seu notebook?</h1>
+<p class="lead">Três respostas decidem a sua trilha. Dá pra ver tudo ainda no Windows, em 2 minutos.</p>
+<h2>Onde ver no Windows</h2>
+<ol>
+<li>Aperte <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd> pra abrir o <b>Gerenciador de Tarefas</b>. Se ele abrir pequeno, clique em <b>Mais detalhes</b>.</li>
+<li>Vá na aba <b>Desempenho</b>.</li>
+<li>Clique em <b>Memória</b>: o número grande no alto à direita é a RAM (ex.: <code>4,0 GB</code>).</li>
+<li>Clique em <b>CPU</b>: embaixo aparece <b>Núcleos</b> (ex.: <code>2</code> ou <code>4</code>).</li>
+<li>Pra saber se é 64 bits: aperte <kbd>Windows</kbd>+<kbd>R</kbd>, digite <code>msinfo32</code> e <kbd>Enter</kbd>. Em <b>Tipo do sistema</b>, precisa aparecer <code>PC baseado em x64</code>.</li>
+</ol>
+<div class="box dica"><p><b>O notebook nem liga o Windows?</b> Procure o modelo na etiqueta embaixo do notebook e pesquise "<i>modelo</i> ficha técnica". Se não achar, escolha a trilha Leve: ela funciona em qualquer caso.</p></div>
+<h2>Responda</h2>
+<form class="glass quiz" id="quiz" onsubmit="return false">
+<fieldset><legend>1. Tipo do sistema</legend>
+<label><input type="radio" name="bits" value="64"> x64 (64 bits)</label>
+<label><input type="radio" name="bits" value="32"> x86 (32 bits)</label></fieldset>
+<fieldset><legend>2. Memória RAM</legend>
+<label><input type="radio" name="ram" value="1"> 1 GB ou menos</label>
+<label><input type="radio" name="ram" value="2"> 2 ou 3 GB</label>
+<label><input type="radio" name="ram" value="4"> 4 GB ou mais</label></fieldset>
+<fieldset><legend>3. Núcleos do processador</legend>
+<label><input type="radio" name="nucleos" value="2"> 1, 2 ou 3 núcleos</label>
+<label><input type="radio" name="nucleos" value="4"> 4 núcleos ou mais</label></fieldset>
+<div class="res box certo" id="rmac"><p><b>Trilha Mac.</b> Seu notebook aguenta o KDE Plasma, a interface mais bonita deste guia. Já deixei a trilha Mac marcada no menu.</p></div>
+<div class="res box certo" id="rleve"><p><b>Trilha Leve.</b> O Xfce é a interface que eu testei num notebook de 2 GB e 2 núcleos: liga em 45 segundos e abre o navegador em 5. Na Fase 5 você deixa ele com cara de Mac. Já deixei a trilha Leve marcada.</p></div>
+<div class="res box atencao" id="r1"><p><b>1 GB é muito pouco pra navegar na internet hoje.</b> Siga a trilha Leve e, se puder, troque a memória por uma de 4 GB (costuma ser barata e é só abrir uma tampinha embaixo do notebook). Com suporte, me mande o modelo antes que eu confiro com você.</p></div>
+<div class="res box perigo" id="r32"><p><b>Processador de 32 bits não roda o Debian 13.</b> O Debian deixou de ter instalador pra 32 bits. Se você comprou com suporte, me chame que a gente vê a alternativa pro seu modelo. Se não, peça o reembolso pela Kiwify dentro dos 7 dias: o guia não vai servir pra esse notebook.</p></div>
+</form>
+<table><thead><tr><th>Trilha</th><th>Para quem</th><th>Interface</th></tr></thead><tbody>
+<tr><td><b>Leve</b></td><td>Menos de 4 GB <b>ou</b> menos de 4 núcleos</td><td>Xfce</td></tr>
+<tr><td><b>Mac</b></td><td>4 GB ou mais <b>e</b> 4 núcleos ou mais</td><td>KDE Plasma 6</td></tr>
+</tbody></table>
+<div class="box dica"><p><b>Disco comum (HD) ou SSD?</b> As duas trilhas funcionam com HD. Se um dia der pra trocar por um SSD, é a melhoria que mais acelera um notebook velho.</p></div>
+</section>
+
+<section class="aula" id="precisa" data-fase="Fase 0 · Antes de começar" data-titulo="O que você precisa ter em mãos">
+<p class="k">Fase 0 · passo 3</p>
+<h1>O que você precisa ter em mãos</h1>
+<ul class="chk">
+<li><input type="checkbox" id="p-pen"><span><b>Pendrive de 8 GB ou mais.</b> Tudo o que estiver nele será apagado.</span></li>
+<li><input type="checkbox" id="p-car"><span><b>O carregador do notebook</b>, ligado na tomada o tempo todo. Bateria acabando no meio da instalação é o jeito mais fácil de dar errado.</span></li>
+<li><input type="checkbox" id="p-net"><span><b>Internet</b>: Wi-Fi com a senha anotada, ou cabo de rede. Se o Wi-Fi do notebook não for reconhecido na instalação, o celular ligado no cabo USB com "Ancoragem USB" ativada também serve.</span></li>
+<li><input type="checkbox" id="p-out"><span><b>Outro computador ou o celular</b> pra gravar o pendrive e acompanhar este guia.</span></li>
+<li><input type="checkbox" id="p-tem"><span><b>2 a 3 horas.</b> Dá pra parar entre as fases: o guia lembra onde você estava.</span></li>
+</ul>
+<h2>Anote o nome do Wi-Fi e do vídeo (no Windows)</h2>
+<p>Se alguma peça não funcionar depois, esse nome resolve. Clique com o botão direito no botão Iniciar, abra o <b>Gerenciador de Dispositivos</b> e anote:</p>
+<ul>
+<li>Em <b>Adaptadores de rede</b>: o que tem "Wireless", "Wi-Fi" ou "802.11" no nome (ex.: <code>Intel Dual Band Wireless-AC 3160</code>, <code>Realtek RTL8723BE</code>, <code>Broadcom BCM43142</code>).</li>
+<li>Em <b>Adaptadores de vídeo</b>: o nome da placa (ex.: <code>Intel HD Graphics</code>, <code>AMD Radeon</code>, <code>NVIDIA GeForce</code>).</li>
+</ul>
+<p>Tire uma foto da tela com o celular. Pronto.</p>
+</section>
+
+<section class="aula" id="backup" data-fase="Fase 0 · Antes de começar" data-titulo="Faça o backup (não pule)">
+<p class="k">Fase 0 · passo 4</p>
+<h1>Faça o backup. Não pule este passo.</h1>
+<div class="box perigo"><p><b>A instalação apaga o disco inteiro do notebook.</b> Windows, programas e arquivos. Depois não tem como recuperar.</p></div>
+<p class="lead">Copie para um pendrive (outro, não o da instalação), HD externo ou nuvem (Google Drive, OneDrive):</p>
+<ul class="chk">
+<li><input type="checkbox" id="b-doc"><span>Pasta <b>Documentos</b></span></li>
+<li><input type="checkbox" id="b-img"><span>Pastas <b>Imagens</b> e <b>Vídeos</b></span></li>
+<li><input type="checkbox" id="b-dow"><span>Pasta <b>Downloads</b> (muita gente esquece documentos importantes aqui)</span></li>
+<li><input type="checkbox" id="b-desk"><span>Tudo o que está na <b>Área de Trabalho</b></span></li>
+<li><input type="checkbox" id="b-nav"><span><b>Favoritos e senhas do navegador</b>: entre na sua conta Google no Chrome (ou conta Firefox) e ative a sincronização. No Debian, é só entrar de novo que tudo volta.</span></li>
+<li><input type="checkbox" id="b-zap"><span><b>WhatsApp</b>: no notebook ele é só uma cópia do celular. Nada a salvar aqui.</span></li>
+<li><input type="checkbox" id="b-out"><span>Outras pastas que você usa (ex.: <b>C:\Trabalho</b>, a pasta de um jogo, um disco <b>D:</b>)</span></li>
+</ul>
+<div class="box dica"><p><b>Dica:</b> abra o Explorador de Arquivos, clique em <b>Este Computador</b> e olhe se existe um disco <b>D:</b>. Ele também será apagado.</p></div>
+<p>Marcou tudo? Então a parte mais importante já está feita.</p>
+</section>
+
+<!-- =========================== FASE 1 =========================== -->
+<section class="aula" id="baixar" data-fase="Fase 1 · Preparar o pendrive" data-titulo="Baixe o Debian 13 do site oficial">
+<p class="k">Fase 1 · passo 1</p>
+<h1>Baixe o Debian 13 do site oficial</h1>
+<p class="lead">Faça este passo no computador que vai gravar o pendrive (pode ser o próprio notebook, ainda no Windows).</p>
+<ol>
+<li>Abra <a href="https://www.debian.org/download" target="_blank" rel="noopener">debian.org/download</a>.</li>
+<li>O download começa sozinho. O arquivo tem um nome parecido com <code>debian-13.x.x-amd64-netinst.iso</code> e uns <b>750 MB</b>.</li>
+<li>Se não começar, clique no link do arquivo <code>.iso</code> que aparece na página.</li>
+</ol>
+<div class="box atencao"><p><b>Baixe só do site oficial.</b> Sites de "download grátis" costumam trocar o arquivo por versões com propaganda ou vírus.</p></div>
+<h2>Por que essa versão (netinst)?</h2>
+<p>A "netinst" é o instalador pequeno: ele baixa da internet só o que você escolher, já na versão mais nova. É o jeito de ter um sistema enxuto, sem nada sobrando. Por isso a internet é obrigatória durante a instalação.</p>
+<div class="box dica"><p><b>"amd64" serve pra Intel também.</b> É só o nome técnico de processador de 64 bits, de qualquer marca.</p></div>
+</section>
+
+<section class="aula" id="conferir" data-fase="Fase 1 · Preparar o pendrive" data-titulo="Confira o arquivo (opcional)">
+<p class="k">Fase 1 · passo 2 · opcional</p>
+<h1>Confira se o arquivo veio inteiro</h1>
+<p class="lead">Um download cortado gera erros estranhos no meio da instalação. Este teste leva 1 minuto e elimina esse risco.</p>
+<ol>
+<li>No Windows, abra a pasta <b>Downloads</b>, clique com o botão direito num espaço vazio e escolha <b>Abrir no Terminal</b> (ou "Abrir janela do PowerShell aqui").</li>
+<li>Cole este comando e aperte <kbd>Enter</kbd>:</li>
+</ol>
+<pre data-t="Windows · PowerShell">Get-FileHash .\debian-13*-amd64-netinst.iso -Algorithm SHA512 | Format-List</pre>
+<ol start="3">
+<li>Abra a lista oficial: <a href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA512SUMS" target="_blank" rel="noopener">SHA512SUMS do Debian</a>.</li>
+<li>Compare os <b>primeiros e os últimos 8 caracteres</b> do <code>Hash</code> com a linha do seu arquivo na lista (letras maiúsculas ou minúsculas tanto faz).</li>
+</ol>
+<div class="box certo"><p><b>Bateu?</b> Arquivo perfeito. <b>Não bateu?</b> Apague e baixe de novo.</p></div>
+</section>
+
+<section class="aula" id="gravar" data-fase="Fase 1 · Preparar o pendrive" data-titulo="Grave o pendrive com o Rufus">
+<p class="k">Fase 1 · passo 3</p>
+<h1>Grave o pendrive com o Rufus</h1>
+<p class="lead">O Rufus é gratuito, não precisa instalar e grava o Debian de um jeito que funciona mesmo com o Secure Boot ligado (o erro que me travou no primeiro teste).</p>
+<ol>
+<li>Baixe o Rufus em <a href="https://rufus.ie/pt_BR/" target="_blank" rel="noopener">rufus.ie</a>. Pegue a versão <b>Portátil</b>.</li>
+<li>Espete o pendrive e abra o Rufus. Se o Windows perguntar se pode fazer alterações, clique em <b>Sim</b>.</li>
+<li><b>Dispositivo</b>: escolha o seu pendrive. Confira o tamanho pra não apagar o pendrive errado.</li>
+<li><b>Seleção de boot</b>: clique em <b>SELECIONAR</b> e escolha o arquivo <code>debian-13...iso</code>.</li>
+<li><b>Esquema de partição</b>: deixe <b>GPT</b>. Só se o notebook for de antes de 2012, escolha <b>MBR</b>.</li>
+<li>Clique em <b>INICIAR</b>.</li>
+<li>Vai aparecer a pergunta <b>"Modo Imagem ISO" ou "Modo Imagem DD"</b>: escolha <b>Gravar em modo Imagem DD</b>. É o modo recomendado pelo próprio Debian.</li>
+<li>Confirme que o pendrive será apagado e espere a barra ficar verde com <b>PRONTO</b>.</li>
+</ol>
+<div class="box dica"><p><b>Depois de gravar</b>, o Windows pode dizer que o pendrive "precisa ser formatado" ou mostrar só um pedaço dele. É normal. <b>Não formate</b>: só tire o pendrive.</p></div>
+<h2>Não tem Windows por perto?</h2>
+<p>No Mac ou no Linux, use o <a href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a>: escolha o arquivo, o pendrive e clique em <b>Flash</b>.</p>
+</section>
+
+<section class="aula" id="secureboot" data-fase="Fase 1 · Preparar o pendrive" data-titulo="Secure Boot: o erro que eu tive">
+<p class="k">Fase 1 · passo 4</p>
+<h1>Secure Boot: o erro que eu tive (e como evitar)</h1>
+<p class="lead">O Secure Boot é uma trava da placa-mãe que só deixa ligar sistemas "assinados". O Debian é assinado, então com o Rufus em modo DD ele normalmente liga sem você mexer em nada.</p>
+<h2>Quando você precisa desligar</h2>
+<p>Se, ao ligar pelo pendrive, aparecer uma tela com <code>Security Violation</code>, <code>Verification failed</code> ou <code>Invalid signature</code>:</p>
+<ol>
+<li>Entre na BIOS (próximo passo mostra a tecla da sua marca; costuma ser <kbd>F2</kbd> ou <kbd>Del</kbd>).</li>
+<li>Procure a aba <b>Security</b> ou <b>Boot</b>.</li>
+<li>Mude <b>Secure Boot</b> para <b>Disabled</b>.</li>
+<li>Salve e saia com <kbd>F10</kbd> e confirme com <b>Yes</b>.</li>
+</ol>
+<div class="box atencao"><p><b>Aconteceu comigo:</b> no notebook de 2016 do seguidor, a BIOS não aceitou nem o Debian instalado com o Secure Boot ligado. Depois de desligar, nunca mais deu problema. Em notebook antigo, pode deixar desligado de vez.</p></div>
+</section>
+
+<!-- =========================== FASE 2 =========================== -->
+<section class="aula" id="boot" data-fase="Fase 2 · Instalar" data-titulo="Ligue o notebook pelo pendrive">
+<p class="k">Fase 2 · passo 1</p>
+<h1>Ligue o notebook pelo pendrive</h1>
+<ol>
+<li>Notebook <b>desligado</b>, carregador na tomada, pendrive espetado.</li>
+<li>Aperte o botão de ligar e, logo em seguida, aperte <b>várias vezes</b> a tecla do menu de boot da sua marca:</li>
+</ol>
+<div class="tw"><table><thead><tr><th>Marca</th><th>Menu de boot</th><th>BIOS</th></tr></thead><tbody>
+<tr><td>Positivo / Vaio</td><td><kbd>F7</kbd> (ou <kbd>F12</kbd>)</td><td><kbd>Del</kbd> ou <kbd>F2</kbd></td></tr>
+<tr><td>Dell</td><td><kbd>F12</kbd></td><td><kbd>F2</kbd></td></tr>
+<tr><td>HP / Compaq</td><td><kbd>Esc</kbd> e depois <kbd>F9</kbd></td><td><kbd>Esc</kbd> e depois <kbd>F10</kbd></td></tr>
+<tr><td>Lenovo</td><td><kbd>F12</kbd> (ou <kbd>Fn</kbd>+<kbd>F12</kbd>) ou o furinho "Novo"</td><td><kbd>F2</kbd> (ou <kbd>Fn</kbd>+<kbd>F2</kbd>)</td></tr>
+<tr><td>Acer</td><td><kbd>F12</kbd> (às vezes precisa ativar "F12 Boot Menu" na BIOS)</td><td><kbd>F2</kbd></td></tr>
+<tr><td>Asus</td><td><kbd>Esc</kbd> ou <kbd>F8</kbd></td><td><kbd>F2</kbd></td></tr>
+<tr><td>Samsung</td><td><kbd>F10</kbd> ou <kbd>Esc</kbd></td><td><kbd>F2</kbd></td></tr>
+<tr><td>Multilaser / Philco / outras</td><td><kbd>F7</kbd>, <kbd>F11</kbd> ou <kbd>F12</kbd></td><td><kbd>Del</kbd> ou <kbd>F2</kbd></td></tr>
+</tbody></table></div>
+<ol start="3">
+<li>No menu que aparecer, escolha o pendrive. Se tiver duas opções com o nome dele, escolha a que começa com <b>UEFI</b>.</li>
+</ol>
+<h2>Nenhuma tecla funciona? O caminho que sempre dá certo</h2>
+<p>O Windows 10 e 11 têm uma "inicialização rápida" que pula o menu. Faça pelo próprio Windows:</p>
+<ol>
+<li>Segure <kbd>Shift</kbd> e clique em <b>Iniciar → Ligar/Desligar → Reiniciar</b>.</li>
+<li>Na tela azul: <b>Solução de problemas → Opções avançadas → Configurações de Firmware UEFI → Reiniciar</b>. Você cai direto na BIOS.</li>
+<li>Na BIOS, na aba <b>Boot</b>, coloque o pendrive em primeiro lugar, salve com <kbd>F10</kbd>.</li>
+</ol>
+<p>Ou, na mesma tela azul, escolha <b>Usar um dispositivo</b> e clique no pendrive.</p>
+<div class="box certo"><p><b>Deu certo quando</b> aparece uma tela escura com o logo do Debian e a opção <b>Graphical install</b>.</p></div>
+</section>
+
+<section class="aula" id="inst1" data-fase="Fase 2 · Instalar" data-titulo="Instalador: idioma, rede e usuário">
+<p class="k">Fase 2 · passo 2</p>
+<h1>Instalador, parte 1: idioma, rede e usuário</h1>
+<p class="lead">Escolha <b>Graphical install</b> (dá pra usar o mouse). Use <b>Continuar</b> no canto de baixo pra avançar. Responda assim:</p>
+<div class="tw"><table><thead><tr><th>Tela</th><th>O que responder</th></tr></thead><tbody>
+<tr><td>Language</td><td><b>Portuguese (Brazil) - Português do Brasil</b></td></tr>
+<tr><td>Localidade</td><td><b>Brasil</b></td></tr>
+<tr><td>Teclado</td><td><b>Português Brasileiro</b>. Se o teclado tem a tecla <kbd>Ç</kbd>, é esse.</td></tr>
+<tr><td>Firmware não livre / firmware faltando</td><td>Se perguntar se quer carregar firmware de mídia removível, responda <b>Não</b> e siga. A gente resolve na Fase 3.</td></tr>
+<tr><td>Interface de rede</td><td>Escolha a que começa com <code>wl</code> (Wi-Fi) ou <code>en</code>/<code>eth</code> (cabo).</td></tr>
+<tr><td>Rede sem fio</td><td>Escolha a sua rede, <b>WPA/WPA2</b> e digite a senha com calma.</td></tr>
+<tr><td>Nome de máquina</td><td>Um nome sem espaço e sem acento, ex.: <code>notebook</code></td></tr>
+<tr><td>Nome de domínio</td><td><b>Deixe em branco</b></td></tr>
+<tr><td>Senha do root</td><td><b>Deixe em branco</b> nos dois campos. Assim o seu usuário vira administrador, que é o mais simples.</td></tr>
+<tr><td>Nome completo</td><td>Seu nome</td></tr>
+<tr><td>Nome de usuário</td><td>Tudo minúsculo, sem acento e sem espaço, ex.: <code>maria</code>. <b>Anote.</b></td></tr>
+<tr><td>Senha</td><td>Uma senha que você não vai esquecer. <b>Anote.</b> Ela é pedida sempre que você instalar algo.</td></tr>
+<tr><td>Fuso horário</td><td>O seu estado</td></tr>
+</tbody></table></div>
+<div class="box atencao"><p><b>O Wi-Fi não apareceu?</b> Use o cabo de rede ou o celular ligado no USB com <b>Ancoragem USB</b> ativada (Configurações do celular → Conexões → Roteador Wi-Fi e ancoragem). Volte uma tela e escolha a nova interface.</p></div>
+</section>
+
+<section class="aula" id="inst2" data-fase="Fase 2 · Instalar" data-titulo="Instalador: o disco">
+<p class="k">Fase 2 · passo 3</p>
+<h1>Instalador, parte 2: o disco</h1>
+<div class="box perigo"><p>Aqui o Windows é apagado. Confira o backup da Fase 0 antes de continuar.</p></div>
+<div class="tw"><table><thead><tr><th>Tela</th><th>O que responder</th></tr></thead><tbody>
+<tr><td>Método de particionamento</td><td><b>Assistido - usar o disco inteiro</b></td></tr>
+<tr><td>Disco</td><td>O disco do notebook. Ele tem o tamanho maior (ex.: <code>500 GB</code> ou <code>240 GB</code>). <b>Não</b> escolha o pendrive (o de 8, 16 ou 32 GB).</td></tr>
+<tr><td>Esquema</td><td><b>Todos os arquivos em uma partição</b></td></tr>
+<tr><td>Resumo</td><td><b>Finalizar o particionamento e escrever as mudanças no disco</b></td></tr>
+<tr><td>Escrever as mudanças?</td><td>Marque <b>Sim</b> e continue</td></tr>
+</tbody></table></div>
+<p>Agora ele copia o sistema básico. Leva de 5 a 20 minutos.</p>
+<div class="box dica"><p><b>Tem dois discos</b> (ex.: um SSD pequeno e um HD grande)? Instale no <b>SSD</b>, que é muito mais rápido. Com suporte, me mande uma foto dessa tela antes de confirmar.</p></div>
+</section>
+
+<section class="aula" id="inst3" data-fase="Fase 2 · Instalar" data-titulo="Instalador: programas e fim">
+<p class="k">Fase 2 · passo 4</p>
+<h1>Instalador, parte 3: programas e fim</h1>
+<div class="tw"><table><thead><tr><th>Tela</th><th>O que responder</th></tr></thead><tbody>
+<tr><td>Ler outra mídia?</td><td><b>Não</b></td></tr>
+<tr><td>País do espelho</td><td><b>Brasil</b></td></tr>
+<tr><td>Espelho</td><td><code>deb.debian.org</code></td></tr>
+<tr><td>Proxy</td><td><b>Deixe em branco</b></td></tr>
+<tr><td>Concurso de popularidade</td><td><b>Não</b></td></tr>
+</tbody></table></div>
+<h2>A tela mais importante: Seleção de software</h2>
+<p>Clique nas caixinhas pra marcar e desmarcar. Deixe <b>exatamente</b> assim:</p>
+<div class="only leve">
+<span class="tri-tag leve">trilha leve</span>
+<ul class="chk">
+<li><input type="checkbox" checked disabled><span><b>Ambiente de área de trabalho Debian</b>: marcado</span></li>
+<li><input type="checkbox" disabled><span><b>GNOME</b>: <b>desmarcado</b> (vem marcado, tire)</span></li>
+<li><input type="checkbox" checked disabled><span><b>Xfce</b>: marcado</span></li>
+<li><input type="checkbox" disabled><span>Todos os outros ambientes (KDE, Cinnamon, MATE, LXDE, LXQt): desmarcados</span></li>
+<li><input type="checkbox" disabled><span>Servidor web e Servidor SSH: desmarcados</span></li>
+<li><input type="checkbox" checked disabled><span><b>Utilitários padrão do sistema</b>: marcado</span></li>
+</ul>
+</div>
+<div class="only mac">
+<span class="tri-tag mac">trilha mac</span>
+<ul class="chk">
+<li><input type="checkbox" checked disabled><span><b>Ambiente de área de trabalho Debian</b>: marcado</span></li>
+<li><input type="checkbox" disabled><span><b>GNOME</b>: <b>desmarcado</b> (vem marcado, tire)</span></li>
+<li><input type="checkbox" checked disabled><span><b>KDE Plasma</b>: marcado</span></li>
+<li><input type="checkbox" disabled><span>Todos os outros ambientes (Xfce, Cinnamon, MATE, LXDE, LXQt): desmarcados</span></li>
+<li><input type="checkbox" disabled><span>Servidor web e Servidor SSH: desmarcados</span></li>
+<li><input type="checkbox" checked disabled><span><b>Utilitários padrão do sistema</b>: marcado</span></li>
+</ul>
+</div>
+<div class="box atencao"><p><b>Só uma interface.</b> Duas interfaces juntas gastam disco, bagunçam o login e misturam aplicativos.</p></div>
+<p>Agora ele baixa e instala a interface. É a parte mais demorada: de 20 a 60 minutos, dependendo da internet. Pode ir tomar um café.</p>
+<h2>Final</h2>
+<ul>
+<li>Se perguntar onde instalar o <b>GRUB</b> (só em notebook antigo), responda <b>Sim</b> e escolha o disco do notebook (normalmente <code>/dev/sda</code>), nunca o pendrive.</li>
+<li>Em <b>Instalação completada</b>, tire o pendrive e clique em <b>Continuar</b>. O notebook reinicia.</li>
+</ul>
+</section>
+
+<section class="aula" id="primeiro" data-fase="Fase 2 · Instalar" data-titulo="Primeiro login e o terminal">
+<p class="k">Fase 2 · passo 5</p>
+<h1>Primeiro login e o terminal</h1>
+<p class="lead">Na tela de entrada, clique no seu nome e digite a senha. Bem-vindo ao Debian 13.</p>
+<h2>Abra o terminal</h2>
+<p>É nele que você vai colar os comandos do guia.</p>
+<div class="only leve"><p><span class="tri-tag leve">trilha leve</span><br>Clique em <b>Aplicativos</b> (canto de cima, à esquerda) → <b>Emulador de terminal</b>.</p></div>
+<div class="only mac"><p><span class="tri-tag mac">trilha mac</span><br>Clique no menu (ícone no canto de baixo, à esquerda), digite <code>konsole</code> e aperte <kbd>Enter</kbd>.</p></div>
+<h2>Teste se você é administrador</h2>
+<pre data-t="Terminal">sudo whoami</pre>
+<p>Ele pede a sua senha. <b>Enquanto você digita, nada aparece na tela</b>: é proteção, não travou. Digite e aperte <kbd>Enter</kbd>.</p>
+<div class="box certo"><p>Respondeu <code>root</code>? Perfeito, você é administrador.</p></div>
+<div class="box atencao"><p><b>Apareceu "não está no arquivo sudoers"?</b> É porque uma senha de root foi criada na instalação. Rode os 2 comandos abaixo (o primeiro pede a senha de <b>root</b>), troque <code>SEU_USUARIO</code> pelo seu nome de usuário e depois reinicie o notebook.</p></div>
+<pre data-t="Só se deu erro de sudoers">su -
+usermod -aG sudo SEU_USUARIO</pre>
+<div class="box dica"><p><b>Colar no terminal:</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> ou botão direito → Colar.</p></div>
+</section>
+
+<!-- =========================== FASE 3 =========================== -->
+<section class="aula" id="internet" data-fase="Fase 3 · Deixar tudo funcionando" data-titulo="Internet e Wi-Fi">
+<p class="k">Fase 3 · passo 1</p>
+<h1>Internet e Wi-Fi</h1>
+<p>Clique no ícone de rede perto do relógio <span class="only leve">(canto de cima, à direita)</span><span class="only mac">(canto de baixo, à direita)</span>, escolha a sua rede e digite a senha. Depois teste:</p>
+<pre data-t="Testar a internet">ping -c 3 debian.org</pre>
+<div class="box certo"><p>Apareceram 3 linhas com <code>time=</code> e um número? Internet funcionando.</p></div>
+<div class="box atencao"><p><b>Nenhuma rede aparece?</b> O Wi-Fi precisa de driver. Conecte por cabo ou pelo celular no USB, faça os passos 2 e 3 desta fase e depois o passo 5 (Wi-Fi).</p></div>
+<h2>Conectar pelo terminal (se o ícone não existir)</h2>
+<pre data-t="Listar redes e conectar">nmcli device wifi list
+nmcli device wifi connect "NOME_DA_REDE" password "SENHA_DA_REDE"</pre>
+</section>
+
+<section class="aula" id="atualizar" data-fase="Fase 3 · Deixar tudo funcionando" data-titulo="Libere os drivers e atualize tudo">
+<p class="k">Fase 3 · passo 2</p>
+<h1>Libere os drivers e atualize tudo</h1>
+<p class="lead">O Debian separa os drivers de fabricante (Wi-Fi, som, vídeo) num repositório próprio. Este comando deixa a lista de repositórios completa e correta, sem você precisar editar arquivo nenhum.</p>
+<pre data-t="Repositórios completos do Debian 13">sudo mv /etc/apt/sources.list /etc/apt/sources.list.antes 2&gt;/dev/null
+sudo tee /etc/apt/sources.list.d/debian.sources &gt;/dev/null &lt;&lt;'EOF'
+Types: deb
+URIs: http://deb.debian.org/debian
+Suites: trixie trixie-updates
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: http://security.debian.org/debian-security
+Suites: trixie-security
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+echo "repositorios prontos"</pre>
+<p>Agora atualize o sistema inteiro:</p>
+<pre data-t="Atualizar tudo">sudo apt update &amp;&amp; sudo apt full-upgrade -y</pre>
+<div class="box certo"><p>Terminou sem nenhuma linha começando com <code>E:</code>? Tudo certo.</p></div>
+<div class="box dica"><p><b>O que é "trixie"?</b> É o apelido do Debian 13. Todas as versões do Debian têm nome de personagem do Toy Story.</p></div>
+</section>
+
+<section class="aula" id="drivers" data-fase="Fase 3 · Deixar tudo funcionando" data-titulo="Drivers gerais e microcódigo">
+<p class="k">Fase 3 · passo 3</p>
+<h1>Drivers gerais e microcódigo</h1>
+<p>Este pacote cobre a maioria das peças. O microcódigo é a correção de segurança e estabilidade do processador; o comando escolhe sozinho o da sua marca (Intel ou AMD).</p>
+<pre data-t="Drivers gerais + microcódigo">sudo apt install -y firmware-linux firmware-misc-nonfree firmware-sof-signed
+if grep -q GenuineIntel /proc/cpuinfo; then sudo apt install -y intel-microcode; else sudo apt install -y amd64-microcode; fi</pre>
+<p>Agora veja o que tem dentro do notebook:</p>
+<pre data-t="Ver as peças">sudo apt install -y inxi
+inxi -Fxz</pre>
+<p>Procure as linhas <b>Graphics</b> (vídeo), <b>Audio</b> (som) e <b>Network</b> (rede). Elas dizem a marca de cada peça. Tire uma foto: é ela que você manda se precisar de ajuda.</p>
+<pre data-t="Reiniciar">sudo reboot</pre>
+</section>
+
+<section class="aula" id="wifi" data-fase="Fase 3 · Deixar tudo funcionando" data-titulo="Wi-Fi: o driver da sua marca">
+<p class="k">Fase 3 · passo 4</p>
+<h1>Wi-Fi: o driver da sua marca</h1>
+<p class="lead">Se o Wi-Fi já funciona, pule este passo. Se não, rode só o bloco da marca que apareceu na linha <b>Network</b> do <code>inxi</code> (ou no Gerenciador de Dispositivos que você fotografou).</p>
+<pre data-t="Intel">sudo apt install -y firmware-iwlwifi</pre>
+<pre data-t="Realtek">sudo apt install -y firmware-realtek</pre>
+<pre data-t="Atheros / Qualcomm">sudo apt install -y firmware-atheros</pre>
+<pre data-t="Broadcom (tente primeiro este)">sudo apt install -y firmware-brcm80211</pre>
+<pre data-t="Broadcom antigo (se o de cima não resolver)">sudo apt install -y linux-headers-amd64 broadcom-sta-dkms
+sudo modprobe -r b44 b43 b43legacy ssb brcmsmac bcma 2&gt;/dev/null
+sudo modprobe wl</pre>
+<pre data-t="Depois de qualquer um, reinicie">sudo reboot</pre>
+<div class="box atencao"><p><b>O Wi-Fi cai toda hora?</b> Desligue a economia de energia da placa:</p></div>
+<pre data-t="Wi-Fi sem economia de energia">printf '[connection]\nwifi.powersave = 2\n' | sudo tee /etc/NetworkManager/conf.d/wifi-powersave.conf
+sudo systemctl restart NetworkManager</pre>
+</section>
+
+<section class="aula" id="video" data-fase="Fase 3 · Deixar tudo funcionando" data-titulo="Vídeo, som, bluetooth e touchpad">
+<p class="k">Fase 3 · passo 5</p>
+<h1>Vídeo, som, bluetooth e touchpad</h1>
+<h2>Placa de vídeo</h2>
+<p>Na maioria dos notebooks o vídeo já funciona. Estes pacotes fazem o vídeo do YouTube ser decodificado pela placa, e não pelo processador (é isso que deixa o vídeo liso em notebook fraco).</p>
+<pre data-t="Intel (a maioria dos notebooks)">sudo apt install -y intel-media-va-driver i965-va-driver vainfo mesa-vulkan-drivers</pre>
+<pre data-t="AMD / Radeon">sudo apt install -y firmware-amd-graphics mesa-va-drivers vainfo mesa-vulkan-drivers</pre>
+<pre data-t="NVIDIA (descobrir o pacote certo)">sudo apt install -y nvidia-detect
+nvidia-detect</pre>
+<p>Na NVIDIA, só instale o pacote que o <code>nvidia-detect</code> indicar. Se ele disser que a placa não é suportada, fique com o driver livre que já vem no sistema: ele funciona.</p>
+<h2>Som</h2>
+<p>O Debian 13 já usa o PipeWire. Se o som não sair, instale o controle de volume completo e confira se a saída certa está escolhida e sem mudo:</p>
+<pre data-t="Controle de volume">sudo apt install -y pavucontrol
+pavucontrol</pre>
+<h2>Bluetooth</h2>
+<div class="only leve"><pre data-t="Bluetooth (trilha leve)">sudo apt install -y bluez blueman
+sudo systemctl enable --now bluetooth</pre></div>
+<div class="only mac"><p>No KDE Plasma o Bluetooth já vem pronto: clique no ícone de Bluetooth perto do relógio. Se não aparecer:</p><pre data-t="Bluetooth (trilha mac)">sudo apt install -y bluez bluedevil
+sudo systemctl enable --now bluetooth</pre></div>
+<h2>Touchpad: tocar pra clicar</h2>
+<div class="only leve"><p><b>Aplicativos → Configurações → Mouse e touchpad</b> → escolha o touchpad → aba <b>Touchpad</b> → marque <b>Toque no touchpad para clicar</b>.</p></div>
+<div class="only mac"><p><b>Configurações do Sistema → Mouse e touchpad → Touchpad</b> → marque <b>Toque para clicar</b>. Aproveite e ligue a <b>rolagem natural</b>, igual ao Mac.</p></div>
+<pre data-t="Reiniciar">sudo reboot</pre>
+</section>
+
+<section class="aula" id="conf3" data-fase="Fase 3 · Deixar tudo funcionando" data-titulo="Conferência: está tudo funcionando?">
+<p class="k">Fase 3 · passo 6</p>
+<h1>Conferência: está tudo funcionando?</h1>
+<ul class="chk">
+<li><input type="checkbox" id="c-wifi"><span>Wi-Fi conecta e continua conectado</span></li>
+<li><input type="checkbox" id="c-som"><span>Som sai pelos alto-falantes (e pelo fone, se plugar)</span></li>
+<li><input type="checkbox" id="c-brilho"><span>Brilho da tela muda nas teclas de brilho</span></li>
+<li><input type="checkbox" id="c-touch"><span>Touchpad funciona e clica com toque</span></li>
+<li><input type="checkbox" id="c-bat"><span>Com o carregador ligado, o ícone da bateria mostra carregando</span></li>
+<li><input type="checkbox" id="c-cam"><span>Webcam (teste no próximo passo, em uma chamada pelo navegador)</span></li>
+</ul>
+<div class="box dica"><p>Alguma coisa ficou de fora? Vá na <a href="#socorro">Fase 7 → Socorro</a>. Se comprou com suporte, me mande a foto da saída do <code>inxi -Fxz</code> e o que não funcionou.</p></div>
+</section>
+
+<!-- =========================== FASE 4 =========================== -->
+<section class="aula" id="medir" data-fase="Fase 4 · Otimizar" data-titulo="Meça antes de otimizar">
+<p class="k">Fase 4 · passo 1</p>
+<h1>Meça antes de otimizar</h1>
+<p class="lead">Anote estes números agora. No fim da fase, você mede de novo e vê a diferença no seu próprio notebook.</p>
+<pre data-t="Tempo pra ligar e memória em uso">systemd-analyze
+free -h</pre>
+<ul>
+<li><code>systemd-analyze</code>: a última parte (<code>= 1min 40s</code>, por exemplo) é o tempo pra ligar.</li>
+<li><code>free -h</code>: na linha <b>Mem</b>, a coluna <b>usada</b> é quanto o sistema está gastando.</li>
+</ul>
+<div class="box dica"><p><b>No notebook de 2 GB que eu otimizei:</b> de 1min40 pra 44,7 segundos até a tela de login, e o navegador passou a abrir em 5 segundos. O maior ganho aparece no uso: ele para de travar quando a memória enche.</p></div>
+</section>
+
+<section class="aula" id="zram" data-fase="Fase 4 · Otimizar" data-titulo="Memória comprimida (zram)">
+<p class="k">Fase 4 · passo 2</p>
+<h1>Memória comprimida (zram)</h1>
+<p class="lead">Quando a memória enche, o sistema "empurra" o excesso pro disco, que é lento. Com o zram, esse excesso fica <b>comprimido na própria memória</b>, muitas vezes mais rápido. No teste real, a compressão chegou a 3,8 vezes.</p>
+<pre data-t="Ligar o zram">sudo apt install -y zram-tools
+printf 'ALGO=zstd\nPERCENT=60\nPRIORITY=100\n' | sudo tee /etc/default/zramswap
+sudo systemctl enable zramswap
+sudo systemctl restart zramswap
+printf 'vm.swappiness=150\nvm.page-cluster=0\nvm.vfs_cache_pressure=50\n' | sudo tee /etc/sysctl.d/90-cobaia.conf
+sudo sysctl --system &gt;/dev/null
+swapon --show</pre>
+<div class="box certo"><p>Na lista final aparece <code>/dev/zram0</code> com prioridade <code>100</code>? Funcionando.</p></div>
+</section>
+
+<section class="aula" id="earlyoom" data-fase="Fase 4 · Otimizar" data-titulo="Nunca mais congelar (earlyoom)">
+<p class="k">Fase 4 · passo 3</p>
+<h1>Nunca mais congelar (earlyoom)</h1>
+<p class="lead">Sabe quando o computador congela e nem o mouse mexe? É a memória acabando. O earlyoom percebe antes e fecha só a aba ou o programa que estourou, de preferência o navegador, sem travar o resto.</p>
+<div class="only leve"><pre data-t="earlyoom (trilha leve)">sudo apt install -y earlyoom
+echo 'EARLYOOM_ARGS="-m 5 -s 10 -r 3600 --prefer ^(firefox-esr|firefox|chromium|chrome|Web|Isolated) --avoid ^(Xorg|xfwm4|xfce4-panel|xfdesktop|lightdm|systemd|plank)$"' | sudo tee /etc/default/earlyoom
+sudo systemctl enable earlyoom
+sudo systemctl restart earlyoom
+systemctl is-active earlyoom</pre></div>
+<div class="only mac"><pre data-t="earlyoom (trilha mac)">sudo apt install -y earlyoom
+echo 'EARLYOOM_ARGS="-m 5 -s 10 -r 3600 --prefer ^(firefox-esr|firefox|chromium|chrome|Web|Isolated) --avoid ^(Xorg|Xwayland|kwin_wayland|kwin_x11|plasmashell|sddm|systemd)$"' | sudo tee /etc/default/earlyoom
+sudo systemctl enable earlyoom
+sudo systemctl restart earlyoom
+systemctl is-active earlyoom</pre></div>
+<div class="box certo"><p>Respondeu <code>active</code>? Pronto.</p></div>
+</section>
+
+<section class="aula" id="servicos" data-fase="Fase 4 · Otimizar" data-titulo="Ligar mais rápido">
+<p class="k">Fase 4 · passo 4</p>
+<h1>Ligar mais rápido</h1>
+<h2>1. Tire do boot o que não serve num notebook</h2>
+<p>Espera pela rede antes de mostrar o login, modem 3G que o notebook não tem, procura de impressora na rede o tempo todo. A impressora continua funcionando: ela só passa a ligar quando você for imprimir.</p>
+<pre data-t="Serviços fora do boot">for s in NetworkManager-wait-online.service ModemManager.service cups-browsed.service avahi-daemon.service avahi-daemon.socket e2scrub_reap.service; do sudo systemctl disable --now "$s" 2&gt;/dev/null &amp;&amp; echo "desligado: $s"; done
+sudo systemctl disable cups.service 2&gt;/dev/null; sudo systemctl enable cups.socket 2&gt;/dev/null; echo "impressora: liga sob demanda"</pre>
+<h2>2. Menu de inicialização de 5 para 1 segundo</h2>
+<pre data-t="GRUB em 1 segundo">sudo sed -i -E 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=1/' /etc/default/grub
+sudo update-grub</pre>
+<h2>3. Menos escrita no disco</h2>
+<p>Por padrão, o sistema anota no disco a hora de cada arquivo que você abre. O <code>noatime</code> desliga isso. O comando faz uma cópia de segurança e confere o arquivo antes de aplicar.</p>
+<pre data-t="noatime (com conferência)">sudo cp -n /etc/fstab /etc/fstab.antes-cobaia
+sudo awk 'BEGIN{OFS="\t"} $0 !~ /^[[:space:]]*#/ &amp;&amp; $2=="/" &amp;&amp; $3=="ext4" &amp;&amp; $4 !~ /noatime/ { $4="noatime," $4 } {print}' /etc/fstab.antes-cobaia | sudo tee /etc/fstab.novo &gt;/dev/null
+sudo findmnt --verify --tab-file /etc/fstab.novo &amp;&amp; sudo mv /etc/fstab.novo /etc/fstab &amp;&amp; echo "fstab OK" || echo "NAO APLICADO: fstab original mantido"</pre>
+<div class="only leve">
+<h2>4. Boot mais enxuto (só trilha leve)</h2>
+<p>Deixa o arquivo de inicialização só com os drivers deste notebook, e o disco lento lê menos na hora de ligar.</p>
+<pre data-t="initramfs enxuto">echo 'MODULES=dep' | sudo tee /etc/initramfs-tools/conf.d/cobaia
+sudo update-initramfs -u</pre>
+<div class="box atencao"><p>Se um dia você trocar o HD por um SSD <b>clonando</b> o disco, desfaça antes com <code>sudo rm /etc/initramfs-tools/conf.d/cobaia && sudo update-initramfs -u</code>.</p></div>
+</div>
+</section>
+
+<section class="aula" id="energia" data-fase="Fase 4 · Otimizar" data-titulo="Bateria e atualizações automáticas">
+<p class="k">Fase 4 · passo 5</p>
+<h1>Bateria e atualizações automáticas</h1>
+<h2>Quando a bateria chegar a 2%</h2>
+<p>O padrão do Debian é "suspender" com 2%, e a suspensão continua gastando bateria até zerar. Aconteceu no teste: parecia que o notebook tinha travado, mas era a bateria acabando. Com este ajuste ele salva tudo e desliga de verdade.</p>
+<pre data-t="Hibernar com 2% de bateria">sudo mkdir -p /etc/UPower/UPower.conf.d
+printf '[UPower]\nCriticalPowerAction=Hibernate\n' | sudo tee /etc/UPower/UPower.conf.d/90-cobaia.conf
+sudo systemctl restart upower</pre>
+<div class="box dica"><p>Se o seu disco não tiver partição de troca (confira com <code>swapon --show</code>: precisa aparecer uma linha <code>partition</code>), troque <code>Hibernate</code> por <code>PowerOff</code> no comando acima.</p></div>
+<h2>Atualizações de segurança sozinhas</h2>
+<p>O Debian 13 recebe correções até 2030. Este ajuste instala as de segurança automaticamente, sem você lembrar.</p>
+<pre data-t="Atualizações automáticas">sudo apt install -y unattended-upgrades
+printf 'APT::Periodic::Update-Package-Lists "1";\nAPT::Periodic::Unattended-Upgrade "1";\n' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades</pre>
+</section>
+
+<section class="aula" id="navegador" data-fase="Fase 4 · Otimizar" data-titulo="Navegador leve e vídeo liso">
+<p class="k">Fase 4 · passo 6</p>
+<h1>Navegador leve e vídeo liso</h1>
+<p class="lead">O navegador é o programa que mais pesa. Estes ajustes no Firefox valem pra todo mundo que usar o notebook: menos processos, aba parada liberando memória, vídeo pela placa e sem telemetria.</p>
+<div class="only leve"><pre data-t="Firefox leve (trilha leve)">F=/etc/firefox-esr/firefox-esr.js
+sudo sed -i '/^\/\/ &gt;&gt;&gt; cobaia/,/^\/\/ &lt;&lt;&lt; cobaia/d' "$F"
+sudo tee -a "$F" &gt;/dev/null &lt;&lt;'EOF'
+// &gt;&gt;&gt; cobaia
+pref("dom.ipc.processCount", 2);
+pref("browser.tabs.unloadOnLowMemory", true);
+pref("media.ffmpeg.vaapi.enabled", true);
+pref("media.hardware-video-decoding.force-enabled", true);
+pref("media.mediasource.vp9.enabled", false);
+pref("media.av1.enabled", false);
+pref("browser.sessionstore.interval", 60000);
+pref("network.prefetch-next", false);
+pref("network.dns.disablePrefetch", true);
+pref("extensions.pocket.enabled", false);
+pref("browser.newtabpage.activity-stream.showSponsored", false);
+pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+pref("datareporting.healthreport.uploadEnabled", false);
+pref("toolkit.telemetry.enabled", false);
+pref("app.shield.optoutstudies.enabled", false);
+// &lt;&lt;&lt; cobaia
+EOF
+echo "Firefox ajustado"</pre>
+<p>Desligar VP9 e AV1 faz o YouTube mandar o vídeo num formato que placa de vídeo antiga consegue tocar sozinha. Em notebook fraco é a diferença entre vídeo travando e vídeo liso.</p></div>
+<div class="only mac"><pre data-t="Firefox leve (trilha mac)">F=/etc/firefox-esr/firefox-esr.js
+sudo sed -i '/^\/\/ &gt;&gt;&gt; cobaia/,/^\/\/ &lt;&lt;&lt; cobaia/d' "$F"
+sudo tee -a "$F" &gt;/dev/null &lt;&lt;'EOF'
+// &gt;&gt;&gt; cobaia
+pref("dom.ipc.processCount", 4);
+pref("browser.tabs.unloadOnLowMemory", true);
+pref("media.ffmpeg.vaapi.enabled", true);
+pref("browser.sessionstore.interval", 60000);
+pref("extensions.pocket.enabled", false);
+pref("browser.newtabpage.activity-stream.showSponsored", false);
+pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+pref("datareporting.healthreport.uploadEnabled", false);
+pref("toolkit.telemetry.enabled", false);
+pref("app.shield.optoutstudies.enabled", false);
+// &lt;&lt;&lt; cobaia
+EOF
+echo "Firefox ajustado"</pre></div>
+<h2>Confira se a placa está decodificando vídeo</h2>
+<pre data-t="Teste da placa de vídeo">vainfo 2&gt;/dev/null | grep -i -m3 -E 'H264|VP8|HEVC' || echo "sem aceleração: veja a dica abaixo"</pre>
+<div class="box dica"><p><b>Intel antigo (até 2014) sem aceleração?</b> Force o driver antigo e reinicie: <code>echo LIBVA_DRIVER_NAME=i965 | sudo tee -a /etc/environment</code>. Foi o que resolveu no Celeron do teste.</p></div>
+<div class="box atencao"><p><b>Não instale o uBlock Origin "normal"</b> neste notebook: no teste ele sozinho ocupou 572 MB e metade do processador a cada abertura. Na Fase 6 você instala o <b>uBlock Origin Lite</b>, que bloqueia anúncios quase sem pesar.</p></div>
+</section>
+
+<section class="aula" id="sessao" data-fase="Fase 4 · Otimizar" data-titulo="Interface mais leve">
+<p class="k">Fase 4 · passo 7</p>
+<h1>Interface mais leve</h1>
+<div class="only leve">
+<span class="tri-tag leve">trilha leve</span>
+<p>Tira as sombras das janelas (o compositor continua ligado, pra vídeo não "rasgar") e tira da inicialização o que não serve: ícone de fila de impressão, notas adesivas e perfil de cor.</p>
+<pre data-t="Xfce mais leve">for p in show_frame_shadow show_popup_shadow show_dock_shadow; do xfconf-query -c xfwm4 -p /general/$p -n -t bool -s false; done
+mkdir -p ~/.config/autostart
+for n in print-applet xfce4-notes-autostart xiccd; do [ -f /etc/xdg/autostart/$n.desktop ] &amp;&amp; printf '[Desktop Entry]\nHidden=true\n' &gt; ~/.config/autostart/$n.desktop &amp;&amp; echo "fora do início: $n"; done
+echo pronto</pre>
+</div>
+<div class="only mac">
+<span class="tri-tag mac">trilha mac</span>
+<p>O Plasma vem com alguns serviços que gastam memória e disco em notebook de 4 GB. Este bloco desliga o <b>indexador de arquivos</b> (Baloo, que lê o disco inteiro em segundo plano), o <b>KDE Connect</b> (integração com o celular) e o <b>assistente de pacotes</b> que roda escondido.</p>
+<pre data-t="Plasma mais leve">balooctl6 suspend 2&gt;/dev/null; balooctl6 disable 2&gt;/dev/null; echo "indexador desligado"
+mkdir -p ~/.config/autostart
+for f in /etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop /etc/xdg/autostart/org.kde.discover.notifier.desktop; do [ -f "$f" ] &amp;&amp; { cp "$f" ~/.config/autostart/; echo "Hidden=true" &gt;&gt; ~/.config/autostart/$(basename "$f"); echo "fora do início: $(basename "$f")"; }; done
+kwriteconfig6 --file kdeglobals --group KDE --key AnimationDurationFactor 0.5
+echo pronto</pre>
+<p>A última linha deixa as animações duas vezes mais rápidas: continua bonito, mas parece mais ágil.</p>
+<div class="box atencao"><p><b>Não use <code>apt autoremove</code> depois de remover programas do KDE</b> sem ler a lista que ele mostra. Se aparecer <code>plasma</code> ou <code>kde</code> em muitos itens, responda <b>n</b>.</p></div>
+</div>
+</section>
+
+<section class="aula" id="medir2" data-fase="Fase 4 · Otimizar" data-titulo="Reinicie e meça de novo">
+<p class="k">Fase 4 · passo 8</p>
+<h1>Reinicie e meça de novo</h1>
+<pre data-t="Reiniciar">sudo reboot</pre>
+<p>Depois de entrar, espere 1 minuto parado e rode:</p>
+<pre data-t="Medir de novo">systemd-analyze
+free -h
+swapon --show
+systemctl is-active earlyoom</pre>
+<table><thead><tr><th>O que olhar</th><th>Esperado</th></tr></thead><tbody>
+<tr><td>Tempo pra ligar</td><td>Menor que antes. Com HD comum, abaixo de 1 minuto é ótimo.</td></tr>
+<tr><td>Memória usada parado</td><td><span class="only leve">Trilha leve: perto de 500 a 700 MB</span><span class="only mac">Trilha mac: perto de 1 GB a 1,3 GB</span></td></tr>
+<tr><td><code>swapon --show</code></td><td><code>/dev/zram0</code> com prioridade 100</td></tr>
+<tr><td><code>earlyoom</code></td><td><code>active</code></td></tr>
+</tbody></table>
+<div class="box certo"><p>Compare com os números que você anotou. Se comprou com suporte, me mande o antes e o depois.</p></div>
+</section>
+
+<!-- =========================== FASE 5 · LEVE =========================== -->
+<section class="aula" id="tema-leve" data-trilha="leve" data-fase="Fase 5 · Deixar bonito" data-titulo="Tema e ícones estilo Mac">
+<p class="k">Fase 5 · passo 1 · trilha leve</p>
+<h1>Tema e ícones estilo Mac</h1>
+<p class="lead">Ícones e tema não gastam memória nenhuma: só ocupam um pouco de disco. Instale os dois:</p>
+<pre data-t="Tema Arc + ícones WhiteSur">sudo apt install -y arc-theme git
+cd /tmp &amp;&amp; rm -rf WhiteSur-icon-theme
+git clone --depth 1 https://github.com/vinceliuice/WhiteSur-icon-theme.git
+./WhiteSur-icon-theme/install.sh
+cd ~ &amp;&amp; echo "pronto"</pre>
+<p>Agora aplique:</p>
+<ol>
+<li><b>Aplicativos → Configurações → Aparência</b>: aba <b>Estilo</b> → <b>Arc-Dark</b>; aba <b>Ícones</b> → <b>WhiteSur-dark</b>.</li>
+<li><b>Aplicativos → Configurações → Gerenciador de janelas</b>: tema <b>Arc-Dark</b>.</li>
+<li>Ainda no Gerenciador de janelas, em <b>Layout dos botões</b>, arraste fechar, minimizar e maximizar pra esquerda se quiser igual ao Mac.</li>
+</ol>
+<div class="box dica"><p>Os ícones WhiteSur são de um projeto livre e famoso no GitHub. O comando baixa direto de lá e instala só na sua pasta, sem mexer no sistema.</p></div>
+</section>
+
+<section class="aula" id="fundo-leve" data-trilha="leve" data-fase="Fase 5 · Deixar bonito" data-titulo="Papel de parede">
+<p class="k">Fase 5 · passo 2 · trilha leve</p>
+<h1>Papel de parede</h1>
+<ol>
+<li>Escolha uma foto que você goste. Fotos gratuitas e lindas: <a href="https://unsplash.com/pt-br/s/fotos/paisagem-por-do-sol" target="_blank" rel="noopener">unsplash.com</a>. Prefira paisagem com céu em cima: o dock e a barra ficam por cima dela.</li>
+<li>Salve a foto com o nome <code>fundo.jpg</code> dentro da pasta <b>Imagens</b> (no Firefox: botão direito na foto → <b>Salvar imagem como</b>).</li>
+<li>Clique com o botão direito na área de trabalho → <b>Configurações da área de trabalho</b> → escolha a pasta Imagens e clique na sua foto.</li>
+</ol>
+<p>Confira se ela está no lugar certo (a tela de bloqueio vai usar essa mesma foto):</p>
+<pre data-t="Conferir a foto">ls -lh ~/Imagens/fundo.jpg</pre>
+<div class="box certo"><p>Apareceu o arquivo com o tamanho? Pode seguir.</p></div>
+</section>
+
+<section class="aula" id="dock-leve" data-trilha="leve" data-fase="Fase 5 · Deixar bonito" data-titulo="Dock estilo Mac e barra no topo">
+<p class="k">Fase 5 · passo 3 · trilha leve</p>
+<h1>Dock estilo Mac e barra no topo</h1>
+<p class="lead">O Plank é um dock leve (gasta uns 40 MB), com zoom nos ícones, que some quando uma janela encosta nele e volta quando você leva o mouse pra baixo. Este é o script final, depois de três versões.</p>
+<div class="box certo"><p><b>Os 3 erros que eu cometi já estão corrigidos aqui:</b> o dock gigante e espalhado (o espaçamento do Plank é em décimos do ícone), o ícone duplicado da pasta de arquivos (nunca copie o atalho do Thunar) e a ordem bagunçada (o Plank precisa estar fechado enquanto os ícones são criados).</p></div>
+<p>Copie o bloco inteiro de uma vez, cole no terminal e aperte <kbd>Enter</kbd>:</p>
+<pre data-t="Dock + barra no topo (cole tudo)">cat &gt; ~/dock-cobaia.sh &lt;&lt;'SCRIPT'
+#!/bin/bash
+set -e
+sudo apt-get install -y -qq plank &gt;/dev/null
+echo "1/6 tema Vidro"
+T="$HOME/.local/share/plank/themes/Vidro"; mkdir -p "$T"
+cat &gt; "$T/dock.theme" &lt;&lt;'EOF'
+[PlankTheme]
+TopRoundness=11
+BottomRoundness=11
+LineWidth=1
+OuterStrokeColor=0;;0;;0;;55
+FillStartColor=255;;255;;255;;78
+FillEndColor=240;;242;;255;;58
+InnerStrokeColor=255;;255;;255;;95
+[PlankDockTheme]
+HorizPadding=1.2
+TopPadding=1.4
+BottomPadding=1.4
+ItemPadding=2
+IndicatorSize=2.6
+IconShadowSize=1
+UrgentBounceHeight=0.8
+LaunchBounceHeight=0.3
+FadeOpacity=1
+ClickTime=250
+UrgentBounceTime=600
+LaunchBounceTime=500
+ActiveTime=250
+SlideTime=200
+FadeTime=200
+HideTime=200
+GlowSize=20
+GlowTime=10000
+GlowPulseTime=2000
+UrgentHueShift=150
+ItemMoveTime=350
+CascadeHide=true
+EOF
+echo "2/6 icone de pasta estilo Finder (sem copiar o atalho do Thunar)"
+rm -f "$HOME/.local/share/applications/thunar.desktop"
+for d in "$HOME"/.local/share/icons/WhiteSur*/apps/scalable; do
+  [ -f "$d/system-file-manager.svg" ] &amp;&amp; ln -sf system-file-manager.svg "$d/org.xfce.thunar.svg"
+done
+for t in "$HOME"/.local/share/icons/WhiteSur*; do gtk-update-icon-cache -q -f -t "$t" 2&gt;/dev/null || true; done
+echo "3/6 itens do dock (com o Plank fechado)"
+pkill -x plank 2&gt;/dev/null || true; sleep 1
+L="$HOME/.config/plank/dock1/launchers"; mkdir -p "$L"; rm -f "$L"/*.dockitem
+ITENS=""
+item() { if [ -f "$2" ] || [ "${2#docklet}" != "$2" ]; then
+  case "$2" in docklet*) u="$2";; *) u="file://$2";; esac
+  printf '[PlankDockItemPreferences]\nLauncher=%s\n' "$u" &gt; "$L/$1.dockitem"; ITENS="$ITENS'$1.dockitem',"; fi; }
+item 01-arquivos /usr/share/applications/thunar.desktop
+item 02-firefox  /usr/share/applications/firefox-esr.desktop
+item 03-terminal /usr/share/applications/xfce4-terminal.desktop
+item 04-writer   /usr/share/applications/libreoffice-writer.desktop
+item 05-editor   /usr/share/applications/org.xfce.mousepad.desktop
+item 06-ajustes  /usr/share/applications/xfce-settings-manager.desktop
+item 07-lixeira  docklet://trash
+echo "4/6 tamanho, zoom e esconder"
+S=net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/
+gsettings set $S dock-items "[${ITENS%,}]"
+gsettings set $S theme 'Vidro'
+gsettings set $S position 'bottom'
+gsettings set $S alignment 'center'
+gsettings set $S icon-size 42
+gsettings set $S zoom-enabled true
+gsettings set $S zoom-percent 128
+gsettings set $S hide-mode 'window-dodge'
+gsettings set $S hide-delay 300
+gsettings set $S unhide-delay 0
+gsettings set $S show-dock-item false
+mkdir -p "$HOME/.config/autostart"
+printf '[Desktop Entry]\nType=Application\nName=Plank\nExec=plank\nX-GNOME-Autostart-enabled=true\n' &gt; "$HOME/.config/autostart/plank.desktop"
+echo "5/6 barra do topo escura e translucida, sem a barra de baixo"
+B="$HOME/.config/cobaia-backup"; mkdir -p "$B"
+cp -n "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml" "$B/" 2&gt;/dev/null || true
+# nunca usar -rR em /panels: apaga a barra de cima inteira
+if xfconf-query -c xfce4-panel -p /panels | tail -n +3 | grep -qx 2; then
+  xfconf-query -c xfce4-panel -p /panels -a -t int -s 1
+fi
+xfconf-query -c xfce4-panel -p /panels/panel-1/background-style -n -t uint -s 1
+xfconf-query -c xfce4-panel -p /panels/panel-1/background-rgba -n -a -t double -s 0.06 -t double -s 0.06 -t double -s 0.09 -t double -s 0.45
+xfconf-query -c xfce4-panel -p /panels/panel-1/size -n -t uint -s 26
+xfce4-panel -r &gt;/dev/null 2&gt;&amp;1 &amp;
+sleep 3
+for k in show-home show-filesystem show-trash; do
+  xfconf-query -c xfce4-desktop -p /desktop-icons/file-icons/$k -n -t bool -s false
+done
+echo "6/6 ligando o dock"
+setsid plank &gt;/dev/null 2&gt;&amp;1 &lt; /dev/null &amp;
+sleep 3; pgrep -x plank &gt;/dev/null &amp;&amp; echo "DOCK PRONTO"
+SCRIPT
+bash ~/dock-cobaia.sh</pre>
+<div class="box certo"><p>Apareceu <code>DOCK PRONTO</code> e o dock subiu embaixo? Passe o mouse pelos ícones pra ver o zoom. Maximize uma janela: o dock some; leve o mouse até a borda de baixo: ele volta.</p></div>
+<h2>Personalizar</h2>
+<ul>
+<li><b>Adicionar um app ao dock:</b> abra o app, clique com o botão direito no ícone dele no dock → <b>Manter no dock</b>.</li>
+<li><b>Tirar um app:</b> arraste o ícone pra fora do dock.</li>
+<li><b>Mais configurações:</b> segure <kbd>Ctrl</kbd> e clique com o botão direito no dock → <b>Preferências</b>.</li>
+</ul>
+<div class="box atencao"><p><b>A barra de cima sumiu ou ficou vazia?</b> Veja a <a href="#socorro">Fase 7 → Socorro</a>, item "barra do Xfce apagada": o script guardou uma cópia de segurança.</p></div>
+</section>
+
+<section class="aula" id="bloqueio-leve" data-trilha="leve" data-fase="Fase 5 · Deixar bonito" data-titulo="Tela de bloqueio e login">
+<p class="k">Fase 5 · passo 4 · trilha leve</p>
+<h1>Tela de bloqueio e login</h1>
+<p class="lead">A mesma tela aparece ao ligar e ao bloquear (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd>): a sua foto desfocada, avatar redondo com a sua inicial, data e hora em cima e o campo de senha de vidro.</p>
+<img src="/assets/notebook/bloqueio.webp" width="1366" height="768" alt="Tela de bloqueio real: fundo desfocado, avatar redondo com a letra L, data e hora no topo e campo de senha translúcido" loading="lazy">
+<p>Precisa da foto <code>~/Imagens/fundo.jpg</code> do passo 2. Cole o bloco inteiro:</p>
+<pre data-t="Tela de bloqueio (cole tudo)">cat &gt; ~/bloqueio-cobaia.sh &lt;&lt;'SCRIPT'
+#!/bin/bash
+set -e
+U="$USER"; FOTO="$HOME/Imagens/fundo.jpg"; D=/usr/share/backgrounds/cobaia
+[ -f "$FOTO" ] || { echo "Falta a foto $FOTO (Fase 5, passo 2)"; exit 1; }
+sudo apt-get install -y -qq ffmpeg librsvg2-bin &gt;/dev/null
+echo "1/4 fundo desfocado (gerado uma vez so)"
+sudo mkdir -p $D
+sudo ffmpeg -nostdin -loglevel error -y -i "$FOTO" -vf "scale=1920:-2,gblur=sigma=28,eq=brightness=-0.06:saturation=1.15" -q:v 3 $D/fundo-desfocado.jpg
+sudo chmod 644 $D/fundo-desfocado.jpg
+echo "2/4 avatar com a sua inicial"
+INI=$(getent passwd "$U" | cut -d: -f5 | cut -c1 | tr '[:lower:]' '[:upper:]'); INI=${INI:-$(echo "$U" | cut -c1 | tr '[:lower:]' '[:upper:]')}
+cat &gt; /tmp/avatar.svg &lt;&lt;EOF
+&lt;svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"&gt;&lt;defs&gt;
+&lt;linearGradient id="g" x1="0" y1="0" x2="1" y2="1"&gt;&lt;stop offset="0" stop-color="#ffb36b"/&gt;&lt;stop offset=".55" stop-color="#e8657a"/&gt;&lt;stop offset="1" stop-color="#7b4fd6"/&gt;&lt;/linearGradient&gt;
+&lt;radialGradient id="b" cx=".35" cy=".25" r=".7"&gt;&lt;stop offset="0" stop-color="#fff" stop-opacity=".35"/&gt;&lt;stop offset="1" stop-color="#fff" stop-opacity="0"/&gt;&lt;/radialGradient&gt;&lt;/defs&gt;
+&lt;circle cx="128" cy="128" r="128" fill="url(#g)"/&gt;&lt;circle cx="128" cy="128" r="128" fill="url(#b)"/&gt;
+&lt;text x="128" y="128" dy=".35em" text-anchor="middle" font-family="DejaVu Sans" font-size="128" font-weight="600" fill="#fff" fill-opacity=".95"&gt;$INI&lt;/text&gt;&lt;/svg&gt;
+EOF
+rsvg-convert -w 256 -h 256 /tmp/avatar.svg -o /tmp/avatar.png
+sudo install -m 644 /tmp/avatar.png /var/lib/AccountsService/icons/"$U"
+sudo busctl call org.freedesktop.Accounts /org/freedesktop/Accounts/User$(id -u) org.freedesktop.Accounts.User SetIconFile s /var/lib/AccountsService/icons/"$U" 2&gt;/dev/null || true
+install -m 644 /tmp/avatar.png "$HOME/.face"
+echo "3/4 configuracao da tela"
+C=/etc/lightdm/lightdm-gtk-greeter.conf
+[ -e "$C.antes-cobaia" ] || sudo cp "$C" "$C.antes-cobaia"
+sudo tee "$C" &gt;/dev/null &lt;&lt;EOF
+[greeter]
+background=$D/fundo-desfocado.jpg
+user-background=false
+theme-name=Arc-Dark
+icon-theme-name=Adwaita
+font-name=Sans 11
+indicators=~spacer;~clock;~spacer;~power
+clock-format=%A, %d de %B    %H:%M
+position=50%,center 52%,center
+panel-position=top
+hide-user-image=false
+round-user-image=true
+screensaver-timeout=60
+EOF
+sudo mkdir -p /etc/lightdm/lightdm.conf.d
+printf '[Seat:*]\ngreeter-hide-users=false\n' | sudo tee /etc/lightdm/lightdm.conf.d/50-cobaia.conf &gt;/dev/null
+echo "4/4 visual de vidro"
+G=/var/lib/lightdm/.config/gtk-3.0; sudo mkdir -p $G
+sudo tee $G/gtk.css &gt;/dev/null &lt;&lt;'EOF'
+#panel_window{background:transparent;box-shadow:none}
+#panel_window menubar,#panel_window menubar&gt;menuitem{background:transparent;box-shadow:none;border:none}
+#panel_window label,#panel_window menuitem label,#panel_window menuitem:disabled label,#panel_window *:disabled{color:#fff;font-size:14pt;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.55)}
+#panel_window menubar&gt;menuitem:hover{background:rgba(255,255,255,.14);border-radius:8px}
+#panel_window menubar&gt;menuitem image{color:#fff}
+#login_window,#login_window #content_frame,#login_window #buttonbox_frame,#login_window frame,#login_window frame&gt;border{background:transparent;background-image:none;border:none;box-shadow:none}
+#login_window label{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+#login_window #user_combobox,#login_window #user_combobox button,#login_window #user_combobox box{background:transparent;background-image:none;border:none;box-shadow:none;color:#fff;font-size:13pt;font-weight:600}
+#login_window #user_combobox arrow{color:rgba(255,255,255,.7)}
+#login_window entry{background:rgba(255,255,255,.20);background-image:none;border:1px solid rgba(255,255,255,.38);border-radius:14px;color:#fff;caret-color:#fff;min-height:30px;padding:2px 12px}
+#login_window entry:focus{border-color:rgba(255,255,255,.75);background:rgba(255,255,255,.26)}
+#login_window button{background:rgba(255,255,255,.16);background-image:none;border:1px solid rgba(255,255,255,.30);border-radius:999px;color:#fff;box-shadow:none;text-shadow:none;min-height:26px;padding:2px 16px}
+#login_window button:hover{background:rgba(255,255,255,.28)}
+#login_window button label{color:#fff}
+#greeter_infobar,#login_window infobar,#login_window infobar&gt;revealer&gt;box{background:rgba(0,0,0,.35);border:none;border-radius:10px;color:#fff}
+menu,.menu,.context-menu{background:rgba(30,30,36,.92);color:#fff;border-radius:10px}
+menu menuitem:hover{background:rgba(255,255,255,.16)}
+EOF
+sudo chown -R lightdm:lightdm /var/lib/lightdm/.config
+echo "TELA DE BLOQUEIO PRONTA. Reinicie pra ver."
+SCRIPT
+bash ~/bloqueio-cobaia.sh</pre>
+<pre data-t="Reiniciar pra ver">sudo reboot</pre>
+<div class="box dica"><p>Quer voltar a tela original? <code>sudo cp /etc/lightdm/lightdm-gtk-greeter.conf.antes-cobaia /etc/lightdm/lightdm-gtk-greeter.conf</code> e reinicie.</p></div>
+</section>
+
+<section class="aula" id="boot-leve" data-trilha="leve" data-fase="Fase 5 · Deixar bonito" data-titulo="Animação ao ligar">
+<p class="k">Fase 5 · passo 5 · trilha leve</p>
+<h1>Animação ao ligar</h1>
+<p class="lead">Em vez das letrinhas brancas rolando na tela preta, o notebook mostra o logo do fabricante com uma bolinha girando, como num Mac.</p>
+<pre data-t="Animação de boot">sudo apt install -y plymouth plymouth-themes
+sudo plymouth-set-default-theme bgrt
+sudo sed -i -E 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
+sudo update-grub
+sudo update-initramfs -u</pre>
+<p>Reinicie pra ver. Se o seu notebook não tiver logo gravado na placa, aparece só a bolinha girando, que também fica bonito.</p>
+<div class="box dica"><p><b>Prefere outro estilo?</b> Troque <code>bgrt</code> por <code>spinner</code> (só a bolinha) ou veja a lista com <code>plymouth-set-default-theme -l</code>. Depois rode de novo <code>sudo update-initramfs -u</code>.</p></div>
+<div class="box atencao"><p><b>Ficou só a tela preta ao ligar?</b> Espere o login aparecer normalmente. Pra voltar às letrinhas, rode <code>sudo sed -i 's/quiet splash/quiet/' /etc/default/grub && sudo update-grub</code>.</p></div>
+</section>
+
+<!-- =========================== FASE 5 · MAC =========================== -->
+<section class="aula" id="tema-mac" data-trilha="mac" data-fase="Fase 5 · Deixar bonito" data-titulo="Tema WhiteSur completo">
+<p class="k">Fase 5 · passo 1 · trilha mac</p>
+<h1>Tema WhiteSur completo</h1>
+<p class="lead">O WhiteSur é o tema estilo macOS mais conhecido do Linux, livre e mantido no GitHub. Ele tem tudo: janelas, ícones, cursor, tela de login e tela de abertura.</p>
+<pre data-t="Baixar e instalar o WhiteSur (cole tudo)">sudo apt install -y git qml6-module-qt5compat-graphicaleffects 2&gt;/dev/null || sudo apt install -y git
+cd /tmp &amp;&amp; rm -rf WhiteSur-kde WhiteSur-icon-theme WhiteSur-cursors
+git clone --depth 1 https://github.com/vinceliuice/WhiteSur-kde.git
+git clone --depth 1 https://github.com/vinceliuice/WhiteSur-icon-theme.git
+git clone --depth 1 https://github.com/vinceliuice/WhiteSur-cursors.git
+./WhiteSur-kde/install.sh
+./WhiteSur-icon-theme/install.sh
+(cd WhiteSur-cursors &amp;&amp; ./install.sh)
+cd ~ &amp;&amp; echo "WHITESUR INSTALADO"</pre>
+<h2>Aplique em 4 cliques</h2>
+<ol>
+<li>Abra <b>Configurações do Sistema</b> (menu → digite "configurações").</li>
+<li><b>Cores e temas → Tema global</b> → escolha <b>WhiteSur-dark</b> (ou WhiteSur, se preferir claro) → <b>Aplicar</b>. Se aparecer a opção de usar o layout da área de trabalho do tema, <b>desmarque</b>: o dock você monta no próximo passo, do jeito certo.</li>
+<li><b>Cores e temas → Ícones</b> → <b>WhiteSur-dark</b>.</li>
+<li><b>Cores e temas → Cursores</b> → <b>WhiteSur-cursors</b>.</li>
+</ol>
+<div class="box dica"><p><b>Botões da janela à esquerda, igual ao Mac:</b> <b>Cores e temas → Decorações das janelas → Configurar botões da barra de título</b> e arraste fechar, minimizar e maximizar pra esquerda.</p></div>
+</section>
+
+<section class="aula" id="dock-mac" data-trilha="mac" data-fase="Fase 5 · Deixar bonito" data-titulo="Dock flutuante e barra no topo">
+<p class="k">Fase 5 · passo 2 · trilha mac</p>
+<h1>Dock flutuante e barra no topo</h1>
+<p class="lead">No Plasma 6 o dock é um painel nativo: flutua, se ajusta aos ícones e foge das janelas. Nada de programa extra, nada de dock bugado.</p>
+<h2>1. Leve a barra atual pro topo</h2>
+<ol>
+<li>Clique com o botão direito na barra de baixo → <b>Mostrar configurações do painel</b> (ou <b>Entrar no modo de edição</b>).</li>
+<li>Em <b>Posição</b>, escolha <b>Topo</b>. Em <b>Altura</b>, deixe por volta de <b>28</b>.</li>
+<li>Ainda no modo de edição, passe o mouse sobre o <b>Gerenciador de tarefas</b> dessa barra (os ícones dos apps abertos) e clique na lixeira pra removê-lo. Ele vai pro dock.</li>
+<li>Clique em <b>Adicionar widgets</b>, procure <b>Menu global</b> e arraste pra perto do menu, à esquerda. É ele que mostra "Arquivo, Editar, Exibir" do app aberto lá em cima, como no Mac.</li>
+</ol>
+<h2>2. Crie o dock</h2>
+<ol>
+<li>Botão direito na área de trabalho → <b>Entrar no modo de edição</b> → <b>Adicionar painel</b> → <b>Painel vazio</b>.</li>
+<li>Nas configurações do novo painel: <b>Posição</b> embaixo, <b>Alinhamento</b> centralizado, <b>Largura</b> "Ajustar ao conteúdo", <b>Estilo</b> flutuante, <b>Visibilidade</b> "Desviar das janelas", <b>Altura</b> por volta de <b>56</b>.</li>
+<li><b>Adicionar widgets</b> → arraste o <b>Gerenciador de tarefas somente com ícones</b> pra dentro do painel novo.</li>
+<li>Pra fixar um app: abra o app, botão direito no ícone dele no dock → <b>Fixar no gerenciador de tarefas</b>. Monte a ordem arrastando os ícones.</li>
+<li>Clique em <b>Sair do modo de edição</b>.</li>
+</ol>
+<div class="box certo"><p>Maximize uma janela: o dock desvia; leve o mouse até a borda de baixo: ele volta. A barra de cima mostra o menu do app aberto.</p></div>
+<div class="box dica"><p><b>Lançador estilo Launchpad:</b> no modo de edição, adicione o widget <b>Painel de aplicativos</b> (Application Dashboard) no começo do dock. Ele abre todos os apps em tela cheia, como no Mac.</p></div>
+</section>
+
+<section class="aula" id="bloqueio-mac" data-trilha="mac" data-fase="Fase 5 · Deixar bonito" data-titulo="Tela de login, bloqueio e papel de parede">
+<p class="k">Fase 5 · passo 3 · trilha mac</p>
+<h1>Tela de login, bloqueio e papel de parede</h1>
+<h2>Papel de parede</h2>
+<p>Botão direito na área de trabalho → <b>Configurar área de trabalho e papel de parede</b> → escolha um dos papéis do WhiteSur ou clique em <b>Adicionar…</b> pra usar uma foto sua. Fotos gratuitas: <a href="https://unsplash.com/pt-br/s/fotos/paisagem-por-do-sol" target="_blank" rel="noopener">unsplash.com</a>.</p>
+<h2>Tela de bloqueio</h2>
+<p><b>Configurações do Sistema → Segurança e privacidade → Bloqueio de tela → Configurar aparência</b> → escolha o mesmo papel de parede. O Plasma já desfoca e mostra o relógio grande. Bloqueie com <kbd>Meta</kbd>+<kbd>L</kbd> (a tecla do Windows) pra ver.</p>
+<h2>Tela de login (SDDM)</h2>
+<pre data-t="Instalar a tela de login WhiteSur">cd /tmp &amp;&amp; [ -d WhiteSur-kde ] || git clone --depth 1 https://github.com/vinceliuice/WhiteSur-kde.git
+cd WhiteSur-kde/sddm &amp;&amp; sudo ./install.sh
+cd ~ &amp;&amp; echo "pronto"</pre>
+<p>Depois: <b>Configurações do Sistema → Cores e temas → Tela de início de sessão (SDDM)</b> → escolha <b>WhiteSur</b> → <b>Aplicar</b>. Clique em <b>Aplicar configurações do Plasma</b> pra levar o seu tema e o seu papel de parede pra tela de login.</p>
+<h2>Tela de abertura</h2>
+<p><b>Cores e temas → Tela de abertura</b> → <b>WhiteSur</b>. É a animação que aparece logo depois de você digitar a senha.</p>
+</section>
+
+<section class="aula" id="boot-mac" data-trilha="mac" data-fase="Fase 5 · Deixar bonito" data-titulo="Animação ao ligar e toques finais">
+<p class="k">Fase 5 · passo 4 · trilha mac</p>
+<h1>Animação ao ligar e toques finais</h1>
+<h2>Animação ao ligar</h2>
+<p>Em vez das letrinhas brancas, o logo do fabricante com uma bolinha girando.</p>
+<pre data-t="Animação de boot">sudo apt install -y plymouth plymouth-themes
+sudo plymouth-set-default-theme bgrt
+sudo sed -i -E 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
+sudo update-grub
+sudo update-initramfs -u</pre>
+<h2>Toques finais</h2>
+<ul>
+<li><b>Desfoque atrás das janelas e menus:</b> Configurações do Sistema → <b>Gerenciamento de janelas → Efeitos da área de trabalho</b> → marque <b>Desfoque</b>. Num notebook mais fraco, se notar lentidão, desmarque.</li>
+<li><b>Busca rápida igual Spotlight:</b> aperte <kbd>Alt</kbd>+<kbd>Espaço</kbd> e digite o nome de qualquer app ou arquivo.</li>
+<li><b>Fonte mais bonita:</b> <code>sudo apt install -y fonts-inter</code> e escolha <b>Inter</b> em <b>Configurações → Texto e fontes → Fontes</b>.</li>
+</ul>
+<pre data-t="Reiniciar e ver tudo junto">sudo reboot</pre>
+</section>
+
+<!-- =========================== FASE 6 =========================== -->
+<section class="aula" id="apps" data-fase="Fase 6 · Apps do dia a dia" data-titulo="Navegador, WhatsApp e bloqueador leve">
+<p class="k">Fase 6 · passo 1</p>
+<h1>Navegador, WhatsApp e bloqueador leve</h1>
+<h2>Firefox (já vem instalado)</h2>
+<p>Entre na sua conta Firefox ou Google pra trazer favoritos e senhas. Depois instale o bloqueador de anúncios leve:</p>
+<p><a href="https://addons.mozilla.org/pt-BR/firefox/addon/ublock-origin-lite/" target="_blank" rel="noopener">uBlock Origin Lite</a> → <b>Adicionar ao Firefox</b>.</p>
+<div class="box atencao"><p>É o <b>Lite</b>. O uBlock Origin normal pesou 572 MB no notebook de teste.</p></div>
+<h2>Prefere Chrome? (só na trilha mac)</h2>
+<div class="only mac"><pre data-t="Google Chrome">cd /tmp &amp;&amp; wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install -y ./google-chrome-stable_current_amd64.deb</pre></div>
+<div class="only leve"><p>Na trilha leve, fique no Firefox: o Chrome gasta bem mais memória. Se precisar muito, o <code>chromium</code> é a versão aberta e um pouco mais leve: <code>sudo apt install -y chromium</code>.</p></div>
+<h2>WhatsApp no computador</h2>
+<p>Abra <a href="https://web.whatsapp.com" target="_blank" rel="noopener">web.whatsapp.com</a>, leia o QR code com o celular (WhatsApp → Aparelhos conectados) e deixe a aba fixada (botão direito na aba → <b>Fixar aba</b>).</p>
+</section>
+
+<section class="aula" id="escritorio" data-fase="Fase 6 · Apps do dia a dia" data-titulo="Escritório, PDF, vídeo e fotos">
+<p class="k">Fase 6 · passo 2</p>
+<h1>Escritório, PDF, vídeo e fotos</h1>
+<p class="lead">Instale só o que você usa. Cada programa a mais é espaço e atualização a mais.</p>
+<pre data-t="Escritório (Word, Excel e PowerPoint livres)">sudo apt install -y libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-l10n-pt-br hunspell-pt-br</pre>
+<p>O LibreOffice abre e salva arquivos do Word (<code>.docx</code>), Excel (<code>.xlsx</code>) e PowerPoint (<code>.pptx</code>). Na hora de salvar, escolha o formato da Microsoft se for mandar pra alguém que usa Office.</p>
+<div class="only leve"><pre data-t="PDF, vídeo, compactador e print (trilha leve)">sudo apt install -y atril vlc file-roller ristretto xfce4-screenshooter</pre></div>
+<div class="only mac"><pre data-t="PDF, vídeo, compactador e print (trilha mac)">sudo apt install -y okular vlc ark gwenview spectacle</pre></div>
+<p>Print da tela: tecla <kbd>Print Screen</kbd>.</p>
+<h2>Impressora</h2>
+<div class="only leve"><pre data-t="Impressoras (trilha leve)">sudo apt install -y system-config-printer printer-driver-all
+sudo usermod -aG lpadmin $USER</pre><p>Ligue a impressora no USB ou na mesma rede Wi-Fi e abra <b>Aplicativos → Configurações → Configurações de impressão → Adicionar</b>.</p></div>
+<div class="only mac"><pre data-t="Impressoras (trilha mac)">sudo apt install -y print-manager printer-driver-all
+sudo usermod -aG lpadmin $USER</pre><p>Ligue a impressora e abra <b>Configurações do Sistema → Impressoras → Adicionar</b>.</p></div>
+<div class="box dica"><p><b>Impressora HP?</b> Instale também <code>sudo apt install -y hplip</code>. <b>Epson ou Brother</b>: procure "<i>modelo</i> driver linux deb" no site do fabricante.</p></div>
+</section>
+
+<section class="aula" id="loja" data-fase="Fase 6 · Apps do dia a dia" data-titulo="Loja de apps (Spotify, Discord e outros)">
+<p class="k">Fase 6 · passo 3</p>
+<h1>Loja de apps</h1>
+<p class="lead">O Flathub é a maior loja de apps do Linux: Spotify, Discord, Zoom, OBS, GIMP e milhares de outros, sempre na versão mais nova.</p>
+<div class="only leve"><pre data-t="Flathub (trilha leve)">sudo apt install -y flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+echo "reinicie e use: flatpak install flathub NOME"</pre>
+<p>Na trilha leve, instale pelo terminal pra não carregar uma loja pesada. Exemplos:</p>
+<pre data-t="Exemplos">flatpak install -y flathub com.spotify.Client
+flatpak install -y flathub us.zoom.Zoom</pre></div>
+<div class="only mac"><pre data-t="Flathub dentro da loja Discover (trilha mac)">sudo apt install -y flatpak plasma-discover-backend-flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+echo "reinicie e abra o Discover"</pre>
+<p>Depois de reiniciar, abra o <b>Discover</b>, procure o app e clique em <b>Instalar</b>, como numa loja de celular.</p></div>
+<div class="box dica"><p><b>Programas do Windows:</b> quase sempre tem um equivalente. Office → LibreOffice. Photoshop → GIMP ou Photopea (no navegador). Player → VLC. Se você depende de um programa específico do Windows, me pergunte antes (se tiver suporte) ou pesquise "alternativa linux <i>nome do programa</i>".</p></div>
+</section>
+
+<!-- =========================== FASE 7 =========================== -->
+<section class="aula" id="manter" data-fase="Fase 7 · Manutenção e socorro" data-titulo="Manter atualizado e limpo">
+<p class="k">Fase 7 · passo 1</p>
+<h1>Manter atualizado e limpo</h1>
+<p class="lead">As atualizações de segurança já entram sozinhas (Fase 4). Uma vez por semana, rode a atualização completa:</p>
+<pre data-t="Atualizar tudo (1 vez por semana)">sudo apt update &amp;&amp; sudo apt full-upgrade -y</pre>
+<pre data-t="Limpar o que sobrou">sudo apt autoremove
+sudo apt clean
+flatpak uninstall --unused -y 2&gt;/dev/null; echo limpo</pre>
+<div class="box atencao"><p>O <code>autoremove</code> mostra a lista antes de apagar. Se aparecerem dezenas de pacotes com <span class="only mac"><code>plasma</code> ou <code>kde</code></span><span class="only leve"><code>xfce</code></span> no nome, responda <b>n</b> e me pergunte.</p></div>
+<h2>Ver o que está pesando agora</h2>
+<pre data-t="Monitor (q pra sair)">sudo apt install -y htop
+htop</pre>
+<h2>Até quando tem atualização?</h2>
+<p>O Debian 13 recebe correções de segurança até <b>junho de 2030</b>. Quando o Debian 14 sair (previsto para 2027), você pode continuar no 13 até lá, sem pressa.</p>
+</section>
+
+<section class="aula" id="socorro" data-fase="Fase 7 · Manutenção e socorro" data-titulo="Socorro: problemas comuns">
+<p class="k">Fase 7 · passo 2</p>
+<h1>Socorro: os problemas mais comuns</h1>
+<h3>1. Tela preta depois de ligar (sem tela de login)</h3>
+<p>Aperte <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F2</kbd>, entre com usuário e senha (no texto) e rode <code><span class="only leve">sudo systemctl restart lightdm</span><span class="only mac">sudo systemctl restart sddm</span></code>. Se voltar a acontecer, rode <code>journalctl -p 3 -b --no-pager | tail -30</code> e mande a foto.</p>
+<h3>2. "Security Violation" ou "Invalid signature" ao ligar</h3>
+<p>É o Secure Boot. Desligue na BIOS (<a href="#secureboot">Fase 1, passo 4</a>).</p>
+<h3>3. Sem Wi-Fi</h3>
+<p>Ligue a internet por cabo ou pelo celular no USB e siga a <a href="#wifi">Fase 3, passo 4</a> com a marca da sua placa.</p>
+<h3>4. Sem som</h3>
+<p>Abra <code>pavucontrol</code>, aba <b>Configuração</b>, e escolha um perfil "Estéreo analógico". Depois aba <b>Dispositivos de saída</b>: tire o mudo. Ainda nada? <code>sudo apt install -y firmware-sof-signed</code> e reinicie.</p>
+<h3>5. "E: Não foi possível obter trava" ou "dpkg was interrupted"</h3>
+<p>Outra instalação está rodando (espere 5 minutos) ou foi interrompida. Rode:</p>
+<pre data-t="Destravar o instalador">sudo dpkg --configure -a
+sudo apt -f install</pre>
+<h3>6. "sudo: não está no arquivo sudoers"</h3>
+<p>Veja a <a href="#primeiro">Fase 2, passo 5</a>.</p>
+<div class="only leve">
+<h3>7. A barra de cima do Xfce sumiu ou ficou vazia</h3>
+<p>O script do dock guardou a barra original. Restaure:</p>
+<pre data-t="Restaurar a barra do Xfce">xfce4-panel --quit; pkill xfconfd; sleep 1
+cp ~/.config/cobaia-backup/xfce4-panel.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/
+setsid xfce4-panel &gt;/dev/null 2&gt;&amp;1 &amp;</pre>
+<p>Ainda vazia? Volte a barra padrão do Xfce: <code>xfce4-panel --quit; pkill xfconfd; rm ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml; setsid xfce4-panel &</code> e escolha <b>Usar configuração padrão</b>.</p>
+<h3>8. O dock sumiu ou está com ícone repetido</h3>
+<p>Rode de novo o script: <code>bash ~/dock-cobaia.sh</code>. Ele fecha o Plank, recria os ícones na ordem e liga de novo.</p>
+</div>
+<div class="only mac">
+<h3>7. A barra ou o dock do Plasma bagunçou</h3>
+<p>Botão direito na área de trabalho → <b>Entrar no modo de edição</b> e ajuste. Pra voltar ao layout original do Plasma: <b>Configurações do Sistema → Cores e temas → Tema global</b> → escolha <b>Breeze</b>, marque <b>Usar layout da área de trabalho do tema</b> e aplique. Depois refaça o <a href="#dock-mac">passo do dock</a>.</p>
+<h3>8. Notebook lento no Plasma</h3>
+<p>Confira se os ajustes do <a href="#sessao">Fase 4, passo 7</a> foram aplicados e desligue o <b>Desfoque</b> nos efeitos. Se o notebook tiver só 4 GB e continuar lento, a trilha Leve vai ficar mais rápida nele.</p>
+</div>
+<h3>9. O notebook desligou sozinho / "travou" com bateria</h3>
+<p>Provavelmente a bateria chegou a 2% e ele hibernou (é o ajuste da Fase 4). Ligue na tomada e aperte o botão de ligar: ele volta de onde parou.</p>
+<h3>10. Travou tudo, nem o mouse mexe</h3>
+<p>Espere 1 minuto (o earlyoom costuma resolver sozinho). Se não voltar, segure o botão de ligar por 10 segundos. Ao ligar, rode <code>journalctl -p 3 -b -1 --no-pager | tail -30</code> pra ver o que aconteceu.</p>
+</section>
+
+<section class="aula" id="ajuda" data-fase="Fase 7 · Manutenção e socorro" data-titulo="Como pedir ajuda do jeito certo">
+<p class="k">Fase 7 · passo 3</p>
+<h1>Como pedir ajuda do jeito certo</h1>
+<p class="lead">Com estas informações, qualquer pessoa (ou eu, se você tem suporte) descobre o problema muito mais rápido.</p>
+<pre data-t="Juntar tudo num arquivo">{ echo "=== HARDWARE ==="; inxi -Fxz 2&gt;/dev/null; echo; echo "=== ERROS DO BOOT ==="; journalctl -p 3 -b --no-pager | tail -40; echo; echo "=== MEMORIA ==="; free -h; swapon --show; } &gt; ~/ajuda-notebook.txt 2&gt;&amp;1
+echo "Arquivo criado: ~/ajuda-notebook.txt"</pre>
+<p>O arquivo <code>ajuda-notebook.txt</code> fica na sua pasta pessoal. Mande junto com:</p>
+<pre data-t="Mensagem pronta (copie e complete)">Oi! Estou seguindo o guia do Notebook Ressuscitado.
+Trilha: [Leve ou Mac]
+Notebook: [marca e modelo]
+Em que passo parei: [fase e passo]
+O que eu fiz: [comando que rodei]
+O que aconteceu: [o que apareceu na tela, ou foto]
+Segue o arquivo ajuda-notebook.txt.</pre>
+<div class="box certo"><p><b>Tem suporte?</b> Mande no WhatsApp pelo botão da <a href="/minha-area/">sua área</a>. <b>Não tem?</b> Cole a mensagem e o conteúdo do arquivo num assistente de IA gratuito e peça pra explicar em português simples. Leia o comando que ele sugerir antes de rodar.</p></div>
+</section>
+
+<!-- =========================== BÔNUS =========================== -->
+<section class="aula" id="claude" data-fase="Bônus" data-titulo="Claude Code no notebook">
+<p class="k">Bônus · 1</p>
+<h1>Claude Code no notebook</h1>
+<p class="lead">Foi com ele que eu fiz boa parte do primeiro notebook. Com o Claude Code rodando no terminal, você pede em português e ele executa, lê os erros e corrige.</p>
+<div class="box atencao"><p>O Claude Code precisa de uma conta paga do Claude. É opcional: o guia inteiro funciona sem ele.</p></div>
+<pre data-t="Instalar o Claude Code">curl -fsSL https://claude.ai/install.sh | bash</pre>
+<p>Feche e abra o terminal, digite <code>claude</code> e siga o login. Depois, use os pedidos abaixo, um por vez:</p>
+<pre data-t="Pedido · diagnóstico">Este notebook acabou de receber o Debian 13. Confere se Wi-Fi, som, vídeo, bluetooth, touchpad e bateria estão funcionando. Faz uma coisa por vez, me mostra o que achou e me pergunta antes de instalar qualquer coisa.</pre>
+<pre data-t="Pedido · desempenho">Mede quanto tempo o notebook leva pra ligar e quanta memória usa parado. Me diz o que está pesando e o que dá pra desligar com segurança. Me pergunta antes de mudar qualquer coisa e mede de novo no final, mostrando o antes e o depois.</pre>
+<pre data-t="Pedido · quando dá erro">Rodei este comando: [cole o comando]. Apareceu isto: [cole a mensagem]. Me explica em português simples o que aconteceu e como resolver.</pre>
+<div class="box dica"><p>O Claude pede permissão antes de cada comando. Leia o que ele vai rodar e, se parecer apagar arquivos seus, pergunte o motivo antes de aceitar.</p></div>
+</section>
+
+<section class="aula" id="glossario" data-fase="Bônus" data-titulo="Glossário rápido">
+<p class="k">Bônus · 2</p>
+<h1>Glossário rápido</h1>
+<div class="tw"><table><tbody>
+<tr><td><b>Debian</b></td><td>Um dos sistemas Linux mais antigos e estáveis. A versão 13 ("trixie") tem atualização de segurança até 2030.</td></tr>
+<tr><td><b>Linux</b></td><td>A família de sistemas livres a que o Debian pertence, alternativa ao Windows.</td></tr>
+<tr><td><b>Interface (ambiente gráfico)</b></td><td>A parte visual: janelas, barra, menu. Xfce (leve) e KDE Plasma (bonito) são duas delas.</td></tr>
+<tr><td><b>Terminal</b></td><td>A janela onde você digita comandos.</td></tr>
+<tr><td><b>sudo</b></td><td>"Faça como administrador". Pede a sua senha.</td></tr>
+<tr><td><b>apt</b></td><td>O instalador de programas do Debian. <code>apt install nome</code> baixa e instala.</td></tr>
+<tr><td><b>Repositório</b></td><td>A "loja" oficial de onde o apt baixa os programas.</td></tr>
+<tr><td><b>Firmware / driver</b></td><td>O programinha que faz uma peça (Wi-Fi, som, vídeo) funcionar.</td></tr>
+<tr><td><b>BIOS / UEFI</b></td><td>A tela de configuração da placa-mãe, antes de qualquer sistema ligar.</td></tr>
+<tr><td><b>Secure Boot</b></td><td>Trava da BIOS que só deixa ligar sistemas assinados.</td></tr>
+<tr><td><b>ISO</b></td><td>O arquivo do instalador, que vai pro pendrive.</td></tr>
+<tr><td><b>GRUB</b></td><td>O menu que aparece ao ligar e chama o sistema.</td></tr>
+<tr><td><b>RAM / memória</b></td><td>Onde ficam os programas abertos. Quanto mais, mais coisa aberta ao mesmo tempo.</td></tr>
+<tr><td><b>zram</b></td><td>Memória comprimida: faz a RAM render mais.</td></tr>
+<tr><td><b>Dock</b></td><td>A barra de ícones embaixo, estilo Mac.</td></tr>
+<tr><td><b>Flatpak / Flathub</b></td><td>Outra forma de instalar apps, com uma loja enorme.</td></tr>
+</tbody></table></div>
+<div class="box certo"><p><b>Chegou até aqui?</b> Seu notebook voltou à vida. Se puder, mande um print da sua área de trabalho pro @cobaia.dev: eu adoro ver.</p></div>
+</section>
+
+  </main>
+</div>
+<script>
+(function(){
+  var LS = { get:function(k){try{return localStorage.getItem(k)}catch(e){return null}}, set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
+  var aulas = [].slice.call(document.querySelectorAll('.aula'));
+  var feitas = {}; try { feitas = JSON.parse(LS.get('nb-feitas') || '{}') || {}; } catch(e) {}
+  var nav = document.getElementById('nav'), main = document.getElementById('main');
+
+  /* trilha */
+  function trilha(t){
+    document.body.setAttribute('data-trilha', t); LS.set('nb-trilha', t);
+    document.querySelectorAll('[data-set-trilha]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-set-trilha') === t)); });
+    montarNav(); progresso();
+  }
+  document.querySelectorAll('[data-set-trilha]').forEach(function(b){ b.addEventListener('click', function(){ trilha(b.getAttribute('data-set-trilha')); }); });
+  function visivel(a){ var t = a.getAttribute('data-trilha'); return !t || t === document.body.getAttribute('data-trilha'); }
+  function lista(){ return aulas.filter(visivel); }
+
+  /* menu */
+  function montarNav(){
+    nav.innerHTML = ''; var fase = '';
+    lista().forEach(function(a){
+      if (a.dataset.fase !== fase) { fase = a.dataset.fase; var f = document.createElement('div'); f.className = 'f'; f.textContent = fase; nav.appendChild(f); }
+      var l = document.createElement('a'); l.href = '#' + a.id; l.dataset.id = a.id;
+      l.innerHTML = '<span class="ck"></span><span></span>'; l.lastChild.textContent = a.dataset.titulo;
+      if (feitas[a.id]) l.classList.add('ok');
+      nav.appendChild(l);
+    });
+    marcarAtual();
+  }
+  function progresso(){
+    var L = lista(), n = L.filter(function(a){ return feitas[a.id]; }).length, p = Math.round(100 * n / L.length);
+    document.getElementById('pbar').style.width = p + '%';
+    document.getElementById('ptxt').textContent = p + '% concluído · ' + n + ' de ' + L.length + ' passos';
+  }
+  function marcarAtual(){
+    var id = atual(); nav.querySelectorAll('a').forEach(function(l){ if (l.dataset.id === id) { l.setAttribute('aria-current','page'); } else l.removeAttribute('aria-current'); });
+  }
+
+  /* rota */
+  function atual(){
+    var id = location.hash.slice(1), a = document.getElementById(id);
+    if (!a || !a.classList.contains('aula')) return '';
+    return id;
+  }
+  function mostrar(){
+    var id = atual(), L = lista();
+    if (!id) { id = LS.get('nb-ultima') || L[0].id; if (!document.getElementById(id)) id = L[0].id; history.replaceState(null, '', '#' + id); }
+    var a = document.getElementById(id);
+    if (!visivel(a)) { var outra = a.getAttribute('data-trilha') === 'mac' ? 'mac' : 'leve'; trilha(outra); }
+    aulas.forEach(function(x){ x.classList.toggle('on', x === a); });
+    LS.set('nb-ultima', id);
+    rodape(a); marcarAtual(); fechar();
+    var i = lista().indexOf(a); document.getElementById('mpos').textContent = 'Passo ' + (i + 1) + ' de ' + lista().length;
+    main.scrollTop = 0; window.scrollTo(0, 0);
+    document.title = a.dataset.titulo + ' · Notebook Ressuscitado';
+  }
+  function rodape(a){
+    var velho = a.querySelector('.pn'); if (velho) velho.remove();
+    var L = lista(), i = L.indexOf(a), ant = L[i - 1], prox = L[i + 1];
+    var d = document.createElement('div'); d.className = 'pn';
+    d.innerHTML = (ant ? '<a class="btn ghost" href="#' + ant.id + '">← Anterior</a>' : '<span></span>') +
+      (prox ? '<a class="btn" data-feito href="#' + prox.id + '">' + (feitas[a.id] ? 'Próximo passo →' : 'Concluí, próximo passo →') + '</a>'
+            : '<button class="btn" type="button" data-feito>' + (feitas[a.id] ? 'Guia concluído 🎉' : 'Concluí o guia 🎉') + '</button>');
+    d.querySelector('[data-feito]').addEventListener('click', function(){ feitas[a.id] = 1; LS.set('nb-feitas', JSON.stringify(feitas)); montarNav(); progresso(); });
+    a.appendChild(d);
+  }
+  addEventListener('hashchange', mostrar);
+
+  /* copiar */
+  document.querySelectorAll('pre[data-t]').forEach(function(pre){
+    var w = document.createElement('div'); w.className = 'cmd' + (pre.textContent.split('\n').length > 16 ? ' long' : '');
+    var t = document.createElement('div'); t.className = 't'; t.innerHTML = '<span></span><button type="button">Copiar</button>'; t.firstChild.textContent = pre.getAttribute('data-t');
+    pre.parentNode.insertBefore(w, pre); w.appendChild(t); w.appendChild(pre);
+    var b = t.querySelector('button');
+    b.addEventListener('click', function(){
+      var txt = pre.textContent;
+      function ok(){ b.textContent = 'Copiado ✓'; b.classList.add('ok'); setTimeout(function(){ b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1800); }
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, function(){ fallback(txt); ok(); }); else { fallback(txt); ok(); }
+    });
+  });
+  function fallback(txt){ var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e) {} ta.remove(); }
+
+  /* checklists salvos */
+  document.querySelectorAll('.chk input[type=checkbox]:not([disabled])').forEach(function(c, i){
+    var k = 'nb-chk-' + (c.id || i); if (LS.get(k) === '1') c.checked = true;
+    c.addEventListener('change', function(){ LS.set(k, c.checked ? '1' : '0'); });
+  });
+
+  /* teste do nível */
+  var q = document.getElementById('quiz');
+  if (q) q.addEventListener('change', function(){
+    var v = function(n){ var e = q.querySelector('input[name=' + n + ']:checked'); return e ? e.value : ''; };
+    var b = v('bits'), r = v('ram'), c = v('nucleos');
+    q.querySelectorAll('.res').forEach(function(x){ x.classList.remove('on'); });
+    if (!b || !r || !c) return;
+    var id = b === '32' ? 'r32' : r === '1' ? 'r1' : (r === '4' && c === '4') ? 'rmac' : 'rleve';
+    document.getElementById(id).classList.add('on');
+    if (id === 'rmac') trilha('mac'); if (id === 'rleve') trilha('leve');
+  });
+
+  /* celular */
+  var side = document.getElementById('side'), scrim = document.getElementById('scrim');
+  function fechar(){ side.classList.remove('open'); scrim.classList.remove('on'); }
+  document.getElementById('abrir').addEventListener('click', function(){ side.classList.add('open'); scrim.classList.add('on'); });
+  scrim.addEventListener('click', fechar);
+
+  trilha(LS.get('nb-trilha') === 'mac' ? 'mac' : 'leve');
+  mostrar();
+})();
+</script>
+</body>
+</html>

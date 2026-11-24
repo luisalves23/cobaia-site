@@ -1,4 +1,4 @@
-/* Webhook da Kiwify: https://cobaia-dev.vercel.app/api/kiwify?produto=<tablet|gta>
+/* Webhook da Kiwify: https://cobaia-dev.vercel.app/api/kiwify?produto=<tablet|gta|notebook|suporte>
    Um webhook por produto na Kiwify, com os eventos: Compra aprovada, Compra reembolsada e Chargeback.
    A Kiwify assina cada envio: ?signature= é o HMAC-SHA1 (hex) do corpo cru, com o token do webhook como chave.
    O token fica na variável KIWIFY_TOKEN da Vercel (vários tokens separados por vírgula, se houver mais de um webhook). */
@@ -43,8 +43,8 @@ export async function POST(request) {
   const pedido = String(d.order_id || d.order_ref || '');
   if (!email || !pedido) return json({ ok: false, erro: 'sem e-mail ou pedido' }, 400);
 
-  await aplicarEvento({
-    produto, email, pedido, status,
+  const base = {
+    email, pedido, status,
     nome: c.full_name || c.first_name || c.name || '',
     celular: c.mobile || c.phone || '',
     origem: 'kiwify',
@@ -55,8 +55,26 @@ export async function POST(request) {
       // campos extras do checkout (ex.: modelo do tablet), se a Kiwify mandar
       campos: d.custom_fields || d.CustomFields || d.checkout_fields || null,
     },
-  });
-  return json({ ok: true, produto, status });
+  };
+  await aplicarEvento({ produto, ...base });
+
+  /* Order bump: no checkout do guia do notebook, o suporte pessoal pode vir junto no mesmo pedido.
+     Se o aviso do guia citar o produto do suporte, o suporte é registrado também. Se a Kiwify mandar um aviso próprio do bump em
+     ?produto=notebook-suporte, o registro é o mesmo e nada duplica. */
+  let bump = false;
+  if (produto === 'notebook') {
+    const txt = corpo.toLowerCase();
+    bump = txt.includes('suporte pessoal') || (process.env.KIWIFY_SUPORTE_ID && corpo.includes(process.env.KIWIFY_SUPORTE_ID));
+    if (bump) await aplicarEvento({ produto: 'notebook-suporte', ...base });
+  }
+  /* Suporte comprado pelo botão da página /notebook: o checkout leva src=notebook (vem em TrackingParameters),
+     então o suporte também libera o guia do notebook. Vendido por outro lugar, fica só o suporte. */
+  if (produto === 'suporte') {
+    const tp = JSON.stringify(d.TrackingParameters || d.tracking_parameters || {}).toLowerCase();
+    bump = tp.includes('notebook');
+    if (bump) await aplicarEvento({ produto: 'notebook-suporte', ...base });
+  }
+  return json({ ok: true, produto, status, bump });
 }
 
 export function GET() {

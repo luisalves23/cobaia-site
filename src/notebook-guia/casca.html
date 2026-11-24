@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guia · Notebook Ressuscitado</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#07080b">
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="stylesheet" href="/assets/notebook/nb.css">
+<style>
+body{overflow:hidden}
+.app{display:grid;grid-template-columns:320px 1fr;height:100vh;height:100dvh}
+/* menu lateral */
+.side{border-right:1px solid var(--ln);background:rgba(10,11,15,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;min-height:0}
+.side .hd{padding:18px 18px 12px;border-bottom:1px solid var(--ln)}
+.side .hd a{display:flex;gap:10px;align-items:center;text-decoration:none;font-weight:800;font-size:15px}
+.side .hd img{width:28px;height:28px;border-radius:50%}
+.prog{margin-top:14px}
+.prog .bar{height:6px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6a4d,#ff3b3b);transition:width .4s}
+.prog small{display:block;margin-top:6px;font:700 12px var(--mono);color:var(--mu)}
+.trilha{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:14px;padding:4px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--ln)}
+.trilha button{all:unset;cursor:pointer;text-align:center;font:800 13px var(--f);padding:8px 6px;border-radius:9px;color:var(--mu)}
+.trilha button[aria-pressed="true"]{background:rgba(255,255,255,.12);color:var(--tx);box-shadow:inset 0 0 0 1px var(--ln2)}
+.nav{overflow:auto;padding:10px 10px 30px;flex:1}
+.nav .f{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ac2);margin:16px 10px 6px}
+.nav a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:var(--mu);font-size:14.5px;line-height:1.35;padding:8px 10px;border-radius:10px}
+.nav a:hover{background:rgba(255,255,255,.05);color:var(--tx)}
+.nav a[aria-current="page"]{background:rgba(255,59,59,.12);color:var(--tx);box-shadow:inset 0 0 0 1px rgba(255,59,59,.35)}
+.nav a .ck{flex:0 0 16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid var(--di)}
+.nav a.ok .ck{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px #0b0c10}
+.side .ft{padding:12px 18px;border-top:1px solid var(--ln);font-size:13px;color:var(--di);display:flex;justify-content:space-between;gap:8px}
+.side .ft a{color:var(--mu)}
+/* conteúdo */
+.main{overflow:auto;min-height:0;scroll-behavior:smooth}
+.mtop{display:none}
+.aula{display:none;max-width:780px;margin:0 auto;padding:44px 28px 40px}
+.aula.on{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.aula .k{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ac2);margin:0 0 10px}
+.aula h1{font:900 clamp(30px,4.4vw,44px)/1.08 var(--f);letter-spacing:-.03em;margin:0 0 14px}
+.aula h2{font:800 22px/1.25 var(--f);letter-spacing:-.01em;margin:34px 0 10px}
+.aula h3{font:800 18px var(--f);margin:24px 0 6px}
+.aula p,.aula li{color:#d4d4da}
+.aula p.lead{font-size:19px;color:var(--mu)}
+.aula ol,.aula ul{padding-left:22px}
+.aula li{margin:6px 0}
+.aula code{font:500 .9em var(--mono);background:rgba(255,255,255,.07);border:1px solid var(--ln);padding:1px 6px;border-radius:6px;color:#fff}
+.aula kbd{font:700 .85em var(--mono);background:#1b1d24;border:1px solid var(--ln2);border-bottom-width:3px;padding:1px 7px;border-radius:7px}
+.aula a{color:#8ec1ff}
+.aula img{border-radius:14px;border:1px solid var(--ln2);margin:16px 0}
+.aula table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+.aula th,.aula td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--ln);vertical-align:top}
+.aula th{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mu)}
+.tw{overflow-x:auto}
+.scrim{display:none}
+/* blocos de comando */
+.cmd{position:relative;margin:14px 0 18px;border-radius:14px;border:1px solid var(--ln2);background:#0b0d12;overflow:hidden}
+.cmd .t{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-bottom:1px solid var(--ln);font:700 12px var(--mono);color:var(--mu);background:rgba(255,255,255,.03)}
+.cmd .t button{all:unset;cursor:pointer;font:800 13px var(--f);color:var(--tx);padding:6px 12px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid var(--ln2)}
+.cmd .t button.ok{background:rgba(48,209,88,.18);border-color:rgba(48,209,88,.5)}
+.cmd pre{margin:0;padding:14px;overflow-x:auto;font:400 14px/1.55 var(--mono);color:#e8e8ee;white-space:pre}
+.cmd.long pre{max-height:340px}
+/* avisos */
+.box{margin:18px 0;padding:14px 16px 14px 48px;border-radius:14px;position:relative;font-size:16px}
+.box::before{position:absolute;left:16px;top:13px;font-size:18px}
+.box p{margin:4px 0}
+.box.dica{background:rgba(100,168,255,.08);border:1px solid rgba(100,168,255,.3)}.box.dica::before{content:"💡"}
+.box.atencao{background:rgba(255,214,10,.07);border:1px solid rgba(255,214,10,.35)}.box.atencao::before{content:"⚠️"}
+.box.perigo{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.4)}.box.perigo::before{content:"⛔"}
+.box.certo{background:rgba(48,209,88,.07);border:1px solid rgba(48,209,88,.35)}.box.certo::before{content:"✅"}
+.only{display:none}
+body[data-trilha="leve"] .only.leve,body[data-trilha="mac"] .only.mac{display:block}
+span.only{display:none}body[data-trilha="leve"] span.only.leve,body[data-trilha="mac"] span.only.mac{display:inline}
+.tri-tag{display:inline-block;font:800 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:7px;margin-bottom:8px}
+.tri-tag.leve{background:rgba(255,106,77,.15);color:#ff9a85}.tri-tag.mac{background:rgba(100,168,255,.15);color:#9cc8ff}
+/* checklist e quiz */
+.chk{list-style:none;padding:0!important}
+.chk li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--ln);margin:8px 0}
+.chk input{width:20px;height:20px;margin-top:3px;accent-color:#30d158;flex:0 0 auto}
+.quiz{padding:20px;margin:18px 0}
+.quiz fieldset{border:0;padding:0;margin:0 0 18px}
+.quiz legend{font:800 17px var(--f);margin-bottom:10px}
+.quiz label{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid var(--ln);margin:6px 0;cursor:pointer}
+.quiz label:has(input:checked){border-color:rgba(255,59,59,.6);background:rgba(255,59,59,.08)}
+.quiz input{accent-color:#ff3b3b}
+.res{display:none;margin-top:6px}
+.res.on{display:block}
+/* rodapé da aula */
+.pn{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--ln)}
+.pn .btn{padding:13px 20px;font-size:15px}
+@media (max-width:900px){
+  body{overflow:auto}
+  .app{display:block;height:auto}
+  .side{position:fixed;inset:0 20% 0 0;z-index:40;transform:translateX(-105%);transition:transform .25s;max-width:360px}
+  .side.open{transform:none;box-shadow:30px 0 80px rgba(0,0,0,.7)}
+  .scrim{position:fixed;inset:0;z-index:39;background:rgba(0,0,0,.5);display:none}
+  .scrim.on{display:block}
+  .main{overflow:visible}
+  .mtop{display:flex;position:sticky;top:0;z-index:30;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(7,8,11,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--ln)}
+  .mtop button{all:unset;cursor:pointer;font:800 14px var(--f);padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid var(--ln2)}
+  .mtop span{font:700 12px var(--mono);color:var(--mu)}
+  .aula{padding:26px 16px 40px}
+}
+</style>
+</head>
+<body data-trilha="leve">
+<div class="glow" aria-hidden="true"></div>
+<div class="app">
+  <aside class="side" id="side" aria-label="Fases do guia">
+    <div class="hd">
+      <a href="/minha-area/"><img src="/assets/img/avatar.jpg" alt="" width="28" height="28"><span>Notebook Ressuscitado</span></a>
+      <div class="prog"><div class="bar"><i id="pbar"></i></div><small id="ptxt">0% concluído</small></div>
+      <div class="trilha" role="group" aria-label="Sua trilha">
+        <button type="button" data-set-trilha="leve" aria-pressed="true">Trilha Leve</button>
+        <button type="button" data-set-trilha="mac" aria-pressed="false">Trilha Mac</button>
+      </div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="ft"><a href="/minha-area/">Minha área e suporte</a><a href="/api/sair">Sair</a></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <main class="main" id="main">
+    <div class="mtop"><button type="button" id="abrir">☰ Fases</button><span id="mpos"></span></div>
+<!--AULAS-->
+  </main>
+</div>
+<script>
+(function(){
+  var LS = { get:function(k){try{return localStorage.getItem(k)}catch(e){return null}}, set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
+  var aulas = [].slice.call(document.querySelectorAll('.aula'));
+  var feitas = {}; try { feitas = JSON.parse(LS.get('nb-feitas') || '{}') || {}; } catch(e) {}
+  var nav = document.getElementById('nav'), main = document.getElementById('main');
+
+  /* trilha */
+  function trilha(t){
+    document.body.setAttribute('data-trilha', t); LS.set('nb-trilha', t);
+    document.querySelectorAll('[data-set-trilha]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-set-trilha') === t)); });
+    montarNav(); progresso();
+  }
+  document.querySelectorAll('[data-set-trilha]').forEach(function(b){ b.addEventListener('click', function(){ trilha(b.getAttribute('data-set-trilha')); }); });
+  function visivel(a){ var t = a.getAttribute('data-trilha'); return !t || t === document.body.getAttribute('data-trilha'); }
+  function lista(){ return aulas.filter(visivel); }
+
+  /* menu */
+  function montarNav(){
+    nav.innerHTML = ''; var fase = '';
+    lista().forEach(function(a){
+      if (a.dataset.fase !== fase) { fase = a.dataset.fase; var f = document.createElement('div'); f.className = 'f'; f.textContent = fase; nav.appendChild(f); }
+      var l = document.createElement('a'); l.href = '#' + a.id; l.dataset.id = a.id;
+      l.innerHTML = '<span class="ck"></span><span></span>'; l.lastChild.textContent = a.dataset.titulo;
+      if (feitas[a.id]) l.classList.add('ok');
+      nav.appendChild(l);
+    });
+    marcarAtual();
+  }
+  function progresso(){
+    var L = lista(), n = L.filter(function(a){ return feitas[a.id]; }).length, p = Math.round(100 * n / L.length);
+    document.getElementById('pbar').style.width = p + '%';
+    document.getElementById('ptxt').textContent = p + '% concluído · ' + n + ' de ' + L.length + ' passos';
+  }
+  function marcarAtual(){
+    var id = atual(); nav.querySelectorAll('a').forEach(function(l){ if (l.dataset.id === id) { l.setAttribute('aria-current','page'); } else l.removeAttribute('aria-current'); });
+  }
+
+  /* rota */
+  function atual(){
+    var id = location.hash.slice(1), a = document.getElementById(id);
+    if (!a || !a.classList.contains('aula')) return '';
+    return id;
+  }
+  function mostrar(){
+    var id = atual(), L = lista();
+    if (!id) { id = LS.get('nb-ultima') || L[0].id; if (!document.getElementById(id)) id = L[0].id; history.replaceState(null, '', '#' + id); }
+    var a = document.getElementById(id);
+    if (!visivel(a)) { var outra = a.getAttribute('data-trilha') === 'mac' ? 'mac' : 'leve'; trilha(outra); }
+    aulas.forEach(function(x){ x.classList.toggle('on', x === a); });
+    LS.set('nb-ultima', id);
+    rodape(a); marcarAtual(); fechar();
+    var i = lista().indexOf(a); document.getElementById('mpos').textContent = 'Passo ' + (i + 1) + ' de ' + lista().length;
+    main.scrollTop = 0; window.scrollTo(0, 0);
+    document.title = a.dataset.titulo + ' · Notebook Ressuscitado';
+  }
+  function rodape(a){
+    var velho = a.querySelector('.pn'); if (velho) velho.remove();
+    var L = lista(), i = L.indexOf(a), ant = L[i - 1], prox = L[i + 1];
+    var d = document.createElement('div'); d.className = 'pn';
+    d.innerHTML = (ant ? '<a class="btn ghost" href="#' + ant.id + '">← Anterior</a>' : '<span></span>') +
+      (prox ? '<a class="btn" data-feito href="#' + prox.id + '">' + (feitas[a.id] ? 'Próximo passo →' : 'Concluí, próximo passo →') + '</a>'
+            : '<button class="btn" type="button" data-feito>' + (feitas[a.id] ? 'Guia concluído 🎉' : 'Concluí o guia 🎉') + '</button>');
+    d.querySelector('[data-feito]').addEventListener('click', function(){ feitas[a.id] = 1; LS.set('nb-feitas', JSON.stringify(feitas)); montarNav(); progresso(); });
+    a.appendChild(d);
+  }
+  addEventListener('hashchange', mostrar);
+
+  /* copiar */
+  document.querySelectorAll('pre[data-t]').forEach(function(pre){
+    var w = document.createElement('div'); w.className = 'cmd' + (pre.textContent.split('\n').length > 16 ? ' long' : '');
+    var t = document.createElement('div'); t.className = 't'; t.innerHTML = '<span></span><button type="button">Copiar</button>'; t.firstChild.textContent = pre.getAttribute('data-t');
+    pre.parentNode.insertBefore(w, pre); w.appendChild(t); w.appendChild(pre);
+    var b = t.querySelector('button');
+    b.addEventListener('click', function(){
+      var txt = pre.textContent;
+      function ok(){ b.textContent = 'Copiado ✓'; b.classList.add('ok'); setTimeout(function(){ b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1800); }
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, function(){ fallback(txt); ok(); }); else { fallback(txt); ok(); }
+    });
+  });
+  function fallback(txt){ var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e) {} ta.remove(); }
+
+  /* checklists salvos */
+  document.querySelectorAll('.chk input[type=checkbox]:not([disabled])').forEach(function(c, i){
+    var k = 'nb-chk-' + (c.id || i); if (LS.get(k) === '1') c.checked = true;
+    c.addEventListener('change', function(){ LS.set(k, c.checked ? '1' : '0'); });
+  });
+
+  /* teste do nível */
+  var q = document.getElementById('quiz');
+  if (q) q.addEventListener('change', function(){
+    var v = function(n){ var e = q.querySelector('input[name=' + n + ']:checked'); return e ? e.value : ''; };
+    var b = v('bits'), r = v('ram'), c = v('nucleos');
+    q.querySelectorAll('.res').forEach(function(x){ x.classList.remove('on'); });
+    if (!b || !r || !c) return;
+    var id = b === '32' ? 'r32' : r === '1' ? 'r1' : (r === '4' && c === '4') ? 'rmac' : 'rleve';
+    document.getElementById(id).classList.add('on');
+    if (id === 'rmac') trilha('mac'); if (id === 'rleve') trilha('leve');
+  });
+
+  /* celular */
+  var side = document.getElementById('side'), scrim = document.getElementById('scrim');
+  function fechar(){ side.classList.remove('open'); scrim.classList.remove('on'); }
+  document.getElementById('abrir').addEventListener('click', function(){ side.classList.add('open'); scrim.classList.add('on'); });
+  scrim.addEventListener('click', fechar);
+
+  trilha(LS.get('nb-trilha') === 'mac' ? 'mac' : 'leve');
+  mostrar();
+})();
+</script>
+</body>
+</html>

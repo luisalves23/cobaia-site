@@ -1,280 +1,352 @@
 <!doctype html>
-<html lang="pt-BR" data-day="6">
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ressuscitei um notebook velho com o Claude · Dia 06 · @cobaia.dev</title>
-<meta name="description" content="O guia pra reviver um notebook velho com um Debian 13, do pendrive à interface, com os comandos pra fazer à mão e os pedidos prontos pro Claude Code.">
-<meta name="theme-color" content="#0c0c0c">
-<link rel="canonical" href="https://cobaia-dev.vercel.app/notebook">
-<meta property="og:type" content="article">
+<title>Notebook Ressuscitado · @cobaia.dev</title>
+<meta name="description" content="Antes de gastar R$ 2.500 num notebook novo, ressuscite o seu. Rápido, bonito como um Mac e com atualizações de segurança até 2030. Prova real, não promessa.">
+<meta name="theme-color" content="#07080b">
+<link rel="canonical" href="https://cobaia-dev.vercel.app/notebook/">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="@cobaia.dev">
-<meta property="og:title" content="Ressuscitei um notebook velho com o Claude · Dia 06 · @cobaia.dev">
-<meta property="og:description" content="O guia pra reviver um notebook velho com um Debian 13, do pendrive à interface, com os comandos pra fazer à mão e os pedidos prontos pro Claude Code.">
-<meta property="og:url" content="https://cobaia-dev.vercel.app/notebook">
+<meta property="og:title" content="Seu notebook velho não é lixo.">
+<meta property="og:description" content="Antes de gastar R$ 2.500 num notebook novo, ressuscite o seu. Prova real, não promessa.">
+<meta property="og:url" content="https://cobaia-dev.vercel.app/notebook/">
 <meta property="og:image" content="https://cobaia-dev.vercel.app/assets/og/dia06.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../assets/img/favicon.png">
-<link rel="preload" href="../assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" href="../assets/fonts/inter-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/notebook/nb.css">
 </head>
 <body>
-<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
-<header class="top"><div class="bar glass">
-  <a class="brand" href="../30-dias/"><span class="pf"><img src="../assets/img/avatar.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
-  <div class="bar-r"><div class="bar-soc"><a class="soc" href="https://www.tiktok.com/@cobaia.dev" target="_blank" rel="noopener" aria-label="TikTok"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a><a class="soc" href="https://www.youtube.com/@cobaia.dev1" target="_blank" rel="noopener" aria-label="YouTube"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a></div><button class="cal-btn" type="button" data-open-cal aria-haspopup="dialog" aria-controls="cal"><i class="dot"></i>30 dias</button></div>
-</div></header>
-<main class="wrap">
-<div class="lockscreen"><div class="glass">
-  <span class="badge">DIA 06/30</span>
-  <h2 style="margin-top:18px">Esse experimento ainda está no laboratório</h2>
-  <p style="color:var(--muted)">A página libera junto com o vídeo, às 12h. Falta:</p>
-  <div class="clock"><div><b>00</b><span>dias</span></div><div><b>00</b><span>horas</span></div><div><b>00</b><span>min</span></div><div><b>00</b><span>seg</span></div></div>
-  <button class="cal-btn" type="button" data-open-cal>Ver os dias liberados</button>
-</div></div>
-<div class="hero">
-  <div class="hcopy">
-    <div><span class="badge">DIA 06/30</span><span class="kw">você comentou <b>NOTEBOOK</b></span></div>
-    <p class="kick">o notebook que parecia lixo</p>
-    <h1>Ressuscitei um <span class="r">notebook velho</span> com o Claude</h1>
-    <p class="lede">Um notebook que não aguentava abrir um app virou uma máquina rápida e bonita. Aqui está <b>o jeito mais curto de fazer o mesmo</b>: você prepara o pendrive, instala o Debian 13 e deixa o Claude cuidar do resto.</p>
-    <div class="meta"><span>leitura de 20 min</span><span>nível: zero código</span><span>precisa de um pendrive</span></div>
+<div class="glow" aria-hidden="true"></div>
+
+<header class="top"><div class="wrap"><div class="bar glass">
+  <a class="brand" href="../30-dias/"><img src="../assets/img/avatar.jpg" alt="" width="30" height="30"><span>@cobaia.dev</span></a>
+  <a class="btn" href="#prova">Ver o antes e depois</a>
+</div></div></header>
+
+<main>
+<!-- 1. HERÓI -->
+<div class="wrap hero2">
+  <span class="pill"><i></i>Mais de 340 mil pessoas viram esse notebook voltar</span>
+  <h1>Seu notebook velho <span class="g">não é lixo.</span></h1>
+  <p class="lead">Antes de gastar <b>R$ 2.500</b> num notebook novo, ressuscite o seu. Ele volta <b>rápido</b>, com <b>cara de Mac</b> e <b>seguro até 2030</b>. Sem trocar nenhuma peça, mesmo que você nunca tenha formatado um computador.</p>
+  <div class="ctas" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn" href="#prova">Quero ver a prova real</a>
+    <a class="btn ghost" href="#como">Como funciona</a>
   </div>
-  <div class="phone glass fan">
-    <img src="../assets/img/capa-dia06.jpg" alt="Capa do vídeo do Dia 6" width="540" height="960">
-    <div class="watch"><span>assistir</span><a class="soc" href="https://www.instagram.com/cobaia.dev/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a class="soc" href="https://www.tiktok.com/@cobaia.dev" target="_blank" rel="noopener" aria-label="TikTok"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a><a class="soc" href="https://www.youtube.com/@cobaia.dev1" target="_blank" rel="noopener" aria-label="YouTube"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a></div>
-  </div>
+  <div class="vid" data-v="v-4gb-dock"><span class="tag good">notebook ressuscitado · vídeo real</span></div>
+  <a class="down" href="#prova"><i></i>role pra ver o antes</a>
 </div>
-<section aria-labelledby="t1">
-  <p class="eyebrow">em 30 segundos</p>
-  <h2 id="t1">O resumo do vídeo</h2>
-  <div class="tldr">
-    <div class="glass rv"><span class="ic">01</span><p>Notebook que "não liga" pode ser só a bateria descarregada demais. Teste antes de jogar fora.</p></div>
-    <div class="glass rv rv-d1"><span class="ic">02</span><p>Você só prepara o pendrive e instala o Debian 13 mínimo. É a única parte que fica na sua mão.</p></div>
-    <div class="glass rv rv-d2"><span class="ic">03</span><p>Com o sistema de pé, instala o Claude Code no próprio notebook. Ele monta a interface, a identidade visual e os apps.</p></div>
-  </div>
-  <figure class="rv" style="margin:28px 0 0"><img src="../assets/img/notebook-3d.jpg" alt="Notebook Positivo vermelho em 3D com o Claude Code aberto no terminal" width="1200" height="800" loading="lazy" style="width:100%;height:auto;border-radius:24px;display:block"><figcaption class="note">// o meu notebook, com o Claude Code rodando dentro dele</figcaption></figure>
-</section>
 
-<section aria-labelledby="t2">
-  <div class="read">
-    <p class="eyebrow">passo zero</p>
-    <h2 id="t2" class="rv">Antes de jogar fora, <span class="r">tente isso</span></h2>
-    <p class="rv">Notebook parado por muito tempo pode estar com a bateria em descarga profunda. Parece morto, mas ainda tem conserto. Faça nesta ordem:</p>
-    <ol class="guide">
-      <li class="glass rv"><span class="gn">1</span><div><b>Ligue o carregador e espere</b><span class="d">Deixe carregando de 1 a 2 horas antes de tentar ligar.</span></div></li>
-      <li class="glass rv"><span class="gn">2</span><div><b>Segure o botão de ligar por 30 a 60 segundos</b><span class="d">Com o carregador ligado. Depois solte e aperte uma vez.</span></div></li>
-      <li class="glass rv"><span class="gn">3</span><div><b>Procure o furinho de reset</b><span class="d">Alguns modelos têm um buraco pequeno embaixo. Aperte com um clipe.</span></div></li>
-    </ol>
-    <p class="rv" style="color:var(--muted)">No meu caso, a bateria estava em 2% e voltou. Se o seu continuar morto, use o pedido avulso A1 mais embaixo.</p>
+<!-- 2. PROVA REAL -->
+<section id="prova" aria-labelledby="h-prova"><div class="wrap">
+  <h2 id="h-prova" class="big-t">Prova real,<br><span class="r">não promessa.</span></h2>
+  <p class="sub center" style="margin:0 auto;text-align:center">Um seguidor me mandou o notebook dele. Ligado na tomada, ele levava de <b>2 a 7 minutos</b> pra mostrar a área de trabalho, e o navegador simplesmente não abria. Olha o antes e o depois, no mesmo aparelho:</p>
+  <div class="ab">
+    <div class="vid" data-v="v-antes"><span class="tag bad">antes · gravação real</span><div class="cap">"Aguarde"… e o menu Iniciar parado por 2 minutos</div></div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="vid" data-v="v-2gb-dock" style="aspect-ratio:16/10"><span class="tag good">depois · mesmo notebook</span><div class="cap">Liga em 45 segundos, dock que some e volta, tudo abrindo na hora</div></div>
   </div>
-</section>
-
-<section aria-labelledby="t3">
-  <div class="read">
-    <p class="eyebrow">o que você precisa</p>
-    <h2 id="t3" class="rv">A lista de <span class="r">materiais</span></h2>
-    <ul class="rv" style="padding-left:20px;display:grid;gap:8px">
-      <li>O notebook velho, de preferência com 4 GB de memória ou mais.</li>
-      <li>Um pendrive de 8 GB ou mais, que será formatado.</li>
-      <li>Outro computador, só para baixar o sistema e gravar o pendrive.</li>
-      <li>Internet no notebook, por cabo, Wi-Fi ou o celular ligado por USB.</li>
-      <li>Uma conta paga do Claude para usar o Claude Code (eu usei o plano de R$ 100 por mês). Sem ela, siga o caminho à mão, mais abaixo: só com comandos.</li>
-    </ul>
+  <div class="stats">
+    <div class="glass stat"><span class="was">2 a 7 minutos</span><b>45<small>segundos</small></b><span>pra chegar na tela de entrada</span></div>
+    <div class="glass stat"><span class="was">não abria</span><b>5<small>segundos</small></b><span>pro navegador abrir</span></div>
+    <div class="glass stat"><span class="was">R$ 0 em peças</span><b>0<small>peças trocadas</small></b><span>mesmo HD, mesma memória</span></div>
+    <div class="glass stat"><span class="was">sem atualização</span><b>2030</b><span>atualizações de segurança garantidas</span></div>
   </div>
-</section>
+  <p class="foot-note">// medido no notebook real, com cronômetro automático. O seu pode dar números diferentes.</p>
+</div></section>
 
-<section aria-labelledby="t4">
-  <div class="read">
-    <p class="eyebrow">o problema</p>
-    <h2 id="t4" class="rv">Por que ele ficou <span class="r">lento</span></h2>
-    <p class="rv">Os sistemas atuais vêm cheios de apps e serviços rodando escondidos, e num notebook velho isso pesa. A saída foi apagar tudo e instalar um Linux leve do zero. Escolhi o Debian 13, sem interface nenhuma, e deixei o Claude montar só o que eu precisava.</p>
+<!-- 3. O VISUAL -->
+<section aria-labelledby="h-visual"><div class="wrap">
+  <p class="eyebrow">e não fica só rápido</p>
+  <h2 id="h-visual">Fica com cara de <em class="s">Mac.</em></h2>
+  <p class="sub">Depois eu ressuscitei o meu próprio notebook, que estava encostado e nem ligava mais. Dá uma olhada no visual que ele ganhou. Tudo gravado com o celular, sem edição de tela.</p>
+  <div class="wall">
+    <div class="vid w4" data-v="v-4gb-desk"><span class="tag good">vídeo real</span><div class="cap">Área de trabalho limpa, dock com zoom</div></div>
+    <div class="vid w2" data-v="v-4gb-apps"><div class="cap">Arquivos e navegador abrindo na hora</div></div>
+    <div class="vid w2" data-v="v-video"><div class="cap">Vídeo rodando liso</div></div>
+    <div class="vid w4" data-v="v-dois"><span class="tag good">os dois notebooks</span><div class="cap">Os dois casos reais, lado a lado</div></div>
+    <div class="vid w3" data-v="v-gta"><div class="cap">Vídeo pesado sem travar</div></div>
+    <div class="vid w3" data-v="v-lado"><div class="cap">Os dois tocando vídeo ao mesmo tempo</div></div>
   </div>
-</section>
+  <div class="seen"><span>🔥 O vídeo desse notebook passou de <b>340 mil visualizações</b>, e a pergunta mais comum foi: "como eu faço isso no meu?"</span></div>
+</div></section>
 
-<section aria-labelledby="t5">
-  <div class="read">
-    <p class="eyebrow">o passo a passo</p>
-    <h2 id="t5" class="rv">Do pendrive ao <em>sistema novo</em></h2>
-    <p class="rv">Este é o caminho mais curto, com o Claude Code. Quer fazer tudo sem ele, só com comandos? Pule pro bloco <a href="#n1">“Sem o Claude”</a>, que explica o instalador, a interface, o navegador e os drivers.</p>
-    <p class="rv" style="margin-top:-6px">Os passos 1 a 6 valem pros dois caminhos. No vídeo eu dei muitas voltas até chegar aqui, e você pode pular todas elas.</p>
-    <div class="steps">
-      <div class="step rv"><span class="n">1</span><div><h3>Faça backup de tudo</h3><p>Instalar do zero apaga o disco. Copie fotos e documentos para outro lugar antes de começar.</p></div></div>
-      <div class="step rv"><span class="n">2</span><div><h3>Baixe o Debian 13 e o Ventoy</h3><p>No outro computador, baixe o Debian 13 em debian.org (imagem de instalação pela internet, netinst, 64 bits, arquivo .iso) e o Ventoy em ventoy.net. O Ventoy deixa o pendrive com espaço livre para você levar seus arquivos junto, e é isso que faz o passo 4 funcionar.</p></div></div>
-      <div class="step rv"><span class="n">3</span><div><h3>Prepare o pendrive</h3><p>Abra o Ventoy2Disk, escolha o pendrive e clique em instalar. Depois copie o arquivo .iso do Debian para dentro do pendrive, como se fosse uma pasta comum. Tudo o que estava no pendrive some na primeira vez.</p></div></div>
-      <div class="step rv"><span class="n">4</span><div><h3>Salve os pedidos no pendrive</h3><p>Mais abaixo tem o botão <b>Baixar COBAIA-PEDIDOS.txt</b>. Baixe e copie o arquivo para o pendrive, ao lado do .iso. Ele leva todos os pedidos prontos, na ordem, para você usar direto no notebook.</p></div></div>
-      <div class="step rv"><span class="n">5</span><div><h3>Ligue o notebook pelo pendrive</h3><p>Com o pendrive espetado, ligue o notebook e aperte a tecla do menu de boot logo no início. Costuma ser F12, F2, Esc ou Del, e muda de marca para marca. Escolha o pendrive e, no menu do Ventoy, o Debian.</p></div></div>
-      <div class="step rv"><span class="n">6</span><div><h3>Instale o Debian</h3><p>Escolha a instalação normal, português do Brasil e o disco inteiro com particionamento guiado. Na seleção de programas, desmarque tudo e deixe só os utilitários padrão do sistema. O Claude monta o resto depois. Se o Wi-Fi não aparecer, use cabo de rede ou compartilhe a internet do celular por USB.</p></div></div>
-      <div class="step rv"><span class="n">7</span><div><h3>Prepare o terminal</h3><p>Reinicie e entre com o usuário que você criou. Digite <code>su -</code>, coloque a senha de administrador e rode <code>apt update &amp;&amp; apt install -y curl sudo git</code>. Depois rode <code>usermod -aG sudo SEU_USUARIO</code>, saia e entre de novo.</p></div></div>
-      <div class="step rv"><span class="n">8</span><div><h3>Instale o Claude Code</h3><p>Rode <code>curl -fsSL https://claude.ai/install.sh | bash</code> e depois <code>claude</code>. Ele mostra um link: abra no celular, entre na sua conta e cole o código de volta. Se o comando <code>claude</code> não for encontrado, feche e abra o terminal.</p></div></div>
-      <div class="step rv"><span class="n">9</span><div><h3>Deixe o Claude fazer o resto</h3><p>Espete o pendrive, rode <code>lsblk</code> para achar a partição grande dele (algo como sdb1) e monte com <code>sudo mount /dev/sdb1 /mnt</code>. Dentro do <code>claude</code>, escreva: <i>Leia o arquivo /mnt/COBAIA-PEDIDOS.txt e execute os pedidos na ordem, um por vez, esperando eu confirmar antes de passar para o próximo.</i> Pronto: ele configura o sistema, monta a interface, a identidade visual e os apps.</p></div></div>
+<!-- 4. DOR -->
+<section aria-labelledby="h-dor"><div class="wrap">
+  <p class="eyebrow">você conhece essa cena?</p>
+  <h2 id="h-dor">O problema não é o seu notebook.</h2>
+  <p class="sub">É o sistema que ficou pesado demais pra ele. Se você se reconhece em pelo menos um desses, o seu tem conserto:</p>
+  <div class="pain">
+    <div class="glass"><p><b>Demora minutos pra ligar</b>Você liga, vai fazer um café e ele ainda está carregando.</p></div>
+    <div class="glass"><p><b>O navegador trava</b>Duas abas abertas e tudo congela. Nem o mouse mexe.</p></div>
+    <div class="glass"><p><b>Sem atualização</b>O Windows 10 parou de receber atualizações de segurança em outubro de 2025.</p></div>
+    <div class="glass"><p><b>"Compra outro"</b>Foi o que te disseram. E um novo razoável custa R$ 2.500.</p></div>
+    <div class="glass"><p><b>Ele está na gaveta</b>Funcionando, mas sem uso, perdendo valor todo mês.</p></div>
+    <div class="glass"><p><b>Você tem medo de mexer</b>Nunca formatou nada e não quer estragar de vez.</p></div>
+  </div>
+</div></section>
+
+<!-- 5. O QUE MUDA -->
+<section aria-labelledby="h-ganho"><div class="wrap">
+  <p class="eyebrow">o que muda na sua vida</p>
+  <h2 id="h-ganho">Um notebook que dá vontade de usar.</h2>
+  <div class="pain gain">
+    <div class="glass"><p><b>Liga rápido</b>Em segundos, não em minutos.</p></div>
+    <div class="glass"><p><b>Navega sem travar</b>YouTube, WhatsApp Web, Google Docs, Netflix, estudo e trabalho.</p></div>
+    <div class="glass"><p><b>Bonito de verdade</b>Dock com zoom, barra no topo, tela de bloqueio elegante. Cara de Mac.</p></div>
+    <div class="glass"><p><b>Seguro até 2030</b>Atualizações de segurança automáticas, sem você lembrar.</p></div>
+    <div class="glass"><p><b>Sistema 100% gratuito</b>Sem licença, sem mensalidade, sem pirataria. Você baixa do site oficial.</p></div>
+    <div class="glass"><p><b>Não congela mais</b>Quando a memória aperta, ele fecha só a aba pesada, não o notebook inteiro.</p></div>
+    <div class="glass"><p><b>Pra estudar e trabalhar</b>Editor de texto, planilha, apresentação e PDF, abrindo arquivos do Word e do Excel.</p></div>
+    <div class="glass"><p><b>Um presente</b>Ressuscite o notebook do seu pai, da sua avó, do seu filho que vai estudar.</p></div>
+  </div>
+</div></section>
+
+<!-- 6. COMO FUNCIONA -->
+<section id="como" aria-labelledby="h-como"><div class="wrap center">
+  <p class="eyebrow">como funciona</p>
+  <h2 id="h-como">Você segue. Ele volta.</h2>
+  <p class="sub">Nada de vídeo de 2 horas pra ficar pausando. É um curso em formato de site, uma tela por passo, com cada comando pronto pra copiar e colar.</p>
+  <div class="grid g3 steps" style="text-align:left">
+    <div class="glass card step"><h3>Acesso na hora</h3><p>Pagou, o link chega no seu e-mail. Você entra só com o e-mail da compra.</p></div>
+    <div class="glass card step"><h3>O guia escolhe com você</h3><p>Três perguntas rápidas sobre o seu notebook e o guia mostra o caminho certo pra ele: o mais leve ou o visual completo.</p></div>
+    <div class="glass card step"><h3>Um passo por tela</h3><p>Explicação em português simples, o que você deve ver na tela e o que fazer se aparecer algo diferente.</p></div>
+  </div>
+</div></section>
+
+<!-- 7. O QUE TEM DENTRO -->
+<section id="dentro" aria-labelledby="h-dentro"><div class="wrap">
+  <p class="eyebrow">o que tem dentro</p>
+  <h2 id="h-dentro">Do notebook parado ao notebook pronto.</h2>
+  <p class="sub">Tudo o que eu fiz nos dois notebooks, organizado em fases, com os meus erros já corrigidos pra você não repetir.</p>
+  <div class="grid g2">
+    <div class="glass phase"><span class="n">00</span><div><h3>Antes de começar</h3><p>Descubra em 2 minutos o que o seu notebook aguenta, o que você precisa ter e o backup certo.</p></div></div>
+    <div class="glass phase"><span class="n">01</span><div><h3>Preparar o pendrive</h3><p>Do site oficial até o pendrive pronto, sem cair na trava que me pegou no primeiro teste.</p></div></div>
+    <div class="glass phase"><span class="n">02</span><div><h3>Instalar</h3><p>A tecla certa pra sua marca e cada tela da instalação com a resposta certa.</p></div></div>
+    <div class="glass phase"><span class="n">03</span><div><h3>Deixar tudo funcionando</h3><p>Wi-Fi, som, vídeo, bluetooth, touchpad e impressora.</p></div></div>
+    <div class="glass phase"><span class="n">04</span><div><h3>Deixar rápido</h3><p>Os mesmos ajustes que levaram o boot de minutos pra 45 segundos.</p></div></div>
+    <div class="glass phase"><span class="n">05</span><div><h3>Deixar bonito</h3><p>Dock, ícones, tela de bloqueio, animação ao ligar. Dois visuais: o leve e o completo.</p></div></div>
+    <div class="glass phase"><span class="n">06</span><div><h3>Apps do dia a dia</h3><p>Navegador com bloqueador de anúncio leve, WhatsApp, escritório, PDF, vídeo e loja de apps.</p></div></div>
+    <div class="glass phase"><span class="n">07</span><div><h3>Manutenção e socorro</h3><p>Como manter atualizado e os problemas mais comuns já com a solução.</p></div></div>
+  </div>
+</div></section>
+
+<!-- 8. PRA QUEM É -->
+<section aria-labelledby="h-fit" style="padding-top:20px"><div class="wrap">
+  <h2 id="h-fit" class="center" style="text-align:center">É pra você?</h2>
+  <div class="fit">
+    <div class="glass yes"><h3>É pra você se…</h3><ul>
+      <li>tem um notebook ou PC encostado, lento ou que "não presta mais"</li>
+      <li>não quer gastar R$ 2.500 num novo agora</li>
+      <li>nunca formatou um computador (o guia foi feito pra você)</li>
+      <li>usa o computador pra navegar, estudar, trabalhar e ver vídeo</li>
+    </ul></div>
+    <div class="glass no"><h3>Não é pra você se…</h3><ul>
+      <li>precisa rodar jogos pesados ou programas que só existem no Windows</li>
+      <li>tem um MacBook ou um Chromebook</li>
+      <li>o processador é de 32 bits (o guia te ensina a conferir antes)</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<!-- 9. QUEM -->
+<section aria-labelledby="h-quem" style="padding-top:20px"><div class="wrap">
+  <div class="glass card" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+    <img src="../assets/img/avatar.jpg" alt="" width="84" height="84" style="border-radius:50%;flex:0 0 84px">
+    <div style="flex:1;min-width:240px">
+      <p class="eyebrow" style="margin-bottom:6px">quem fez</p>
+      <h2 id="h-quem" style="font-size:clamp(24px,3vw,32px);margin-bottom:8px">Eu sou o Luis, do @cobaia.dev.</h2>
+      <p style="color:var(--mu);margin:0">Eu sou a cobaia: testo tudo de verdade antes de ensinar. Ressuscitei o meu notebook e o de um seguidor, registrei cada comando, cada erro e cada número, e transformei tudo neste guia.</p>
     </div>
   </div>
-</section>
+</div></section>
 
-<section aria-labelledby="n1">
-<div class="read">
-<p class="eyebrow">caminho à mão</p>
-<h2 id="n1" class="rv">Sem o Claude: <span class="r">do zero</span>, só com comandos</h2>
-<p class="rv">O passo a passo de cima usa o <span class="claude">Claude</span> Code porque é o jeito mais curto. Mas você não precisa dele pra ressuscitar o notebook. Daqui até o fim da seção você faz tudo com comandos, na ordem, e cada bloco tem o botão <b>Copiar</b>. Se quiser, use o Claude só depois, para o que sobrar.</p><p class="rv" style="color:var(--muted)">Os comandos valem pro Debian 13. Quando aparecer <code>SEU_USUARIO</code>, troque pelo nome que você criou na instalação.</p>
-</div>
-</section>
-
-<section aria-labelledby="n2">
-<div class="read">
-<p class="eyebrow">antes de formatar</p>
-<h2 id="n2" class="rv">Conheça o <span class="r">seu hardware</span></h2>
-<p class="rv">Anote o que o notebook tem antes de apagar tudo. Isso decide qual interface cabe e quais drivers você vai precisar.</p><ol class="guide"><li class="glass rv"><span class="gn">1</span><div><b>Processador de 64 bits?</b><span class="d">O Debian 13 não tem mais instalador pra processador de 32 bits. Se o seu for de 32 bits, esse caminho não serve, e um Linux feito pra 32 bits resolve. No Windows, aperte <b>Windows + R</b>, digite <code>msinfo32</code> e olhe “Tipo do sistema”: precisa ser “x64”.</span></div></li><li class="glass rv"><span class="gn">2</span><div><b>Quanta memória (RAM)?</b><span class="d">Com 4 GB ou mais, use o XFCE. Com 2 GB, o XFCE ainda roda. Com 1 GB, prefira o LXQt (alternativa mais abaixo). Abaixo disso, o notebook serve melhor como servidorzinho sem interface.</span></div></li><li class="glass rv"><span class="gn">3</span><div><b>Disco comum ou SSD?</b><span class="d">Pra Linux tanto faz, mas disco comum é bem mais lento. Se der pra trocar por um SSD barato, é a melhor melhoria que existe.</span></div></li><li class="glass rv"><span class="gn">4</span><div><b>Marca do Wi-Fi e do vídeo</b><span class="d">No Windows: Gerenciador de Dispositivos, “Adaptadores de rede” e “Adaptadores de vídeo”. Anote os nomes (ex.: Broadcom, Realtek, Intel, Nvidia, AMD). É o que muda os drivers.</span></div></li></ol><p class="rv" style="margin-top:18px">Depois de instalar o Debian, esses comandos mostram tudo isso de uma vez:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Ver o hardware</span></span><button class="copy" type="button" data-copy="c1">Copiar</button></div><pre id="c1">lscpu | head -20
-free -h
-lsblk
-lspci -nn
-lsusb
-sudo dmidecode -s system-product-name</pre></div><p class="note" style="margin:6px 0 0"><code>lspci</code> lista placa de vídeo, Wi-Fi e som. <code>lsusb</code> lista o que está nos USBs. Guarde essa saída: se travar, é ela que você mostra pra alguém (ou pra uma IA).</p><div class="warn glass red rv"><span class="big">!</span><p><b>Faça o backup agora.</b> Fotos, documentos, favoritos do navegador e a lista de programas que você usa. Depois da instalação não tem volta.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="n3">
-<div class="read">
-<p class="eyebrow">instalando o debian</p>
-<h2 id="n3" class="rv">O instalador, <span class="r">tela por tela</span></h2>
-<p class="rv">Você já tem o pendrive com o Ventoy e o .iso (passos 1 a 5 acima). Escolha <b>Install</b> (ou <b>Graphical install</b>, que é o mesmo, só com mouse) e responda assim:</p><ol class="guide"><li class="glass rv"><span class="gn">1</span><div><b>Idioma, país e teclado</b><span class="d">Português do Brasil, Brasil e teclado “Português Brasileiro”. Se o teclado do notebook tiver o “ç” numa tecla própria, é o ABNT2.</span></div></li><li class="glass rv"><span class="gn">2</span><div><b>Nome do computador</b><span class="d">Qualquer nome sem espaço (ex.: <code>notebook</code>). Domínio: deixe em branco.</span></div></li><li class="glass rv"><span class="gn">3</span><div><b>Senha de administrador (root)</b><span class="d">Você pode deixar <b>em branco</b>: aí o usuário que você criar vira administrador via <code>sudo</code> (mais simples). Se preencher, guarde a senha.</span></div></li><li class="glass rv"><span class="gn">4</span><div><b>Seu usuário</b><span class="d">Nome completo, nome de usuário (minúsculas, sem acento) e senha.</span></div></li><li class="glass rv"><span class="gn">5</span><div><b>Particionar o disco</b><span class="d">“Guiado, usar o disco inteiro”. Escolha o disco certo (cuidado se tiver pendrive espetado) e “Todos os arquivos em uma partição”. Confirme gravar as alterações.</span></div></li><li class="glass rv"><span class="gn">6</span><div><b>Espelho de rede e firmware</b><span class="d">Responda <b>Sim</b> pra usar espelho de rede (precisa de internet). Se ele pedir firmware que falta (Wi-Fi, por exemplo), espete outro pendrive com os arquivos ou continue por cabo e resolva depois.</span></div></li><li class="glass rv"><span class="gn">7</span><div><b>Seleção de programas</b><span class="d">Desmarque “Debian desktop environment” e “GNOME”. Marque só <b>utilitários de sistema padrão</b>. A interface a gente instala logo abaixo, mais leve.</span></div></li><li class="glass rv"><span class="gn">8</span><div><b>Instalar o GRUB</b><span class="d">Sim, no disco principal (o mesmo que você particionou, não o pendrive). Remova o pendrive quando pedir e deixe reiniciar.</span></div></li></ol><div class="warn glass rv"><span class="big">!</span><p>Se o Wi-Fi não aparecer no instalador, use cabo de rede ou o celular ligado por USB com “internet por USB” ativada. Se nada disso for possível, procure no site do Debian a imagem “netinst com firmware” e use ela no lugar do .iso comum.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="n4">
-<div class="read">
-<p class="eyebrow">primeiro boot</p>
-<h2 id="n4" class="rv">Atualize e <span class="r">libere os drivers</span></h2>
-<p class="rv">Entre com seu usuário (a tela preta com texto é o normal: ainda não tem interface). Se você deixou a senha de root em branco, o <code>sudo</code> já funciona. Senão, faça uma vez como no passo 7 acima.</p><div class="steps"><div class="step rv"><span class="n">1</span><div><h3>Veja se tem internet</h3><p>Por cabo ela já deve funcionar.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Teste</span></span><button class="copy" type="button" data-copy="c2">Copiar</button></div><pre id="c2">ping -c 3 debian.org</pre></div><p>Responder com tempo em ms significa que está ok. Pra Wi-Fi, siga o passo 3 deste bloco.</p></div></div><div class="step rv"><span class="n">2</span><div><h3>Libere o repositório de firmware</h3><p>O Debian guarda os drivers de Wi-Fi, som e vídeo (os “firmwares”) num repositório separado. Abra o arquivo de fontes:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Abrir o arquivo</span></span><button class="copy" type="button" data-copy="c3">Copiar</button></div><pre id="c3">sudo nano /etc/apt/sources.list</pre></div><p>Em cada linha que começa com <code>deb</code> e tem <code>main</code>, acrescente no fim <code>contrib non-free non-free-firmware</code>. Fica assim:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Exemplo de linha</span></span><button class="copy" type="button" data-copy="c4">Copiar</button></div><pre id="c4">deb http://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware</pre></div><p>Salve com <b>Ctrl+O</b>, <b>Enter</b> e saia com <b>Ctrl+X</b>. Se o arquivo estiver vazio, olhe em <code>/etc/apt/sources.list.d/</code> (o formato é outro, mas a ideia é a mesma: incluir esses três componentes).</p></div></div><div class="step rv"><span class="n">3</span><div><h3>Atualize o sistema</h3><p>Agora o sistema baixa a lista nova e atualiza tudo:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Atualizar</span></span><button class="copy" type="button" data-copy="c5">Copiar</button></div><pre id="c5">sudo apt update
-sudo apt full-upgrade -y</pre></div></div></div><div class="step rv"><span class="n">4</span><div><h3>Instale os drivers gerais</h3><p>Esse pacote cobre a maioria dos aparelhos (Wi-Fi e som incluídos). O microcódigo é o ajuste de segurança e estabilidade do processador: escolha o da sua marca.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Drivers gerais</span></span><button class="copy" type="button" data-copy="c6">Copiar</button></div><pre id="c6">sudo apt install -y firmware-linux firmware-misc-nonfree</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Se o processador for Intel</span></span><button class="copy" type="button" data-copy="c7">Copiar</button></div><pre id="c7">sudo apt install -y intel-microcode</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Se o processador for AMD</span></span><button class="copy" type="button" data-copy="c8">Copiar</button></div><pre id="c8">sudo apt install -y amd64-microcode</pre></div></div></div><div class="step rv"><span class="n">5</span><div><h3>Reinicie</h3><p>Pra tudo valer:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Reiniciar</span></span><button class="copy" type="button" data-copy="c9">Copiar</button></div><pre id="c9">sudo reboot</pre></div></div></div></div>
-</div>
-</section>
-
-<section aria-labelledby="n5">
-<div class="read">
-<p class="eyebrow">drivers por peça</p>
-<h2 id="n5" class="rv">O que instalar pro <span class="r">seu</span> hardware</h2>
-<p class="rv">Use a saída do <code>lspci -nn</code> e do <code>lsusb</code> pra ver qual peça você tem. Só instale o que combina com a sua.</p><h3 class="rv" style="margin-top:22px">Wi-Fi</h3><p class="rv">Rode <code>lspci | grep -i network</code> (ou <code>lsusb</code> se for adaptador USB) e escolha pela marca:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Intel</span></span><button class="copy" type="button" data-copy="c10">Copiar</button></div><pre id="c10">sudo apt install -y firmware-iwlwifi</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Realtek</span></span><button class="copy" type="button" data-copy="c11">Copiar</button></div><pre id="c11">sudo apt install -y firmware-realtek</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Atheros / Qualcomm</span></span><button class="copy" type="button" data-copy="c12">Copiar</button></div><pre id="c12">sudo apt install -y firmware-atheros</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Broadcom</span></span><button class="copy" type="button" data-copy="c13">Copiar</button></div><pre id="c13">sudo apt install -y firmware-brcm80211</pre></div><p class="note" style="margin:6px 0 0">Broadcom é o mais teimoso. Alguns chips antigos dele exigem o pacote <code>broadcom-sta-dkms</code> (precisa do <code>linux-headers-amd64</code> instalado e de internet por cabo). Se o seu não funcionar, pergunte pro Claude ou pra uma IA com a saída do <code>lspci -nn</code>.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Depois de instalar, reinicie o serviço de rede ou o notebook</span></span><button class="copy" type="button" data-copy="c14">Copiar</button></div><pre id="c14">sudo reboot</pre></div><h3 class="rv" style="margin-top:22px">Placa de vídeo</h3><p class="rv">Na maioria dos casos, o Debian já funciona sem nada extra (Intel, AMD e Nvidia usam drivers livres). Se a tela estiver lenta ou com defeito:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">AMD</span></span><button class="copy" type="button" data-copy="c15">Copiar</button></div><pre id="c15">sudo apt install -y firmware-amd-graphics mesa-vulkan-drivers</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Intel</span></span><button class="copy" type="button" data-copy="c16">Copiar</button></div><pre id="c16">sudo apt install -y mesa-vulkan-drivers intel-media-va-driver</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Nvidia (descobrir o pacote certo)</span></span><button class="copy" type="button" data-copy="c17">Copiar</button></div><pre id="c17">sudo apt install -y nvidia-detect
-nvidia-detect</pre></div><p class="note" style="margin:6px 0 0">O <code>nvidia-detect</code> diz qual pacote serve pra sua placa. Em placa muito antiga o driver livre (nouveau) que já vem no sistema costuma bastar. Só instale o pacote que ele indicar.</p><h3 class="rv" style="margin-top:22px">Som, bluetooth, touchpad e bateria</h3><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Som (Debian 13 usa o PipeWire)</span></span><button class="copy" type="button" data-copy="c18">Copiar</button></div><pre id="c18">sudo apt install -y pipewire-audio pavucontrol</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Bluetooth</span></span><button class="copy" type="button" data-copy="c19">Copiar</button></div><pre id="c19">sudo apt install -y bluez blueman</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Touchpad e teclas de brilho</span></span><button class="copy" type="button" data-copy="c20">Copiar</button></div><pre id="c20">sudo apt install -y xserver-xorg-input-libinput brightnessctl</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Bateria durando mais e memória extra</span></span><button class="copy" type="button" data-copy="c21">Copiar</button></div><pre id="c21">sudo apt install -y tlp zram-tools
-sudo systemctl enable --now tlp</pre></div><p class="note rv">// o Debian descobre o resto sozinho. Se uma peça específica não funcionar, anote o nome dela e pesquise “Debian 13” + o nome.</p>
-</div>
-</section>
-
-<section aria-labelledby="n6">
-<div class="read">
-<p class="eyebrow">a parte visual</p>
-<h2 id="n6" class="rv">Instale a <span class="r">interface gráfica</span></h2>
-<p class="rv">Sem interface, o notebook só tem texto. O XFCE é um bom meio-termo: bonito, leve e fácil de mexer. Esse bloco instala a tela de entrada, a área de trabalho e o terminal gráfico:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">XFCE (recomendado)</span></span><button class="copy" type="button" data-copy="c22">Copiar</button></div><pre id="c22">sudo apt install -y xorg xfce4 xfce4-terminal lightdm network-manager-gnome
-sudo reboot</pre></div><p class="note" style="margin:6px 0 0">Vai baixar bastante coisa. Quando o notebook ligar de novo, aparece a tela de login. Entre com seu usuário e senha.</p><p class="rv">Se a memória for pouca (1 a 2 GB), instale o LXQt no lugar:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">LXQt (mais leve)</span></span><button class="copy" type="button" data-copy="c23">Copiar</button></div><pre id="c23">sudo apt install -y xorg lxqt-core sddm network-manager-gnome qterminal
-sudo reboot</pre></div><p class="rv">Se o Wi-Fi sumir depois de instalar a interface, é porque o instalador antigo configurou a rede em outro lugar. Deixe só as linhas do <code>lo</code> em <code>/etc/network/interfaces</code>:</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Corrigir o Wi-Fi</span></span><button class="copy" type="button" data-copy="c24">Copiar</button></div><pre id="c24">sudo nano /etc/network/interfaces
-sudo systemctl restart NetworkManager</pre></div><p class="rv">Conectar ao Wi-Fi pelo terminal (se a interface ainda não abriu):</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Wi-Fi pelo terminal</span></span><button class="copy" type="button" data-copy="c25">Copiar</button></div><pre id="c25">nmcli device wifi list
-nmcli device wifi connect &quot;NOME_DA_REDE&quot; password &quot;SENHA&quot;</pre></div><div class="warn glass rv"><span class="big">!</span><p>Mudar de interface depois é fácil, mas as duas instaladas ao mesmo tempo bagunçam o login. Escolha uma e fique com ela.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="n7">
-<div class="read">
-<p class="eyebrow">o dia a dia</p>
-<h2 id="n7" class="rv">Navegador e <span class="r">apps mínimos</span></h2>
-<p class="rv">Instale o que você de fato usa, e só isso. Cada programa extra gasta memória.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Navegador (Firefox, o padrão do Debian)</span></span><button class="copy" type="button" data-copy="c26">Copiar</button></div><pre id="c26">sudo apt install -y firefox-esr</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Navegador (Chromium, se preferir)</span></span><button class="copy" type="button" data-copy="c27">Copiar</button></div><pre id="c27">sudo apt install -y chromium</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Texto, PDF, vídeo, zip e captura de tela</span></span><button class="copy" type="button" data-copy="c28">Copiar</button></div><pre id="c28">sudo apt install -y mousepad atril vlc file-roller xfce4-screenshooter</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Pacote de escritório (opcional, é pesado)</span></span><button class="copy" type="button" data-copy="c29">Copiar</button></div><pre id="c29">sudo apt install -y libreoffice-writer libreoffice-calc libreoffice-l10n-pt-br</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Ferramentas de terminal que ajudam</span></span><button class="copy" type="button" data-copy="c30">Copiar</button></div><pre id="c30">sudo apt install -y htop inxi curl wget git unzip</pre></div><p class="rv">Dica de uso: o navegador pesa mais que tudo. Se o notebook engasgar, feche abas e instale o <b>uBlock Origin</b> no Firefox, que corta anúncios pesados.</p>
-</div>
-</section>
-
-<section aria-labelledby="n8">
-<div class="read">
-<p class="eyebrow">manutenção</p>
-<h2 id="n8" class="rv">Medir, limpar e <span class="r">consertar</span></h2>
-<p class="rv">Faça as medições que eu fiz no vídeo e compare com o antes e o depois do seu.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Tempo pra ligar e memória em uso</span></span><button class="copy" type="button" data-copy="c31">Copiar</button></div><pre id="c31">systemd-analyze
-free -h</pre></div><p class="note" style="margin:6px 0 0"><code>systemd-analyze</code> mostra o tempo de boot. <code>free -h</code> mostra a memória: olhe a coluna “used”.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">O que mais pesa agora</span></span><button class="copy" type="button" data-copy="c32">Copiar</button></div><pre id="c32">htop</pre></div><p class="note" style="margin:6px 0 0">Aperte <b>q</b> pra sair.</p><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Limpar sobras depois de instalar e desinstalar</span></span><button class="copy" type="button" data-copy="c33">Copiar</button></div><pre id="c33">sudo apt autoremove -y
-sudo apt clean</pre></div><div class="prompt cmd glass rv"><div class="prompt-h"><span><span class="t">Atualizar uma vez por semana</span></span><button class="copy" type="button" data-copy="c34">Copiar</button></div><pre id="c34">sudo apt update &amp;&amp; sudo apt full-upgrade -y</pre></div><h3 class="rv" style="margin-top:22px">Se algo der errado</h3><ol class="guide"><li class="glass rv"><span class="gn">1</span><div><b>A tela ficou preta depois da interface</b><span class="d">Aperte <b>Ctrl+Alt+F2</b>, entre com seu usuário e rode <code>sudo systemctl restart lightdm</code>. Se não resolver, <code>journalctl -p 3 -xb</code> mostra os erros graves do boot.</span></div></li><li class="glass rv"><span class="gn">2</span><div><b>Sem som</b><span class="d">Abra o <code>pavucontrol</code> e confira se a saída certa está escolhida e sem mudo. Depois rode <code>sudo apt install -y firmware-sof-signed</code> (som de notebooks mais novos) e reinicie.</span></div></li><li class="glass rv"><span class="gn">3</span><div><b>Wi-Fi caindo</b><span class="d">Desligue a economia de energia da placa: <code>sudo iw dev wlan0 set power_save off</code>. Se resolver, é o fim do problema (ou rode o TLP, que faz isso).</span></div></li><li class="glass rv"><span class="gn">4</span><div><b>Travou tudo</b><span class="d">Segure o botão de ligar por 10 segundos. Ao reiniciar, confira com <code>journalctl -p 3 -xb</code> o que deu erro.</span></div></li><li class="glass rv"><span class="gn">5</span><div><b>Quero voltar tudo atrás</b><span class="d">Refaça a instalação com o pendrive. Por isso o backup vem antes de tudo.</span></div></li></ol><div class="warn glass rv"><span class="big">?</span><p><b>Sem Claude e sem saber o que o erro significa?</b> Use o plano gratuito de qualquer assistente de IA: cole a saída do <code>lspci -nn</code> e o texto do erro e peça pra explicar em português simples. Confira sempre antes de rodar um comando que apague algo.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="t6">
-  <div class="read">
-    <p class="eyebrow">o salto</p>
-    <h2 id="t6" class="rv">Por que o Claude entra <span class="r">cedo</span></h2>
-    <p class="rv">Instalar o Claude Code logo depois do Debian evita o trabalho mais chato. Com ele rodando no próprio notebook, você deixa de caçar tutoriais para cada driver e cada configuração. Pede em português, ele executa os comandos, lê os erros e corrige. Foi assim que ele montou minha área de trabalho, com barra no topo, dock e apps próprios.</p>
+<!-- 10. COMPARAÇÃO -->
+<section aria-labelledby="h-cmp"><div class="wrap">
+  <p class="eyebrow">faça a conta</p>
+  <h2 id="h-cmp">Notebook novo ou o seu, de volta?</h2>
+  <div class="cmp">
+    <div class="glass us"><h3>Ressuscitar o seu</h3><p class="p" data-cmp="guia">R$ 37,90</p><p class="sub" data-cmp-sub="guia">pagamento único</p><ul><li>Menos que uma pizza</li><li>Nenhuma peça pra comprar</li><li>Atualizações de segurança até 2030</li></ul></div>
+    <div class="glass new"><h3>Comprar um novo</h3><p class="p"><s>R$ 2.500</s></p><p class="sub">ou 12x de R$ 208,33</p><ul><li>Parcela no cartão por um ano</li><li>O velho continua na gaveta</li><li>Daqui a uns anos, o mesmo problema</li></ul></div>
   </div>
-</section>
+  <p class="pct">Ressuscitar o seu custa <b>1,5%</b> do preço de um notebook novo.<br><span style="color:var(--mu);font-weight:700;font-size:.75em">Com R$ 37,90 você não compra nem uma peça nova pra ele.</span></p>
+</div></section>
 
-<section aria-labelledby="t7">
-  <p class="eyebrow">resultado real</p>
-  <h2 id="t7" class="rv">Os números</h2>
-  <div class="tldr">
-    <div class="glass rv"><span class="ic">33s</span><p>Para ligar, <b>mesmo sem SSD</b>.</p></div>
-    <div class="glass rv rv-d1"><span class="ic">400</span><p><b>MB de RAM</b> só para ligar. Antes eram cerca de 850 MB.</p></div>
-    <div class="glass rv rv-d2"><span class="ic">0,08</span><p><b>segundo</b> para o terminal abrir.</p></div>
-    <div class="glass rv"><span class="ic">40%</span><p>Apps <b>mais rápidos</b>.</p></div>
-    <div class="glass rv rv-d1"><span class="ic">720p</span><p><b>YouTube fluido</b>.</p></div>
+<!-- 11. OFERTA -->
+<section id="planos" aria-labelledby="h-planos"><div class="wrap center">
+  <p class="eyebrow">preço de lançamento</p>
+  <h2 id="h-planos">Escolha como você quer ressuscitar.</h2>
+  <p class="sub" id="promo-txt">Promoção até 30/11. No dia 1º de dezembro o preço volta ao normal.</p>
+  <div class="timer" id="timer" aria-label="Tempo até o fim da promoção">
+    <div class="glass"><b data-t="d">0</b><span>dias</span></div>
+    <div class="glass"><b data-t="h">0</b><span>horas</span></div>
+    <div class="glass"><b data-t="m">0</b><span>min</span></div>
+    <div class="glass"><b data-t="s">0</b><span>seg</span></div>
   </div>
-  <p class="note">// medi no meu notebook. O seu pode dar números diferentes</p>
-</section>
-
-<section aria-labelledby="t8">
-  <div class="read">
-    <p class="eyebrow">o que você veio buscar</p>
-    <h2 id="t8" class="rv">Os pedidos prontos</h2>
-    <p class="rv">Use na ordem, um por vez. Se preferir, baixe tudo num arquivo e leve no pendrive (passo 4 do passo a passo).</p>
-    <button class="copy rv" type="button" id="dlp" style="margin:6px 0 18px;padding:12px 18px;font-size:15px">Baixar COBAIA-PEDIDOS.txt</button>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 1</span> · configurar o sistema</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Acabei de instalar o Debian 13 mínimo neste notebook. Configura o Wi-Fi, o som, o teclado em português do Brasil, o fuso horário e o brilho da tela. Faz uma coisa por vez e me avisa o que mudou.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 2</span> · a interface</span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">Monta pra mim uma área de trabalho leve, com barra no topo e dock embaixo. Escolhe componentes que gastem pouca memória. Faz uma coisa por vez e me avisa o que mudou.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 3</span> · a identidade visual</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Cria uma identidade visual própria para o sistema: papel de parede, ícones, fonte e paleta de cores combinando. Aplica na barra, na dock e no terminal.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 4</span> · os apps do dia a dia</span><button class="copy" type="button" data-copy="p4">Copiar</button></div><pre id="p4">Instala um navegador leve, um gerenciador de arquivos, um leitor de PDF e um player de vídeo. Põe todos na dock.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 5</span> · desempenho</span><button class="copy" type="button" data-copy="p5">Copiar</button></div><pre id="p5">Mede quanto tempo o notebook leva para ligar e quanta memória usa parado. Desliga o que não precisa rodar e mede de novo, me mostrando o antes e o depois.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 6</span> · app próprio (opcional)</span><button class="copy" type="button" data-copy="p6">Copiar</button></div><pre id="p6">Faz um app nativo simples que grava áudio pelo microfone. Me explica como abrir e testar.</pre></div>
-    <p class="eyebrow rv" style="margin-top:28px">avulsos</p>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido A1</span> · diagnóstico (notebook que não liga)</span><button class="copy" type="button" data-copy="pA1">Copiar</button></div><pre id="pA1">Meu notebook [modelo, ex.: Acer Aspire 5] não liga. Me ajuda a diagnosticar passo a passo, uma coisa por vez, começando pela bateria.</pre></div>
-    <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido A2</span> · quando dá erro</span><button class="copy" type="button" data-copy="pA2">Copiar</button></div><pre id="pA2">Deu esse erro: [cole o texto ou descreva o que aparece na tela]. O que eu faço?</pre></div>
-    <script>document.getElementById("dlp").addEventListener("click",function(){var o="PEDIDOS DO COBAIA · NOTEBOOK\nUse na ordem, um por vez. Troque o que estiver entre colchetes.\n\n";document.querySelectorAll(".prompt:not(.cmd)").forEach(function(b){o+="=== "+b.querySelector(".t").parentNode.textContent.trim()+" ===\n"+b.querySelector("pre").textContent.trim()+"\n\n";});var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([o],{type:"text/plain;charset=utf-8"}));a.download="COBAIA-PEDIDOS.txt";document.body.appendChild(a);a.click();a.remove();});</script>
-  </div>
-</section>
-
-<section aria-labelledby="t9">
-  <div class="read">
-    <p class="eyebrow">cuidados</p>
-    <h2 id="t9" class="rv">Leia antes de <span class="r">apagar o disco</span></h2>
-    <div class="warn glass red rv">
-      <span class="big">!</span>
-      <p><b>Faça backup antes.</b> Instalar do zero apaga o disco. Copie fotos, documentos e tudo o que importa pra outro lugar.</p>
+  <div class="grid g2" style="text-align:left;max-width:900px;margin:0 auto">
+    <div class="glass price">
+      <h3>Guia completo</h3>
+      <p style="color:var(--mu);margin:0">Você faz sozinho, no seu ritmo.</p>
+      <div class="val" data-preco="guia"><span class="de" data-de>de R$ 97,90 por</span><br><small>R$</small>37,90</div>
+      <p class="pix" data-pix="guia">pagamento único · Pix ou cartão</p>
+      <ul>
+        <li><b>As 8 fases</b>, do pendrive ao notebook pronto</li>
+        <li><b>Os 2 visuais</b>: o leve e o completo com cara de Mac</li>
+        <li>Todos os comandos com botão de copiar</li>
+        <li>Socorro com os problemas mais comuns</li>
+        <li>Bônus: o Claude dentro do notebook, com pedidos prontos</li>
+        <li>Atualizações do guia sem pagar de novo</li>
+      </ul>
+      <a class="btn full ghost" data-checkout="guia" href="#planos">Quero o guia</a>
     </div>
-    <ol class="guide">
-      <li class="glass rv"><span class="gn">1</span><div><b>Anote o modelo do Wi-Fi e do som antes de formatar</b><span class="d">Se algo não funcionar depois, você sabe o que pedir pro Claude procurar.</span></div></li>
-      <li class="glass rv"><span class="gn">2</span><div><b>Mude uma coisa por vez</b><span class="d">Assim, se algo quebrar, você sabe qual foi a causa.</span></div></li>
-      <li class="glass rv"><span class="gn">3</span><div><b>Leia o que o Claude vai rodar antes de aceitar</b><span class="d">Ele pede sua permissão a cada comando. Se algo parecer apagar arquivos seus, pergunte o motivo antes.</span></div></li>
-    </ol>
+    <div class="glass price hl">
+      <span class="badge">Eu faço com você</span>
+      <h3>Suporte pessoal do Luis</h3>
+      <p style="color:var(--mu);margin:0">Eu pego na sua mão do início ao fim.</p>
+      <div class="val" data-preco="suporte"><span class="de" data-de>de R$ 197,90 por</span><br><small>R$</small>97,90</div>
+      <p class="pix" data-pix="suporte">pagamento único · Pix ou cartão</p>
+      <span class="inc">🎁 O guia completo vem junto: 2 pelo preço de 1</span>
+      <ul>
+        <li><b>Eu no seu WhatsApp</b>, acompanhando cada fase</li>
+        <li>Eu confiro antes se o seu notebook aguenta e qual visual usar</li>
+        <li>Travou? Você me manda a foto da tela e eu te digo o que fazer</li>
+        <li>Só termino quando ele estiver funcionando e atualizado</li>
+        <li><b>+ o guia completo</b> liberado no mesmo e-mail</li>
+      </ul>
+      <a class="btn full" data-checkout="suporte" href="#planos">Quero o suporte do Luis</a>
+    </div>
   </div>
-</section>
+  <div class="secure"><span>🔒 Pagamento seguro pela Kiwify</span><span>✉️ Acesso no e-mail na hora</span><span>↩️ 7 dias de garantia</span></div>
+</div></section>
 
-<section aria-labelledby="t10">
-  <p class="eyebrow">palavras do vídeo</p>
-  <h2 id="t10" class="rv">Glossário rápido</h2>
-  <dl class="gloss">
-    <div class="glass rv"><dt>Linux</dt><dd>Um sistema para computador, alternativo ao que vem de fábrica. Existem versões bem leves.</dd></div>
-    <div class="glass rv rv-d1"><dt>Debian</dt><dd>Uma das versões de Linux mais antigas e estáveis. A 13 é a mais recente.</dd></div>
-    <div class="glass rv"><dt>Pendrive bootável</dt><dd>Um pendrive com o instalador gravado, que o notebook consegue iniciar antes do sistema.</dd></div>
-    <div class="glass rv rv-d1"><dt>Hash SHA256</dt><dd>Uma "impressão digital" do arquivo. Se bater com a do site, o arquivo está íntegro.</dd></div>
-    <div class="glass rv"><dt>Terminal</dt><dd>A tela onde você digita comandos. É onde o Claude Code roda.</dd></div>
-    <div class="glass rv"><dt>Firmware</dt><dd>Programinha que o fabricante grava na peça (Wi-Fi, som, vídeo) pra ela funcionar. No Debian, vem num repositório próprio.</dd></div><div class="glass rv"><dt>Driver</dt><dd>O que ensina o sistema a conversar com uma peça do computador.</dd></div><div class="glass rv"><dt>apt</dt><dd>O instalador de programas do Debian. <code>apt install nome</code> baixa e instala o que você pedir.</dd></div><div class="glass rv"><dt>sudo</dt><dd>Comando que roda o que vem depois como administrador. Pede sua senha.</dd></div><div class="glass rv"><dt>Interface gráfica</dt><dd>A área de trabalho com janelas, barra e mouse. O XFCE e o LXQt são as leves.</dd></div><div class="glass rv"><dt>Ventoy</dt><dd>Programa que deixa o pendrive aceitar vários instaladores, só copiando o arquivo .iso pra dentro.</dd></div><div class="glass rv rv-d1"><dt>Claude Code</dt><dd>O Claude dentro do terminal, capaz de rodar comandos e mexer nos arquivos do computador. Exige uma conta paga.</dd></div>
-  </dl>
-</section>
-<section class="rv" aria-labelledby="nx"><p class="eyebrow">continua a série</p><h2 id="nx">Os outros experimentos</h2><div class="next"><a class="card glass" href="../mcp/"><span class="d">← DIA 05 · palavra MCP</span><div class="t">O Claude montou meu post no Canva</div><p>Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar.</p></a><div class="card glass red locked"><span class="d">DIA 07 · em breve</span><div class="t">Próximo experimento</div><p>Sai às 12h. Segue o @cobaia.dev pra ver primeiro.</p></div></div></section><div class="cta rv">
-  <span class="pf"><img src="../assets/img/avatar.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
-  <h2>30 dias, <em>30 experimentos</em></h2>
-  <p class="lede">Eu testo antes de você. Segue pra não perder o próximo.</p>
-  <a class="stamp" href="https://www.instagram.com/cobaia.dev/" target="_blank" rel="noopener">@COBAIA.DEV</a>
-  <div class="nets"><a class="glass" href="https://www.instagram.com/cobaia.dev/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</a><a class="glass" href="https://www.tiktok.com/@cobaia.dev" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>TikTok</a><a class="glass" href="https://www.youtube.com/@cobaia.dev1" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a></div>
-</div>
-<footer><span>© 2026 @cobaia.dev</span><span>30 experimentos com Claude</span></footer>
+<!-- 12. GARANTIA -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="glass guar">
+    <div class="seal">7<small>DIAS</small></div>
+    <div><h3 style="font:900 24px var(--f);margin:0 0 6px">O risco é todo meu</h3>
+    <p style="color:var(--mu);margin:0">Comprou e não gostou? Peça o reembolso na própria Kiwify em até 7 dias e receba tudo de volta, sem pergunta. O acesso ao guia é encerrado junto.</p></div>
+  </div>
+</div></section>
+
+<!-- 13. FAQ -->
+<section aria-labelledby="h-faq"><div class="wrap" style="max-width:820px">
+  <p class="eyebrow">perguntas frequentes</p>
+  <h2 id="h-faq">Antes de comprar</h2>
+  <details class="q"><summary>Preciso saber programar ou entender de computador?</summary><p>Não. O guia foi feito pra quem nunca formatou nada. Cada comando vem pronto pra copiar e colar, com a explicação do que ele faz e do que você deve ver na tela.</p></details>
+  <details class="q"><summary>O meu notebook serve?</summary><p>Quase todo notebook de 2010 pra cá serve. O primeiro passo do guia te ensina a conferir em 2 minutos e já mostra qual dos dois visuais é o certo pra ele. Se não servir, você pede o reembolso dentro dos 7 dias.</p></details>
+  <details class="q"><summary>Que sistema é esse? É pirata?</summary><p>Não é pirata. É um sistema gratuito e oficial, usado no mundo inteiro, com atualizações de segurança até 2030. Você baixa direto do site oficial dele, de graça. O guia mostra o link e cada passo.</p></details>
+  <details class="q"><summary>Vou perder os meus arquivos?</summary><p>O processo apaga o disco do notebook, por isso o guia começa pelo backup passo a passo. Salvando antes as fotos, os documentos e os favoritos, você não perde nada.</p></details>
+  <details class="q"><summary>Os programas do Windows vão funcionar?</summary><p>Programas feitos só pra Windows não rodam direto. Pro dia a dia, quase tudo funciona: navegador, WhatsApp Web, YouTube, Netflix, Spotify, Google Docs, e um pacote de escritório que abre arquivos do Word e do Excel.</p></details>
+  <details class="q"><summary>Serve pra computador de mesa?</summary><p>Serve. O processo é o mesmo.</p></details>
+  <details class="q"><summary>Quanto tempo leva?</summary><p>De 2 a 3 horas no total, e boa parte é só esperando. Dá pra fazer em dias diferentes: o guia salva onde você parou.</p></details>
+  <details class="q"><summary>O que eu preciso ter?</summary><p>Um pendrive de 8 GB ou mais, internet, o carregador do notebook e o celular pra acompanhar o guia.</p></details>
+  <details class="q"><summary>Como funciona o suporte do Luis?</summary><p>Depois da compra eu te chamo no WhatsApp que você deixou no pagamento (ou você me chama pelo botão da sua área). A gente vai fase por fase até o notebook ficar pronto. O guia completo vem junto, no mesmo e-mail.</p></details>
+  <details class="q"><summary>Como eu recebo o acesso?</summary><p>Na hora, no e-mail da compra. Você entra só com esse e-mail, sem senha. O acesso não tem prazo de validade.</p></details>
+</div></section>
+
+<!-- 14. CTA FINAL -->
+<section style="padding-top:20px"><div class="wrap">
+  <div class="glass final">
+    <h2>Tira ele da gaveta hoje.</h2>
+    <p class="sub" style="margin:0 auto 26px">Por 1,5% do preço de um notebook novo, com 7 dias de garantia.</p>
+    <a class="btn" href="#planos">Ressuscitar meu notebook</a>
+  </div>
+</div></section>
 </main>
-<div class="modal" id="cal" role="dialog" aria-modal="true" aria-labelledby="cal-t" aria-hidden="true">
-  <div class="sheet glass">
-    <div class="sheet-h"><div><h2 id="cal-t">30 dias</h2><p>um experimento novo todo dia, às 12h</p></div><button class="x" type="button" aria-label="Fechar">×</button></div>
-    <div class="cal"><a href="../dia-01/" data-cal-day="1">01<small>vídeo</small></a><a href="../jogo/" data-cal-day="2">02<small>JOGO</small></a><a href="../skill/" data-cal-day="3">03<small>SKILL</small></a><a href="../limpar/" data-cal-day="4">04<small>LIMPAR</small></a><a href="../mcp/" data-cal-day="5">05<small>MCP</small></a><a href="../notebook/" data-cal-day="6" class="here" aria-current="page">06<small>NOTEBOOK</small></a><span data-cal-day="7" aria-label="Dia 7, ainda trancado"><b>07</b></span><a href="../tablet/" data-cal-day="8">08<small>TABLET</small></a><a href="../professor/" data-cal-day="9">09<small>PROFESSOR</small></a><a href="../wifi/" data-cal-day="10">10<small>WIFI</small></a><span data-cal-day="11" aria-label="Dia 11, ainda trancado"><b>11</b></span><a href="../omniroute/" data-cal-day="12">12<small>CLAUDE</small></a><a href="../humano/" data-cal-day="13">13<small>HUMANO</small></a><a href="../planilha/" data-cal-day="14">14<small>PLANILHA</small></a><span data-cal-day="15" aria-label="Dia 15, ainda trancado"><b>15</b></span><span data-cal-day="16" aria-label="Dia 16, ainda trancado"><b>16</b></span><span data-cal-day="17" aria-label="Dia 17, ainda trancado"><b>17</b></span><span data-cal-day="18" aria-label="Dia 18, ainda trancado"><b>18</b></span><span data-cal-day="19" aria-label="Dia 19, ainda trancado"><b>19</b></span><span data-cal-day="20" aria-label="Dia 20, ainda trancado"><b>20</b></span><span data-cal-day="21" aria-label="Dia 21, ainda trancado"><b>21</b></span><span data-cal-day="22" aria-label="Dia 22, ainda trancado"><b>22</b></span><span data-cal-day="23" aria-label="Dia 23, ainda trancado"><b>23</b></span><span data-cal-day="24" aria-label="Dia 24, ainda trancado"><b>24</b></span><span data-cal-day="25" aria-label="Dia 25, ainda trancado"><b>25</b></span><span data-cal-day="26" aria-label="Dia 26, ainda trancado"><b>26</b></span><span data-cal-day="27" aria-label="Dia 27, ainda trancado"><b>27</b></span><span data-cal-day="28" aria-label="Dia 28, ainda trancado"><b>28</b></span><span data-cal-day="29" aria-label="Dia 29, ainda trancado"><b>29</b></span><span data-cal-day="30" aria-label="Dia 30, ainda trancado"><b>30</b></span></div>
-    <div class="legend"><span><i style="background:var(--red)"></i>liberado</span><span><i style="border:1px dashed var(--red)"></i>próximo</span><span><i style="background:rgba(255,255,255,.1)"></i>trancado</span></div>
-  </div>
-</div>
-<script src="../assets/site.js"></script>
+
+<footer><div class="wrap">
+  <p>@cobaia.dev · eu testo, você aprende · <a href="../30-dias/">todos os experimentos</a> · <a href="../acesso/">já comprei, quero entrar</a></p>
+</div></footer>
+
+<div class="sticky-cta glass" id="sticky"><span>Promoção até 30/11<br><b>Ressuscitar meu notebook</b></span><a class="btn" href="#planos">Ver planos</a></div>
+
+<script>
+(function(){
+  /* Links de checkout da Kiwify: cole aqui quando os produtos estiverem criados. */
+  var CHECKOUT = { guia: 'https://pay.kiwify.com.br/PB5kqVM', suporte: 'https://pay.kiwify.com.br/BRKaYbv' };
+  /* Preços. "parcela" é o valor da parcela que o checkout da Kiwify mostra (ex.: '4,62'); vazio mostra só o preço à vista. */
+  var PRECO = {
+    guia:    { de: '97,90',  por: '37,90', n: 3, parcela: '13,53', depois: { por: '97,90',  parcela: '' } },
+    suporte: { de: '197,90', por: '97,90', n: 12, parcela: '10,13', depois: { por: '197,90', parcela: '' } }
+  };
+  function precos(fim){
+    Object.keys(PRECO).forEach(function(k){
+      var p = PRECO[k], por = fim ? p.depois.por : p.por, parc = fim ? p.depois.parcela : p.parcela;
+      var de = fim ? '' : '<span class="de">de R$ ' + p.de + ' por</span><br>';
+      var val = document.querySelector('[data-preco="' + k + '"]');
+      var pix = document.querySelector('[data-pix="' + k + '"]');
+      if (parc) {
+        val.innerHTML = de + '<span class="x">' + p.n + 'x</span><small>R$</small>' + parc;
+        pix.textContent = 'ou R$ ' + por + ' à vista no Pix';
+      } else {
+        val.innerHTML = de + '<small>R$</small>' + por;
+        pix.textContent = 'pagamento único · Pix ou cartão';
+      }
+      var c = document.querySelector('[data-cmp="' + k + '"]');
+      if (c) {
+        c.innerHTML = parc ? p.n + 'x R$ ' + parc : 'R$ ' + por;
+        document.querySelector('[data-cmp-sub="' + k + '"]').textContent = parc ? 'ou R$ ' + por + ' à vista' : 'pagamento único';
+      }
+    });
+  }
+  precos(false);
+  var FIM = new Date('2026-12-01T02:59:59Z').getTime(); // 30/11 23:59:59 em Brasília
+
+  document.querySelectorAll('[data-checkout]').forEach(function(a){
+    var u = CHECKOUT[a.getAttribute('data-checkout')];
+    if (u) { a.href = u + (u.indexOf('?') < 0 ? '?' : '&') + 'src=notebook'; a.rel = 'noopener'; }
+    else { a.setAttribute('aria-disabled','true'); a.addEventListener('click',function(e){e.preventDefault();a.textContent='Checkout abre em instantes';}); }
+  });
+
+  /* vídeos: carregam e tocam só quando aparecem na tela */
+  var base = '../assets/notebook/';
+  document.querySelectorAll('[data-v]').forEach(function(box){
+    var n = box.getAttribute('data-v'), v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline',''); v.setAttribute('muted','');
+    v.preload = 'none'; v.poster = base + n + '.jpg'; v.dataset.src = base + n + '.mp4';
+    box.insertBefore(v, box.firstChild);
+  });
+  var vs = [].slice.call(document.querySelectorAll('video[data-src]'));
+  if ('IntersectionObserver' in window) {
+    var vo = new IntersectionObserver(function(es){ es.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+      else if (v.src) v.pause();
+    }); }, { rootMargin: '200px 0px' });
+    vs.forEach(function(v){ vo.observe(v); });
+  } else vs.forEach(function(v){ v.src = v.dataset.src; v.autoplay = true; });
+
+  var t = document.getElementById('timer');
+  function tick(){
+    var r = FIM - Date.now();
+    if (r <= 0) {
+      t.style.display = 'none';
+      document.getElementById('promo-txt').textContent = 'Preço normal.';
+      precos(true);
+      return;
+    }
+    var s = Math.floor(r/1000);
+    t.querySelector('[data-t=d]').textContent = Math.floor(s/86400);
+    t.querySelector('[data-t=h]').textContent = Math.floor(s%86400/3600);
+    t.querySelector('[data-t=m]').textContent = Math.floor(s%3600/60);
+    t.querySelector('[data-t=s]').textContent = s%60;
+    setTimeout(tick, 1000);
+  }
+  tick();
+
+  var st = document.getElementById('sticky'), pl = document.getElementById('planos');
+  function sc(){ var p = pl.getBoundingClientRect(); st.classList.toggle('on', scrollY > 900 && (p.top > innerHeight || p.bottom < 0)); }
+  addEventListener('scroll', sc, {passive:true});
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('section .glass').forEach(function(el){ el.classList.add('rv'); io.observe(el); });
+  }
+})();
+</script>
 </body>
 </html>
