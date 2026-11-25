@@ -1,46 +1,34 @@
-/* /minha-area/ : tudo o que o comprador tem, conferido na hora no cadastro. */
-import { PRODUTOS, lerSessao, comprasAtivas, ativo } from '../lib/compras.mjs';
+/* /minha-area/ : o que a pessoa liberou abrindo os links do e-mail. */
+import { PRODUTOS, lerSessao } from '../lib/compras.mjs';
 import { pagina, esc, redirecionar } from '../lib/ui.mjs';
 
-function cartao(reg) {
-  const p = PRODUTOS[reg.produto];
-  if (!ativo(reg)) {
-    return `<div class="prod"><span class="pill off">Acesso encerrado</span><h2>${esc(p.nome)}</h2><p>Essa compra foi reembolsada ou contestada, então o material saiu da sua área.</p></div>`;
-  }
-  if (reg.produto === 'tablet') {
-    const guias = reg.guias || [];
-    if (guias.length) {
-      return `<div class="prod"><span class="pill">Liberado</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p>
-${guias.map((g) => `<a class="bt" href="/tablet/g/${esc(g)}/">Abrir o guia${guias.length > 1 ? ' ' + esc(g.split('-')[0].toUpperCase()) : ''}</a>`).join('')}</div>`;
-    }
-    return `<div class="prod"><span class="pill wait">Compra confirmada · guia em produção</span><h2>${esc(p.nome)}</h2>
-<p>Seu pagamento entrou. Agora eu monto o passo a passo pro seu modelo exato. Quando ficar pronto, ele aparece aqui nesta página e eu te aviso no WhatsApp da compra.</p>
-<a class="bt alt" href="/tablet/o-mapa-do-tablet-velho.pdf" download>Enquanto isso: baixar o mapa do tablet (PDF)</a></div>`;
-  }
+function cartao(produto, email) {
+  const p = PRODUTOS[produto];
   if (p.suporte) {
     const zap = String(process.env.WHATSAPP_SUPORTE || '').replace(/\D/g, '');
-    const doNotebook = reg.produto === 'notebook-suporte';
-    const msg = encodeURIComponent('Oi, Luis! Comprei o suporte' + (doNotebook ? ' do notebook' : '') + ' (' + reg.email + '). Vamos começar?');
+    const doNotebook = produto === 'notebook-suporte';
+    const msg = encodeURIComponent('Oi, Luis! Comprei o suporte' + (doNotebook ? ' do notebook' : '') + ' (' + email + '). Vamos começar?');
     return `<div class="prod"><span class="pill">${doNotebook ? 'Suporte ativo · guia incluído' : 'Suporte ativo'}</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p>
-${zap ? `<a class="bt" href="https://wa.me/${zap}?text=${msg}" target="_blank" rel="noopener">Chamar o Luis no WhatsApp</a>` : '<p>O Luis vai te chamar no WhatsApp que você deixou na compra.</p>'}
-${p.guia ? `<a class="bt alt" href="${esc(p.guia)}">Abrir o guia</a>` : ''}</div>`;
+${zap ? `<a class="bt" href="https://wa.me/${zap}?text=${msg}" target="_blank" rel="noopener">Chamar o Luis no WhatsApp</a>` : '<p>O Luis vai te chamar no WhatsApp que você deixou na compra.</p>'}</div>`;
+  }
+  if (produto === 'tablet') {
+    return `<div class="prod"><span class="pill">Compra confirmada</span><h2>${esc(p.nome)}</h2>
+<p>Eu monto o passo a passo pro seu modelo exato e te mando o link dele no WhatsApp da compra.</p>
+<a class="bt alt" href="/tablet/o-mapa-do-tablet-velho.pdf" download>Baixar o mapa do tablet (PDF)</a></div>`;
   }
   return `<div class="prod"><span class="pill">Liberado</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p><a class="bt" href="${esc(p.destino)}">Abrir o guia</a></div>`;
 }
 
-export async function GET(request) {
-  const email = lerSessao(request);
-  if (!email) return redirecionar('/acesso/');
-  let regs = await comprasAtivas(email);
-  if (!regs.length) return redirecionar('/acesso/?erro=nao-encontrado&email=' + encodeURIComponent(email));
-  // o suporte comprado pela página do notebook gera dois registros; mostra só o cartão do notebook
-  if (regs.some((r) => r.produto === 'notebook-suporte')) regs = regs.filter((r) => r.produto !== 'suporte');
-  regs.sort((a, b) => Number(ativo(b)) - Number(ativo(a)) || Number(!!PRODUTOS[b.produto]?.suporte) - Number(!!PRODUTOS[a.produto]?.suporte));
+export function GET(request) {
+  const s = lerSessao(request);
+  if (!s || !s.produtos.length) return redirecionar('/acesso/');
+  // o suporte do notebook já mostra o WhatsApp; o guia do notebook vem logo abaixo
+  const ordem = s.produtos.slice().sort((a, b) => Number(!!PRODUTOS[b].suporte) - Number(!!PRODUTOS[a].suporte));
   const corpo = `
 <span class="badge">MINHA ÁREA</span>
 <h1>Seu <em>material</em></h1>
-<p class="s">Tudo o que você comprou fica aqui. Salve esta página: é só voltar e entrar com o mesmo e-mail.</p>
-${regs.map(cartao).join('')}
-<p class="who"><span>${esc(email)}</span><a href="/api/sair">Sair</a></p>`;
+<p class="s">Tudo o que você comprou fica aqui. Para voltar outro dia, abra de novo o link do e-mail.</p>
+${ordem.map((p) => cartao(p, s.email)).join('')}
+<p class="who"><span>${esc(s.email)}</span><a href="/api/sair">Sair</a></p>`;
   return pagina({ titulo: 'Minha área', corpo });
 }
