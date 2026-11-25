@@ -2,10 +2,12 @@
    - Consultar um comprador
    - Liberar um guia de tablet pronto para um comprador (slug da pasta em /tablet/g/)
    - Registrar uma compra feita fora do webhook (ex.: quem comprou antes dele existir)
+   - Mandar de novo o e-mail de acesso (link e login)
    - Revogar o acesso na mão */
 import crypto from 'node:crypto';
 import { PRODUTOS, lerCompra, gravarCompra, aplicarEvento, normEmail } from '../lib/compras.mjs';
 import { pagina, esc } from '../lib/ui.mjs';
+import { enviarBoasVindas } from '../lib/email.mjs';
 
 const chaveOk = (c) => {
   const k = process.env.ADMIN_CHAVE || '';
@@ -32,6 +34,7 @@ function tela({ msg = '', tipo = '', email = '', produto = 'tablet', resultado =
 <option value="consultar">Consultar</option>
 <option value="liberar">Liberar guia do tablet pronto</option>
 <option value="registrar">Registrar compra feita fora da Kiwify/webhook</option>
+<option value="email">Mandar o e-mail de acesso (link e login)</option>
 <option value="revogar">Revogar acesso</option>
 </select>
 ${msg ? `<p class="msg ${tipo}" role="status">${msg}</p>` : ''}
@@ -66,6 +69,16 @@ export async function POST(request) {
     reg.guias = Array.from(new Set([...(reg.guias || []), guia]));
     await gravarCompra(reg);
     return tela({ ...base, msg: `Guia liberado. Link pra mandar: https://cobaia-dev.vercel.app/tablet/g/${esc(guia)}/ (ele entra só com o e-mail).`, tipo: 'ok', resultado: JSON.stringify(reg, null, 1) });
+  }
+  if (acao === 'email') {
+    if (!Object.values(reg.pedidos || {}).some((p) => p.status === 'pago')) return tela({ ...base, msg: 'Essa compra não está ativa. Nada enviado.', tipo: 'err', resultado: JSON.stringify(reg, null, 1) });
+    try {
+      const r = await enviarBoasVindas({ produto, email, nome: reg.nome });
+      if (!r.enviado) return tela({ ...base, msg: 'E-mail não enviado: ' + esc(r.motivo) + '.', tipo: 'err', resultado: JSON.stringify(reg, null, 1) });
+    } catch (e) {
+      return tela({ ...base, msg: 'O Gmail recusou o envio: ' + esc(e && e.message) + '.', tipo: 'err', resultado: JSON.stringify(reg, null, 1) });
+    }
+    return tela({ ...base, msg: 'E-mail de acesso enviado para ' + esc(email) + '.', tipo: 'ok', resultado: JSON.stringify(reg, null, 1) });
   }
   if (acao === 'revogar') {
     for (const k of Object.keys(reg.pedidos || {})) if (reg.pedidos[k].status === 'pago') reg.pedidos[k] = { status: 'reembolsado', origem: 'painel', em: new Date().toISOString() };

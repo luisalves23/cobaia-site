@@ -3,7 +3,8 @@
    A Kiwify assina cada envio: ?signature= é o HMAC-SHA1 (hex) do corpo cru, com o token do webhook como chave.
    O token fica na variável KIWIFY_TOKEN da Vercel (vários tokens separados por vírgula, se houver mais de um webhook). */
 import crypto from 'node:crypto';
-import { PRODUTOS, aplicarEvento, normEmail } from '../lib/compras.mjs';
+import { PRODUTOS, aplicarEvento, normEmail, lerCompra, gravarCompra } from '../lib/compras.mjs';
+import { enviarBoasVindas } from '../lib/email.mjs';
 
 const STATUS = {
   order_approved: 'pago', paid: 'pago',
@@ -19,6 +20,25 @@ function assinaturaOk(corpo, assinatura) {
     const certo = Buffer.from(crypto.createHmac('sha1', t).update(corpo).digest('hex'));
     return crypto.timingSafeEqual(certo, rec);
   });
+}
+
+/* Compra aprovada: manda o e-mail de boas-vindas com o link e o login, uma vez só por pedido.
+   Se o pedido trouxe o suporte junto (bump ou src=notebook), o e-mail é o do suporte, que já cita o guia.
+   Falha no e-mail nunca derruba o webhook: a compra já está gravada e o comprador entra igual. */
+async function boasVindas(produto, { email, pedido, nome }) {
+  try {
+    const reg = await lerCompra(produto, email);
+    const ped = reg && reg.pedidos && reg.pedidos[pedido];
+    if (!ped || ped.status !== 'pago' || ped.emailEm) return 'ja-enviado-ou-inativo';
+    const r = await enviarBoasVindas({ produto, email, nome });
+    if (!r.enviado) { console.log('email boas-vindas nao enviado:', r.motivo); return r.motivo; }
+    ped.emailEm = new Date().toISOString();
+    await gravarCompra(reg);
+    return 'enviado';
+  } catch (e) {
+    console.error('email boas-vindas falhou:', e && e.message);
+    return 'falhou';
+  }
 }
 
 const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
@@ -74,7 +94,8 @@ export async function POST(request) {
     bump = tp.includes('notebook');
     if (bump) await aplicarEvento({ produto: 'notebook-suporte', ...base });
   }
-  return json({ ok: true, produto, status, bump });
+  const email_ = status === 'pago' ? await boasVindas(bump ? 'notebook-suporte' : produto, base) : undefined;
+  return json({ ok: true, produto, status, bump, email: email_ });
 }
 
 export function GET() {
