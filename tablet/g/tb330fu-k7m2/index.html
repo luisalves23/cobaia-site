@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guia do Lenovo Tab M11 (TB330FU) · @cobaia.dev</title>
+<meta name="description" content="O guia completo do Lenovo Tab M11 (TB330FU): leve e sem travar, só no tablet, com a verdade sobre root e Android puro.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="icon" href="../../../assets/img/favicon.png">
+<link rel="preload" href="../../../assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<style>
+/* ---------- só desta página: guia premium do TB330FU ---------- */
+.g-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:56px 24px}
+.g-hero>*{min-width:0}
+.g-hero .hcopy>*{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+.g-hero .hcopy>*:nth-child(2){animation-delay:.07s}.g-hero .hcopy>*:nth-child(3){animation-delay:.14s}.g-hero .hcopy>*:nth-child(4){animation-delay:.21s}.g-hero .hcopy>*:nth-child(5){animation-delay:.28s}
+.g-hero .kw b{font-family:var(--f-mono)}
+/* o tablet do comprador, desenhado em vidro */
+.tab{position:relative;max-width:360px;margin:0 auto;border-radius:34px;padding:22px 16px 26px;animation:up 1s cubic-bezier(.2,.8,.2,1) .2s both}
+.tab::before{content:"";position:absolute;left:50%;top:9px;width:6px;height:6px;border-radius:50%;background:rgba(242,238,230,.25);transform:translateX(-50%)}
+.tab::after{content:"";position:absolute;left:50%;bottom:8px;width:44px;height:10px;border-radius:6px;border:1.5px solid rgba(242,238,230,.25);transform:translateX(-50%)}
+.tab .scr{min-height:100%;border-radius:14px;background:linear-gradient(180deg,rgba(255,45,45,.14),rgba(0,0,0,.55) 45%);border:1px solid var(--line);padding:16px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.tab .mdl{font-family:var(--f-display);font-size:clamp(34px,5vw,46px);line-height:.95;letter-spacing:.5px}
+.tab .cod{font:700 12px var(--f-mono);color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.tab dl{margin:4px 0 0;display:grid;gap:7px}
+.tab dl div{display:flex;justify-content:space-between;gap:10px;font-size:13px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.tab dt{color:var(--dim);font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em}
+.tab dd{margin:0;text-align:right;font-weight:600}
+.tab .jump{margin-top:auto;padding-top:10px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center}
+.tab .jump span{font-family:var(--f-display);font-size:30px;line-height:1}
+.tab .jump small{display:block;font:600 10.5px var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.tab .jump .to span{color:var(--green)}
+.tab .jump i{font-style:normal;color:var(--red);font-size:22px}
+/* tabela comparativa */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;margin-top:6px}
+.cmpw{border-radius:20px;overflow:hidden;padding:0;margin-top:14px}
+.cmpw .scroll{overflow-x:auto}
+.cmp th,.cmp td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp thead th{font:700 11.5px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:rgba(0,0,0,.25)}
+.cmp tbody th{font-weight:700;width:30%}
+.cmp td{color:var(--muted)}
+.cmp .no{color:#ff8a8a}.cmp .ok{color:var(--green)}.cmp .mid{color:var(--paper)}
+.cmp .no::before{content:"✕ ";font-weight:800}.cmp .ok::before{content:"✓ ";font-weight:800}.cmp .mid::before{content:"~ ";font-weight:800;color:var(--dim)}
+/* rotas */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.route{display:flex;flex-direction:column;gap:10px;padding:24px;text-decoration:none}
+.route .rl{font-family:var(--f-display);font-size:64px;line-height:.85;color:var(--red)}
+.route h3{margin:0;font-size:22px;line-height:1.2}
+.route p{margin:0;color:var(--muted);font-size:15px}
+.route .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.route .pills span{font:600 11.5px var(--f-mono);padding:5px 9px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+.route .pills .hot{border-color:rgba(255,45,45,.5);color:var(--paper)}
+.route .go{font:700 13px var(--f-mono);color:var(--red)}
+.route:hover .go{text-decoration:underline}
+.verdict{margin-top:18px;padding:22px 24px;border-radius:20px}
+.verdict p{margin:0}
+.verdict b.g{color:var(--green)}
+/* marcar passo como feito */
+.done{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;margin-top:10px;font:700 12px var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em;padding:6px 11px 6px 8px;border-radius:20px;border:1px solid var(--line);transition:all .25s}
+.done::before{content:"";width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;display:inline-block;box-sizing:border-box}
+.done:hover{color:var(--paper);border-color:rgba(242,238,230,.3)}
+.done:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.done[aria-pressed="true"]{color:var(--green);border-color:rgba(34,192,99,.45);background:rgba(34,192,99,.08)}
+.done[aria-pressed="true"]::before{background:var(--green);border-color:var(--green);box-shadow:inset 0 0 0 3px var(--ink)}
+.step.ok h3{opacity:.65}
+.rprog{display:flex;align-items:center;gap:12px;margin:4px 0 18px;font:700 12px var(--f-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.rprog .track{flex:1;height:6px;border-radius:6px;background:rgba(242,238,230,.08);overflow:hidden}
+.rprog .track i{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+.rprog b{color:var(--paper)}
+/* arquivos que você vai juntar */
+.files{display:grid;gap:12px;margin-top:14px}
+.files .f{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 18px;border-radius:18px;align-items:start}
+.files .f .fi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--red-soft);color:var(--red);font:800 12px var(--f-mono);box-shadow:inset 0 0 0 1px rgba(255,45,45,.35)}
+.files .f b{display:block}
+.files .f span{color:var(--muted);font-size:15px}
+.files .f span b,.guide span.d b{display:inline;font-size:inherit}
+.files .f code,.read code,.step code,.guide code,.cmp code{font-family:var(--f-mono);font-size:.86em;background:rgba(242,238,230,.08);border:1px solid var(--line);border-radius:6px;padding:1px 6px;word-break:break-word}
+/* teclas */
+kbd{font:700 12.5px var(--f-mono);padding:2px 8px;border-radius:7px;border:1px solid rgba(242,238,230,.25);border-bottom-width:3px;background:rgba(242,238,230,.06);color:var(--paper);white-space:nowrap}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.keys .glass{padding:18px;border-radius:18px;display:flex;flex-direction:column;gap:8px}
+.keys .glass b{font-size:16px}
+.keys .glass span{color:var(--muted);font-size:14px}
+/* fontes */
+.src{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.src li{padding:12px 16px;border-radius:14px;font-size:15px;color:var(--muted)}
+.src a{color:var(--paper);font-weight:700;text-decoration-color:rgba(255,45,45,.6);text-underline-offset:3px;word-break:break-word}
+.src small{display:block;font-family:var(--f-mono);font-size:11.5px;color:var(--dim);margin-top:2px}
+.read p a,.step p a,.guide a,.files a,.warn a{text-decoration-color:rgba(255,45,45,.7);text-underline-offset:3px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.toc a{font:600 13px var(--f-body);text-decoration:none;padding:8px 13px;border-radius:20px;border:1px solid var(--line);background:rgba(0,0,0,.35);transition:border-color .2s}
+.toc a:hover{border-color:var(--red)}
+section{scroll-margin-top:90px}
+.read a,.step a,.files a{overflow-wrap:anywhere}
+.g-top .bar .who{font:700 12px var(--f-mono);color:var(--muted);padding:8px 14px;border-radius:30px;border:1px solid var(--line);background:rgba(0,0,0,.3);text-transform:uppercase;letter-spacing:.08em}
+.routes.r4{grid-template-columns:repeat(4,1fr)}
+.routes.r2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:1100px){.routes.r4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  .g-hero{grid-template-columns:1fr;gap:34px;padding-top:36px}
+  .routes,.routes.r4,.routes.r2,.keys{grid-template-columns:1fr}
+  .tab{max-width:300px}
+}
+@media (max-width:520px){
+  .cmp{font-size:14px}.cmp th,.cmp td{padding:11px 10px}
+  .g-top .bar .who{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="top g-top"><div class="bar glass">
+  <a class="brand" href="../../../30-dias/"><span class="pf"><img src="../../../assets/img/luis.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
+  <span class="who">guia premium · TB330FU</span>
+</div></header>
+
+<main class="wrap">
+
+<div class="g-hero">
+  <div class="hcopy">
+    <div><span class="badge">GUIA PREMIUM</span> <span class="kw">feito pro <b>TB330FU</b></span></div>
+    <p class="kick">o guia completo do seu Lenovo Tab M11</p>
+    <h1>Seu Tab M11 <em>leve e sem travar</em></h1>
+    <p class="lede">Eu pesquisei o que a comunidade já descobriu sobre <b>exatamente o seu modelo</b> e montei <b>duas versões</b>: uma <b>só no tablet</b>, pra fazer hoje, com resultado moderado, e uma <b>com computador</b>, pra quando o notebook voltar, com o melhor resultado possível. Cada passo diz onde tocar, o que vai aparecer e como desfazer.</p>
+    <div class="meta"><span>versão tablet: 1h30</span><span>versão PC: +3 h</span><span>pesquisa feita em 24/11/2026</span></div>
+  </div>
+  <div class="tab glass fan" aria-label="Ficha do seu tablet">
+    <div class="scr">
+      <span class="cod">codinome: barley</span>
+      <span class="mdl">TB330FU</span>
+      <dl>
+        <div><dt>Chip</dt><dd>MediaTek Helio G88</dd></div>
+        <div><dt>Núcleos</dt><dd>2 × 2,0 + 6 × 1,8 GHz</dd></div>
+        <div><dt>Gráfico</dt><dd>Mali-G52 MC2</dd></div>
+        <div><dt>Memória</dt><dd>4 GB</dd></div>
+        <div><dt>Espaço</dt><dd>128 GB eMMC</dd></div>
+        <div><dt>Tela</dt><dd>11" · 1920×1200 · 90 Hz</dd></div>
+        <div><dt>Sistema</dt><dd>Android 15 · ZUI 17.0.467</dd></div>
+      </dl>
+      <div class="jump">
+        <div><span>2 min</span><small>pra ligar hoje</small></div>
+        <i aria-hidden="true">→</i>
+        <div class="to"><span>?</span><small>você mede no fim</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="toc rv" aria-label="Atalhos do guia">
+  <a href="#t1">Resumo</a><a href="#t2">Antes de começar</a><a href="#t3">Por que ele trava</a><a href="#t4">O mapa</a><a href="#f0">Fase 0</a><a href="#f1">Fase 1</a><a href="#f2">Fase 2</a><a href="#f3">Fase 3</a><a href="#pc">Versão PC</a><a href="#volta">Rota de volta</a><a href="#trava">Deu erro</a><a href="#cuida">Manutenção</a><a href="#ia">Pedidos prontos</a><a href="#fontes">Fontes</a>
+</nav>
+
+<section aria-labelledby="t1">
+  <p class="eyebrow" style="margin-top:48px">em 30 segundos</p>
+  <h2 id="t1" class="rv">O resumo <em>do seu tablet</em></h2>
+  <div class="tldr">
+    <div class="glass rv"><span class="ic">01</span><p>O peso vem de três lugares: <b>4 GB de memória</b>, um armazenamento do tipo <b>eMMC</b> (o mais lento dos tablets atuais) e o <b>monte de apps e serviços da Lenovo</b> rodando junto. A revista Notebookcheck já anotou isso no teste de 2024: o sistema "raramente fica liso de verdade".</p></div>
+    <div class="glass rv rv-d1"><span class="ic">02</span><p>O seu já está no <b>Android 15</b>, que é a última versão que a Lenovo prometeu pra ele (correções de segurança até janeiro de 2028). Então <b>não adianta esperar atualização</b>: a melhora vem de tirar peso.</p></div>
+    <div class="glass rv rv-d2"><span class="ic">03</span><p>A <b>versão tablet</b> faz isso em 4 fases sem computador, inclusive a faxina nos apps de fábrica que o menu não deixa tirar. A <b>versão PC</b> vai além: root e faxina total, com os comandos de um projeto que testou tudo no TB330FU com Android 15.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t2">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">passo zero</p>
+  <h2 id="t2" class="rv">Antes de <em>começar</em></h2>
+  <p class="rv">Leia esta parte inteira uma vez. São 2 minutos e evitam 90% dos tropeços.</p>
+  <ol class="guide">
+    <li class="glass rv"><span class="gn">1</span><div><b>Bateria acima de 50% e Wi-Fi ligado</b><span class="d">A Fase 3 só funciona conectada no Wi-Fi. Se puder, deixe no carregador enquanto faz.</span></div></li>
+    <li class="glass rv"><span class="gn">2</span><div><b>Abra este guia no celular, não no tablet</b><span class="d">Assim você lê aqui e toca lá, sem ficar trocando de app. Se só tiver o tablet, tudo bem: use a tela dividida ou volte pra cá pelo botão de apps recentes.</span></div></li>
+    <li class="glass rv"><span class="gn">3</span><div><b>Saiba tirar print</b><span class="d">Aperte <kbd>Ligar</kbd> + <kbd>Volume −</kbd> juntos, rapidinho. Se travar em qualquer passo, o print é o que me ajuda a te ajudar.</span></div></li>
+    <li class="glass rv"><span class="gn">4</span><div><b>Conheça a lupa das Configurações</b><span class="d">No topo do app <b>Configurações</b> (a engrenagem) tem uma barra de pesquisa. Os nomes dos menus mudam um pouco entre versões do sistema da Lenovo, então em vários passos eu te dou a <b>palavra pra digitar na lupa</b>. É o jeito mais rápido de achar qualquer opção.</span></div></li>
+    <li class="glass rv"><span class="gn">5</span><div><b>Marque o que fez</b><span class="d">Em cada passo tem o botão <b>marcar como feito</b>. A página lembra onde você parou neste aparelho, então dá pra fazer em dias diferentes.</span></div></li>
+  </ol>
+  <div class="warn glass rv"><span class="big">!</span><p><b>Guia feito só pro TB330FU.</b> Confira em Configurações, <b>Sobre o tablet</b>, <b>Modelo e hardware</b>: tem que estar escrito <code>TB330FU</code>. As Fases 0 a 3 são seguras em qualquer Android 15, mas a versão PC vale só pra esse modelo. Existem o TB330XU (com chip), o TB330FUP e o TB331FC (versão chinesa): arquivo de outro modelo pode deixar o seu sem ligar.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="t3">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">o diagnóstico honesto</p>
+  <h2 id="t3" class="rv">Por que <em>ele trava</em></h2>
+  <p class="rv">O processador dele dá conta de YouTube e navegador. O problema é o que fica disputando a memória com eles. Este é o efeito de cada fase do guia:</p>
+</div>
+<div class="glass cmpw rv"><div class="scroll">
+  <table class="cmp">
+    <thead><tr><th scope="col">O que pesa</th><th scope="col">Como está hoje</th><th scope="col">Depois do guia</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Apps de fábrica da Lenovo</th><td class="no">Vários ligam sozinhos e ocupam memória</td><td class="ok">Desativados ou removidos (Fases 1 e 3)</td></tr>
+      <tr><th scope="row">Animações da tela</th><td class="mid">Velocidade normal, que pesa num aparelho de 4 GB</td><td class="ok">Pela metade: tudo abre mais rápido (Fase 1)</td></tr>
+      <tr><th scope="row">Sites no Chrome</th><td class="no">Carregam anúncios e rastreadores junto</td><td class="ok">Navegador com bloqueador, página mais leve (Fase 2)</td></tr>
+      <tr><th scope="row">PDF</th><td class="no">Trava ao abrir e ao rolar</td><td class="mid">Leitor leve dedicado. Teste com o mesmo arquivo (Fase 2)</td></tr>
+      <tr><th scope="row">Lixo de instalações antigas</th><td class="mid">O reset que você fez trouxe tudo de volta</td><td class="ok">Reset feito do jeito certo (Fase 0, opcional)</td></tr>
+      <tr><th scope="row">Memória (4 GB) e eMMC</th><td class="no">É do aparelho</td><td class="no">Continua. Nenhum ajuste troca peça</td></tr>
+    </tbody>
+  </table>
+</div></div>
+<div class="read">
+  <div class="warn glass rv"><span class="big">?</span><p><b>O que esperar de verdade:</b> ele vai ficar bem mais leve pra YouTube, navegador e PDF, que é o seu uso. Ele não vira um iPad. Com 4 GB, a regra de ouro é <b>um app pesado por vez</b>. Eu não vou te prometer número que eu não medi: no primeiro passo você cronometra o tablet ligando, e no último cronometra de novo. Essa é a prova.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="t4">
+  <p class="eyebrow" style="margin-top:56px">o mapa</p>
+  <h2 id="t4" class="rv">Duas versões, <em>você escolhe</em></h2>
+  <div class="routes r2">
+    <a class="route glass rv" href="#f0"><span class="rl">T</span><h3>Versão tablet</h3><p>Fases 0 a 3, sem computador. Ajustes, apps leves e faxina nos apps de fábrica pelo próprio tablet. Resultado moderado: alguns apps da Lenovo voltam a cada reinício.</p><div class="pills"><span class="hot">1h30</span><span>sem PC</span><span>risco baixo</span></div><span class="go">Começar pela Fase 0 →</span></a>
+    <a class="route glass red rv rv-d1" href="#pc"><span class="rl">PC</span><h3>Versão PC</h3><p>Backup completo, desbloqueio, root e faxina total, com módulo de memória feito pro TB330FU. O melhor resultado que tem passo a passo testado no seu modelo.</p><div class="pills"><span class="hot">+3 h</span><span>notebook + pendrive</span><span>apaga tudo</span></div><span class="go">Ver a versão PC →</span></a>
+  </div>
+  <p class="eyebrow" style="margin-top:36px">as fases da versão tablet</p>
+  <div class="routes r4">
+    <a class="route glass rv" href="#f0"><span class="rl">0</span><h3>Recomeço limpo</h3><p>Reset de fábrica do jeito certo, sem trazer o lixo de volta. Opcional.</p><div class="pills"><span class="hot">30 min</span><span>apaga o tablet</span><span>opcional</span></div><span class="go">Ver Fase 0 →</span></a>
+    <a class="route glass rv rv-d1" href="#f1"><span class="rl">1</span><h3>Ajustes do sistema</h3><p>Medir, atualizar, animações, apps em segundo plano e tela inicial leve.</p><div class="pills"><span class="hot">20 min</span><span>sem PC</span><span>risco zero</span></div><span class="go">Ver Fase 1 →</span></a>
+    <a class="route glass rv rv-d2" href="#f2"><span class="rl">2</span><h3>Apps leves</h3><p>Navegador com bloqueador de anúncios, YouTube sem peso e leitor de PDF leve.</p><div class="pills"><span class="hot">15 min</span><span>sem PC</span><span>risco zero</span></div><span class="go">Ver Fase 2 →</span></a>
+    <a class="route glass red rv" href="#f3"><span class="rl">3</span><h3>Faxina profunda</h3><p>Remove os apps de fábrica que o menu não deixa tirar, pelo próprio tablet.</p><div class="pills"><span class="hot">40 min</span><span>sem PC</span><span>risco baixo, com regras</span></div><span class="go">Ver Fase 3 →</span></a>
+  </div>
+  <div class="read">
+    <div class="verdict glass rv"><p><b class="g">Minha recomendação pro seu caso:</b> se não tem nada importante só no tablet, comece pela <b>0</b>. Se tem, pule direto pra <b>1</b>. Depois faça a <b>2</b> e a <b>3</b>, nessa ordem. Quando o notebook voltar, se quiser mais, parta pra <b>versão PC</b>. Ela apaga o tablet de novo, então não precisa ter pressa: use a versão tablet uns dias e decida.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="f0-t" id="f0">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">fase 0 · opcional</p>
+  <h2 id="f0-t" class="rv">Recomeço <em>limpo</em></h2>
+  <p class="rv">Você já resetou e continuou ruim. O motivo mais comum é que, na configuração inicial, o Android <b>baixa de volta todos os apps do backup do Google</b> e a Lenovo oferece instalar os apps dela. O tablet volta pesado no mesmo dia. Desta vez a gente diz não pra tudo isso.</p>
+  <div class="rprog" data-prog="0" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/5</b></div>
+  <div class="steps" data-route="0">
+    <div class="step rv"><span class="n">1</span><div><h3>Salve o que importa</h3><p>Fotos, vídeos e arquivos baixados somem no reset. Mande o que quiser guardar pro Google Fotos, Google Drive ou pro seu iPhone (pelo app do Google Drive, por exemplo). Se o tablet só tem YouTube e Chrome, não tem nada pra salvar: o histórico e as senhas do Chrome ficam na sua conta Google.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Confirme que você sabe a senha da conta Google</h3><p>Depois do reset, o Android pede <b>a mesma conta Google</b> que estava no tablet. É uma trava contra roubo. Entre em <code>myaccount.google.com</code> no celular e confira que você consegue entrar. Sem a senha, o tablet fica bloqueado depois do reset.</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Faça o reset</h3><p>Configurações, lupa: digite <b>redefinir</b>. Abra a opção de <b>redefinição de fábrica</b> (o texto pode ser "Apagar todos os dados" ou "Redefinir para o padrão de fábrica") e confirme. O tablet reinicia e demora alguns minutos. Não desligue no meio.</p></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>Na configuração inicial, diga não</h3><p>Quando ele ligar de novo:</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>Copiar apps e dados</b><span class="d">Quando perguntar se quer copiar de outro aparelho ou de um backup, escolha <b>Não copiar</b> (ou "Configurar como novo").</span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Apps sugeridos</b><span class="d">Se aparecer uma lista de apps pra instalar (da Lenovo ou do Google), <b>desmarque tudo</b> antes de continuar.</span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Extras opcionais</b><span class="d">Programas de melhoria, diagnóstico e envio de dados: pode recusar todos. Nada disso faz falta.</span></div></li>
+      </ol>
+    </div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>Não instale nada ainda</h3><p>Vá direto pra Fase 1. Só instale os seus apps depois da Fase 3. Assim você instala num tablet já limpo.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section aria-labelledby="f1-t" id="f1">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">fase 1 · sem computador · risco zero</p>
+  <h2 id="f1-t" class="rv">Ajustes do sistema <em>em 20 minutos</em></h2>
+  <div class="rprog" data-prog="1" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/8</b></div>
+  <div class="steps" data-route="1">
+    <div class="step rv"><span class="n">1</span><div><h3>Meça o "antes"</h3><p>Desligue o tablet (segure <kbd>Ligar</kbd> e toque em <b>Desligar</b>). Abra o cronômetro do celular, ligue o tablet e pare o cronômetro quando a tela de desbloqueio aparecer. <b>Anote o tempo.</b> Anote também, de 1 a 10, o quanto trava abrir aquele PDF que mais trava. No fim do guia você mede de novo.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Procure atualização</h3><p>Configurações, <b>Sobre o tablet</b>, <b>Atualização do sistema</b> (é a segunda linha da tela, como no seu print). Se tiver atualização, instale com o tablet no carregador. Hoje você está na <code>ZUI 17.0.467</code>.</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Destrave as opções escondidas</h3><p>Ainda em <b>Sobre o tablet</b>, toque <b>7 a 10 vezes seguidas</b> na linha <b>Versão do software</b> (a que mostra "Lenovo ZUI 17.0.467"). Ele pode pedir o seu PIN. Vai aparecer o aviso de que as <b>Opções do desenvolvedor</b> foram ativadas. Pra achar elas depois: lupa, digite <b>desenvolvedor</b>.</p></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>Corte as animações pela metade</h3><p>Abra as <b>Opções do desenvolvedor</b> e role até a parte de desenho. Mude estes três itens pra <b>0,5x</b>:</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>Escala de animação da janela</b><span class="d">de 1x pra 0,5x</span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Escala de animação de transição</b><span class="d">de 1x pra 0,5x</span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Escala de duração do Animator</b><span class="d">de 1x pra 0,5x</span></div></li>
+      </ol>
+      <p>É o ganho mais visível do guia: cada toque responde na metade do tempo. Não mexa em mais nada dessa tela por enquanto. Pra desfazer, volte os três pra 1x.</p></div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>Tire os apps que você nunca abre</h3><p>Configurações, lupa: <b>apps</b>. Abra a lista com todos os aplicativos e passe por ela com calma. Em cada app que você não usa:</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>Se tiver o botão Desinstalar</b><span class="d">Desinstale. Jogos e apps de parceiros que vieram de fábrica costumam ter esse botão. Se precisar dele de novo, é só baixar na Play Store.</span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Se só tiver Desativar</b><span class="d">Desative, se você tem certeza de que não usa. Ele some da tela e para de rodar. Pra voltar, abra o mesmo app na lista e toque em <b>Ativar</b>.</span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Na dúvida, deixe</b><span class="d">Nunca desative: Configurações, teclado, tela inicial, Google Play Store, Google Play Services, "Sistema Android", "IU do sistema" e Chrome (até você ter outro navegador). A Fase 3 cuida do resto com segurança.</span></div></li>
+      </ol></div></div>
+    <div class="step rv"><span class="n">6</span><div><h3>Segure o que roda escondido</h3><p>O sistema da Lenovo tem um controle de apps em segundo plano e de apps que <b>iniciam sozinhos</b> quando o tablet liga. Configurações, lupa: digite <b>inicialização</b> e depois <b>segundo plano</b>. Onde achar a lista, <b>desligue a inicialização automática</b> de tudo que não seja mensagem que você precisa receber na hora. YouTube e Chrome não precisam iniciar sozinhos. Se a lupa não achar nada, pule este passo: a Fase 3 resolve pela raiz.</p></div></div>
+    <div class="step rv"><span class="n">7</span><div><h3>Deixe a tela inicial leve</h3><p>Segure o dedo num espaço vazio da tela inicial:</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>Widgets</b><span class="d">Remova os de notícias, clima, dicas e sugestões. Cada um fica atualizando sozinho.</span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Papel de parede</b><span class="d">Use uma foto parada. Papel de parede animado gasta memória o tempo todo.</span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Painel de notícias ou sugestões</b><span class="d">Se, ao deslizar pro lado ou pra baixo, abrir um feed de notícias ou de apps sugeridos, procure nas opções da tela inicial como desligar.</span></div></li>
+      </ol></div></div>
+    <div class="step rv"><span class="n">8</span><div><h3>Reinicie</h3><p>Segure <kbd>Ligar</kbd>, toque em <b>Reiniciar</b>. Os ajustes valem a partir daqui.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section aria-labelledby="f2-t" id="f2">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">fase 2 · sem computador · risco zero</p>
+  <h2 id="f2-t" class="rv">Apps leves <em>pro seu uso</em></h2>
+  <p class="rv">Você usa YouTube, navegador e PDF. Cada um desses tem um jeito mais leve de rodar no seu tablet.</p>
+  <div class="rprog" data-prog="2" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/5</b></div>
+  <div class="steps" data-route="2">
+    <div class="step rv"><span class="n">1</span><div><h3>Instale o Firefox</h3><p>Play Store, busque <b>Firefox</b> (da Mozilla) e instale. Ele é o navegador de Android que aceita a extensão de bloqueio de anúncios mais conhecida, o uBlock Origin. Menos anúncio e menos rastreador quer dizer página mais leve e menos memória presa.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Coloque o bloqueador</h3><p>No Firefox, toque nos <b>três pontinhos</b> (⋮), entre em <b>Extensões</b>, procure <b>uBlock Origin</b> e toque no <b>+</b>. Aceite. Pronto, não precisa configurar nada. Se preferir, abra direto a página oficial da extensão: <code>addons.mozilla.org</code> e busque "uBlock Origin".</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Faça dele o navegador padrão</h3><p>Configurações, lupa: <b>apps padrão</b>. Em <b>Navegador</b>, escolha <b>Firefox</b>. Teste uns dias. Se gostar, desative o Chrome (Fase 1, passo 5) pra ele parar de rodar escondido. Os favoritos e senhas do Chrome dá pra trazer: no Firefox, ⋮, Configurações, e procure a opção de importar ou de sincronizar.</p></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>YouTube: dois jeitos</h3><p><b>App oficial:</b> continua funcionando normal no Android 15. Feche os outros apps antes de assistir (botão de apps recentes, arraste tudo pra fora). <b>Pelo Firefox:</b> abra <code>youtube.com</code> no Firefox com o uBlock e assista sem propaganda. Teste os dois e fique com o que travar menos no seu tablet.</p></div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>PDF num leitor leve</h3><p>Play Store, busque <b>MuPDF</b>. Se aparecer o <b>MuPDF viewer</b> da <b>Artifex Software</b>, instale: é um leitor de código aberto feito pra ser leve, que só lê e não deixa nada rodando por trás. Se não aparecer na sua Play Store, me avise que eu te passo outra opção conferida, sem chute. Abra <b>o mesmo PDF que travava</b> e compare. Pra ele abrir sempre: ao tocar num PDF, escolha <b>MuPDF</b> e marque <b>Sempre</b>. Se o PDF for muito grande (livro escaneado, por exemplo), ele ainda pode demorar um pouco pra carregar cada página: isso é o armazenamento eMMC, não o leitor.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section aria-labelledby="f3-t" id="f3">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">fase 3 · sem computador · risco baixo, com regras</p>
+  <h2 id="f3-t" class="rv">Faxina profunda <em>sem PC</em></h2>
+  <p class="rv">Essa é a parte "hardcore" que dá pra fazer sem computador. Alguns apps de fábrica não têm nem o botão Desativar. Pra tirar esses, a gente usa dois apps gratuitos e conhecidos na comunidade:</p>
+  <div class="files">
+    <div class="f glass rv"><span class="fi">01</span><div><b>Shizuku</b><span>Usa a <b>depuração sem fio</b> do próprio Android (existe desde o Android 11) pra dar a outros apps a mesma permissão que um computador teria pelo cabo. É o que substitui o PC aqui.</span></div></div>
+    <div class="f glass rv"><span class="fi">02</span><div><b>Canta</b><span>Usa o Shizuku pra desinstalar apps de fábrica <b>sem root</b>. Ele remove o app <b>do seu usuário</b>: o arquivo original continua guardado no sistema, e por isso um reset de fábrica traz tudo de volta.</span></div></div>
+  </div>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>As 4 regras da faxina.</b> 1) Só remova o que está na <b>lista testada do passo 6</b>, ou app que você reconhece pelo nome e tem certeza de que não usa. 2) Fora da lista, se o Canta marcar o app como <b>Avançado, Expert ou Inseguro</b>, deixe. 3) Nunca remova: caneta (<code>com.lenovo.penservice</code>), tela inicial (Smart Launcher, <code>com.tblenovo.launcher</code>), atualização do sistema (<code>com.lenovo.ota</code>), teclado, Configurações, Play Store, Google Play Services, "Sistema Android", "IU do sistema". 4) <b>Tire print</b> de cada app antes de remover. O próprio criador do Canta avisa: remover app essencial pode deixar o tablet reiniciando em loop, e aí só o reset de fábrica resolve.</p></div>
+  <div class="rprog" data-prog="3" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/8</b></div>
+  <div class="steps" data-route="3">
+    <div class="step rv"><span class="n">1</span><div><h3>Instale os dois apps</h3><p>Play Store, busque <b>Shizuku</b> e instale. Depois busque <b>Canta</b> (do desenvolvedor samolego) e instale. Os dois são gratuitos e de código aberto. Não baixe de site desconhecido.</p></div></div>
+    <div class="step rv"><span class="n">2</span><div><h3>Ligue a depuração</h3><p>Configurações, <b>Opções do desenvolvedor</b> (você destravou na Fase 1). Ative <b>Depuração USB</b> e confirme. Depois ative <b>Depuração por Wi-Fi</b> (em algumas versões aparece como "Depuração sem fio") e confirme que confia na rede. Precisa estar no Wi-Fi de casa.</p></div></div>
+    <div class="step rv"><span class="n">3</span><div><h3>Pareie o Shizuku (só na primeira vez)</h3><p>Abra o <b>Shizuku</b>. Se ele pedir permissão de notificação, <b>permita</b>: o código vai entrar por ali.</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>No Shizuku</b><span class="d">Em "Iniciar via depuração sem fio", toque em <b>Parear</b>. Ele mostra uma notificação esperando um código.</span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Nas Opções do desenvolvedor</b><span class="d">Toque no <b>nome</b> "Depuração por Wi-Fi" (no texto, não no botão). Toque em <b>Parear o dispositivo com um código de pareamento</b>. Aparece um código de 6 números. <b>Deixe essa janela aberta.</b></span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Na notificação</b><span class="d">Puxe a barra de notificações de cima pra baixo. Na notificação do Shizuku, toque em responder, digite os 6 números e envie. Deve aparecer "pareado com sucesso".</span></div></li>
+      </ol></div></div>
+    <div class="step rv"><span class="n">4</span><div><h3>Inicie o Shizuku</h3><p>Volte ao Shizuku e toque em <b>Iniciar</b> (no mesmo quadro da depuração sem fio). Em alguns segundos, o topo do app tem que dizer <b>"Shizuku está em execução"</b>. Se não iniciar, desligue e ligue de novo a Depuração por Wi-Fi e tente outra vez.</p></div></div>
+    <div class="step rv"><span class="n">5</span><div><h3>Abra o Canta e dê a permissão</h3><p>Abra o <b>Canta</b>. Ele pede acesso ao Shizuku: toque em <b>Permitir</b>. Aparece a lista de apps do sistema. Toque em qualquer app pra ler a descrição e a etiqueta de segurança dele.</p></div></div>
+    <div class="step rv"><span class="n">6</span><div><h3>Remova a lista testada, um grupo por vez</h3><p>Eu não vou te mandar adivinhar. Um projeto público testou no <b>TB330FU com Android 15</b> uma lista de apps que dá pra tirar <b>sem quebrar caneta, câmera, Play Store, teclado nem tela inicial</b>. No Canta, use a <b>lupa</b> e digite o começo do nome (ex.: <code>com.lenovo</code>, <code>com.zui</code>, <code>com.tblenovo</code>). Marque os que estão na lista abaixo e toque na <b>lixeira vermelha</b>. Se algum não aparecer, é porque não existe na sua versão: pule.</p>
+      <ol class="guide">
+        <li class="glass"><span class="gn">a</span><div><b>Lenovo, ZUI e parceiros (pode tirar todos)</b><span class="d"><code>com.lenovo.lsf</code> <code>com.lenovo.lsf.device</code> <code>com.lenovo.ue.device</code> <code>com.lenovo.ocpl</code> <code>com.lenovo.rt</code> <code>com.lenovo.dsa</code> <code>com.lenovo.screensaver</code> <code>com.lenovo.weathercenter</code> <code>com.lenovo.tab_m11</code> <code>com.lenovo.EngineeringCode</code> <code>com.tblenovo.center</code> <code>com.tblenovo.lenovowhatsnew</code> <code>com.tblenovo.setup</code> <code>com.tblenovo.tabpushout</code> <code>com.tblenovo.ue.config</code> <code>com.zui.ai.aiservice</code> <code>com.zui.camera.assistant</code> <code>com.zui.camera.qr</code> <code>com.zui.keyboardupdate</code> <code>com.zui.keyboardupdate.olympia</code> <code>com.zui.pp</code> <code>com.zui.wifip2p</code> <code>com.zui.udevice</code> <code>com.motorola.demo</code> <code>com.motorola.mobiledesktop</code> <code>com.motorola.mobiledesktop.core</code> <code>com.motorola.readyforsignature.app</code> <code>com.aura.oobe.lenovo</code> <code>com.opera.preinstall</code> <code>com.lmsa.app.lmsapad</code> <code>com.debug.loggerui</code> <code>com.mediatek.voicecommand</code> <code>com.android.bookmarkprovider</code> <code>com.android.providers.partnerbookmarks</code> <code>com.android.providers.partnerbrowsercustomizations</code> <code>com.android.dreams.basic</code></span></div></li>
+        <li class="glass"><span class="gn">b</span><div><b>Google (só os que você não usa)</b><span class="d"><code>com.google.android.apps.youtube.music</code> <code>com.google.android.videos</code> <code>com.google.android.apps.maps</code> <code>com.google.android.apps.photos</code> <code>com.google.android.apps.docs</code> <code>com.google.android.apps.tachyon</code> <code>com.google.android.apps.wellbeing</code> <code>com.google.android.apps.kids.home</code> <code>com.google.android.apps.mediahome.launcher</code> <code>com.google.android.apps.googleassistant</code> <code>com.google.android.googlequicksearchbox</code> <code>com.android.hotwordenrollment.okgoogle</code> <code>com.android.hotwordenrollment.xgoogle</code> <code>com.google.android.apps.turbo</code> <code>com.google.android.as</code>. <b>Não tire</b> o YouTube (<code>com.google.android.youtube</code>), porque você usa. Se usa Fotos, Drive ou Maps, deixe também (<code>photos</code>, <code>docs</code> e <code>maps</code>).</span></div></li>
+        <li class="glass"><span class="gn">c</span><div><b>Nunca, nem se aparecer como recomendado</b><span class="d"><code>com.lenovo.penservice</code> (caneta), <code>com.tblenovo.launcher</code> (tela inicial), <code>com.lenovo.ota</code> (atualização), teclado, câmera, Play Store, Google Play Services e qualquer coisa com <code>systemui</code> ou <code>settings</code> no nome.</span></div></li>
+      </ol>
+      <p>Faça o grupo <b>a</b>, reinicie, use um pouco. Depois o <b>b</b>. Se o Canta recusar algum app, tente desativar ele por Configurações (Fase 1, passo 5). <b>O limite da versão sem PC:</b> o mesmo projeto avisa que dois deles (<code>com.lenovo.lsf</code> e <code>com.zui.ai.aiservice</code>) voltam sozinhos a cada reinício. Sem root não dá pra segurar eles desligados de vez. Isso é o que a versão PC resolve.</p></div></div>
+    <div class="step rv"><span class="n">7</span><div><h3>Desligue a depuração</h3><p>Terminou a faxina? Volte em Opções do desenvolvedor e <b>desligue a Depuração por Wi-Fi e a Depuração USB</b>. Elas não precisam ficar ligadas no dia a dia. Depois de reiniciar, o Shizuku para sozinho. É normal: só ligue de novo (passos 2 e 4, sem parear de novo) se quiser remover ou devolver algum app.</p></div></div>
+    <div class="step rv"><span class="n">8</span><div><h3>Meça o "depois"</h3><p>Desligue, ligue e cronometre igual ao passo 1 da Fase 1. Abra o mesmo PDF. Compare com o que você anotou. <b>Me manda os dois tempos</b>: eu quero ver o resultado real do seu tablet.</p></div></div>
+  </div>
+  <div class="warn glass rv"><span class="big">↺</span><p><b>Como desfazer.</b> O Canta guarda a lista do que você removeu (ele tem um filtro pra mostrar os desinstalados), e é por ali que você confere o que saiu. Se algo parar de funcionar e você não achar a causa, o <b>reset de fábrica</b> devolve todos os apps de fábrica, porque o Canta não apaga o arquivo original. Por isso as regras pedem o print de cada um.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="pc-t" id="pc">
+<div class="read">
+  <p class="eyebrow" style="margin-top:72px">versão pc · melhor resultado · risco alto</p>
+  <h2 id="pc-t" class="rv">A transformação <em>com computador</em></h2>
+  <p class="rv">Esta é a versão que vai até o osso: desbloqueia o tablet, dá <b>root</b> (controle total) e arranca de vez os apps da Lenovo que voltam sozinhos, com um módulo de memória feito pra esse modelo. Ela se baseia num projeto público que documentou o processo no <b>TB330FU com Android 15</b> (o <a href="https://github.com/Grohle/de-roo-m11" target="_blank" rel="noopener">de-roo-m11</a>), que eu li arquivo por arquivo. Os comandos aqui são os de lá.</p>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>Leia antes de decidir.</b> 1) O desbloqueio <b>apaga tudo</b> do tablet. 2) A Lenovo pode recusar garantia. 3) Netflix e apps de banco podem reclamar. 4) Se um comando for digitado errado, o tablet pode não ligar, e aí só volta pela rota de volta (que existe e está no fim). 5) Cada atualização da Lenovo desfaz o root e precisa repetir a parte do Magisk. 6) O projeto foi testado na versão <code>ZUI 17.0.502</code>. A sua é a <code>17.0.467</code>: por isso aqui a gente usa sempre <b>os arquivos tirados do seu próprio tablet</b>, nunca baixados.</p></div>
+
+  <h3 class="rv" style="font-size:24px;margin:36px 0 4px">O que você precisa</h3>
+  <ol class="guide">
+    <li class="glass rv"><span class="gn">1</span><div><b>Um notebook pessoal</b><span class="d">Notebook da empresa geralmente não deixa ligar por pendrive nem instalar programas. Se o da sua esposa for da empresa, não use. Serve Windows ou Mac Intel; Mac com chip Apple (M1 em diante) não dá boot pelo pendrive do Ubuntu.</span></div></li>
+    <li class="glass rv"><span class="gn">2</span><div><b>Um pendrive de 8 GB ou mais</b><span class="d">Vai virar o "Ubuntu de bolso". Ele é apagado no processo.</span></div></li>
+    <li class="glass rv"><span class="gn">3</span><div><b>Cabo USB-C que passa dados</b><span class="d">Cabo só de carga não funciona. O que veio com o tablet costuma servir.</span></div></li>
+    <li class="glass rv"><span class="gn">4</span><div><b>3 horas sem pressa e tablet com 80% de bateria</b><span class="d">Não faça cansado nem com o tablet descarregando.</span></div></li>
+  </ol>
+  <div class="warn glass rv"><span class="big">?</span><p><b>Por que Ubuntu e não Windows?</b> O passo de backup e desbloqueio usa o modo de emergência do chip MediaTek (BROM), que só espera uns 2 segundos pela conexão. O próprio projeto documenta que no Windows o driver da MediaTek pega essa porta antes e o programa não consegue falar com o tablet, e avisa pra <b>não instalar o UsbDk</b> (quebra o USB no Windows 11). No Ubuntu funciona. E dá pra usar o Ubuntu direto do pendrive, sem instalar nada no notebook.</p></div>
+
+  <div class="rprog" data-prog="p" aria-live="polite"><span>seu progresso</span><span class="track"><i></i></span><b>0/10</b></div>
+  <div class="steps" data-route="p">
+
+    <div class="step rv"><span class="n">1</span><div><h3>Faça o Ubuntu de bolso</h3><p>No notebook, baixe o Ubuntu Desktop em <code>ubuntu.com/download/desktop</code> e o gravador <b>balenaEtcher</b> em <code>etcher.balena.io</code>. Abra o Etcher, escolha o arquivo do Ubuntu, escolha o pendrive e clique em <b>Flash</b>. Depois reinicie o notebook pelo pendrive (a tecla do menu de boot muda por marca: costuma ser <kbd>F12</kbd>, <kbd>F9</kbd> ou <kbd>Esc</kbd> logo que liga) e escolha <b>Experimentar Ubuntu</b>. Conecte no Wi-Fi.</p></div></div>
+
+    <div class="step rv"><span class="n">2</span><div><h3>Instale as ferramentas</h3><p>No Ubuntu, abra o <b>Terminal</b> (<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>). Copie e cole este bloco inteiro e aperte <kbd>Enter</kbd>. Ele instala o adb, o fastboot e o mtkclient (o programa que fala com o chip MediaTek):</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · ferramentas</span><button class="copy" type="button" data-copy="c1">Copiar</button></div><pre id="c1">sudo add-apt-repository -y universe
+sudo apt update
+sudo apt install -y python3 python3-pip git libusb-1.0-0 adb fastboot zip
+git clone --depth 1 https://github.com/bkerler/mtkclient
+cd mtkclient
+pip3 install -r requirements.txt
+sudo cp Setup/Linux/52-mtk.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules &amp;&amp; sudo udevadm trigger
+mkdir -p dump</pre></div>
+      <p>Se o <code>pip3</code> reclamar de "externally-managed-environment", rode a mesma linha com <code>--break-system-packages</code> no fim. No Ubuntu de bolso isso não afeta nada, porque tudo some quando desliga.</p></div></div>
+
+    <div class="step rv"><span class="n">3</span><div><h3>Confira o tablet pelo cabo</h3><p>No tablet: Opções do desenvolvedor (Fase 1, passo 3), ligue <b>Depuração USB</b>. Conecte o cabo. No tablet, aceite o aviso "Permitir depuração USB". No Terminal:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · conferência</span><button class="copy" type="button" data-copy="c2">Copiar</button></div><pre id="c2">adb devices
+adb shell getprop ro.build.display.id
+adb shell getprop ro.boot.slot_suffix</pre></div>
+      <p>A primeira linha tem que mostrar um número seguido de <code>device</code>. A segunda mostra a versão exata do sistema: <b>anote</b>. A terceira mostra <code>_a</code> ou <code>_b</code>: é a "metade ativa" do seu tablet. <b>Anote também</b>, você vai usar no passo 7.</p></div></div>
+
+    <div class="step rv"><span class="n">4</span><div><h3>Backup de tudo que é insubstituível</h3><p>Desconecte o cabo do tablet e desligue o tablet (segure <kbd>Ligar</kbd> uns 15 segundos). No Terminal, dentro da pasta <code>mtkclient</code>, cole o comando abaixo e aperte <kbd>Enter</kbd>. Ele fica esperando o tablet.</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · backup</span><button class="copy" type="button" data-copy="c3">Copiar</button></div><pre id="c3">python3 mtk.py multi "r seccfg dump/seccfg.bin;r proinfo dump/proinfo.bin;r nvdata dump/nvdata.bin;r nvram dump/nvram.bin;r persist dump/persist.bin;r lk_a dump/lk_a.bin;r lk_b dump/lk_b.bin;r vbmeta_a dump/vbmeta_a.bin;r vbmeta_b dump/vbmeta_b.bin;r boot_a dump/boot_a.bin;r boot_b dump/boot_b.bin;r vendor_boot_a dump/vendor_boot_a.bin;r vendor_boot_b dump/vendor_boot_b.bin"</pre></div>
+      <p>Agora, com o tablet desligado: <b>segure <kbd>Volume +</kbd> e <kbd>Volume −</kbd> juntos, conecte o cabo no notebook e solte depois de uns 3 segundos.</b> O Terminal começa a copiar. Se aparecer "Need AUTH file" ou "Handshake failed", foi rápido ou devagar demais: desconecte, desligue de novo e repita o aperto.</p>
+      <div class="warn glass red"><span class="big">!</span><p><b>Guarde a pasta <code>dump</code> fora do pendrive do Ubuntu.</b> Tudo do Ubuntu de bolso some ao desligar. Abra o Firefox do Ubuntu e suba a pasta inteira pro seu Google Drive, ou copie pra outro pendrive. Os arquivos <code>seccfg</code>, <code>proinfo</code>, <code>nvdata</code>, <code>nvram</code> e <code>persist</code> são únicos do seu tablet (rede, calibração e as chaves que liberam o Netflix em Full HD). Sem eles não tem volta.</p></div></div></div>
+
+    <div class="step rv"><span class="n">5</span><div><h3>Desbloqueie (aqui o tablet é apagado)</h3><p>No Android 15 do TB330FU, o comando de desbloqueio do fastboot <b>não existe</b> ("unknow command"). O desbloqueio é pelo mesmo modo de emergência. Com o tablet desligado e desconectado, cole no Terminal:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · desbloqueio</span><button class="copy" type="button" data-copy="c4">Copiar</button></div><pre id="c4">python3 mtk.py da seccfg unlock</pre></div>
+      <p>Faça o mesmo aperto do passo 4 (<kbd>Volume +</kbd> e <kbd>Volume −</kbd>, conecta o cabo, solta em 3 segundos). Tem que aparecer <code>Successfully wrote seccfg</code>. Depois:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · desligar</span><button class="copy" type="button" data-copy="c5">Copiar</button></div><pre id="c5">python3 mtk.py reset</pre></div>
+      <p>Ligue o tablet. Vai aparecer um <b>aviso laranja</b> de que o aparelho está desbloqueado: é normal e vai aparecer em todo boot. O tablet volta zerado. Faça a configuração inicial dizendo não pra tudo (Fase 0, passo 4), destrave as Opções do desenvolvedor de novo e ligue a Depuração USB.</p></div></div>
+
+    <div class="step rv"><span class="n">6</span><div><h3>Instale o Magisk 31.1</h3><p>O Magisk é o app que dá o root. Tem que ser a <b>versão 31.1</b>, nem mais velha nem atualizada depois por conta própria. No Firefox do Ubuntu, abra <code>github.com/topjohnwu/Magisk/releases</code>, procure "Magisk v31.1" e baixe o arquivo <code>Magisk-v31.1.apk</code> pra pasta <code>mtkclient</code>. Com o tablet ligado e no cabo:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · Magisk</span><button class="copy" type="button" data-copy="c6">Copiar</button></div><pre id="c6">adb install -r Magisk-v31.1.apk</pre></div></div></div>
+
+    <div class="step rv"><span class="n">7</span><div><h3>Prepare o root no arquivo do seu tablet</h3><p>No Android 15 desse modelo, o root vai na parte chamada <b>vendor_boot</b> (a parte "boot" está vazia, e mexer nela dá loop). Mande pro tablet a cópia que você tirou da metade ativa. Se no passo 3 deu <code>_b</code>, use o primeiro comando; se deu <code>_a</code>, troque <code>vendor_boot_b</code> por <code>vendor_boot_a</code>:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · enviar o arquivo</span><button class="copy" type="button" data-copy="c7">Copiar</button></div><pre id="c7">adb push dump/vendor_boot_b.bin /sdcard/Download/vendor_boot.img</pre></div>
+      <p>No tablet, abra o <b>Magisk</b>, toque em <b>Instalar</b> (no quadro Magisk), escolha <b>Selecionar e corrigir um arquivo</b> e escolha <code>vendor_boot.img</code> na pasta Download. No registro que aparece, tem que ter a linha <code>Vendor boot image detected</code>. <b>Se não aparecer, pare aqui e me chame.</b> No fim, ele cria um arquivo começando com <code>magisk_patched</code> na pasta Download.</p></div></div>
+
+    <div class="step rv"><span class="n">8</span><div><h3>Grave o root nas duas metades</h3><p>Primeiro descubra o nome exato do arquivo criado e traga pro notebook com o nome simples:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · trazer o arquivo</span><button class="copy" type="button" data-copy="c8">Copiar</button></div><pre id="c8">adb shell ls /sdcard/Download/
+adb pull /sdcard/Download/<mark>magisk_patched-NOME.img</mark> vendor_boot_magisk.img</pre></div>
+      <p>Troque o trecho em destaque pelo nome que apareceu na lista. Depois grave:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · gravar</span><button class="copy" type="button" data-copy="c9">Copiar</button></div><pre id="c9">adb reboot bootloader
+fastboot devices
+fastboot flash vendor_boot_a vendor_boot_magisk.img
+fastboot flash vendor_boot_b vendor_boot_magisk.img
+fastboot reboot</pre></div>
+      <p><code>fastboot devices</code> tem que mostrar um número. Ao ligar, abra o Magisk: tem que mostrar <b>31.1</b> e <b>Ramdisk: Sim</b>. Pra conferir o root:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · conferir root</span><button class="copy" type="button" data-copy="c10">Copiar</button></div><pre id="c10">adb shell su -c id</pre></div>
+      <p>Na primeira vez o tablet pergunta se libera o root pro "Shell": toque em <b>Permitir</b>. A resposta tem que começar com <code>uid=0(root)</code>.</p></div></div>
+
+    <div class="step rv"><span class="n">9</span><div><h3>Faxina total</h3><p>Esta é a lista testada pelo projeto no TB330FU com Android 15. Ela <b>preserva a caneta</b> (<code>com.lenovo.penservice</code>), a câmera, a Play Store, o teclado e a tela inicial. Cole o bloco inteiro:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · apps da Lenovo (36)</span><button class="copy" type="button" data-copy="c11">Copiar</button></div><pre id="c11">for p in com.lenovo.lsf com.lenovo.lsf.device com.lenovo.ue.device com.lenovo.ocpl com.lenovo.rt com.lenovo.dsa com.lenovo.screensaver com.lenovo.weathercenter com.lenovo.tab_m11 com.lenovo.EngineeringCode com.tblenovo.center com.tblenovo.lenovowhatsnew com.tblenovo.setup com.tblenovo.tabpushout com.tblenovo.ue.config com.zui.ai.aiservice com.zui.camera.assistant com.zui.camera.qr com.zui.keyboardupdate com.zui.keyboardupdate.olympia com.zui.pp com.zui.wifip2p com.zui.udevice com.motorola.demo com.motorola.mobiledesktop com.motorola.mobiledesktop.core com.motorola.readyforsignature.app com.aura.oobe.lenovo com.opera.preinstall com.lmsa.app.lmsapad com.debug.loggerui com.mediatek.voicecommand com.android.bookmarkprovider com.android.providers.partnerbookmarks com.android.providers.partnerbrowsercustomizations com.android.dreams.basic; do echo "$p"; adb shell pm uninstall --user 0 "$p" || adb shell pm disable-user --user 0 "$p"; done</pre></div>
+      <p>Os apps do Google da lista do projeto ficam num bloco à parte, porque você usa alguns. <b>Tirei o YouTube</b> dela. Se você usa Fotos, Drive ou Maps nele, apague esses nomes do bloco antes de rodar:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · apps do Google (opcional)</span><button class="copy" type="button" data-copy="c12">Copiar</button></div><pre id="c12">for p in com.google.android.apps.youtube.music com.google.android.videos com.google.android.apps.maps com.google.android.apps.photos com.google.android.apps.docs com.google.android.apps.tachyon com.google.android.apps.wellbeing com.google.android.apps.kids.home com.google.android.apps.mediahome.launcher com.google.android.apps.googleassistant com.google.android.googlequicksearchbox com.android.hotwordenrollment.okgoogle com.android.hotwordenrollment.xgoogle com.google.android.apps.turbo com.google.android.as; do echo "$p"; adb shell pm uninstall --user 0 "$p" || adb shell pm disable-user --user 0 "$p"; done</pre></div>
+      <p>Algumas linhas podem dar erro de "não encontrado": é só um app que não existe na sua versão. Pra devolver qualquer um: <code>adb shell pm install-existing --user 0 NOME</code>. A Lenovo coloca dois deles (<code>com.lenovo.lsf</code> e <code>com.zui.ai.aiservice</code>) pra voltar a cada reinício. O módulo do passo 10 cuida disso.</p></div></div>
+
+    <div class="step rv"><span class="n">10</span><div><h3>Módulo de memória feito pro TB330FU</h3><p>O projeto tem um módulo do Magisk que ajusta como o Android administra os 4 GB (quando fechar apps escondidos, quanta memória deixar livre, a leitura do armazenamento eMMC), põe as animações em 0,5x, desativa de novo os apps da Lenovo que tentam voltar e tem um botão pra trocar entre 3 perfis. Pra montar e instalar:</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · módulo</span><button class="copy" type="button" data-copy="c13">Copiar</button></div><pre id="c13">cd ~
+git clone --depth 1 https://github.com/Grohle/de-roo-m11
+cd de-roo-m11/magisk/tb330fu-perf
+zip -r ~/tb330fu-perf.zip .
+adb push ~/tb330fu-perf.zip /data/local/tmp/
+adb shell su -c "magisk --install-module /data/local/tmp/tb330fu-perf.zip"
+adb reboot</pre></div>
+      <p>Ele começa no perfil <b>fluid</b> (o recomendado). Pra trocar: Magisk, <b>Módulos</b>, "TB330FU Performance Profiles", botão <b>Ação</b>. Ele gira entre <b>balanced</b> (mais apps ficam abertos), <b>fluid</b> e <b>aggressive</b> (fecha mais apps de fundo, sobra mais memória pro que está na tela). Pro seu uso, teste o fluid por uns dias antes de mexer. Pra desfazer: Magisk, Módulos, <b>Remover</b>, e reinicie.</p></div></div>
+  </div>
+
+  <div class="warn glass rv"><span class="big">✓</span><p><b>Depois do passo 10:</b> faça a Fase 2 (Firefox, bloqueador e leitor de PDF) e meça de novo o tempo de ligar. <b>Desligue a atualização automática do sistema:</b> toda atualização da Lenovo regrava o vendor_boot e tira o root. Se quiser atualizar, atualize e repita os passos 7 e 8 com o arquivo novo.</p></div>
+</div>
+
+<div class="read">
+  <h3 class="rv" style="font-size:24px;margin:48px 0 4px">O que o projeto testou e <em>não funciona</em></h3>
+  <p class="rv">Se você achar tutorial mandando fazer alguma destas coisas no seu tablet, não faça. Foram testadas no TB330FU com Android 15 e deram errado:</p>
+  <ul class="okl rv">
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Root na parte "boot":</b> ela está vazia nesse sistema. Pode dar loop.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>TWRP:</b> o que existe pra esse modelo foi feito pro Android 14 e dá loop no 15. Não é necessário pra nada aqui.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Patch do "lk" (lkpatcher):</b> com o tablet bloqueado, ele não liga mais e só volta pelo modo de emergência.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>SP Flash Tool com arquivo modificado:</b> a Lenovo recusa (<code>STATUS_SEC_IMG_HASH_VFY_FAIL</code>). Ele só serve pra arquivo original.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Gravar pelo "fastbootd":</b> falha. Use o fastboot normal, como no passo 8.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Desligar a memória comprimida (zram):</b> cortou pela metade a memória disponível.</div></li>
+  </ul>
+</div>
+
+<div class="read">
+  <h3 class="rv" style="font-size:24px;margin:48px 0 4px">E o Android puro (GSI)?</h3>
+  <p class="rv">Eu fui atrás, e aqui vai o que eu consegui confirmar e o que não:</p>
+</div>
+<div class="glass cmpw rv"><div class="scroll">
+  <table class="cmp">
+    <thead><tr><th scope="col">O que se fala</th><th scope="col">O que eu confirmei</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">GSIs rodando no TB330FU</th><td class="mid">Um dono usou LineageOS, Evolution X ("pesado, trava") e ArrowOS, mas num aparelho de <b>8 GB com Android 14</b>. No seu (4 GB, Android 15) não achei teste publicado</td></tr>
+      <tr><th scope="row">Bloqueio de tela</th><td class="no">Outro desenvolvedor relata que em GSIs novos o bloqueio de tela não funcionou</td></tr>
+      <tr><th scope="row">Testar sem apagar (DSU)</th><td class="no">O app que faz isso (DSU Sideloader) exige o tablet já desbloqueado. Não é "risco zero"</td></tr>
+      <tr><th scope="row">Caneta em GSI</th><td class="mid">Existe um tópico no XDA com uma correção, mas o fórum bloqueia leitura automática e eu não consegui conferir</td></tr>
+      <tr><th scope="row">Volta ao normal</th><td class="ok">Um usuário preso em loop depois de GSI voltou com a ferramenta oficial da Lenovo</td></tr>
+    </tbody>
+  </table>
+</div></div>
+<div class="read">
+  <div class="verdict glass rv"><p><b class="g">Por isso o guia para no root com faxina total:</b> é o caminho que tem passo a passo testado no seu modelo e na sua versão de Android. Trocar o sistema inteiro no seu tablet hoje seria eu te mandar fazer algo que ninguém publicou funcionando nele. Se depois do passo 10 você ainda quiser tentar, me chama que eu acompanho com você, um passo de cada vez.</p></div>
+</div>
+
+<div class="read" id="volta">
+  <h3 class="rv" style="font-size:24px;margin:48px 0 4px">A rota <em>de volta</em></h3>
+  <p class="rv">Da mais leve pra mais completa. As duas primeiras precisam do Ubuntu de bolso e da pasta <code>dump</code> do passo 4. Se o Ubuntu foi reiniciado, refaça o passo 2, baixe a pasta <code>dump</code> do seu Drive pra dentro da pasta <code>mtkclient</code> e entre nela com <code>cd ~/mtkclient</code> antes dos comandos.</p>
+  <div class="steps">
+    <div class="step rv"><span class="n">A</span><div><h3>Tirar o root</h3><p>Com o tablet no fastboot (<code>adb reboot bootloader</code>), grave de volta o vendor_boot original que você salvou (troque <code>_b</code> pela sua metade, se for <code>_a</code>):</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · voltar o vendor_boot</span><button class="copy" type="button" data-copy="c14">Copiar</button></div><pre id="c14">fastboot flash vendor_boot_a dump/vendor_boot_b.bin
+fastboot flash vendor_boot_b dump/vendor_boot_b.bin
+fastboot reboot</pre></div></div></div>
+    <div class="step rv"><span class="n">B</span><div><h3>Tablet não liga depois de mexer no "lk"</h3><p>Pelo modo de emergência (mesmo aperto do passo 4):</p>
+      <div class="prompt glass"><div class="prompt-h"><span><span class="t">Terminal</span> · voltar o lk</span><button class="copy" type="button" data-copy="c15">Copiar</button></div><pre id="c15">python3 mtk.py multi "w lk_a dump/lk_a.bin;w lk_b dump/lk_b.bin"
+python3 mtk.py reset</pre></div></div></div>
+    <div class="step rv"><span class="n">C</span><div><h3>Voltar tudo ao de fábrica</h3><p>Num computador com Windows, instale o <b>Lenovo Software Fix</b> (antigo Rescue and Smart Assistant) pelo site <code>support.lenovo.com</code>. Ele baixa o sistema original do seu modelo e reinstala. <b>Apaga tudo e bloqueia o tablet de novo</b>: é o reset total, oficial.</p></div></div>
+  </div>
+</div>
+</section>
+
+
+<section aria-labelledby="trava-t" id="trava">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">deu erro</p>
+  <h2 id="trava-t" class="rv">Onde trava <em>e como sai</em></h2>
+  <ol class="guide">
+    <li class="glass rv"><span class="gn">1</span><div><b>Tocar 7 vezes não destravou nada</b><span class="d">Confira se tocou na linha <b>Versão do software</b>, dentro de Sobre o tablet. Toque mais rápido e mais vezes (até 10). Se pedir PIN, digite. Depois, use a lupa: <b>desenvolvedor</b>.</span></div></li>
+    <li class="glass rv"><span class="gn">2</span><div><b>O código do Shizuku não é aceito</b><span class="d">O código expira se você fechar a janela dele. Abra de novo "Parear o dispositivo com um código" e digite o código novo na notificação. Confira que o Shizuku tem permissão de notificação e que o tablet está no Wi-Fi (não no roteador do celular).</span></div></li>
+    <li class="glass rv"><span class="gn">3</span><div><b>O Shizuku não inicia</b><span class="d">Desligue e ligue a Depuração por Wi-Fi e toque em Iniciar de novo. Se o tablet reiniciou, isso é normal: a cada reinício o Shizuku precisa ser iniciado de novo (sem parear).</span></div></li>
+    <li class="glass rv"><span class="gn">4</span><div><b>Depois da faxina, algo parou</b><span class="d">Lembre o que removeu por último (os prints). No Canta, veja a lista de desinstalados. Se não resolver, me mande os prints. Em último caso, o reset de fábrica (Fase 0) devolve tudo.</span></div></li>
+    <li class="glass rv"><span class="gn">5</span><div><b>Tela congelou e não responde</b><span class="d">Segure o botão <kbd>Ligar</kbd> por uns 15 segundos, até a tela apagar e o logo aparecer. Isso força o reinício sem apagar nada.</span></div></li>
+    <li class="glass rv"><span class="gn">6</span><div><b>O Firefox não mostra Extensões</b><span class="d">Atualize o Firefox na Play Store. Ou abra <code>addons.mozilla.org</code> dentro do próprio Firefox e busque uBlock Origin.</span></div></li>
+    <li class="glass rv"><span class="gn">7</span><div><b>Versão PC: o Terminal não acha o tablet no modo de emergência</b><span class="d">Use outra porta USB do notebook (de preferência direto no notebook, sem hub) e outro cabo. Repita o aperto: tablet desligado de verdade (15 segundos no Ligar), <kbd>Volume +</kbd> e <kbd>Volume −</kbd> juntos, conecta, solta em 3 segundos. "Need AUTH file" quer dizer que ele entrou no modo errado: só repetir.</span></div></li>
+    <li class="glass rv"><span class="gn">8</span><div><b>Ainda demora uns 2 minutos pra ligar</b><span class="d">Me mande os tempos de antes e depois. Esse é o tipo de coisa que eu não chuto: eu investigo com você o que roda na inicialização.</span></div></li>
+  </ol>
+</div>
+</section>
+
+<section aria-labelledby="cuida-t" id="cuida">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">pra ele continuar leve</p>
+  <h2 id="cuida-t" class="rv">Manutenção <em>sem mistério</em></h2>
+  <ul class="okl rv">
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Reinicie uma vez por semana.</b> Libera a memória que os apps vão prendendo.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Um app pesado por vez.</b> Antes do YouTube, feche o resto no botão de apps recentes.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Nada de app "limpador" ou "acelerador".</b> Eles ficam rodando o tempo todo e matam apps que o Android vai ter que abrir de novo. O resultado é um tablet mais lento.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Depois de cada atualização da Lenovo, confira.</b> Uma atualização grande pode trazer de volta algum app de fábrica. Repita a Fase 3 se precisar (o pareamento já está feito).</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Mantenha uns 20% do espaço livre.</b> Você tem uns 86 GB livres, então está de sobra. Só fique de olho se começar a baixar muito vídeo.</div></li>
+    <li class="glass"><span class="ck" aria-hidden="true"></span><div><b>Poucas abas abertas.</b> Cada aba do navegador segura memória. Feche as que não está usando.</div></li>
+  </ul>
+</div>
+</section>
+
+<section aria-labelledby="ia-t" id="ia">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">seu assistente</p>
+  <h2 id="ia-t" class="rv">Pedidos prontos <em>pra IA</em></h2>
+  <p class="rv">Eu uso o <span class="claude">Claude</span> pra garimpar fórum. Você pode usar o plano gratuito de qualquer assistente que pesquise na web. Os pedidos já vêm com o seu modelo; troque só o que estiver em destaque.</p>
+  <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 1</span> · posso remover este app?</span><button class="copy" type="button" data-copy="p1">Copiar</button></div><pre id="p1">Tenho um Lenovo Tab M11 TB330FU com Android 15 e ZUI 17. Estou usando o Canta com Shizuku pra remover apps de fábrica. Pesquise na web o que faz o pacote <mark>[nome do pacote, ex.: com.lenovo.xxx]</mark>, que aparece como <mark>[nome que aparece no Canta]</mark>. Me diga em linguagem simples: o que ele faz, se remover pode quebrar algo (Wi-Fi, tela inicial, atualização, teclado, notificações) e se é seguro pra quem só usa YouTube e navegador. Na dúvida, me diga pra não remover. Cite as fontes.</pre></div>
+  <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 2</span> · travei num passo</span><button class="copy" type="button" data-copy="p2">Copiar</button></div><pre id="p2">Estou deixando um Lenovo Tab M11 TB330FU (Android 15, ZUI 17) mais leve, sem computador. Estou no passo <mark>[descreva o passo]</mark> e aconteceu isto: <mark>[o que apareceu na tela]</mark>. Me explique passo a passo, como pra alguém que nunca mexeu em configurações avançadas, o que fazer agora. Não sugira nada que apague dados ou precise de computador sem me avisar antes.</pre></div>
+  <div class="prompt glass rv"><div class="prompt-h"><span><span class="t">Pedido 3</span> · o que ainda roda escondido</span><button class="copy" type="button" data-copy="p3">Copiar</button></div><pre id="p3">Meu Lenovo Tab M11 TB330FU (Helio G88, 4 GB de RAM, Android 15, ZUI 17) ainda demora <mark>[tempo]</mark> pra ligar e trava em <mark>[situação]</mark>. Já cortei as animações pela metade, desativei apps de inicialização e removi apps de fábrica com o Canta. Pesquise relatos de donos desse modelo e me diga o que mais costuma pesar nele e como resolver sem computador e sem root.</pre></div>
+  <div class="warn glass red rv"><span class="big">!</span><p><b>A IA erra.</b> Ela pode inventar nome de menu, de app ou de pacote. Se ela mandar remover algo que está nas regras da Fase 3, as regras ganham. E nunca baixe arquivo de um link que só a IA mostrou.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="gl-t">
+  <p class="eyebrow" style="margin-top:56px">palavras do guia</p>
+  <h2 id="gl-t" class="rv">Glossário <em>rápido</em></h2>
+  <dl class="gloss">
+    <div class="glass rv"><dt>ZUI</dt><dd>O "sistema da Lenovo" por cima do Android. É ele que traz os apps e o visual da marca.</dd></div>
+    <div class="glass rv"><dt>eMMC</dt><dd>O tipo de memória interna do seu tablet. Mais barato e mais lento que o dos tablets caros.</dd></div>
+    <div class="glass rv"><dt>Opções do desenvolvedor</dt><dd>Um menu escondido do Android com ajustes avançados. Ligar ele não apaga nada.</dd></div>
+    <div class="glass rv"><dt>Depuração sem fio</dt><dd>Recurso do Android que dá a um app a permissão que um computador teria pelo cabo.</dd></div>
+    <div class="glass rv"><dt>Shizuku</dt><dd>O app que usa a depuração sem fio pra emprestar essa permissão a outros apps.</dd></div>
+    <div class="glass rv"><dt>Canta</dt><dd>O app que remove apps de fábrica usando o Shizuku, sem root.</dd></div>
+    <div class="glass rv"><dt>Bootloader</dt><dd>A trava que impede trocar o sistema. Desbloquear apaga o tablet.</dd></div>
+    <div class="glass rv"><dt>Root</dt><dd>Controle total do sistema. Exige bootloader desbloqueado e computador.</dd></div>
+    <div class="glass rv"><dt>GSI</dt><dd>Um "Android puro" genérico que roda em vários aparelhos, nem sempre com tudo funcionando.</dd></div>
+    <div class="glass rv"><dt>BROM</dt><dd>O modo de emergência do chip MediaTek. Funciona até com o sistema quebrado.</dd></div>
+    <div class="glass rv"><dt>mtkclient</dt><dd>Programa que fala com o tablet no modo BROM: faz backup e desbloqueia.</dd></div>
+    <div class="glass rv"><dt>vendor_boot</dt><dd>A parte do sistema onde o root entra, no Android 15 desse modelo.</dd></div>
+    <div class="glass rv"><dt>Magisk</dt><dd>O app que dá o root sem mexer no resto do sistema.</dd></div>
+    <div class="glass rv"><dt>Bootloop</dt><dd>Quando o tablet fica preso no logo, reiniciando sem terminar de ligar.</dd></div>
+  </dl>
+</section>
+
+<section aria-labelledby="fontes-t" id="fontes">
+<div class="read">
+  <p class="eyebrow" style="margin-top:56px">de onde veio cada informação</p>
+  <h2 id="fontes-t" class="rv">Fontes <em>conferidas</em></h2>
+  <ul class="src">
+    <li class="glass rv"><a href="https://psref.lenovo.com/syspool/Sys/PDF/Lenovo_Tablets/Tab_M11/Tab_M11_Spec.html" target="_blank" rel="noopener">Lenovo PSREF · ficha oficial do Tab M11</a><small>Helio G88, Mali-G52 MC2, 4 GB, eMMC 5.1, tela 90 Hz, atualização até o Android 15 e segurança até janeiro de 2028</small></li>
+    <li class="glass rv"><a href="https://pcsupport.lenovo.com/products/tablets/m-series-tablets/lenovo-tab-m11-k11" target="_blank" rel="noopener">Suporte Lenovo · Tab M11 (TB330FU/TB330XU)</a><small>página oficial do modelo</small></li>
+    <li class="glass rv"><a href="https://www.notebookcheck.net/Lenovo-Tab-M11-Tablet-review-11-inch-tablet-with-pen-support-for-school-and-multimedia.836743.0.html" target="_blank" rel="noopener">Notebookcheck · teste do Lenovo Tab M11</a><small>maio de 2024: sistema raramente liso, memória lenta, Widevine L1</small></li>
+    <li class="glass rv"><a href="https://www.lenovo.com/gb/en/tablet-software/" target="_blank" rel="noopener">Lenovo · recursos do software dos tablets</a><small>TurboSystem e o controle de apps em segundo plano</small></li>
+    <li class="glass rv"><a href="https://shizuku.rikka.app/guide/setup/" target="_blank" rel="noopener">Shizuku · manual oficial</a><small>início pela depuração sem fio no Android 11+, código na notificação, reinício a cada boot</small></li>
+    <li class="glass rv"><a href="https://github.com/samolego/Canta" target="_blank" rel="noopener">Canta · página oficial do projeto</a><small>remoção sem root via Shizuku, lista de desinstalados e o aviso de bootloop</small></li>
+    <li class="glass rv"><a href="https://androidauthority.com/debloat-android-phone-shizuku-canta-3465600" target="_blank" rel="noopener">Android Authority · faxina com Shizuku e Canta</a><small>etiquetas Recomendado, Avançado, Expert, Sistema e Inseguro; reset como saída</small></li>
+    <li class="glass rv"><a href="https://sysapps.bayton.org/packages/com.lenovo.rt" target="_blank" rel="noopener">Banco público de apps de sistema · com.lenovo.rt</a><small>"Tabtop Picks": permissão de instalar apps e ID de anúncio. Também consultados: com.tblenovo.launcher e com.lenovo.ota</small></li>
+    <li class="glass rv"><a href="https://addons.mozilla.org/en-GB/android/addon/ublock-origin/" target="_blank" rel="noopener">Mozilla · uBlock Origin pro Firefox Android</a><small>página oficial da extensão</small></li>
+    <li class="glass rv"><a href="https://github.com/threadexio/tb330fu" target="_blank" rel="noopener">GitHub · diário de root do TB330FU</a><small>"Versão do software" pras opções do desenvolvedor, desbloqueio, Magisk, LK e o bloqueio de tela quebrado em GSI</small></li>
+    <li class="glass rv"><a href="https://github.com/salivo/TB-330FU/wiki" target="_blank" rel="noopener">GitHub · wiki de um dono do TB330FU</a><small>desbloqueio pelo mtkclient, dm-verity, GSIs LineageOS, Evolution X e ArrowOS (aparelho de 8 GB, Android 14)</small></li>
+    <li class="glass rv"><a href="https://gist.github.com/AnAnonymousPotato/14850489fee6279bfefda7646480eddd" target="_blank" rel="noopener">GitHub · guia de GSI dos tablets Lenovo e relatos do TB330FU</a><small>bootloop depois do vbmeta resolvido com a ferramenta oficial da Lenovo</small></li>
+    <li class="glass rv"><a href="https://www.hovatek.com/forum/thread-48499.html" target="_blank" rel="noopener">Hovatek · TWRP no Lenovo M11 (TB330FU)</a><small>2025: toque sem funcionar no TWRP e tablet preso no logo</small></li>
+    <li class="glass rv"><a href="https://github.com/Barley-Project/tb330fu-ubuntu" target="_blank" rel="noopener">GitHub · Ubuntu no TB330FU</a><small>experimental: sem som, câmera e suspensão</small></li>
+    <li class="glass rv"><a href="https://support.lenovo.com/kr/ko/downloads/ds101291-rescue-and-smart-assistant-lmsa" target="_blank" rel="noopener">Lenovo · Software Fix (Rescue and Smart Assistant)</a><small>a ferramenta oficial de recuperação</small></li>
+    <li class="glass rv"><a href="https://github.com/Grohle/de-roo-m11" target="_blank" rel="noopener">GitHub · de-roo-m11 (root do TB330FU no Android 15)</a><small>base da versão PC: backup e desbloqueio pelo mtkclient, root no vendor_boot com Magisk 31.1, lista de faxina, módulo tb330fu-perf e os becos sem saída. Testado na ZUI 17.0.502</small></li>
+    <li class="glass rv"><a href="https://github.com/bkerler/mtkclient" target="_blank" rel="noopener">GitHub · mtkclient</a><small>a ferramenta do modo de emergência dos chips MediaTek</small></li>
+    <li class="glass rv"><a href="https://github.com/topjohnwu/Magisk/releases" target="_blank" rel="noopener">GitHub · Magisk (versões oficiais)</a><small>de onde baixar o Magisk 31.1</small></li>
+    <li class="glass rv"><a href="https://github.com/VegaBobo/DSU-Sideloader" target="_blank" rel="noopener">GitHub · DSU Sideloader</a><small>exige bootloader desbloqueado</small></li>
+    <li class="glass rv"><a href="https://xdaforums.com/t/lenovo-tab-m11-pen-fix-on-custom-roms-gsis.4790858/" target="_blank" rel="noopener">XDA · correção da caneta em GSIs do Tab M11</a><small>listado; não consegui ler o conteúdo</small></li>
+    <li class="glass rv"><a href="https://xdaforums.com/f/lenovo-tab-m11.13052/" target="_blank" rel="noopener">XDA · fórum do Lenovo Tab M11</a><small>listado pra consulta; o fórum bloqueia leitura automática e não foi usado como base</small></li>
+  </ul>
+</div>
+</section>
+
+<div class="cta rv">
+  <span class="pf"><img src="../../../assets/img/luis.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
+  <h2>Travou? <em>Me chama</em></h2>
+  <p class="lede">Responda a mensagem do WhatsApp em que você recebeu este link, com um print da tela e o número da fase e do passo. Eu te digo o próximo movimento.</p>
+  <a class="stamp" href="https://www.instagram.com/cobaia.dev/" target="_blank" rel="noopener">@COBAIA.DEV</a>
+</div>
+<footer><span>© 2026 @cobaia.dev</span><span>guia feito pro TB330FU · pesquisa de 24/11/2026</span></footer>
+</main>
+
+<script src="../../../assets/site.js"></script>
+<script>
+/* marcar passos como feitos (fica salvo só neste aparelho) */
+(function(){
+  var KEY='cobaia-tb330fu-feito', st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){st={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  document.querySelectorAll('[data-route]').forEach(function(box){
+    var r=box.getAttribute('data-route'),steps=[].slice.call(box.children),prog=document.querySelector('[data-prog="'+r+'"]');
+    function paint(){var n=0;steps.forEach(function(s,i){var on=!!st[r+i];s.classList.toggle('ok',on);var b=s.querySelector('.done');b.setAttribute('aria-pressed',on?'true':'false');b.lastChild.textContent=on?'feito':'marcar como feito';if(on)n++;});
+      if(prog){prog.querySelector('i').style.width=(n/steps.length*100)+'%';prog.querySelector('b').textContent=n+'/'+steps.length;}}
+    steps.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.className='done';b.appendChild(document.createTextNode(''));
+      b.addEventListener('click',function(){st[r+i]=!st[r+i];save();paint();});s.querySelector('h3').parentNode.appendChild(b);});
+    paint();
+  });
+})();
+</script>
+</body>
+</html>
