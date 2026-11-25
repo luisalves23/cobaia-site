@@ -37,7 +37,7 @@
       ]
     },
     {
-      "source": "/(acesso|minha-area|admin|gta/guia|notebook/guia|notebook/obrigado|notebook/obrigado-suporte)/(.*)",
+      "source": "/(acesso|entrar|minha-area|admin|gta/guia|notebook/guia|notebook/obrigado|notebook/obrigado-suporte)/(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -54,6 +54,10 @@
     {
       "source": "/acesso/",
       "destination": "/api/acesso"
+    },
+    {
+      "source": "/entrar/",
+      "destination": "/api/entrar"
     },
     {
       "source": "/minha-area/",

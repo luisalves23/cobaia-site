@@ -4,8 +4,8 @@ import { pagina, esc } from '../lib/ui.mjs';
 
 const ERROS = {
   'email': 'Esse e-mail não parece completo. Confira e tente de novo.',
-  'nao-encontrado': 'Não achei compra com esse e-mail. Use o mesmo e-mail que você digitou na Kiwify. Se acabou de pagar no boleto, a liberação acontece quando o banco confirmar.',
-  'encerrado': 'A compra desse e-mail foi reembolsada ou contestada, então o acesso foi encerrado.',
+  'nao-encontrado': 'Não achei compra com esse e-mail. Use o mesmo e-mail que você digitou na Kiwify. Se acabou de comprar, pode levar alguns minutos. Se continuar, me chama no WhatsApp.',
+  'link': 'Esse link não está completo. Digite o e-mail da compra abaixo.',
   'formulario': 'Algo deu errado no envio. Tente de novo.',
 };
 
@@ -15,12 +15,13 @@ export function GET(request) {
   const email = u.searchParams.get('email') || '';
   const produto = PRODUTOS[u.searchParams.get('produto')] ? u.searchParams.get('produto') : '';
   const volta = voltaSegura(u.searchParams.get('volta') || '');
-  const logado = lerSessao(request);
+  const s = lerSessao(request);
+  const logado = s && s.produtos.length ? s.email : '';
 
   const corpo = `
 <span class="badge">ÁREA DO COMPRADOR</span>
 <h1>Seu <em>acesso</em></h1>
-<p class="s">Digite o e-mail que você usou na compra. Sem senha: se a compra estiver ativa, o material abre na hora.</p>
+<p class="s">Digite o e-mail que você usou na compra. Sem senha: o material abre na hora.</p>
 <form method="post" action="/api/entrar/">
 <label for="e">E-mail da compra</label>
 <input id="e" name="email" type="email" autocomplete="email" inputmode="email" required value="${esc(email)}" placeholder="voce@email.com">

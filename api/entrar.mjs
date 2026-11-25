@@ -1,9 +1,18 @@
-/* Entrar só com o e-mail da compra. POST email, produto (opcional), volta (opcional).
-   Se a compra ainda não chegou (o aviso da Kiwify às vezes atrasa uns segundos), espera um pouco e tenta de novo. */
-import { PRODUTOS, lerCompra, comprasAtivas, ativo, cookieSessao, normEmail, voltaSegura } from '../lib/compras.mjs';
+/* /entrar/?t=<token> : o link pessoal que chega no e-mail da compra.
+   Confere a assinatura, junta os acessos desse produto aos que a pessoa já tinha no cookie e manda para o material.
+   POST email, produto (opcional), volta (opcional): entra só com o e-mail, se ele estiver na lista ACESSO_LIBERADO. */
+import { PRODUTOS, lerToken, lerSessao, cookieSessao, liberados, acessosDoEmail, normEmail, voltaSegura } from '../lib/compras.mjs';
 import { redirecionar } from '../lib/ui.mjs';
 
-const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+export function GET(request) {
+  const u = new URL(request.url);
+  const t = lerToken(u.searchParams.get('t') || '');
+  if (!t) return redirecionar('/acesso/?erro=link');
+  const atual = lerSessao(request);
+  const mesmo = atual && atual.email === t.email;
+  const produtos = [...(mesmo ? atual.produtos : []), ...liberados(t.produto)];
+  return redirecionar(PRODUTOS[t.produto].destino, { 'set-cookie': cookieSessao(t.email, produtos) });
+}
 
 export async function POST(request) {
   let f;
@@ -12,34 +21,18 @@ export async function POST(request) {
   const produto = PRODUTOS[f.get('produto')] ? String(f.get('produto')) : '';
   const volta = voltaSegura(String(f.get('volta') || ''));
   const q = (erro) => '/acesso/?' + new URLSearchParams({ erro, email, ...(produto ? { produto } : {}), ...(volta ? { volta } : {}) });
-
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return redirecionar(q('email'));
 
-  // vindo da página de obrigado (com produto): tenta por até ~9 s, pra cobrir o atraso do aviso da Kiwify
-  const tentativas = produto ? 4 : 1;
-  let regs = [];
-  for (let i = 0; i < tentativas; i++) {
-    regs = produto ? [await lerCompra(produto, email)].filter(Boolean) : await comprasAtivas(email);
-    if (regs.some(ativo)) break;
-    if (regs.length) break; // existe, mas sem compra ativa: não adianta esperar
-    if (i < tentativas - 1) await espera(3000);
-  }
-  // com produto informado mas sem compra dele, ainda vale entrar se tiver outra compra ativa
-  if (produto && !regs.some(ativo)) {
-    const outras = await comprasAtivas(email);
-    if (outras.some(ativo)) regs = outras;
-  }
+  const acessos = acessosDoEmail(email);
+  if (!acessos.length) return redirecionar(q('nao-encontrado'));
+  const atual = lerSessao(request);
+  const todos = [...(atual && atual.email === email ? atual.produtos : []), ...acessos];
+  const cookie = { 'set-cookie': cookieSessao(email, todos) };
 
-  if (!regs.length) return redirecionar(q('nao-encontrado'));
-  if (!regs.some(ativo)) return redirecionar(q('encerrado'));
-
-  const certo = regs.find(ativo);
-  // comprou o guia com o suporte de order bump: vai pra área, onde o botão do WhatsApp aparece primeiro
-  if (produto === 'notebook' && !volta && ativo(await lerCompra('notebook-suporte', email))) {
-    return redirecionar('/minha-area/', { 'set-cookie': cookieSessao(email) });
-  }
-  const destino = volta || (produto && regs.some((r) => r.produto === produto && ativo(r)) ? PRODUTOS[produto].destino : '/minha-area/');
-  return redirecionar(destino || PRODUTOS[certo.produto].destino, { 'set-cookie': cookieSessao(email) });
+  if (volta) return redirecionar(volta, cookie);
+  // suporte: vai pra área, onde o botão do WhatsApp aparece primeiro
+  if (acessos.includes('notebook-suporte') || acessos.includes('suporte')) return redirecionar('/minha-area/', cookie);
+  if (produto && acessos.includes(produto)) return redirecionar(PRODUTOS[produto].destino, cookie);
+  const unico = acessos.length === 1 ? PRODUTOS[acessos[0]].destino : '/minha-area/';
+  return redirecionar(unico, cookie);
 }
-
-export function GET() { return redirecionar('/acesso/'); }

@@ -1,9 +1,11 @@
-/* Webhook da Kiwify: https://cobaia-dev.vercel.app/api/kiwify?produto=<tablet|gta|notebook|suporte>
+/* Webhook da Kiwify: https://cobaia-dev.vercel.app/api/kiwify?produto=<tablet|gta|notebook|notebook-suporte|suporte>
    Um webhook por produto na Kiwify, com os eventos: Compra aprovada, Compra reembolsada e Chargeback.
    A Kiwify assina cada envio: ?signature= é o HMAC-SHA1 (hex) do corpo cru, com o token do webhook como chave.
-   O token fica na variável KIWIFY_TOKEN da Vercel (vários tokens separados por vírgula, se houver mais de um webhook). */
+   O token fica na variável KIWIFY_TOKEN da Vercel (vários tokens separados por vírgula).
+   Compra aprovada: manda para o comprador o e-mail com o link pessoal de acesso (lib/email.mjs). Nada é gravado. */
 import crypto from 'node:crypto';
-import { PRODUTOS, aplicarEvento, normEmail } from '../lib/compras.mjs';
+import { PRODUTOS, normEmail } from '../lib/compras.mjs';
+import { enviarBoasVindas } from '../lib/email.mjs';
 
 const STATUS = {
   order_approved: 'pago', paid: 'pago',
@@ -43,38 +45,33 @@ export async function POST(request) {
   const pedido = String(d.order_id || d.order_ref || '');
   if (!email || !pedido) return json({ ok: false, erro: 'sem e-mail ou pedido' }, 400);
 
-  const base = {
-    email, pedido, status,
-    nome: c.full_name || c.first_name || c.name || '',
-    celular: c.mobile || c.phone || '',
-    origem: 'kiwify',
-    extra: {
-      produto_kiwify: (d.Product && (d.Product.product_name || d.Product.name)) || '',
-      metodo: d.payment_method || '',
-      aprovado_em: d.approved_date || '',
-      // campos extras do checkout (ex.: modelo do tablet), se a Kiwify mandar
-      campos: d.custom_fields || d.CustomFields || d.checkout_fields || null,
-    },
-  };
-  await aplicarEvento({ produto, ...base });
-
-  /* Order bump: no checkout do guia do notebook, o suporte pessoal pode vir junto no mesmo pedido.
-     Se o aviso do guia citar o produto do suporte, o suporte é registrado também. Se a Kiwify mandar um aviso próprio do bump em
-     ?produto=notebook-suporte, o registro é o mesmo e nada duplica. */
-  let bump = false;
+  /* Qual e-mail mandar: o suporte do notebook pode vir junto no pedido do guia (order bump)
+     ou ser comprado pela página /notebook (src=notebook). Nesses casos vai o e-mail do suporte, que já libera o guia. */
+  let alvo = produto;
   if (produto === 'notebook') {
     const txt = corpo.toLowerCase();
-    bump = txt.includes('suporte pessoal') || (process.env.KIWIFY_SUPORTE_ID && corpo.includes(process.env.KIWIFY_SUPORTE_ID));
-    if (bump) await aplicarEvento({ produto: 'notebook-suporte', ...base });
+    if (txt.includes('suporte pessoal') || (process.env.KIWIFY_SUPORTE_ID && corpo.includes(process.env.KIWIFY_SUPORTE_ID))) alvo = 'notebook-suporte';
   }
-  /* Suporte comprado pelo botão da página /notebook: o checkout leva src=notebook (vem em TrackingParameters),
-     então o suporte também libera o guia do notebook. Vendido por outro lugar, fica só o suporte. */
   if (produto === 'suporte') {
     const tp = JSON.stringify(d.TrackingParameters || d.tracking_parameters || {}).toLowerCase();
-    bump = tp.includes('notebook');
-    if (bump) await aplicarEvento({ produto: 'notebook-suporte', ...base });
+    if (tp.includes('notebook')) alvo = 'notebook-suporte';
   }
-  return json({ ok: true, produto, status, bump });
+
+  // Reembolso e chargeback: sem cadastro, não há o que cortar. Só registra no log da Vercel.
+  if (status !== 'pago') { console.log('kiwify', status, produto, pedido); return json({ ok: true, produto, status }); }
+
+  const nome = c.full_name || c.first_name || c.name || '';
+  let email_ = 'falhou';
+  try {
+    const r = await enviarBoasVindas({ produto: alvo, email, nome });
+    email_ = r.enviado ? 'enviado' : r.motivo;
+    if (!r.enviado) console.log('email de acesso nao enviado:', r.motivo, alvo, pedido);
+  } catch (e) {
+    console.error('email de acesso falhou:', e && e.message, alvo, pedido);
+    // 500 faz a Kiwify reenviar o aviso mais tarde, e o e-mail tenta de novo
+    return json({ ok: false, erro: 'email', produto: alvo }, 500);
+  }
+  return json({ ok: true, produto: alvo, status, bump: alvo !== produto, email: email_ });
 }
 
 export function GET() {

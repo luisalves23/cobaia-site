@@ -307,27 +307,7 @@
   }
   precos(false);
 
-  /* Medidor real (api/ao-vivo.mjs): sinal a cada 60 s enquanto a aba está aberta */
-  (function(){
-    var id = null, novo = 0;
-    try { id = localStorage.getItem('nb-id'); } catch(e){}
-    if (!id) { id = (Date.now().toString(36) + Math.random().toString(36).slice(2, 12)).replace(/[^a-z0-9]/g, ''); novo = 1; try { localStorage.setItem('nb-id', id); } catch(e){} }
-    function sinal(){ if (document.visibilityState !== 'hidden') fetch('/api/ao-vivo?id=' + id + (novo ? '&novo=1' : ''), { method: 'POST', keepalive: true }).catch(function(){}); novo = 0; }
-    function n(x){ return x.toLocaleString('pt-BR'); }
-    function ler(){
-      fetch('/api/ao-vivo').then(function(r){ return r.json(); }).then(function(d){
-        var on = Math.max(d.online || 0, 1);
-        document.querySelectorAll('.aovivo').forEach(function(el){
-          el.querySelector('[data-on]').textContent = n(on) + (on === 1 ? ' pessoa nesta página agora' : ' pessoas nesta página agora');
-          el.querySelector('[data-vis]').textContent = d.visitas >= 100 ? n(d.visitas) + ' visitas desde o lançamento' : '';
-          el.hidden = false;
-        });
-      }).catch(function(){});
-    }
-    sinal(); setTimeout(ler, 1500);
-    setInterval(sinal, 60000); setInterval(ler, 30000);
-    document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') sinal(); });
-  })();
+  /* Medidor ao vivo desligado: ele gravava no Blob a cada 60 s e estourou a cota (ver api/ao-vivo.mjs). */
   var FIM = new Date('2026-12-01T02:59:59Z').getTime(); // 30/11 23:59:59 em Brasília
 
   document.querySelectorAll('[data-checkout]').forEach(function(a){

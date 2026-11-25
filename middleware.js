@@ -1,10 +1,9 @@
-/* Páginas pagas: só abrem para quem tem compra ativa (cadastro em lib/compras.mjs).
-   - /gta/guia/      comprador do produto "gta"
-   - /notebook/guia/ comprador do produto "notebook" ou "notebook-suporte" (o suporte sempre leva o guia)
-   - /tablet/g/<slug>/  comprador do produto "tablet" com esse guia liberado no painel (/admin/)
-   A compra é conferida a cada abertura, direto na origem: reembolso ou chargeback cortam na hora.
-
-   Legado: guias de tablet entregues antes do cadastro ainda abrem com e-mail + senha das variáveis
+/* Páginas pagas: só abrem para quem abriu o link pessoal do e-mail da compra (cookie assinado, ver lib/compras.mjs).
+   Acessos vêm do link pessoal do e-mail ou do e-mail digitado em /acesso/ (lista ACESSO_LIBERADO).
+   - /gta/guia/         acesso "gta"
+   - /notebook/guia/    acesso "notebook" (o suporte do notebook também libera)
+   - /tablet/g/<slug>/  acesso "tablet"
+   Legado: guias de tablet entregues antes ainda abrem com e-mail + senha das variáveis
      GUIA_<SLUG>_LOGIN e GUIA_<SLUG>_SENHA (cookie assinado com GUIA_SEGREDO).
    <SLUG> é a pasta do guia em maiúsculas, com "-" trocado por "_". */
 // lib/compras.mjs é ESM e o middleware é empacotado como CommonJS: import dinâmico.
@@ -75,7 +74,6 @@ ${erro ? '<p class="err" role="alert">E-mail ou senha não conferem. Confira e t
 
 const NADA = undefined; // segue para a página estática
 const ir = (location) => new Response(null, { status: 303, headers: { location, 'cache-control': 'no-store' } });
-const encerrado = () => ir('/acesso/?erro=encerrado');
 
 async function legado(req, slug) {
   const env = (k) => process.env[k];
@@ -100,35 +98,19 @@ async function legado(req, slug) {
 }
 
 export default async function middleware(req) {
-  const { lerSessao, lerCompra, ativo, abreGuiaNotebook } = await libCompras();
-  const url = new URL(req.url);
-  const p = url.pathname;
-  const email = lerSessao(req);
+  const { lerSessao } = await libCompras();
+  const p = new URL(req.url).pathname;
+  const tem = (k) => { const s = lerSessao(req); return !!s && s.produtos.includes(k); };
 
-  if (p.startsWith('/notebook/guia')) {
-    if (!email) return ir('/acesso/?produto=notebook&volta=/notebook/guia/');
-    const regs = await Promise.all(['notebook', 'notebook-suporte'].map((k) => lerCompra(k, email)));
-    if (regs.some((r) => r && abreGuiaNotebook(r))) return NADA;
-    return regs.some(Boolean) ? encerrado() : ir('/acesso/?produto=notebook&erro=nao-encontrado&email=' + encodeURIComponent(email));
-  }
-
-  if (p.startsWith('/gta/guia')) {
-    if (!email) return ir('/acesso/?produto=gta&volta=/gta/guia/');
-    const reg = await lerCompra('gta', email);
-    if (ativo(reg)) return NADA;
-    return reg ? encerrado() : ir('/acesso/?produto=gta&erro=nao-encontrado&email=' + encodeURIComponent(email));
-  }
+  if (p.startsWith('/notebook/guia')) return tem('notebook') ? NADA : ir('/acesso/?produto=notebook&volta=/notebook/guia/');
+  if (p.startsWith('/gta/guia')) return tem('gta') ? NADA : ir('/acesso/?produto=gta&volta=/gta/guia/');
 
   // /tablet/g/<slug>/
   const slug = p.split('/')[3] || '';
   if (!slug) return new Response('Não encontrado', { status: 404, headers: { 'cache-control': 'no-store' } });
-  if (email) {
-    const reg = await lerCompra('tablet', email);
-    if (ativo(reg) && (reg.guias || []).includes(slug)) return NADA;
-    if (reg && !ativo(reg)) return encerrado();
-  }
+  if (tem('tablet')) return NADA;
   const l = await legado(req, slug);
   if (l === 'ok') return NADA;
   if (l) return l;
-  return email ? ir('/minha-area/') : ir('/acesso/?produto=tablet&volta=' + encodeURIComponent('/tablet/g/' + slug + '/'));
+  return ir('/acesso/?produto=tablet&volta=' + encodeURIComponent('/tablet/g/' + slug + '/'));
 }
