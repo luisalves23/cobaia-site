@@ -239,3 +239,4 @@ footer a{color:var(--mu)}
 .cta-mid span{color:var(--mu);font-size:14px}
 .price li.no{color:var(--di);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
 .price li.no::before{content:"✕";color:#ff5a4d}
+.price .capa{display:block;width:calc(100% + 60px);max-width:none;height:auto;aspect-ratio:3/2;object-fit:cover;margin:-30px -30px 20px;border-radius:inherit;border-bottom-left-radius:0;border-bottom-right-radius:0}

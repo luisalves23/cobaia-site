@@ -5,7 +5,7 @@
    O número do WhatsApp vem da variável WHATSAPP_SUPORTE (55 + DDD + número). */
 import { pagina, esc } from '../lib/ui.mjs';
 
-const form = (produto, email, botao, alt = false) => `<form method="post" action="/api/entrar">
+const form = (produto, email, botao, alt = false) => `<form method="post" action="/api/entrar/">
 <label for="e">E-mail da compra</label>
 <input id="e" name="email" type="email" autocomplete="email" inputmode="email" required value="${esc(email)}" placeholder="voce@email.com">
 <input type="hidden" name="produto" value="${produto}">

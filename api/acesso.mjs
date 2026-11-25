@@ -21,7 +21,7 @@ export function GET(request) {
 <span class="badge">ÁREA DO COMPRADOR</span>
 <h1>Seu <em>acesso</em></h1>
 <p class="s">Digite o e-mail que você usou na compra. Sem senha: se a compra estiver ativa, o material abre na hora.</p>
-<form method="post" action="/api/entrar">
+<form method="post" action="/api/entrar/">
 <label for="e">E-mail da compra</label>
 <input id="e" name="email" type="email" autocomplete="email" inputmode="email" required value="${esc(email)}" placeholder="voce@email.com">
 ${produto ? `<input type="hidden" name="produto" value="${esc(produto)}">` : ''}
