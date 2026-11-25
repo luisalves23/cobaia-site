@@ -17,15 +17,25 @@ ${guias.map((g) => `<a class="bt" href="/tablet/g/${esc(g)}/">Abrir o guia${guia
 <p>Seu pagamento entrou. Agora eu monto o passo a passo pro seu modelo exato. Quando ficar pronto, ele aparece aqui nesta página e eu te aviso no WhatsApp da compra.</p>
 <a class="bt alt" href="/tablet/o-mapa-do-tablet-velho.pdf" download>Enquanto isso: baixar o mapa do tablet (PDF)</a></div>`;
   }
+  if (p.suporte) {
+    const zap = String(process.env.WHATSAPP_SUPORTE || '').replace(/\D/g, '');
+    const doNotebook = reg.produto === 'notebook-suporte';
+    const msg = encodeURIComponent('Oi, Luis! Comprei o suporte' + (doNotebook ? ' do notebook' : '') + ' (' + reg.email + '). Vamos começar?');
+    return `<div class="prod"><span class="pill">${doNotebook ? 'Suporte ativo · guia incluído' : 'Suporte ativo'}</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p>
+${zap ? `<a class="bt" href="https://wa.me/${zap}?text=${msg}" target="_blank" rel="noopener">Chamar o Luis no WhatsApp</a>` : '<p>O Luis vai te chamar no WhatsApp que você deixou na compra.</p>'}
+${p.guia ? `<a class="bt alt" href="${esc(p.guia)}">Abrir o guia</a>` : ''}</div>`;
+  }
   return `<div class="prod"><span class="pill">Liberado</span><h2>${esc(p.nome)}</h2><p>${esc(p.descricao)}</p><a class="bt" href="${esc(p.destino)}">Abrir o guia</a></div>`;
 }
 
 export async function GET(request) {
   const email = lerSessao(request);
   if (!email) return redirecionar('/acesso/');
-  const regs = await comprasAtivas(email);
+  let regs = await comprasAtivas(email);
   if (!regs.length) return redirecionar('/acesso/?erro=nao-encontrado&email=' + encodeURIComponent(email));
-  regs.sort((a, b) => Number(ativo(b)) - Number(ativo(a)));
+  // o suporte comprado pela página do notebook gera dois registros; mostra só o cartão do notebook
+  if (regs.some((r) => r.produto === 'notebook-suporte')) regs = regs.filter((r) => r.produto !== 'suporte');
+  regs.sort((a, b) => Number(ativo(b)) - Number(ativo(a)) || Number(!!PRODUTOS[b.produto]?.suporte) - Number(!!PRODUTOS[a.produto]?.suporte));
   const corpo = `
 <span class="badge">MINHA ÁREA</span>
 <h1>Seu <em>material</em></h1>

@@ -30,7 +30,7 @@ h1{font-family:Anton;font-weight:400;font-size:92px;line-height:.95;margin-top:3
   fs.mkdirSync(R + '/assets/og', { recursive: true });
   const b = await chromium.launch(); const pg = await b.newPage({ viewport: { width: 1200, height: 630 } });
   for (const [id, badge, title, kw] of items) {
-    const right = id === 'hub' ? `<img class="av" src="${A}img/avatar.jpg">` : `<div class="p"><img src="${A}img/capa-${id}.jpg"></div>`;
+    const right = id === 'hub' ? `<img class="av" src="${A}img/luis.jpg">` : `<div class="p"><img src="${A}img/capa-${id}.jpg"></div>`;
     const k = kw ? `<div class="k">você comentou <b>${kw}</b> </div>` : `<div class="k">@cobaia.dev · 30 experimentos com Claude</div>`;
     const tmp = path.join(require('os').tmpdir(), 'cobaia-og.html'); fs.writeFileSync(tmp, `<html><head><meta charset="utf-8"><style>${css}</style></head><body><div class="dots"></div><div class="l"><span class="b">${badge}</span><h1>${title}</h1></div>${k}${right}</body></html>`); await pg.goto('file://' + tmp);
     await pg.evaluate(() => document.fonts.ready); await pg.waitForTimeout(200);

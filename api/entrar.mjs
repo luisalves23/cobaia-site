@@ -34,6 +34,10 @@ export async function POST(request) {
   if (!regs.some(ativo)) return redirecionar(q('encerrado'));
 
   const certo = regs.find(ativo);
+  // comprou o guia com o suporte de order bump: vai pra área, onde o botão do WhatsApp aparece primeiro
+  if (produto === 'notebook' && !volta && ativo(await lerCompra('notebook-suporte', email))) {
+    return redirecionar('/minha-area/', { 'set-cookie': cookieSessao(email) });
+  }
   const destino = volta || (produto && regs.some((r) => r.produto === produto && ativo(r)) ? PRODUTOS[produto].destino : '/minha-area/');
   return redirecionar(destino || PRODUTOS[certo.produto].destino, { 'set-cookie': cookieSessao(email) });
 }

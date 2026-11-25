@@ -28,7 +28,7 @@ DIAS = [
          desc="Os dois prompts pra limpar a caixa de entrada e receber o resumo da noite com o Claude no Gmail e na Agenda."),
     dict(n=5, slug="mcp", kw="MCP", curto="O Claude montou meu post no Canva",
          desc="Os pedidos prontos pra copiar e usar o Claude com o Canva via MCP, e o passo a passo pra ligar sem programar."),
-    dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude",
+    dict(n=6, slug="notebook", kw="NOTEBOOK", curto="Ressuscitei um notebook velho com o Claude", landing=True,
          desc="O guia pra reviver um notebook velho com um Debian 13, do pendrive à interface, com os comandos pra fazer à mão e os pedidos prontos pro Claude Code."),
     dict(n=8, slug="tablet", kw="TABLET", curto="Ressuscitei um tablet abandonado", landing=True,
          desc="O mapa grátis pra ressuscitar o seu tablet velho e o passo a passo feito pro seu modelo, até o limite que ele aguenta."),
@@ -85,7 +85,7 @@ def head(title, desc, path, og, depth, extra_attr=""):
 def topbar(depth):
     up = "../" * depth
     return f'''<header class="top"><div class="bar glass">
-  <a class="brand" href="{up}30-dias/"><span class="pf"><img src="{up}assets/img/avatar.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
+  <a class="brand" href="{up}30-dias/"><span class="pf"><img src="{up}assets/img/luis.jpg" alt="" width="34" height="34"></span><span>@cobaia.dev</span></a>
   <div class="bar-r"><div class="bar-soc">{"".join(f'<a class="soc" href="{u}" target="_blank" rel="noopener" aria-label="{n}">{ICONS[n]}</a>' for n, u in REDES[1:])}</div><button class="cal-btn" type="button" data-open-cal aria-haspopup="dialog" aria-controls="cal"><i class="dot"></i>30 dias</button></div>
 </div></header>
 '''
@@ -119,7 +119,7 @@ def redes_icones():
 def foot(depth):
     up = "../" * depth
     return f'''<div class="cta rv">
-  <span class="pf"><img src="{up}assets/img/avatar.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
+  <span class="pf"><img src="{up}assets/img/luis.jpg" alt="Foto de perfil do @cobaia.dev" width="96" height="96"></span>
   <h2>30 dias, <em>30 experimentos</em></h2>
   <p class="lede">Eu testo antes de você. Segue pra não perder o próximo.</p>
   <a class="stamp" href="{REDES[0][1]}" target="_blank" rel="noopener">@COBAIA.DEV</a>
