@@ -109,8 +109,7 @@ export default async function middleware(req) {
   const slug = p.split('/')[3] || '';
   if (!slug) return new Response('Não encontrado', { status: 404, headers: { 'cache-control': 'no-store' } });
   if (tem('tablet')) return NADA;
-  const l = await legado(req, slug);
-  if (l === 'ok') return NADA;
-  if (l) return l;
+  // quem já entrou antes com login e senha (cookie antigo) continua entrando; quem não entrou vai pro /acesso/ só com o e-mail
+  if (req.method !== 'POST' && (await legado(req, slug)) === 'ok') return NADA;
   return ir('/acesso/?produto=tablet&volta=' + encodeURIComponent('/tablet/g/' + slug + '/'));
 }
