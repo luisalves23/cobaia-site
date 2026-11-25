@@ -1,4 +1,5 @@
 /* Páginas pagas: só abrem para quem abriu o link pessoal do e-mail da compra (cookie assinado, ver lib/compras.mjs).
+   Acessos vêm do link pessoal do e-mail ou do e-mail digitado em /acesso/ (lista ACESSO_LIBERADO).
    - /gta/guia/         acesso "gta"
    - /notebook/guia/    acesso "notebook" (o suporte do notebook também libera)
    - /tablet/g/<slug>/  acesso "tablet"
@@ -63,7 +64,7 @@ function telaLogin(acao, erro, login) {
 <label for="s">Senha</label><input id="s" name="senha" type="password" autocomplete="current-password" required>
 ${erro ? '<p class="err" role="alert">E-mail ou senha não conferem. Confira e tente de novo.</p>' : ''}
 <button type="submit">Abrir o guia</button>
-<p class="help">Comprou pelo site? <a href="/acesso/" style="color:var(--paper)">Abra o link que chegou no seu e-mail</a>. Não conseguiu? Responda a mensagem do WhatsApp em que recebeu este link.</p>
+<p class="help">Comprou pelo site? <a href="/acesso/?volta=${esc(acao)}" style="color:var(--paper)">Entre só com o e-mail da compra</a>. Não conseguiu? Responda a mensagem do WhatsApp em que recebeu este link.</p>
 </form></main></body></html>`;
   return new Response(html, {
     status: 401,
@@ -101,8 +102,8 @@ export default async function middleware(req) {
   const p = new URL(req.url).pathname;
   const tem = (k) => { const s = lerSessao(req); return !!s && s.produtos.includes(k); };
 
-  if (p.startsWith('/notebook/guia')) return tem('notebook') ? NADA : ir('/acesso/');
-  if (p.startsWith('/gta/guia')) return tem('gta') ? NADA : ir('/acesso/');
+  if (p.startsWith('/notebook/guia')) return tem('notebook') ? NADA : ir('/acesso/?produto=notebook&volta=/notebook/guia/');
+  if (p.startsWith('/gta/guia')) return tem('gta') ? NADA : ir('/acesso/?produto=gta&volta=/gta/guia/');
 
   // /tablet/g/<slug>/
   const slug = p.split('/')[3] || '';
@@ -111,5 +112,5 @@ export default async function middleware(req) {
   const l = await legado(req, slug);
   if (l === 'ok') return NADA;
   if (l) return l;
-  return ir('/acesso/');
+  return ir('/acesso/?produto=tablet&volta=' + encodeURIComponent('/tablet/g/' + slug + '/'));
 }
