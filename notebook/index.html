@@ -22,8 +22,8 @@
 <body>
 <div class="glow" aria-hidden="true"></div>
 
-<header class="top"><div class="wrap"><div class="bar glass">
-  <a class="brand" href="../30-dias/"><img src="../assets/img/avatar.jpg" alt="" width="30" height="30"><span>@cobaia.dev</span></a>
+<header class="top"><a class="promo" id="promo-top" href="#planos"><span>🔥 Preço de lançamento acaba em</span> <b data-top>--</b></a><div class="wrap"><div class="bar glass">
+  <a class="brand" href="../30-dias/"><img src="../assets/img/luis.jpg" alt="" width="30" height="30"><span>@cobaia.dev</span></a>
   <a class="btn" href="#prova">Ver o antes e depois</a>
 </div></div></header>
 
@@ -161,7 +161,7 @@
 <!-- 9. QUEM -->
 <section aria-labelledby="h-quem" style="padding-top:20px"><div class="wrap">
   <div class="glass card" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
-    <img src="../assets/img/avatar.jpg" alt="" width="84" height="84" style="border-radius:50%;flex:0 0 84px">
+    <img src="../assets/img/luis.jpg" alt="" width="84" height="84" style="border-radius:50%;flex:0 0 84px">
     <div style="flex:1;min-width:240px">
       <p class="eyebrow" style="margin-bottom:6px">quem fez</p>
       <h2 id="h-quem" style="font-size:clamp(24px,3vw,32px);margin-bottom:8px">Eu sou o Luis, do @cobaia.dev.</h2>
@@ -357,6 +357,7 @@
     var r = FIM - Date.now();
     if (r <= 0) {
       t.style.display = 'none';
+      document.getElementById('promo-top').style.display = 'none';
       document.getElementById('promo-txt').textContent = 'Preço normal.';
       precos(true);
       return;
@@ -366,6 +367,8 @@
     t.querySelector('[data-t=h]').textContent = Math.floor(s%86400/3600);
     t.querySelector('[data-t=m]').textContent = Math.floor(s%3600/60);
     t.querySelector('[data-t=s]').textContent = s%60;
+    var z = function(x){ return (x < 10 ? '0' : '') + x; };
+    document.querySelector('[data-top]').textContent = Math.floor(s/86400) + 'd ' + z(Math.floor(s%86400/3600)) + 'h ' + z(Math.floor(s%3600/60)) + 'm ' + z(s%60) + 's';
     setTimeout(tick, 1000);
   }
   tick();
