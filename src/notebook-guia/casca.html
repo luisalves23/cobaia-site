@@ -8,62 +8,197 @@
 <meta name="theme-color" content="#07080b">
 <link rel="icon" href="/assets/img/favicon.png">
 <link rel="stylesheet" href="/assets/notebook/nb.css">
+<script>
+/* Decide antes de pintar se mostra as boas-vindas (evita piscar). */
+(function(){try{var f=JSON.parse(localStorage.getItem('nb-feitas')||'{}');if(localStorage.getItem('nb-onb')==='1'||Object.keys(f).length)document.documentElement.className='pronto';}catch(e){}})();
+</script>
 <style>
-body{overflow:hidden}
-.app{display:grid;grid-template-columns:320px 1fr;height:100vh;height:100dvh}
-/* menu lateral */
-.side{border-right:1px solid var(--ln);background:rgba(10,11,15,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;min-height:0}
-.side .hd{padding:18px 18px 12px;border-bottom:1px solid var(--ln)}
-.side .hd a{display:flex;gap:10px;align-items:center;text-decoration:none;font-weight:800;font-size:15px}
-.side .hd img{width:28px;height:28px;border-radius:50%}
-.prog{margin-top:14px}
-.prog .bar{height:6px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
-.prog .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6a4d,#ff3b3b);transition:width .4s}
-.prog small{display:block;margin-top:6px;font:700 12px var(--mono);color:var(--mu)}
-.trilha{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:14px;padding:4px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--ln)}
-.trilha button{all:unset;cursor:pointer;text-align:center;font:800 13px var(--f);padding:8px 6px;border-radius:9px;color:var(--mu)}
-.trilha button[aria-pressed="true"]{background:rgba(255,255,255,.12);color:var(--tx);box-shadow:inset 0 0 0 1px var(--ln2)}
-.nav{overflow:auto;padding:10px 10px 30px;flex:1}
-.nav .f{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ac2);margin:16px 10px 6px}
-.nav a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:var(--mu);font-size:14.5px;line-height:1.35;padding:8px 10px;border-radius:10px}
-.nav a:hover{background:rgba(255,255,255,.05);color:var(--tx)}
-.nav a[aria-current="page"]{background:rgba(255,59,59,.12);color:var(--tx);box-shadow:inset 0 0 0 1px rgba(255,59,59,.35)}
-.nav a .ck{flex:0 0 16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid var(--di)}
-.nav a.ok .ck{background:var(--ok);border-color:var(--ok);box-shadow:inset 0 0 0 3px #0b0c10}
-.side .ft{padding:12px 18px;border-top:1px solid var(--ln);font-size:13px;color:var(--di);display:flex;justify-content:space-between;gap:8px}
-.side .ft a{color:var(--mu)}
+:root{--mac:#64a8ff;--mac2:#9cc8ff;--leve:#30d158;--leve2:#7ee69a;--red:#ff4d5e;--tri:var(--leve);--tri2:var(--leve2)}
+body[data-trilha="mac"]{--tri:var(--mac);--tri2:var(--mac2)}
+body{background:#06070a}
+.glow{background:
+  radial-gradient(55vw 50vh at 8% -8%,rgba(255,59,59,.14),transparent 70%),
+  radial-gradient(50vw 50vh at 100% 0%,color-mix(in srgb,var(--tri) 16%,transparent),transparent 70%),
+  radial-gradient(70vw 60vh at 60% 115%,rgba(120,90,255,.10),transparent 70%)}
+.lg{background:linear-gradient(160deg,rgba(255,255,255,.085),rgba(255,255,255,.025) 60%);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.03),0 30px 80px -40px rgba(0,0,0,.9)}
+.eb{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin:0}
+.chip{display:inline-flex;align-items:center;gap:8px;font:800 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:99px;
+  color:var(--tri2);background:color-mix(in srgb,var(--tri) 14%,transparent);border:1px solid color-mix(in srgb,var(--tri) 40%,transparent)}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--tri);box-shadow:0 0 10px var(--tri)}
+
+/* =================== BOAS-VINDAS =================== */
+.onb{position:fixed;inset:0;z-index:60;overflow:auto;display:none;padding:max(20px,env(safe-area-inset-top)) 16px 40px;background:rgba(6,7,10,.55)}
+html:not(.pronto) .onb,.onb.on{display:block}
+html:not(.pronto) .app{display:none}
+.onb .in{max-width:760px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;justify-content:center}
+.onb .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 18px;padding:0}
+.onb .brand{font-size:14px}.onb .brand img{width:30px;height:30px}
+.dots{display:flex;gap:6px}
+.dots i{width:22px;height:5px;border-radius:9px;background:rgba(255,255,255,.12);transition:background .3s,width .3s}
+.dots i.on{background:#fff;width:34px}.dots i.ok{background:rgba(255,255,255,.45)}
+.tela{display:none;padding:34px 30px 30px;border-radius:30px;animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
+.tela.on{display:block}
+@keyframes sobe{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.tela h1{font:900 clamp(32px,6vw,52px)/1.04 var(--f);letter-spacing:-.035em;margin:14px 0 12px}
+.tela h1 .g{background:linear-gradient(90deg,#ff5b5b,#ff8fa0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tela h2{font:900 clamp(26px,4.6vw,38px)/1.1 var(--f);letter-spacing:-.03em;margin:12px 0 8px}
+.tela .lead{color:var(--mu);font-size:clamp(17px,2.2vw,19px);margin:0 0 24px;max-width:58ch}
+.como{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 22px}
+.como div{padding:18px 16px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--ln)}
+.como b{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;margin-bottom:12px;font:900 16px var(--f);background:rgba(255,77,94,.15);color:#ff8a96;border:1px solid rgba(255,77,94,.35)}
+.como h3{font:800 16.5px/1.3 var(--f);margin:0 0 4px}
+.como p{margin:0;color:var(--mu);font-size:14.5px;line-height:1.45}
+.nota{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border-radius:16px;background:rgba(100,168,255,.07);border:1px solid rgba(100,168,255,.25);font-size:15px;color:#d6e6ff;margin:0 0 24px}
+.nota span{font-size:20px;line-height:1.2}
+.acoes{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.acoes .btn{min-width:200px}
+.lnk{all:unset;cursor:pointer;color:var(--mu);font-weight:700;font-size:15px;padding:10px 4px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.25)}
+.lnk:hover{color:var(--tx)}
+/* perguntas */
+.ops{display:grid;gap:10px;margin:0 0 18px}
+.op{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--ln2);transition:background .15s,border-color .15s,transform .15s}
+.op:hover{background:rgba(255,255,255,.07);transform:translateY(-1px)}
+.op[aria-pressed="true"]{background:rgba(255,77,94,.12);border-color:rgba(255,77,94,.6)}
+.op .ic{flex:0 0 46px;height:46px;border-radius:14px;display:grid;place-items:center;font:900 15px var(--mono);background:rgba(255,255,255,.07);border:1px solid var(--ln)}
+.op b{display:block;font:800 18px/1.25 var(--f)}
+.op small{display:block;color:var(--mu);font-size:14.5px;margin-top:2px}
+details.onde{margin:0 0 22px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--ln)}
+details.onde summary{cursor:pointer;padding:13px 16px;font-weight:800;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.onde summary::-webkit-details-marker{display:none}
+details.onde summary::after{content:"+";font:800 18px var(--mono);color:var(--mu)}
+details.onde[open] summary::after{content:"−"}
+details.onde ol{margin:0;padding:0 18px 14px 36px;color:#d4d4da;font-size:15.5px}
+details.onde li{margin:6px 0}
+kbd{font:700 .85em var(--mono);background:#1b1d24;border:1px solid var(--ln2);border-bottom-width:3px;padding:1px 7px;border-radius:7px}
+code{font:500 .9em var(--mono);background:rgba(255,255,255,.07);border:1px solid var(--ln);padding:1px 6px;border-radius:6px;color:#fff}
+/* escolha da trilha */
+.trs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 20px}
+.tr{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;border:1px solid var(--ln2);background:rgba(255,255,255,.035);transition:transform .2s,border-color .2s,box-shadow .2s}
+.tr:hover{transform:translateY(-3px)}
+.tr.mac{--c:var(--mac);--c2:var(--mac2)}.tr.leve{--c:var(--leve);--c2:var(--leve2)}
+.tr:hover,.tr.rec{border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 30px 70px -35px color-mix(in srgb,var(--c) 70%,transparent)}
+.tr .ft,.tr .tx{display:block}
+.tr .ft{position:relative;aspect-ratio:16/10;background:#000;overflow:hidden}
+[tabindex="-1"]:focus{outline:none}
+.tr .ft img{width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:.92}
+.tr .ft::after{content:"foto real";position:absolute;right:10px;top:10px;font:700 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:7px}
+.tr .rb{position:absolute;left:12px;top:12px;z-index:2;font:800 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:9px;background:var(--c);color:#04110a;display:none}
+.tr.rec .rb{display:block}
+.tr.rec{order:-1}
+.tr .tx{padding:18px 18px 20px}
+.tr .tx em{font:800 12px var(--mono);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--c2)}
+.tr h3{font:900 26px/1.1 var(--f);letter-spacing:-.02em;margin:6px 0 6px}
+.tr p{margin:0 0 12px;color:var(--mu);font-size:15px;line-height:1.45}
+.tr ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14.5px}
+.tr li{display:flex;gap:8px;color:#d4d4da}.tr li::before{content:"✓";color:var(--c);font-weight:900}
+.tr .go{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;font:800 16px var(--f);padding:13px;border-radius:14px;background:color-mix(in srgb,var(--c) 18%,transparent);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);color:#fff}
+.tr.rec .go{background:var(--c);color:#04110a;border-color:transparent}
+.tr[aria-disabled="true"]{cursor:not-allowed;transform:none;box-shadow:none;border-color:var(--ln)}
+.tr[aria-disabled="true"] .ft img{filter:grayscale(1) brightness(.45)}
+.tr[aria-disabled="true"] .go{background:rgba(255,255,255,.05);border-color:var(--ln);color:var(--mu)}
+.tr .lock{display:none;margin:0 0 10px;padding:10px 12px;border-radius:12px;background:rgba(255,214,10,.08);border:1px solid rgba(255,214,10,.3);font-size:14px;color:#ffe680}
+.tr[aria-disabled="true"] .lock{display:block}
+.aviso{display:none;margin:0 0 18px;padding:14px 16px;border-radius:16px;font-size:15.5px}
+.aviso.on{display:block}
+.aviso.am{background:rgba(255,214,10,.07);border:1px solid rgba(255,214,10,.35)}
+.aviso.vm{background:rgba(255,59,59,.09);border:1px solid rgba(255,59,59,.45)}
+.aviso p{margin:0}
+
+/* =================== APP =================== */
+body.trava{overflow:hidden}
+.app{display:grid;grid-template-columns:340px 1fr;min-height:100vh;min-height:100dvh}
+.mapa{position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;padding:16px;gap:12px}
+.mapa .cab{padding:18px;border-radius:24px}
+.mapa .brand{font-size:14px;margin-bottom:14px}.mapa .brand img{width:28px;height:28px}
+.pr{display:flex;align-items:center;gap:14px;margin-top:14px}
+.anel{--p:0;flex:0 0 58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--tri) calc(var(--p)*1%),rgba(255,255,255,.09) 0)}
+.anel b{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#0c0e13;font:900 14px var(--f)}
+.pr strong{display:block;font:800 15px/1.3 var(--f)}
+.pr small{display:block;color:var(--mu);font-size:13.5px}
+.mapa .trocar{all:unset;cursor:pointer;font:700 13px var(--f);color:var(--mu);margin-top:12px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.2)}
+.mapa .trocar:hover{color:var(--tx)}
+.rota{flex:1;overflow:auto;padding:14px 10px 14px 14px;border-radius:24px;scrollbar-width:thin}
+.rota .tt{font:700 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--di);margin:4px 0 12px 4px}
+/* estação = fase */
+.est{position:relative;padding-left:40px;padding-bottom:6px}
+.est::before{content:"";position:absolute;left:15px;top:30px;bottom:-4px;width:2px;background:rgba(255,255,255,.1);border-radius:2px}
+.est:last-child::before{display:none}
+.est.ok::before{background:var(--tri)}
+.est .no{position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:900 13px var(--f);
+  background:#11131a;border:2px solid rgba(255,255,255,.18);color:var(--mu);z-index:1}
+.est.ok .no{background:var(--tri);border-color:var(--tri);color:#04110a}
+.est.aqui .no{border-color:var(--tri);color:#fff;box-shadow:0 0 0 5px color-mix(in srgb,var(--tri) 22%,transparent),0 0 24px color-mix(in srgb,var(--tri) 60%,transparent)}
+.est .nm{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:4px 6px 10px;border-radius:10px}
+.est .nm b{display:block;font:800 15px/1.3 var(--f);color:#e7e7ec}
+.est .nm small{display:block;font:600 12.5px var(--f);color:var(--di);margin-top:2px}
+.est.fut .nm b{color:var(--mu)}
+.est .ps{display:none;margin:0 0 10px;padding:0;list-style:none}
+.est.abre .ps{display:block}
+.est .ps a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:var(--mu);font-size:14px;line-height:1.35;padding:7px 8px;border-radius:10px}
+.est .ps a:hover{background:rgba(255,255,255,.05);color:var(--tx)}
+.est .ps a .ck{flex:0 0 14px;height:14px;margin-top:2px;border-radius:50%;border:1.5px solid var(--di)}
+.est .ps a.ok .ck{background:var(--tri);border-color:var(--tri);box-shadow:inset 0 0 0 3px #0c0e13}
+.est .ps a[aria-current="step"]{background:color-mix(in srgb,var(--tri) 13%,transparent);color:#fff;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tri) 45%,transparent)}
+.est .ps a[aria-current="step"] .ck{border-color:var(--tri);background:radial-gradient(circle,var(--tri) 40%,transparent 45%)}
+.est.fim .no{font-size:15px}
+.est.fim .nm b{color:#fff}
+.est.extra .no{font-size:14px}
+.mapa .pe{display:flex;justify-content:space-between;gap:8px;padding:0 6px;font-size:13px}
+.mapa .pe a{color:var(--di)}.mapa .pe a:hover{color:var(--tx)}
+
 /* conteúdo */
-.main{overflow:auto;min-height:0;scroll-behavior:smooth}
+.palco{min-width:0;padding:16px 16px 60px}
 .mtop{display:none}
-.aula{display:none;max-width:780px;margin:0 auto;padding:44px 28px 40px}
-.aula.on{display:block;animation:fade .35s}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.aula .k{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ac2);margin:0 0 10px}
-.aula h1{font:900 clamp(30px,4.4vw,44px)/1.08 var(--f);letter-spacing:-.03em;margin:0 0 14px}
-.aula h2{font:800 22px/1.25 var(--f);letter-spacing:-.01em;margin:34px 0 10px}
+.aula{display:none;max-width:800px;margin:0 auto;padding:0}
+.aula.on{display:block;animation:sobe .4s cubic-bezier(.2,.8,.2,1)}
+.aula>.k{display:none}
+.hd{padding:30px 30px 26px;border-radius:28px;margin:0 0 22px;position:relative;overflow:hidden}
+.hd::after{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--tri) 28%,transparent),transparent 70%);pointer-events:none}
+.hd .lin{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px}
+.hd .pp{font:700 12px var(--mono);color:var(--mu);letter-spacing:.06em}
+.hd .barra{display:flex;gap:5px;margin:0 0 18px}
+.hd .barra i{flex:1;height:5px;border-radius:9px;background:rgba(255,255,255,.1)}
+.hd .barra i.ok{background:var(--tri)}.hd .barra i.on{background:linear-gradient(90deg,var(--tri),rgba(255,255,255,.5))}
+.aula h1{font:900 clamp(30px,4.6vw,46px)/1.06 var(--f);letter-spacing:-.035em;margin:0}
+.aula .hd .lead{margin:14px 0 0}
+.corpo{padding:6px 30px 30px;border-radius:28px}
+.corpo>:first-child{margin-top:22px}
+.aula h2{font:800 22px/1.25 var(--f);letter-spacing:-.015em;margin:34px 0 12px;display:flex;align-items:center;gap:12px}
+.aula h2::before{content:"";flex:0 0 6px;height:22px;border-radius:4px;background:var(--tri)}
 .aula h3{font:800 18px var(--f);margin:24px 0 6px}
-.aula p,.aula li{color:#d4d4da}
+.aula p,.aula li{color:#d9d9df}
 .aula p.lead{font-size:19px;color:var(--mu)}
-.aula ol,.aula ul{padding-left:22px}
-.aula li{margin:6px 0}
-.aula code{font:500 .9em var(--mono);background:rgba(255,255,255,.07);border:1px solid var(--ln);padding:1px 6px;border-radius:6px;color:#fff}
-.aula kbd{font:700 .85em var(--mono);background:#1b1d24;border:1px solid var(--ln2);border-bottom-width:3px;padding:1px 7px;border-radius:7px}
-.aula a{color:#8ec1ff}
-.aula img{border-radius:14px;border:1px solid var(--ln2);margin:16px 0}
-.aula table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
-.aula th,.aula td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--ln);vertical-align:top}
-.aula th{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mu)}
+.aula a{color:var(--mac2)}
+.aula a.btn{color:#fff}.aula a.btn.feito{color:#04110a}
+.est.fim::before{display:none}
+.aula img{border-radius:16px;border:1px solid var(--ln2);margin:16px 0}
+.aula ul{padding-left:22px}
+.aula ul li{margin:7px 0}
+.aula ul li::marker{color:var(--tri)}
+.aula ol{list-style:none;counter-reset:o;padding:0;margin:14px 0}
+.aula ol>li{counter-increment:o;position:relative;padding:12px 14px 12px 54px;margin:8px 0;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--ln)}
+.aula ol>li::before{content:counter(o);position:absolute;left:12px;top:11px;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font:900 14px var(--f);
+  background:color-mix(in srgb,var(--tri) 16%,transparent);color:var(--tri2);border:1px solid color-mix(in srgb,var(--tri) 40%,transparent)}
+.aula ol>li ul,.aula ol>li ol{margin-top:8px}
+.aula table{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0;font-size:15px;border:1px solid var(--ln);border-radius:16px;overflow:hidden}
+.aula th,.aula td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--ln);vertical-align:top}
+.aula tr:last-child td{border-bottom:0}
+.aula th{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mu);background:rgba(255,255,255,.04)}
 .tw{overflow-x:auto}
-.scrim{display:none}
-/* blocos de comando */
-.cmd{position:relative;margin:14px 0 18px;border-radius:14px;border:1px solid var(--ln2);background:#0b0d12;overflow:hidden}
-.cmd .t{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-bottom:1px solid var(--ln);font:700 12px var(--mono);color:var(--mu);background:rgba(255,255,255,.03)}
-.cmd .t button{all:unset;cursor:pointer;font:800 13px var(--f);color:var(--tx);padding:6px 12px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid var(--ln2)}
-.cmd .t button.ok{background:rgba(48,209,88,.18);border-color:rgba(48,209,88,.5)}
-.cmd pre{margin:0;padding:14px;overflow-x:auto;font:400 14px/1.55 var(--mono);color:#e8e8ee;white-space:pre}
+/* comandos: janela de terminal */
+.cmd{position:relative;margin:16px 0 20px;border-radius:16px;border:1px solid var(--ln2);background:#0a0c11;overflow:hidden;box-shadow:0 20px 50px -30px #000}
+.cmd .t{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 8px 8px 12px;border-bottom:1px solid var(--ln);font:700 12px var(--mono);color:var(--mu);background:rgba(255,255,255,.04)}
+.cmd .t span{display:flex;align-items:center;gap:10px;min-width:0}
+.cmd .t span::before{content:"";flex:0 0 46px;height:10px;background:radial-gradient(circle at 5px 5px,rgba(255,255,255,.22) 4.5px,transparent 5px) 0 0/16px 10px repeat-x}
+.cmd .t button{all:unset;cursor:pointer;font:800 13px var(--f);color:#fff;padding:7px 14px;border-radius:10px;background:color-mix(in srgb,var(--tri) 22%,transparent);border:1px solid color-mix(in srgb,var(--tri) 50%,transparent)}
+.cmd .t button.ok{background:var(--tri);color:#04110a}
+.cmd pre{margin:0;padding:14px 16px;overflow-x:auto;font:400 14px/1.6 var(--mono);color:#e8e8ee;white-space:pre}
 .cmd.long pre{max-height:340px}
 /* avisos */
-.box{margin:18px 0;padding:14px 16px 14px 48px;border-radius:14px;position:relative;font-size:16px}
+.box{margin:18px 0;padding:14px 16px 14px 50px;border-radius:16px;position:relative;font-size:16px}
 .box::before{position:absolute;left:16px;top:13px;font-size:18px}
 .box p{margin:4px 0}
 .box.dica{background:rgba(100,168,255,.08);border:1px solid rgba(100,168,255,.3)}.box.dica::before{content:"💡"}
@@ -73,129 +208,364 @@ body{overflow:hidden}
 .only{display:none}
 body[data-trilha="leve"] .only.leve,body[data-trilha="mac"] .only.mac{display:block}
 span.only{display:none}body[data-trilha="leve"] span.only.leve,body[data-trilha="mac"] span.only.mac{display:inline}
-.tri-tag{display:inline-block;font:800 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:7px;margin-bottom:8px}
-.tri-tag.leve{background:rgba(255,106,77,.15);color:#ff9a85}.tri-tag.mac{background:rgba(100,168,255,.15);color:#9cc8ff}
-/* checklist e quiz */
+.tri-tag{display:none}
+/* checklist */
 .chk{list-style:none;padding:0!important}
-.chk li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--ln);margin:8px 0}
-.chk input{width:20px;height:20px;margin-top:3px;accent-color:#30d158;flex:0 0 auto}
-.quiz{padding:20px;margin:18px 0}
-.quiz fieldset{border:0;padding:0;margin:0 0 18px}
-.quiz legend{font:800 17px var(--f);margin-bottom:10px}
-.quiz label{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid var(--ln);margin:6px 0;cursor:pointer}
-.quiz label:has(input:checked){border-color:rgba(255,59,59,.6);background:rgba(255,59,59,.08)}
-.quiz input{accent-color:#ff3b3b}
-.res{display:none;margin-top:6px}
-.res.on{display:block}
-/* rodapé da aula */
-.pn{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--ln)}
-.pn .btn{padding:13px 20px;font-size:15px}
-@media (max-width:900px){
-  body{overflow:auto}
-  .app{display:block;height:auto}
-  .side{position:fixed;inset:0 20% 0 0;z-index:40;transform:translateX(-105%);transition:transform .25s;max-width:360px}
-  .side.open{transform:none;box-shadow:30px 0 80px rgba(0,0,0,.7)}
-  .scrim{position:fixed;inset:0;z-index:39;background:rgba(0,0,0,.5);display:none}
+.chk li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--ln);margin:8px 0;cursor:pointer}
+.chk li:has(input:checked){background:color-mix(in srgb,var(--tri) 9%,transparent);border-color:color-mix(in srgb,var(--tri) 40%,transparent)}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--tri);flex:0 0 auto;cursor:pointer}
+/* rodapé do passo */
+.pn{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:22px 0 0;padding:18px;border-radius:24px}
+.pn .info{flex:1 1 220px;font-size:14.5px;color:var(--mu)}
+.pn .info b{color:var(--tx);display:block;font-size:15.5px}
+.pn .bts{display:flex;gap:10px;flex-wrap:wrap}
+.pn .btn{padding:14px 22px;font-size:16px}
+.pn .btn.feito{background:linear-gradient(180deg,color-mix(in srgb,var(--tri) 92%,#fff),var(--tri));color:#04110a;box-shadow:0 12px 30px -12px var(--tri),inset 0 1px 0 rgba(255,255,255,.35)}
+/* comemoração */
+.toast{position:fixed;left:50%;bottom:24px;z-index:70;transform:translate(-50%,30px);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.2,.8,.2,1);
+  padding:14px 20px;border-radius:18px;font:800 15.5px var(--f);display:flex;gap:10px;align-items:center;white-space:nowrap}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.fimtela{text-align:center;padding:44px 26px}
+.fimtela .big{font-size:64px;line-height:1}
+.fimtela p{color:var(--mu)}
+.scrim{display:none}
+
+@media (max-width:980px){
+  .app{display:block}
+  .mapa{position:fixed;inset:0 auto 0 0;width:min(360px,88vw);z-index:45;transform:translateX(-105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);background:rgba(8,9,13,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding-top:max(16px,env(safe-area-inset-top))}
+  .mapa.open{transform:none;box-shadow:30px 0 80px rgba(0,0,0,.7)}
+  .scrim{position:fixed;inset:0;z-index:44;background:rgba(0,0,0,.55)}
   .scrim.on{display:block}
-  .main{overflow:visible}
-  .mtop{display:flex;position:sticky;top:0;z-index:30;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(7,8,11,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--ln)}
-  .mtop button{all:unset;cursor:pointer;font:800 14px var(--f);padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid var(--ln2)}
-  .mtop span{font:700 12px var(--mono);color:var(--mu)}
-  .aula{padding:26px 16px 40px}
+  .mtop{display:flex;position:sticky;top:8px;z-index:30;gap:12px;align-items:center;padding:10px 10px 10px 14px;border-radius:20px;margin:0 auto 14px;max-width:800px}
+  .mtop .anel{flex-basis:42px;height:42px}.mtop .anel b{width:33px;height:33px;font-size:11px}
+  .mtop .m{flex:1;min-width:0}
+  .mtop .m b{display:block;font:800 14px/1.25 var(--f);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mtop .m small{display:block;font:600 12.5px var(--f);color:var(--mu)}
+  .mtop button{all:unset;cursor:pointer;font:800 14px var(--f);padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid var(--ln2)}
+  .palco{padding:8px 12px 50px}
 }
+@media (max-width:640px){
+  .tela{padding:26px 18px 22px;border-radius:26px}
+  .como{grid-template-columns:1fr}
+  .como div{display:grid;grid-template-columns:34px 1fr;column-gap:12px;padding:14px}
+  .como b{grid-row:span 2;margin:0}
+  .trs{grid-template-columns:1fr}
+  .acoes .btn{width:100%}
+  .acoes{flex-direction:column-reverse;align-items:stretch}
+  .hd{padding:22px 18px 20px;border-radius:24px}
+  .corpo{padding:4px 16px 22px;border-radius:24px}
+  .aula ol>li{padding:11px 12px 11px 48px}
+  .aula ol>li::before{left:10px}
+  .pn .bts{width:100%;flex-direction:column-reverse}.pn .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body data-trilha="leve">
 <div class="glow" aria-hidden="true"></div>
-<div class="app">
-  <aside class="side" id="side" aria-label="Fases do guia">
-    <div class="hd">
-      <a href="/minha-area/"><img src="/assets/img/luis.jpg" alt="" width="28" height="28"><span>Notebook Ressuscitado</span></a>
-      <div class="prog"><div class="bar"><i id="pbar"></i></div><small id="ptxt">0% concluído</small></div>
-      <div class="trilha" role="group" aria-label="Sua trilha">
-        <button type="button" data-set-trilha="leve" aria-pressed="true">Trilha Leve</button>
-        <button type="button" data-set-trilha="mac" aria-pressed="false">Trilha Mac</button>
-      </div>
+
+<!-- =================== BOAS-VINDAS =================== -->
+<div class="onb" id="onb" role="dialog" aria-modal="true" aria-label="Boas-vindas ao guia">
+ <div class="in">
+  <div class="top"><span class="brand"><img src="/assets/img/luis.jpg" alt="" width="30" height="30"><span>Notebook Ressuscitado</span></span><div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i></div></div>
+
+  <section class="tela lg" data-tela="oi">
+   <p class="eb">Guia passo a passo</p>
+   <h1>Vamos tirar esse notebook <span class="g">da gaveta.</span></h1>
+   <p class="lead">Você sai daqui com um Debian 13 rápido, bonito e recebendo atualização de segurança até 2030. Funciona assim:</p>
+   <div class="como">
+    <div><b>1</b><h3>3 perguntas</h3><p>Sobre o seu notebook. Leva 2 minutos.</p></div>
+    <div><b>2</b><h3>Você escolhe a trilha</h3><p>Cara de Mac ou Leve, conforme o que ele aguenta.</p></div>
+    <div><b>3</b><h3>Siga o mapa</h3><p>Um passo por tela. O mapa mostra onde você está e o que falta.</p></div>
+   </div>
+   <div class="nota"><span>📱</span><div><b>Deixe este guia aberto no celular.</b> Durante a instalação o notebook fica ocupado. Entre com o mesmo e-mail da compra. O progresso fica salvo no aparelho em que você marcar os passos.</div></div>
+   <div class="acoes"><a class="lnk" href="/minha-area/">Minha área e suporte</a><button class="btn" type="button" data-ir="bits">Começar →</button></div>
+  </section>
+
+  <section class="tela lg" data-tela="bits">
+   <p class="eb">Pergunta 1 de 3</p>
+   <h2>O Windows do notebook é de 64 bits?</h2>
+   <p class="lead">Aperte <kbd>Windows</kbd>+<kbd>R</kbd>, digite <code>msinfo32</code> e aperte <kbd>Enter</kbd>. Olhe a linha <b>Tipo do sistema</b>.</p>
+   <div class="ops" data-q="bits">
+    <button class="op" type="button" data-v="64"><span class="ic">x64</span><span><b>Aparece "PC baseado em x64"</b><small>É 64 bits. O mais comum.</small></span></button>
+    <button class="op" type="button" data-v="32"><span class="ic">x86</span><span><b>Aparece "PC baseado em x86"</b><small>É 32 bits. Notebooks bem antigos.</small></span></button>
+    <button class="op" type="button" data-v="?"><span class="ic">?</span><span><b>Não consigo ver</b><small>O notebook não liga o Windows ou não achei.</small></span></button>
+   </div>
+   <div class="acoes"><button class="lnk" type="button" data-ir="oi">← Voltar</button></div>
+  </section>
+
+  <section class="tela lg" data-tela="ram">
+   <p class="eb">Pergunta 2 de 3</p>
+   <h2>Quanta memória RAM ele tem?</h2>
+   <details class="onde"><summary>Onde eu vejo isso?</summary><ol>
+    <li>Aperte <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd> pra abrir o <b>Gerenciador de Tarefas</b>. Se abrir pequeno, clique em <b>Mais detalhes</b>.</li>
+    <li>Vá na aba <b>Desempenho</b> e clique em <b>Memória</b>.</li>
+    <li>O número grande no alto, à direita, é a RAM (ex.: <code>4,0 GB</code>).</li></ol></details>
+   <div class="ops" data-q="ram">
+    <button class="op" type="button" data-v="1"><span class="ic">1</span><span><b>1 GB ou menos</b></span></button>
+    <button class="op" type="button" data-v="2"><span class="ic">2-3</span><span><b>2 ou 3 GB</b></span></button>
+    <button class="op" type="button" data-v="4"><span class="ic">4+</span><span><b>4 GB ou mais</b></span></button>
+    <button class="op" type="button" data-v="?"><span class="ic">?</span><span><b>Não consigo ver</b></span></button>
+   </div>
+   <div class="acoes"><button class="lnk" type="button" data-ir="bits">← Voltar</button></div>
+  </section>
+
+  <section class="tela lg" data-tela="nucleos">
+   <p class="eb">Pergunta 3 de 3</p>
+   <h2>Quantos núcleos tem o processador?</h2>
+   <details class="onde"><summary>Onde eu vejo isso?</summary><ol>
+    <li>No mesmo <b>Gerenciador de Tarefas</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>), aba <b>Desempenho</b>.</li>
+    <li>Clique em <b>CPU</b>. Embaixo do gráfico aparece <b>Núcleos</b> (ex.: <code>2</code> ou <code>4</code>).</li></ol></details>
+   <div class="ops" data-q="nucleos">
+    <button class="op" type="button" data-v="2"><span class="ic">1-3</span><span><b>1, 2 ou 3 núcleos</b></span></button>
+    <button class="op" type="button" data-v="4"><span class="ic">4+</span><span><b>4 núcleos ou mais</b></span></button>
+    <button class="op" type="button" data-v="?"><span class="ic">?</span><span><b>Não consigo ver</b></span></button>
+   </div>
+   <div class="acoes"><button class="lnk" type="button" data-ir="ram">← Voltar</button></div>
+  </section>
+
+  <section class="tela lg" data-tela="trilha">
+   <p class="eb">Sua trilha</p>
+   <h2 id="tr-tit">Escolha o seu caminho</h2>
+   <p class="lead" id="tr-sub"></p>
+   <div class="aviso vm" id="av32"><p><b>Processador de 32 bits não roda o Debian 13.</b> O Debian deixou de ter instalador pra 32 bits, então este guia não vai servir pra esse notebook. Se você comprou com suporte, me chame na <a href="/minha-area/">sua área</a> que a gente vê a alternativa pro seu modelo. Se não, peça o reembolso pela Kiwify dentro dos 7 dias.</p></div>
+   <div class="aviso am" id="av1"><p><b>1 GB é muito pouco pra navegar na internet hoje.</b> Siga a trilha Leve e, se puder, troque a memória por uma de 4 GB (costuma ser barata e é só abrir uma tampinha embaixo do notebook). Com suporte, me mande o modelo antes que eu confiro com você.</p></div>
+   <div class="aviso am" id="avq"><p><b>Sem saber a memória e o processador, vá de Leve.</b> Ela funciona em qualquer notebook. Dica: procure o modelo na etiqueta embaixo dele e pesquise "<i>modelo</i> ficha técnica". Se achar 4 GB e 4 núcleos, dá pra trocar pra trilha Mac depois.</p></div>
+   <div class="trs" id="trs">
+    <div class="tr mac" role="button" tabindex="0" data-trilha="mac">
+     <span class="rb">recomendada pra você</span>
+     <span class="ft"><img src="/assets/notebook/v-4gb-dock.jpg" alt="Notebook com a trilha Mac: dock e área de trabalho" loading="lazy"></span>
+     <span class="tx"><em>KDE Plasma 6</em><h3>Trilha Mac</h3>
+      <span class="lock">Precisa de 4 GB de RAM e 4 núcleos. Pelas suas respostas, o seu notebook ia ficar lento nela.</span>
+      <p>O visual completo, com cara de Mac.</p>
+      <ul><li>Dock flutuante com zoom</li><li>Tema, ícones e tela de login estilo Mac</li><li>Pra quem tem 4 GB e 4 núcleos ou mais</li></ul>
+      <span class="go">Seguir a trilha Mac →</span></span>
     </div>
-    <nav class="nav" id="nav"></nav>
-    <div class="ft"><a href="/minha-area/">Minha área e suporte</a><a href="/api/sair">Sair</a></div>
+    <div class="tr leve" role="button" tabindex="0" data-trilha="leve">
+     <span class="rb">recomendada pra você</span>
+     <span class="ft"><img src="/assets/notebook/v-2gb-dock.jpg" alt="Notebook com a trilha Leve: dock e área de trabalho" loading="lazy"></span>
+     <span class="tx"><em>Xfce</em><h3>Trilha Leve</h3>
+      <p>Rápida em qualquer notebook. Testei num de 2 GB e 2 núcleos: liga em 45 segundos.</p>
+      <ul><li>Dock e barra no topo estilo Mac</li><li>Gasta pouca memória</li><li>Funciona em qualquer notebook de 64 bits</li></ul>
+      <span class="go">Seguir a trilha Leve →</span></span>
+    </div>
+   </div>
+   <div class="acoes"><button class="lnk" type="button" data-ir="bits">← Refazer as perguntas</button><button class="lnk" type="button" id="fechar-onb" hidden>Voltar pro guia</button></div>
+  </section>
+ </div>
+</div>
+
+<!-- =================== APP =================== -->
+<div class="app" id="app">
+  <aside class="mapa" id="mapa" aria-label="Mapa da sua trilha">
+    <div class="cab lg">
+      <a class="brand" href="/minha-area/"><img src="/assets/img/luis.jpg" alt="" width="28" height="28"><span>Notebook Ressuscitado</span></a>
+      <span class="chip"><i></i><span id="m-tri">Trilha Leve</span></span>
+      <div class="pr"><div class="anel" id="anel"><b id="m-pc">0%</b></div><div><strong id="m-falta">Começando</strong><small id="m-n">0 de 0 passos</small></div></div>
+      <button class="trocar" type="button" id="trocar">Trocar de trilha</button>
+    </div>
+    <nav class="rota lg" id="rota" aria-label="Fases e passos"></nav>
+    <div class="pe"><a href="/minha-area/">Minha área e suporte</a><a href="/api/sair">Sair</a></div>
   </aside>
   <div class="scrim" id="scrim"></div>
-  <main class="main" id="main">
-    <div class="mtop"><button type="button" id="abrir">☰ Fases</button><span id="mpos"></span></div>
+  <main class="palco" id="palco">
+    <div class="mtop lg"><div class="anel" id="anel2"><b id="m-pc2">0%</b></div><div class="m"><b id="m-tit"></b><small id="m-pos"></small></div><button type="button" id="abrir">Mapa</button></div>
 <!--AULAS-->
+    <section class="aula" id="fim" data-fim="1" data-titulo="Notebook ressuscitado">
+      <div class="lg fimtela" style="border-radius:28px">
+        <div class="big">🏁</div>
+        <h1 style="margin:16px 0 10px">Notebook ressuscitado.</h1>
+        <p class="lead">Você chegou ao fim da trilha. Agora é usar. Se quiser, os extras do mapa ensinam a instalar o Claude Code e trazem um glossário.</p>
+        <div class="bts" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px"><a class="btn" href="#claude">Ver os extras</a><a class="btn ghost" href="#socorro">Socorro: problemas comuns</a></div>
+      </div>
+    </section>
   </main>
 </div>
+<div class="toast lg" id="toast" role="status" aria-live="polite"></div>
+
 <script>
 (function(){
   var LS = { get:function(k){try{return localStorage.getItem(k)}catch(e){return null}}, set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
-  var aulas = [].slice.call(document.querySelectorAll('.aula'));
+  var $ = function(s, r){ return (r || document).querySelector(s); }, $$ = function(s, r){ return [].slice.call((r || document).querySelectorAll(s)); };
+  var aulas = $$('.aula'), fimSec = $('#fim');
   var feitas = {}; try { feitas = JSON.parse(LS.get('nb-feitas') || '{}') || {}; } catch(e) {}
-  var nav = document.getElementById('nav'), main = document.getElementById('main');
+  var pc = {}; try { pc = JSON.parse(LS.get('nb-pc') || '{}') || {}; } catch(e) {}
+  var rota = $('#rota');
+  var BONUS = 'Bônus';
 
-  /* trilha */
-  function trilha(t){
+  /* ---------- monta cada passo: cabeçalho de vidro + corpo ---------- */
+  aulas.forEach(function(a){
+    if (a === fimSec) return;
+    var h1 = a.querySelector('h1'), k = a.querySelector('.k'), lead = h1 && h1.nextElementSibling && h1.nextElementSibling.matches('p.lead') ? h1.nextElementSibling : null;
+    var hd = document.createElement('header'); hd.className = 'hd lg';
+    hd.innerHTML = '<div class="lin"><span class="chip"><i></i><span class="fz"></span></span><span class="pp"></span></div><div class="barra"></div>';
+    if (k) a.removeChild(k);
+    var corpo = document.createElement('div'); corpo.className = 'corpo lg';
+    if (h1) hd.appendChild(h1); if (lead) hd.appendChild(lead);
+    while (a.firstChild) corpo.appendChild(a.firstChild);
+    a.appendChild(hd); if (corpo.children.length) a.appendChild(corpo);
+    if (k && /opcional/.test(k.textContent)) a.dataset.opc = '1';
+  });
+
+  /* ---------- trilha ---------- */
+  function tri(){ return document.body.getAttribute('data-trilha'); }
+  function setTri(t){
     document.body.setAttribute('data-trilha', t); LS.set('nb-trilha', t);
-    document.querySelectorAll('[data-set-trilha]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-set-trilha') === t)); });
-    montarNav(); progresso();
+    $('#m-tri').textContent = t === 'mac' ? 'Trilha Mac · KDE Plasma' : 'Trilha Leve · Xfce';
+    montar();
   }
-  document.querySelectorAll('[data-set-trilha]').forEach(function(b){ b.addEventListener('click', function(){ trilha(b.getAttribute('data-set-trilha')); }); });
-  function visivel(a){ var t = a.getAttribute('data-trilha'); return !t || t === document.body.getAttribute('data-trilha'); }
+  function visivel(a){ var t = a.getAttribute('data-trilha'); return a !== fimSec && (!t || t === tri()); }
   function lista(){ return aulas.filter(visivel); }
+  function principais(){ return lista().filter(function(a){ return a.dataset.fase !== BONUS; }); }
+  function fases(){
+    var out = [], m = {};
+    lista().forEach(function(a){ var f = a.dataset.fase; if (!m[f]) { m[f] = { nome: f, aulas: [] }; out.push(m[f]); } m[f].aulas.push(a); });
+    return out;
+  }
+  function partes(nome){ var x = nome.split(' · '); return x.length > 1 ? { n: x[0].replace('Fase ', ''), t: x[1] } : { n: '★', t: nome }; }
 
-  /* menu */
-  function montarNav(){
-    nav.innerHTML = ''; var fase = '';
-    lista().forEach(function(a){
-      if (a.dataset.fase !== fase) { fase = a.dataset.fase; var f = document.createElement('div'); f.className = 'f'; f.textContent = fase; nav.appendChild(f); }
-      var l = document.createElement('a'); l.href = '#' + a.id; l.dataset.id = a.id;
-      l.innerHTML = '<span class="ck"></span><span></span>'; l.lastChild.textContent = a.dataset.titulo;
-      if (feitas[a.id]) l.classList.add('ok');
-      nav.appendChild(l);
+  /* ---------- mapa ---------- */
+  function montar(){
+    var id = atual(), F = fases(), html = '<p class="tt">O seu caminho</p>', aquiFase = null;
+    var aAtual = document.getElementById(id);
+    F.forEach(function(f){
+      if (f.nome === BONUS) return;
+      var n = f.aulas.filter(function(a){ return feitas[a.id]; }).length, tot = f.aulas.length;
+      var ok = n === tot, aqui = aAtual && aAtual.dataset.fase === f.nome;
+      if (aqui) aquiFase = f;
+      html += est(f, ok ? 'ok' : (aqui ? 'aqui' : (n ? '' : 'fut')), (aqui ? ' abre' : ''), ok ? 'Concluída' : n + ' de ' + tot + ' passos');
     });
-    marcarAtual();
+    var todos = principais().every(function(a){ return feitas[a.id]; });
+    html += '<div class="est fim' + (todos ? ' ok' : '') + (id === 'fim' ? ' aqui' : '') + '"><span class="no">🏁</span><a class="nm" href="#fim" style="text-decoration:none"><b>Notebook ressuscitado</b><small>' + (todos ? 'Você chegou!' : 'A chegada') + '</small></a></div>';
+    F.forEach(function(f){ if (f.nome === BONUS) html += '<p class="tt" style="margin-top:20px">Extras</p>' + est(f, 'extra', ' abre', 'Opcionais'); });
+    rota.innerHTML = html;
+    $$('.est .nm[data-f]', rota).forEach(function(b){ b.addEventListener('click', function(){ b.parentNode.classList.toggle('abre'); }); });
+    progresso();
+    var cur = $('a[aria-current="step"]', rota); if (cur && cur.scrollIntoView) { var r = rota.getBoundingClientRect(), c = cur.getBoundingClientRect(); if (c.top < r.top || c.bottom > r.bottom) rota.scrollTop += c.top - r.top - 120; }
   }
+  function est(f, cls, abre, sub){
+    var p = partes(f.nome), id = atual();
+    var s = '<div class="est ' + cls + abre + '"><span class="no">' + (cls === 'ok' ? '✓' : p.n) + '</span>' +
+      '<button class="nm" type="button" data-f="1" aria-expanded="' + (abre ? 'true' : 'false') + '"><b>' + esc(p.t) + '</b><small>' + sub + '</small></button><ul class="ps">';
+    f.aulas.forEach(function(a){
+      s += '<li><a href="#' + a.id + '"' + (feitas[a.id] ? ' class="ok"' : '') + (a.id === id ? ' aria-current="step"' : '') + '><span class="ck"></span><span>' + esc(a.dataset.titulo) + '</span></a></li>';
+    });
+    return s + '</ul></div>';
+  }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
   function progresso(){
-    var L = lista(), n = L.filter(function(a){ return feitas[a.id]; }).length, p = Math.round(100 * n / L.length);
-    document.getElementById('pbar').style.width = p + '%';
-    document.getElementById('ptxt').textContent = p + '% concluído · ' + n + ' de ' + L.length + ' passos';
-  }
-  function marcarAtual(){
-    var id = atual(); nav.querySelectorAll('a').forEach(function(l){ if (l.dataset.id === id) { l.setAttribute('aria-current','page'); } else l.removeAttribute('aria-current'); });
+    var L = principais(), n = L.filter(function(a){ return feitas[a.id]; }).length, p = L.length ? Math.round(100 * n / L.length) : 0;
+    ['#anel', '#anel2'].forEach(function(s){ $(s).style.setProperty('--p', p); });
+    $('#m-pc').textContent = p + '%'; $('#m-pc2').textContent = p + '%';
+    $('#m-n').textContent = n + ' de ' + L.length + ' passos';
+    var falta = L.length - n;
+    $('#m-falta').textContent = !n ? 'Bora começar' : falta ? 'Faltam ' + falta + ' passos' : 'Trilha concluída 🎉';
   }
 
-  /* rota */
+  /* ---------- rota (hash) ---------- */
   function atual(){
-    var id = location.hash.slice(1), a = document.getElementById(id);
-    if (!a || !a.classList.contains('aula')) return '';
-    return id;
+    var id = location.hash.slice(1), a = id && document.getElementById(id);
+    return a && a.classList.contains('aula') ? id : '';
   }
+  function proximoPendente(){ var L = principais(); for (var i = 0; i < L.length; i++) if (!feitas[L[i].id]) return L[i].id; return 'fim'; }
   function mostrar(){
-    var id = atual(), L = lista();
-    if (!id) { id = LS.get('nb-ultima') || L[0].id; if (!document.getElementById(id)) id = L[0].id; history.replaceState(null, '', '#' + id); }
+    var id = atual();
+    if (!id) { id = LS.get('nb-ultima'); if (!id || !document.getElementById(id) || !visivel(document.getElementById(id))) id = proximoPendente(); history.replaceState(null, '', '#' + id); }
     var a = document.getElementById(id);
-    if (!visivel(a)) { var outra = a.getAttribute('data-trilha') === 'mac' ? 'mac' : 'leve'; trilha(outra); }
+    if (a !== fimSec && !visivel(a)) { setTri(a.getAttribute('data-trilha')); }
     aulas.forEach(function(x){ x.classList.toggle('on', x === a); });
     LS.set('nb-ultima', id);
-    rodape(a); marcarAtual(); fechar();
-    var i = lista().indexOf(a); document.getElementById('mpos').textContent = 'Passo ' + (i + 1) + ' de ' + lista().length;
-    main.scrollTop = 0; window.scrollTo(0, 0);
+    if (a !== fimSec) cabecalho(a);
+    rodape(a); montar(); fecharMapa();
+    $('#m-tit').textContent = a.dataset.titulo;
+    var L = principais(), i = L.indexOf(a);
+    $('#m-pos').textContent = a === fimSec ? 'Fim da trilha' : (i >= 0 ? 'Passo ' + (i + 1) + ' de ' + L.length : 'Extra');
+    window.scrollTo(0, 0);
     document.title = a.dataset.titulo + ' · Notebook Ressuscitado';
   }
-  function rodape(a){
-    var velho = a.querySelector('.pn'); if (velho) velho.remove();
-    var L = lista(), i = L.indexOf(a), ant = L[i - 1], prox = L[i + 1];
-    var d = document.createElement('div'); d.className = 'pn';
-    d.innerHTML = (ant ? '<a class="btn ghost" href="#' + ant.id + '">← Anterior</a>' : '<span></span>') +
-      (prox ? '<a class="btn" data-feito href="#' + prox.id + '">' + (feitas[a.id] ? 'Próximo passo →' : 'Concluí, próximo passo →') + '</a>'
-            : '<button class="btn" type="button" data-feito>' + (feitas[a.id] ? 'Guia concluído 🎉' : 'Concluí o guia 🎉') + '</button>');
-    d.querySelector('[data-feito]').addEventListener('click', function(){ feitas[a.id] = 1; LS.set('nb-feitas', JSON.stringify(feitas)); montarNav(); progresso(); });
-    a.appendChild(d);
+  function cabecalho(a){
+    var F = fases().filter(function(f){ return f.nome === a.dataset.fase; })[0], i = F.aulas.indexOf(a), p = partes(F.nome);
+    $('.fz', a).textContent = F.nome === BONUS ? 'Extra' : 'Fase ' + p.n + ' · ' + p.t;
+    $('.pp', a).textContent = F.nome === BONUS ? '' : 'Passo ' + (i + 1) + ' de ' + F.aulas.length + (a.dataset.opc ? ' · opcional' : '');
+    $('.barra', a).innerHTML = F.aulas.map(function(x){ return '<i class="' + (x === a ? 'on' : feitas[x.id] ? 'ok' : '') + '"></i>'; }).join('');
   }
+  function rodape(a){
+    $$('.pn').forEach(function(x){ x.parentNode.removeChild(x); });
+    if (a === fimSec) return;
+    var L = lista(), i = L.indexOf(a), ant = L[i - 1], prox = L[i + 1];
+    var bonus = a.dataset.fase === BONUS, ultimo = !bonus && principais().slice(-1)[0] === a;
+    var dest = ultimo ? 'fim' : prox ? prox.id : '';
+    var d = document.createElement('div'); d.className = 'pn lg';
+    var info = feitas[a.id] ? '<b>Passo concluído ✓</b>' + (prox && !ultimo ? 'Próximo: ' + esc(prox.dataset.titulo) : '') :
+      '<b>Terminou este passo?</b>' + (dest === 'fim' ? 'É o último da trilha.' : prox ? 'Próximo: ' + esc(prox.dataset.titulo) : '');
+    d.innerHTML = '<div class="info">' + info + '</div><div class="bts">' +
+      (ant ? '<a class="btn ghost" href="#' + ant.id + '">← Anterior</a>' : '') +
+      (dest ? '<a class="btn feito" data-feito href="#' + dest + '">' + (feitas[a.id] ? 'Próximo passo →' : 'Concluí este passo ✓') + '</a>' :
+              '<button class="btn feito" type="button" data-feito>' + (feitas[a.id] ? 'Concluído ✓' : 'Concluí ✓') + '</button>') + '</div>';
+    d.querySelector('[data-feito]').addEventListener('click', function(){
+      var era = feitas[a.id]; feitas[a.id] = 1; LS.set('nb-feitas', JSON.stringify(feitas));
+      if (!era) {
+        var F = fases().filter(function(f){ return f.nome === a.dataset.fase; })[0];
+        if (!bonus && F.aulas.every(function(x){ return feitas[x.id]; })) toast('🎉 ' + F.nome.split(' · ')[0] + ' concluída: ' + partes(F.nome).t);
+      }
+      if (!dest) { rodape(a); montar(); }
+    });
+    (a.querySelector('.corpo') || a).appendChild(d);
+  }
+  var tt; function toast(t){ var e = $('#toast'); e.textContent = t; e.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ e.classList.remove('on'); }, 3200); }
   addEventListener('hashchange', mostrar);
 
-  /* copiar */
-  document.querySelectorAll('pre[data-t]').forEach(function(pre){
+  /* ---------- boas-vindas ---------- */
+  var onb = $('#onb'), ordem = ['oi', 'bits', 'ram', 'nucleos', 'trilha'];
+  function tela(n){
+    $$('.tela', onb).forEach(function(t){ t.classList.toggle('on', t.dataset.tela === n); });
+    var i = ordem.indexOf(n);
+    $$('#dots i').forEach(function(d, j){ d.className = j === i ? 'on' : j < i ? 'ok' : ''; });
+    $$('.ops', onb).forEach(function(o){ $$('.op', o).forEach(function(b){ b.setAttribute('aria-pressed', String(pc[o.dataset.q] === b.dataset.v)); }); });
+    if (n === 'trilha') escolha();
+    onb.scrollTop = 0;
+    var foco = $('.tela.on h1, .tela.on h2', onb); if (foco) { foco.setAttribute('tabindex', '-1'); foco.focus({ preventScroll: true }); }
+  }
+  function abrirOnb(n){ onb.classList.add('on'); document.body.classList.add('trava'); $('#fechar-onb').hidden = LS.get('nb-onb') !== '1'; tela(n); }
+  function fecharOnb(){ onb.classList.remove('on'); document.documentElement.className = 'pronto'; document.body.classList.remove('trava'); }
+  $$('[data-ir]', onb).forEach(function(b){ b.addEventListener('click', function(){ tela(b.dataset.ir); }); });
+  $$('.ops', onb).forEach(function(o){
+    $$('.op', o).forEach(function(b){ b.addEventListener('click', function(){
+      pc[o.dataset.q] = b.dataset.v; LS.set('nb-pc', JSON.stringify(pc));
+      $$('.op', o).forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      setTimeout(function(){ tela(o.dataset.q === 'bits' ? (pc.bits === '32' ? 'trilha' : 'ram') : o.dataset.q === 'ram' ? 'nucleos' : 'trilha'); }, 220);
+    }); });
+  });
+  function escolha(){
+    var b32 = pc.bits === '32', nao = pc.ram === '?' || pc.nucleos === '?';
+    var macOk = !b32 && pc.ram === '4' && pc.nucleos === '4';
+    var macTrava = b32 || (!macOk && !nao);
+    $('#av32').classList.toggle('on', b32);
+    $('#av1').classList.toggle('on', !b32 && pc.ram === '1');
+    $('#avq').classList.toggle('on', !b32 && nao && pc.ram !== '1');
+    $('#trs').hidden = b32;
+    var mac = $('.tr.mac', onb), leve = $('.tr.leve', onb);
+    mac.setAttribute('aria-disabled', String(macTrava));
+    mac.classList.toggle('rec', macOk); leve.classList.toggle('rec', !macOk);
+    $('#tr-tit').textContent = b32 ? 'Esse notebook não roda o Debian 13' : macOk ? 'Seu notebook aguenta as duas trilhas' : 'A trilha Leve é a sua';
+    $('#tr-sub').textContent = b32 ? '' : macOk ? 'Com 4 GB e 4 núcleos ele roda o visual completo. Escolha o seu. Dá pra trocar depois.' :
+      nao ? 'Sem saber tudo, a Leve é a aposta segura. Ela fica rápida e com cara de Mac também.' :
+      'Com ' + (pc.ram === '4' ? '4 GB' : pc.ram === '2' ? '2 ou 3 GB' : '1 GB') + ' e ' + (pc.nucleos === '4' ? '4 núcleos ou mais' : 'menos de 4 núcleos') + ', a Leve deixa ele rápido. E ela também fica com cara de Mac.';
+  }
+  $$('.tr', onb).forEach(function(b){ b.addEventListener('click', function(){
+    if (b.getAttribute('aria-disabled') === 'true') return;
+    var mudou = LS.get('nb-onb') === '1' && tri() !== b.dataset.trilha;
+    LS.set('nb-onb', '1'); setTri(b.dataset.trilha); fecharOnb();
+    if (!atual() || mudou || !visivel(document.getElementById(atual()))) { location.hash = '#' + proximoPendente(); }
+    mostrar();
+    if (mudou) toast('Pronto: agora você está na ' + (b.dataset.trilha === 'mac' ? 'trilha Mac' : 'trilha Leve'));
+  });
+  b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } }); });
+  $('#fechar-onb').addEventListener('click', fecharOnb);
+  $('#trocar').addEventListener('click', function(){ abrirOnb(pc.bits ? 'trilha' : 'bits'); });
+
+  /* ---------- copiar comandos ---------- */
+  $$('pre[data-t]').forEach(function(pre){
     var w = document.createElement('div'); w.className = 'cmd' + (pre.textContent.split('\n').length > 16 ? ' long' : '');
     var t = document.createElement('div'); t.className = 't'; t.innerHTML = '<span></span><button type="button">Copiar</button>'; t.firstChild.textContent = pre.getAttribute('data-t');
     pre.parentNode.insertBefore(w, pre); w.appendChild(t); w.appendChild(pre);
@@ -208,32 +578,24 @@ span.only{display:none}body[data-trilha="leve"] span.only.leve,body[data-trilha=
   });
   function fallback(txt){ var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e) {} ta.remove(); }
 
-  /* checklists salvos */
-  document.querySelectorAll('.chk input[type=checkbox]:not([disabled])').forEach(function(c, i){
+  /* ---------- checklists salvos ---------- */
+  $$('.chk input[type=checkbox]:not([disabled])').forEach(function(c, i){
     var k = 'nb-chk-' + (c.id || i); if (LS.get(k) === '1') c.checked = true;
     c.addEventListener('change', function(){ LS.set(k, c.checked ? '1' : '0'); });
   });
+  $$('.chk li').forEach(function(li){ li.addEventListener('click', function(e){ var c = li.querySelector('input'); if (c && e.target !== c && e.target.tagName !== 'A') { c.checked = !c.checked; c.dispatchEvent(new Event('change')); } }); });
 
-  /* teste do nível */
-  var q = document.getElementById('quiz');
-  if (q) q.addEventListener('change', function(){
-    var v = function(n){ var e = q.querySelector('input[name=' + n + ']:checked'); return e ? e.value : ''; };
-    var b = v('bits'), r = v('ram'), c = v('nucleos');
-    q.querySelectorAll('.res').forEach(function(x){ x.classList.remove('on'); });
-    if (!b || !r || !c) return;
-    var id = b === '32' ? 'r32' : r === '1' ? 'r1' : (r === '4' && c === '4') ? 'rmac' : 'rleve';
-    document.getElementById(id).classList.add('on');
-    if (id === 'rmac') trilha('mac'); if (id === 'rleve') trilha('leve');
-  });
+  /* ---------- mapa no celular ---------- */
+  var mapa = $('#mapa'), scrim = $('#scrim');
+  function fecharMapa(){ mapa.classList.remove('open'); scrim.classList.remove('on'); }
+  $('#abrir').addEventListener('click', function(){ mapa.classList.add('open'); scrim.classList.add('on'); });
+  scrim.addEventListener('click', fecharMapa);
+  addEventListener('keydown', function(e){ if (e.key === 'Escape') { fecharMapa(); if (LS.get('nb-onb') === '1' && onb.classList.contains('on')) fecharOnb(); } });
 
-  /* celular */
-  var side = document.getElementById('side'), scrim = document.getElementById('scrim');
-  function fechar(){ side.classList.remove('open'); scrim.classList.remove('on'); }
-  document.getElementById('abrir').addEventListener('click', function(){ side.classList.add('open'); scrim.classList.add('on'); });
-  scrim.addEventListener('click', fechar);
-
-  trilha(LS.get('nb-trilha') === 'mac' ? 'mac' : 'leve');
-  mostrar();
+  /* ---------- início ---------- */
+  setTri(LS.get('nb-trilha') === 'mac' ? 'mac' : 'leve');
+  if (document.documentElement.className === 'pronto') { LS.set('nb-onb', '1'); mostrar(); }
+  else { document.body.classList.add('trava'); tela('oi'); if (atual()) mostrar(); }
 })();
 </script>
 </body>
