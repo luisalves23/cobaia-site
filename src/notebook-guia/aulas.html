@@ -1,61 +1,4 @@
 <!-- =========================== FASE 0 =========================== -->
-<section class="aula" id="bem-vindo" data-fase="Fase 0 · Antes de começar" data-titulo="Bem-vindo: como usar este guia">
-<p class="k">Fase 0 · passo 1</p>
-<h1>Bem-vindo. Vamos tirar esse notebook da gaveta.</h1>
-<p class="lead">Este guia leva você do notebook parado até um Debian 13 rápido, bonito e com atualizações de segurança até 2030. Um passo por tela, sem pular nada.</p>
-<h2>Como funciona</h2>
-<ul>
-<li><b>Menu de fases</b> à esquerda (no celular, no botão <b>☰ Fases</b>). Cada fase tem passos curtos.</li>
-<li><b>Trilha</b>: o seletor no topo do menu troca entre <b>Leve</b> e <b>Mac</b>. Só os passos que mudam são trocados. O teste do próximo passo escolhe a sua.</li>
-<li><b>Copiar</b>: todo comando tem um botão <b>Copiar</b>. No terminal do Debian, cole com <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> (o <kbd>Ctrl</kbd>+<kbd>V</kbd> sozinho não funciona no terminal) e aperte <kbd>Enter</kbd>.</li>
-<li><b>Progresso</b>: ao terminar um passo, clique em <b>Concluí, próximo passo</b>. O guia lembra onde você parou neste navegador.</li>
-</ul>
-<h2>Duas regras que evitam 90% dos problemas</h2>
-<ol>
-<li><b>Um comando por vez.</b> Cole, espere terminar (o cursor volta a piscar numa linha nova) e só então vá pro próximo.</li>
-<li><b>Leia o que aparece.</b> Se surgir a palavra <code>erro</code>, <code>E:</code> ou <code>falhou</code>, pare e vá na Fase 7, que tem as soluções dos problemas mais comuns.</li>
-</ol>
-<div class="box dica"><p><b>Abra este guia em outro aparelho.</b> Durante a instalação o notebook fica ocupado. Deixe o guia aberto no celular ou em outro computador e entre com o mesmo e-mail da compra.</p></div>
-<div class="box certo"><p><b>Comprou com suporte?</b> O botão de WhatsApp está na sua área: <a href="/minha-area/">Minha área</a>. Me chame antes de começar a Fase 1 que eu acompanho com você.</p></div>
-</section>
-
-<section class="aula" id="nivel" data-fase="Fase 0 · Antes de começar" data-titulo="Descubra o nível do seu notebook">
-<p class="k">Fase 0 · passo 2</p>
-<h1>Qual é o nível do seu notebook?</h1>
-<p class="lead">Três respostas decidem a sua trilha. Dá pra ver tudo ainda no Windows, em 2 minutos.</p>
-<h2>Onde ver no Windows</h2>
-<ol>
-<li>Aperte <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd> pra abrir o <b>Gerenciador de Tarefas</b>. Se ele abrir pequeno, clique em <b>Mais detalhes</b>.</li>
-<li>Vá na aba <b>Desempenho</b>.</li>
-<li>Clique em <b>Memória</b>: o número grande no alto à direita é a RAM (ex.: <code>4,0 GB</code>).</li>
-<li>Clique em <b>CPU</b>: embaixo aparece <b>Núcleos</b> (ex.: <code>2</code> ou <code>4</code>).</li>
-<li>Pra saber se é 64 bits: aperte <kbd>Windows</kbd>+<kbd>R</kbd>, digite <code>msinfo32</code> e <kbd>Enter</kbd>. Em <b>Tipo do sistema</b>, precisa aparecer <code>PC baseado em x64</code>.</li>
-</ol>
-<div class="box dica"><p><b>O notebook nem liga o Windows?</b> Procure o modelo na etiqueta embaixo do notebook e pesquise "<i>modelo</i> ficha técnica". Se não achar, escolha a trilha Leve: ela funciona em qualquer caso.</p></div>
-<h2>Responda</h2>
-<form class="glass quiz" id="quiz" onsubmit="return false">
-<fieldset><legend>1. Tipo do sistema</legend>
-<label><input type="radio" name="bits" value="64"> x64 (64 bits)</label>
-<label><input type="radio" name="bits" value="32"> x86 (32 bits)</label></fieldset>
-<fieldset><legend>2. Memória RAM</legend>
-<label><input type="radio" name="ram" value="1"> 1 GB ou menos</label>
-<label><input type="radio" name="ram" value="2"> 2 ou 3 GB</label>
-<label><input type="radio" name="ram" value="4"> 4 GB ou mais</label></fieldset>
-<fieldset><legend>3. Núcleos do processador</legend>
-<label><input type="radio" name="nucleos" value="2"> 1, 2 ou 3 núcleos</label>
-<label><input type="radio" name="nucleos" value="4"> 4 núcleos ou mais</label></fieldset>
-<div class="res box certo" id="rmac"><p><b>Trilha Mac.</b> Seu notebook aguenta o KDE Plasma, a interface mais bonita deste guia. Já deixei a trilha Mac marcada no menu.</p></div>
-<div class="res box certo" id="rleve"><p><b>Trilha Leve.</b> O Xfce é a interface que eu testei num notebook de 2 GB e 2 núcleos: liga em 45 segundos e abre o navegador em 5. Na Fase 5 você deixa ele com cara de Mac. Já deixei a trilha Leve marcada.</p></div>
-<div class="res box atencao" id="r1"><p><b>1 GB é muito pouco pra navegar na internet hoje.</b> Siga a trilha Leve e, se puder, troque a memória por uma de 4 GB (costuma ser barata e é só abrir uma tampinha embaixo do notebook). Com suporte, me mande o modelo antes que eu confiro com você.</p></div>
-<div class="res box perigo" id="r32"><p><b>Processador de 32 bits não roda o Debian 13.</b> O Debian deixou de ter instalador pra 32 bits. Se você comprou com suporte, me chame que a gente vê a alternativa pro seu modelo. Se não, peça o reembolso pela Kiwify dentro dos 7 dias: o guia não vai servir pra esse notebook.</p></div>
-</form>
-<table><thead><tr><th>Trilha</th><th>Para quem</th><th>Interface</th></tr></thead><tbody>
-<tr><td><b>Leve</b></td><td>Menos de 4 GB <b>ou</b> menos de 4 núcleos</td><td>Xfce</td></tr>
-<tr><td><b>Mac</b></td><td>4 GB ou mais <b>e</b> 4 núcleos ou mais</td><td>KDE Plasma 6</td></tr>
-</tbody></table>
-<div class="box dica"><p><b>Disco comum (HD) ou SSD?</b> As duas trilhas funcionam com HD. Se um dia der pra trocar por um SSD, é a melhoria que mais acelera um notebook velho.</p></div>
-</section>
-
 <section class="aula" id="precisa" data-fase="Fase 0 · Antes de começar" data-titulo="O que você precisa ter em mãos">
 <p class="k">Fase 0 · passo 3</p>
 <h1>O que você precisa ter em mãos</h1>
@@ -286,7 +229,12 @@
 <div class="box atencao"><p><b>Apareceu "não está no arquivo sudoers"?</b> É porque uma senha de root foi criada na instalação. Rode os 2 comandos abaixo (o primeiro pede a senha de <b>root</b>), troque <code>SEU_USUARIO</code> pelo seu nome de usuário e depois reinicie o notebook.</p></div>
 <pre data-t="Só se deu erro de sudoers">su -
 usermod -aG sudo SEU_USUARIO</pre>
-<div class="box dica"><p><b>Colar no terminal:</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> ou botão direito → Colar.</p></div>
+<div class="box dica"><p><b>Colar no terminal:</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> ou botão direito → Colar. O <kbd>Ctrl</kbd>+<kbd>V</kbd> sozinho não funciona no terminal.</p></div>
+<h2>Duas regras que evitam 90% dos problemas</h2>
+<ol>
+<li><b>Um comando por vez.</b> Cole, espere terminar (o cursor volta a piscar numa linha nova) e só então vá pro próximo.</li>
+<li><b>Leia o que aparece.</b> Se surgir a palavra <code>erro</code>, <code>E:</code> ou <code>falhou</code>, pare e abra o passo <a href="#socorro">Socorro: problemas comuns</a>, na Fase 7.</li>
+</ol>
 </section>
 
 <!-- =========================== FASE 3 =========================== -->
