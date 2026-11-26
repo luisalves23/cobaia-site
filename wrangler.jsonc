@@ -1,19 +1,15 @@
-// Publicação no Cloudflare (Workers + arquivos estáticos + banco D1). Explicação em plataforma/LEIAME.md
+// Site público em cobaia.dev.br (Cloudflare). Explicação em cloudflare/LEIAME.md
 {
-  "name": "cobaia",
-  "main": "plataforma/worker.mjs",
+  "name": "cobaia-site",
+  "main": "cloudflare/site.mjs",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    // O Worker vê todo pedido primeiro: os guias pagos nunca saem sem conferir a sessão.
+    // O Worker vê todo pedido primeiro: guias pagos e páginas antigas nunca saem como arquivo.
     "run_worker_first": true,
     "html_handling": "auto-trailing-slash"
   },
-  "d1_databases": [
-    { "binding": "DB", "database_name": "cobaia", "database_id": "PREENCHER_COM_O_ID_DO_D1" }
-  ],
-  // As configurações e senhas ficam no painel do Cloudflare; a publicação não apaga nada de lá.
-  "keep_vars": true,
+  "routes": [{ "pattern": "cobaia.dev.br/*", "zone_name": "cobaia.dev.br" }],
   "observability": { "enabled": true }
 }

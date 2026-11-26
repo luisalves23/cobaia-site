@@ -5,8 +5,7 @@
 .wrangler
 .dev.vars*
 node_modules
-maquina
-plataforma
+cloudflare
 api
 lib
 src
