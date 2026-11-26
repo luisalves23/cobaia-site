@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## 2026-11-26
-- Dia 15 (VENDAS): página `/vendas/` com o passo a passo gratuito da equipe de marketing no Claude (Marketing Skills: instalar no Claude Code ou no claude.ai, perfil da empresa, conselho e pedidos prontos). Primeira página no visual flat dos vídeos (preto, off-white e vermelho, sem vidro), pedido do Luis para seguir daqui pra frente. Capa e prévia de DM (`assets/og/dia15.png`).
+- Dia 16 (VENDAS; o Dia 15 é o PC do seguidor): página `/vendas/` com o passo a passo gratuito da equipe de marketing no Claude (Marketing Skills: instalar no Claude Code ou no claude.ai, perfil da empresa, conselho e pedidos prontos). Primeira página no visual flat dos vídeos (preto, off-white e vermelho, sem vidro), pedido do Luis para seguir daqui pra frente. Capa e prévia de DM (`assets/og/dia15.png`).
 - Capa nova do Dia 14 (PLANILHA) enviada pelo Luis, em `/planilha/` e na grade de `/30-dias/`.
 - Tablet: página `/tablet/pedido-recebido/` (obrigado da Kiwify dos dois produtos de tablet) com WhatsApp e contato@cobaia.dev.br. Estado completo da operação de vendas e regra de sincronia entre as contas do Claude: `CLAUDE.md` do repositório privado `cobaia-materiais`.
 - Site principal vai para **cobaia.dev.br** no Cloudflare (`cloudflare/site.mjs`, `wrangler.jsonc`, `.assetsignore`): mesmas páginas; guias pagos e páginas de obrigado levam para a área nova em cobaia.dev.br/area; guias e obrigado do tablet continuam na Vercel; a Vercel segue no ar para os links antigos. Saem `plataforma/` e `maquina/` (protótipos; a plataforma de verdade está no repositório `cobaia-materiais`).
