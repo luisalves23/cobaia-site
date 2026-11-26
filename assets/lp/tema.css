@@ -1,0 +1,80 @@
+/* Molde das landing pages dos guias (tablet, GTA) em cima do nb.css do notebook.
+   Cada página escolhe a cor pela classe do <body>: t-tablet (azul) ou t-gta (pôr do sol).
+   O vermelho de "antes", erro e preço riscado continua vermelho em todas. */
+.t-tablet{--ac:#3b8cff;--ac2:#62a8ff;--ac3:#9ccaff;--acr:59,140,255;--bt1:#4d9bff;--bt2:#2a72f0;--btx:#fff}
+.t-gta{--ac:#ff7a2f;--ac2:#ffa24d;--ac3:#ff5fa2;--acr:255,122,47;--bt1:#ffb04d;--bt2:#ff6a2f;--btx:#1a0a05;--bg:#0b0714}
+
+.t-tablet .glow,.t-gta .glow{background:
+  radial-gradient(60vw 50vh at 15% -10%,rgba(var(--acr),.18),transparent 70%),
+  radial-gradient(50vw 45vh at 100% 10%,rgba(255,255,255,.05),transparent 70%),
+  radial-gradient(70vw 50vh at 50% 110%,rgba(var(--acr),.08),transparent 70%)}
+.t-gta .glow{background:
+  radial-gradient(60vw 50vh at 15% -10%,rgba(255,122,47,.18),transparent 70%),
+  radial-gradient(50vw 45vh at 100% 10%,rgba(255,95,162,.14),transparent 70%),
+  radial-gradient(70vw 50vh at 50% 110%,rgba(120,60,200,.16),transparent 70%)}
+
+.t-tablet .btn:not(.ghost),.t-gta .btn:not(.ghost){background:linear-gradient(180deg,var(--bt1),var(--bt2));color:var(--btx);
+  box-shadow:0 10px 30px -10px rgba(var(--acr),.75),inset 0 1px 0 rgba(255,255,255,.28)}
+.t-tablet .hero2 h1 .g,.t-gta .hero2 h1 .g{background:linear-gradient(90deg,var(--ac2),var(--ac) 45%,var(--ac3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.t-tablet .step::before,.t-gta .step::before{background:rgba(var(--acr),.14);color:var(--ac3);border-color:rgba(var(--acr),.4)}
+.t-tablet .phase .n,.t-gta .phase .n{border-color:rgba(var(--acr),.4)}
+.t-tablet .price.hl,.t-gta .price.hl{border-color:rgba(var(--acr),.6);background:linear-gradient(180deg,rgba(var(--acr),.12),rgba(255,255,255,.03));box-shadow:0 30px 90px -40px rgba(var(--acr),.6)}
+.t-gta .price .badge{color:#1a0a05}
+.t-tablet .guar .seal,.t-gta .guar .seal{background:conic-gradient(from 200deg,var(--ac2),var(--ac),var(--ac3),var(--ac2));box-shadow:0 10px 40px -10px rgba(var(--acr),.7)}
+.t-gta .guar .seal{color:#1a0a05}
+
+/* topo sem faixa de promoção */
+.top.solo{padding-top:0}
+
+/* vídeo em pé (reel do Instagram e cortes) */
+.vid.v916{aspect-ratio:9/16}
+.reel{max-width:340px;margin:44px auto 0;position:relative}
+.reel .vid{box-shadow:0 40px 120px -40px rgba(var(--acr,255,59,59),.55),0 30px 80px -30px #000}
+.som{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:800 14px var(--f);padding:10px 16px;border-radius:99px;
+  background:rgba(0,0,0,.7);border:1px solid var(--ln2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.som::before{content:"";width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.som.on{opacity:0;pointer-events:none;transition:opacity .3s}
+
+/* fileira de cortes (GTA) */
+.cortes{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:980px;margin:44px auto 0}
+.cortes .vid{aspect-ratio:9/16;border-radius:16px}
+.cortes .vid .cap{font-size:13px;padding:30px 10px 10px}
+@media (max-width:760px){
+  .cortes{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:46%;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:0 16px 8px;margin-left:-16px;margin-right:-16px;scrollbar-width:none}
+  .cortes::-webkit-scrollbar{display:none}
+  .cortes .vid{scroll-snap-align:center}
+}
+.arrasta{display:none;margin:10px 0 0;text-align:center;font:700 12px var(--mono);color:var(--di);letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:760px){.arrasta{display:block}}
+
+/* antes e depois com imagem */
+.ab .vid.pic{aspect-ratio:1/1}
+.ab .vid.pic img{object-fit:cover}
+
+/* níveis (tablet) */
+.niveis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;counter-reset:n}
+.nivel{padding:26px;position:relative;overflow:hidden}
+.nivel .lv{display:flex;gap:5px;margin-bottom:16px}
+.nivel .lv i{width:26px;height:8px;border-radius:4px;background:var(--ln2)}
+.nivel .lv i.on{background:var(--ac)}
+.nivel h3{font:900 22px/1.2 var(--f);margin:0 0 6px;letter-spacing:-.01em}
+.nivel .pc{display:inline-block;margin:0 0 12px;font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mu);
+  padding:5px 9px;border-radius:8px;border:1px solid var(--ln2)}
+.nivel p{margin:0;color:var(--mu)}
+
+/* número grande de contexto (GTA) */
+.bignum{text-align:center}
+.bignum b{display:block;font:900 clamp(56px,11vw,132px)/1 var(--f);letter-spacing:-.05em;
+  background:linear-gradient(90deg,var(--ac2),var(--ac) 50%,var(--ac3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bignum p{font:800 clamp(18px,2.4vw,24px)/1.35 var(--f);max-width:640px;margin:10px auto 0}
+.bignum p em{font-family:var(--serif);font-weight:400;color:var(--ac3)}
+.bignum .src{display:block;font:500 13px var(--mono);color:var(--di);max-width:620px;margin:14px auto 0}
+
+/* oferta única centralizada (GTA) */
+.solo-plan{max-width:520px;margin:0 auto;text-align:left}
+
+/* link pro material grátis */
+.free{display:block;margin:22px auto 0;color:var(--mu);font-size:15px;text-align:center}
+.free a{color:var(--tx);font-weight:800}
