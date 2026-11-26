@@ -11,7 +11,7 @@ import { esc, emailCompra, emailCodigo, enviarEmail } from './emails.mjs';
 
 const SESSAO = 'cobaia_sessao', APARELHO = 'cobaia_aparelho';
 const UM_ANO = 365 * 24 * 3600;
-const PROTEGIDO = /^\/(gta\/guia|notebook\/guia|tablet\/g)(\/|$)/i;
+const PROTEGIDO = /^\/(gta\/guia|notebook\/guia|teste\/guia|tablet\/g)(\/|$)/i;
 
 /* ---------- pequenas peças ---------- */
 const SEGUROS = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'no-referrer', 'x-frame-options': 'DENY', 'cache-control': 'no-store' };
@@ -182,7 +182,7 @@ const registrarEntrada = (env, req, s, caminho) => env.DB.batch([
   env.DB.prepare("UPDATE sessoes SET ultimo_em = datetime('now'), ip = ? WHERE hash = ?").bind(ipDe(req), s.hash),
 ]);
 
-const voltaSegura = (v) => (/^\/(gta\/guia|notebook\/guia|tablet\/g)\/[A-Za-z0-9/_.-]*$/.test(v || '') && !String(v).includes('..') ? v : '/area/');
+const voltaSegura = (v) => (/^\/(gta\/guia|notebook\/guia|teste\/guia|tablet\/g)\/[A-Za-z0-9/_.-]*$/.test(v || '') && !String(v).includes('..') ? v : '/area/');
 
 async function pedirCodigo(env, req, form) {
   const email = normEmail(form.get('email'));
@@ -239,7 +239,7 @@ async function servirProtegido(env, req, url) {
   try { caminho = decodeURIComponent(url.pathname); } catch { return texto(400, 'caminho inválido'); }
   // O produto exigido sai do caminho já decodificado. Qualquer truque ("..", "\", "//") é recusado antes.
   if (/\.\.|\\|\/\/|\0/.test(caminho)) return texto(400, 'caminho inválido');
-  if (/^\/(gta\/guia|notebook\/guia|tablet\/g\/[a-z0-9-]{3,60})$/.test(caminho)) return redirecionar(caminho + '/');
+  if (/^\/(gta\/guia|notebook\/guia|teste\/guia|tablet\/g\/[a-z0-9-]{3,60})$/.test(caminho)) return redirecionar(caminho + '/');
   const produto = produtoDoCaminho(caminho);
   if (!produto) return texto(404, 'não encontrado');
 

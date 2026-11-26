@@ -22,6 +22,11 @@ export const PRODUTOS = {
     descricao: 'O Luis com você no WhatsApp até o notebook ficar pronto.',
     suporte: true,
   },
+  teste: {
+    nome: 'Produto de teste',
+    descricao: 'Só para testar a entrega. Não aparece no site.',
+    pasta: '/teste/guia/',
+  },
   suporte: {
     nome: 'Suporte pessoal do Luis',
     descricao: 'Atendimento com o Luis no WhatsApp, do começo ao fim.',
@@ -36,6 +41,7 @@ const LIBERA = {
   notebook: ['notebook'],
   'notebook-suporte': ['notebook', 'notebook-suporte'],
   suporte: ['suporte'],
+  teste: ['teste'],
 };
 export const liberados = (produto) => LIBERA[produto] || [];
 
@@ -58,6 +64,7 @@ export function infoProduto(p) {
 export function produtoDoCaminho(caminho) {
   if (caminho.startsWith('/gta/guia/')) return 'gta';
   if (caminho.startsWith('/notebook/guia/')) return 'notebook';
+  if (caminho.startsWith('/teste/guia/')) return 'teste';
   const m = /^\/tablet\/g\/([a-z0-9-]{3,60})\//.exec(caminho);
   if (m) return 'tablet:' + m[1];
   return null;
