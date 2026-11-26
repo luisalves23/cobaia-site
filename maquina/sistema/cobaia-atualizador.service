@@ -1,0 +1,6 @@
+[Unit]
+Description=Cobaia: puxa o codigo novo do GitHub
+
+[Service]
+Type=oneshot
+ExecStart=/opt/cobaia/site/maquina/sistema/atualizar.sh

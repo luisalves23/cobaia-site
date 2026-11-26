@@ -1,0 +1,46 @@
+# Porteiro da máquina: HTTPS automático + quem atende cada caminho.
+# SITE_HOST e RAIZ_SITE vêm de /etc/cobaia/env (o instalar.sh liga isso no Caddy).
+# Hoje SITE_HOST é o endereço provisório <ip-com-traços>.sslip.io; depois vira cobaia.dev.br.
+
+{$SITE_HOST} {
+	encode zstd gzip
+	header -Server
+
+	# Avisos da Kiwify -> serviço vendas
+	handle /webhook/* {
+		reverse_proxy 127.0.0.1:3001 {
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	# Plataforma do aluno e guias pagos -> serviço acesso (os arquivos dos guias nunca saem direto daqui)
+	@plataforma path /area /area/* /gta/guia /gta/guia/* /notebook/guia /notebook/guia/* /tablet/g /tablet/g/*
+	handle @plataforma {
+		reverse_proxy 127.0.0.1:3002 {
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	# Endereços antigos da Vercel
+	redir /minha-area/ /area/
+	redir /acesso/ /area/
+	redir /entrar/ /area/
+	redir /claude/ /omniroute/
+	redir / /30-dias/
+
+	# O que existe no repositório mas não é página
+	@oculto path /.git /.git/* /maquina/* /api/* /lib/* /src/* /node_modules/* /middleware.js /package.json /package-lock.json /vercel.json /*.md /*.py
+	handle @oculto {
+		respond 404
+	}
+
+	@estaticos path /assets/fonts/* /assets/img/* /assets/og/*
+	header @estaticos Cache-Control "public, max-age=604800"
+
+	# Páginas públicas do site
+	handle {
+		root * {$RAIZ_SITE}
+		try_files {path} {path}/index.html {path}.html
+		file_server
+	}
+}

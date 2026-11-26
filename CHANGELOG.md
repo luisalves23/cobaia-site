@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2026-11-26
+- Começo da máquina da Oracle (`maquina/`), etapa 1 do plano "Operação do Cobaia na Oracle": porteiro Caddy com HTTPS, serviço vendas (webhook da Kiwify que libera e corta acesso, guarda Pix pendente e manda o e-mail da compra), serviço acesso (plataforma do aluno em `/area/` com login por e-mail + código de 6 dígitos e guias pagos servidos só depois de conferir o banco), banco SQLite de um arquivo, instalador, atualizador pelo GitHub, ferramentas de acesso e de importação das vendas antigas, e teste de ponta a ponta. A Vercel segue no ar sem mudança.
+
 ## 2026-11-25
 - Guia do notebook redesenhado: boas-vindas no primeiro acesso (como funciona, 3 perguntas sobre o PC, escolha entre trilha Mac e Leve, com a Mac travada abaixo de 4 GB e 4 núcleos), depois só a trilha escolhida com mapa de fases à esquerda (onde está e o que falta) e o passo em cartões de vidro à direita. Quem já tinha progresso pula as boas-vindas. "Trocar de trilha" refaz a escolha.
 - Guia do Tab M11 ganhou a trilha 3, "Nível Cobaia" (módulos 12 a 17): Android puro (GSI) com contrato de riscos, teste sem apagar (DSU), gravação com vbmeta, ajustes e saídas pra cada problema. Mapa com três caminhos e a trilha PC marcada como recomendada.
