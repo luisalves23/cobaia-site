@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 2026-11-26
+- Capa nova do Dia 14 (PLANILHA) enviada pelo Luis, em `/planilha/` e na grade de `/30-dias/`.
 - Tablet: página `/tablet/pedido-recebido/` (obrigado da Kiwify dos dois produtos de tablet) com WhatsApp e contato@cobaia.dev.br. Estado completo da operação de vendas e regra de sincronia entre as contas do Claude: `CLAUDE.md` do repositório privado `cobaia-materiais`.
 - Site principal vai para **cobaia.dev.br** no Cloudflare (`cloudflare/site.mjs`, `wrangler.jsonc`, `.assetsignore`): mesmas páginas; guias pagos e páginas de obrigado levam para a área nova em cobaia.dev.br/area; guias e obrigado do tablet continuam na Vercel; a Vercel segue no ar para os links antigos. Saem `plataforma/` e `maquina/` (protótipos; a plataforma de verdade está no repositório `cobaia-materiais`).
 - Landing pages do tablet (`/tablet/`) e do GTA (`/gta/`) refeitas no molde da do notebook: mesmo `nb.css` + `assets/lp/tema.css` (cor por página: tablet azul, GTA pôr do sol) e `assets/lp/molde.js` (checkout, vídeos que tocam ao aparecer, botão fixo no celular). Mesmos preços e links de checkout. Tablet sem a contagem de entrega que mudava sozinha e sem o vídeo do notebook no topo (agora o reel do Dia 08). Selo da garantia corrigido no celular.
