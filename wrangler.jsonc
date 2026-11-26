@@ -6,8 +6,14 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    // O Worker vê todo pedido primeiro: guias pagos e páginas antigas nunca saem como arquivo.
-    "run_worker_first": true,
+    // O Worker só roda nestes caminhos (guias pagos, obrigado, entradas antigas, /api).
+    // O resto sai direto como arquivo, sem gastar a cota grátis de pedidos do Worker.
+    // Os guias também ficam fora dos arquivos publicados (.assetsignore), então nunca vazam.
+    "run_worker_first": [
+      "/gta/guia*", "/gta/obrigado*", "/notebook/guia*", "/notebook/obrigado*", "/teste/guia*",
+      "/tablet/g/*", "/tablet/g", "/tablet/obrigado*",
+      "/acesso*", "/entrar*", "/minha-area*", "/admin*", "/api/*"
+    ],
     "html_handling": "auto-trailing-slash"
   },
   "routes": [{ "pattern": "cobaia.dev.br/*", "zone_name": "cobaia.dev.br" }],

@@ -17,3 +17,15 @@ wrangler.jsonc
 *.md
 *.py
 .DS_Store
+# Guias pagos e páginas que o Worker redireciona: nunca publicar como arquivo
+gta/guia
+gta/obrigado
+notebook/guia
+notebook/obrigado*
+teste/guia
+tablet/g
+tablet/obrigado
+acesso
+entrar
+minha-area
+admin
