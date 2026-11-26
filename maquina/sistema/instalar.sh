@@ -8,6 +8,11 @@ RAMO="${1:-main}"
 REPO="${REPO:-https://github.com/luisalves23/cobaia-site.git}"
 
 echo "== 1/7 pacotes"
+# Máquina pequena (AMD micro, 1 GB): 2 GB de swap para o apt e o Node não ficarem sem memória
+if [ "$(awk '/MemTotal/ {print $2}' /proc/meminfo)" -lt 2000000 ] && ! swapon --show | grep -q .; then
+  fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile >/dev/null && swapon /swapfile
+  grep -q '^/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
 apt-get install -y -qq git curl ca-certificates gnupg sqlite3 debian-keyring debian-archive-keyring apt-transport-https iptables-persistent >/dev/null
