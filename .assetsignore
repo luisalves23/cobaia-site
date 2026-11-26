@@ -1,0 +1,20 @@
+# O que NÃO vai para o ar como arquivo público (sintaxe do .gitignore)
+.git
+.gitignore
+.assetsignore
+.wrangler
+.dev.vars*
+node_modules
+maquina
+plataforma
+api
+lib
+src
+middleware.js
+vercel.json
+package.json
+package-lock.json
+wrangler.jsonc
+*.md
+*.py
+.DS_Store

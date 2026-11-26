@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 2026-11-26
+- Plataforma vai para o Cloudflare, sem servidor (`plataforma/`, `wrangler.jsonc`, `.assetsignore`, `_redirects`, `_headers`): a Oracle ficou sem vaga grátis e o Luis escolheu o caminho sem máquina. Mesmas regras da etapa 1 (webhook assinado da Kiwify libera e corta, login por e-mail + código, guias pagos conferidos a cada pedido, Pix pendente guardado), agora em Worker + banco D1. Teste de ponta a ponta com 12 casos passando no `wrangler dev`. A pasta `maquina/` fica só como referência. A Vercel segue no ar sem mudança.
 - Começo da máquina da Oracle (`maquina/`), etapa 1 do plano "Operação do Cobaia na Oracle": porteiro Caddy com HTTPS, serviço vendas (webhook da Kiwify que libera e corta acesso, guarda Pix pendente e manda o e-mail da compra), serviço acesso (plataforma do aluno em `/area/` com login por e-mail + código de 6 dígitos e guias pagos servidos só depois de conferir o banco), banco SQLite de um arquivo, instalador, atualizador pelo GitHub, ferramentas de acesso e de importação das vendas antigas, e teste de ponta a ponta. A Vercel segue no ar sem mudança.
 
 ## 2026-11-25

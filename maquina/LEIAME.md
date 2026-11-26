@@ -1,5 +1,7 @@
 # Máquina do Cobaia (Oracle Cloud)
 
+> **Substituído (26/11/2026):** a operação foi para o Cloudflare, sem servidor. Ver `plataforma/LEIAME.md`. Esta pasta fica só como referência.
+
 A operação inteira numa VM gratuita da Oracle. Plano completo: doc "Operação do Cobaia na Oracle".
 Esta pasta é a **etapa 1: entrega automática**. Nada aqui depende da Vercel.
 
