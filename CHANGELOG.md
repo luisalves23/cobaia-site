@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2026-11-26
+- Landing pages do tablet (`/tablet/`) e do GTA (`/gta/`) refeitas no molde da do notebook: mesmo `nb.css` + `assets/lp/tema.css` (cor por página: tablet azul, GTA pôr do sol) e `assets/lp/molde.js` (checkout, vídeos que tocam ao aparecer, botão fixo no celular). Mesmos preços e links de checkout. Tablet sem a contagem de entrega que mudava sozinha e sem o vídeo do notebook no topo (agora o reel do Dia 08). Selo da garantia corrigido no celular.
+
 ## 2026-11-25
 - Guia do notebook redesenhado: boas-vindas no primeiro acesso (como funciona, 3 perguntas sobre o PC, escolha entre trilha Mac e Leve, com a Mac travada abaixo de 4 GB e 4 núcleos), depois só a trilha escolhida com mapa de fases à esquerda (onde está e o que falta) e o passo em cartões de vidro à direita. Quem já tinha progresso pula as boas-vindas. "Trocar de trilha" refaz a escolha.
 - Guia do Tab M11 ganhou a trilha 3, "Nível Cobaia" (módulos 12 a 17): Android puro (GSI) com contrato de riscos, teste sem apagar (DSU), gravação com vbmeta, ajustes e saídas pra cada problema. Mapa com três caminhos e a trilha PC marcada como recomendada.

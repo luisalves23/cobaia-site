@@ -146,7 +146,7 @@ h2{font:900 clamp(30px,4.6vw,52px)/1.05 var(--f);letter-spacing:-.03em;margin:0 
 
 /* garantia e FAQ */
 .guar{display:flex;gap:22px;align-items:center;padding:28px}
-.guar .seal{flex:0 0 86px;height:86px;border-radius:50%;display:grid;place-items:center;text-align:center;font:900 26px/1 var(--f);
+.guar .seal{flex:0 0 86px;width:86px;height:86px;border-radius:50%;display:grid;place-items:center;text-align:center;font:900 26px/1 var(--f);
   background:conic-gradient(from 200deg,#ff6a4d,#ff3b3b,#ff8a7a,#ff6a4d);color:#fff;box-shadow:0 10px 40px -10px rgba(255,59,59,.7)}
 .guar .seal small{display:block;font:700 10px var(--mono);letter-spacing:.08em}
 @media (max-width:560px){.guar{flex-direction:column;text-align:center}}

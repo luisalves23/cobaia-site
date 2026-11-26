@@ -1,248 +1,259 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<!-- PARCELAS conferidas no checkout real da Kiwify em 15/11/2026: guia 6x de R$ 5,24 (parcela mínima R$ 5), combo 12x de R$ 10,13. -->
+<!-- Landing do guia do tablet no molde do notebook (nb.css + assets/lp/tema.css).
+     PARCELAS conferidas no checkout real da Kiwify em 15/11/2026: guia 6x de R$ 5,24 (parcela mínima R$ 5), combo 12x de R$ 10,13.
+     Checkout: window.LP no fim da página. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>A fabricante abandonou seu tablet. Eu não. | Dia 08 | @cobaia.dev</title>
-<meta name="description" content="O passo a passo feito pro seu modelo de tablet Android, até o limite que ele aguenta. R$ 27,90, entrega no WhatsApp e 7 dias de garantia.">
-<meta name="theme-color" content="#0c0c0c">
-<link rel="canonical" href="https://cobaia-dev.vercel.app/tablet">
+<title>A fabricante abandonou seu tablet. Eu não. · @cobaia.dev</title>
+<meta name="description" content="Antes de gastar R$ 2.500 num tablet novo, leve o seu ao limite. O passo a passo feito pro seu modelo de tablet Android, com rota de fuga em cada etapa. 7 dias de garantia.">
+<meta name="theme-color" content="#07080b">
+<link rel="canonical" href="https://cobaia-dev.vercel.app/tablet/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="@cobaia.dev">
 <meta property="og:title" content="A fabricante abandonou seu tablet. Eu não.">
 <meta property="og:description" content="O passo a passo feito pro seu modelo de tablet, até o limite que ele aguenta.">
-<meta property="og:url" content="https://cobaia-dev.vercel.app/tablet">
+<meta property="og:url" content="https://cobaia-dev.vercel.app/tablet/">
 <meta property="og:image" content="https://cobaia-dev.vercel.app/assets/og/dia08.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../assets/img/favicon.png">
-<link rel="preload" href="../assets/fonts/archivo-var.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="../assets/lp-tablet.css">
+<link rel="preload" href="../assets/fonts/inter-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/notebook/nb.css">
+<link rel="stylesheet" href="../assets/lp/tema.css">
 </head>
-<body>
-<a class="skip" href="#oferta">Pular para a oferta</a>
-<div class="grain" aria-hidden="true"></div>
+<body class="t-tablet">
 <div class="glow" aria-hidden="true"></div>
 
-<header class="status">
-  <a class="me" href="../30-dias/"><img src="../assets/img/luis.jpg" alt="" width="26" height="26">@cobaia.dev</a>
-  <svg class="vital" viewBox="0 0 600 28" preserveAspectRatio="none" aria-hidden="true"><path class="base" d="M0 14 L600 14"/><path class="beat" d="M0 14 L600 14"/></svg>
-  <span class="batt" aria-hidden="true"><i><b></b></i><span data-batt>1%</span></span>
-</header>
+<header class="top solo"><div class="wrap"><div class="bar glass">
+  <a class="brand" href="../30-dias/"><img src="../assets/img/luis.jpg" alt="" width="30" height="30"><span>@cobaia.dev</span></a>
+  <a class="btn" href="#planos">Guia do meu tablet</a>
+</div></div></header>
 
-<main id="main">
+<main>
+<!-- 1. HERÓI -->
+<div class="wrap hero2">
+  <span class="pill"><i></i>Dia 08 · você comentou TABLET</span>
+  <h1>A fabricante abandonou seu tablet. <span class="g">Eu não.</span></h1>
+  <p class="lead">Antes de gastar <b>R$ 2.500</b> num tablet novo, leve o seu ao limite. Você me diz o modelo e recebe o <b>passo a passo feito pra ele</b>, com cada erro previsto e uma <b>rota de fuga</b> em cada etapa.</p>
+  <div class="ctas" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn" href="#planos">Quero o guia do meu tablet</a>
+    <a class="btn ghost" href="#prova">Ver o antes e depois</a>
+  </div>
+  <div class="reel">
+    <div class="vid v916" data-v="../assets/video/dia08-reel" data-poster="../assets/video/dia08-poster.jpg"><button class="som" type="button" data-som>Assistir com som</button></div>
+  </div>
+  <a class="down" href="#prova"><i></i>role pra ver o antes</a>
+</div>
 
-<section class="hero2" aria-labelledby="h1">
-  <div class="tag"><b class="day">Dia 08/30</b><span>você comentou <span class="kw">TABLET</span></span><span class="trust">3.894 pessoas ajudadas no notebook</span></div>
-  <div class="copy">
-    <h1 class="h1" id="h1"><span class="dead">A fabricante abandonou seu tablet.</span><span class="alive">Eu não.</span></h1>
-    <p class="sub">O PDF que não abre, a aula que trava. Me diz o modelo e eu te entrego o passo a passo feito pro seu tablet.</p>
-    <div class="ctas">
-      <a class="btn main" href="#oferta">Quero o guia para o meu modelo de tablet</a>
-      <p class="fine"><b class="pz">6x de R$ 5,24</b> ou R$ 27,90 à vista. Entrega média agora: <b class="eta" data-eta>22 min</b>. 7 dias de garantia.</p>
-      <a class="btn alt" href="o-mapa-do-tablet-velho.pdf" download>Pegar o guia genérico gratuito</a>
+<!-- 2. PROVA -->
+<section id="prova" aria-labelledby="h-prova"><div class="wrap">
+  <h2 id="h-prova" class="big-t">Do Android 5<br><span class="r">ao Android 11.</span></h2>
+  <p class="sub center" style="margin:0 auto;text-align:center">O meu tablet estava parado desde 2017, sem nenhuma atualização. A fabricante desistiu dele. Olha o que deu pra fazer <b>no mesmo aparelho</b>, sem trocar peça:</p>
+  <div class="ab">
+    <div class="vid pic"><img src="../assets/img/tablet/android5.jpg" alt="Tela de informações do tablet: Android 5.0.2, última atualização em 2017, sem suporte" width="720" height="733" loading="lazy"><span class="tag bad">antes</span><div class="cap">Android 5.0.2, sem suporte desde 2017</div></div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="vid pic"><img src="../assets/img/tablet/salto.jpg" alt="O mesmo tablet com Android 11, portal de aulas, apostila em PDF e videoaula abertos" width="720" height="787" loading="lazy"><span class="tag good">depois · mesmo tablet</span><div class="cap">Android 11 estável, aula, PDF e vídeo abrindo</div></div>
+  </div>
+  <div class="stats">
+    <div class="glass stat"><span class="was">Android 5.0</span><b>11<small>versão do Android</small></b><span>estável, o que eu uso hoje (o 13 já está em teste)</span></div>
+    <div class="glass stat"><span class="was">parado desde 2017</span><b>3<small>saltos de sistema</small></b><span>do 5 pro 10, pro 11 e pro 13</span></div>
+    <div class="glass stat"><span class="was">"compra outro"</span><b>0<small>peças trocadas</small></b><span>o hardware é o mesmo de 2017</span></div>
+    <div class="glass stat"><span class="was">R$ 2.500</span><b>~1%<small>do preço de um novo</small></b><span>e o seu já está pago</span></div>
+  </div>
+  <p class="foot-note">// no meu tablet. Até onde o seu chega depende do modelo: o guia mostra isso logo no começo.</p>
+  <p class="cta-mid"><a class="btn" href="#planos">Quero o guia do meu tablet</a><span>Feito pro seu modelo · 7 dias de garantia</span></p>
+</div></section>
+
+<!-- 3. OS NÍVEIS -->
+<section aria-labelledby="h-niv"><div class="wrap">
+  <p class="eyebrow">o limite do seu tablet</p>
+  <h2 id="h-niv">Eu não vendo Android novo. <em class="s">Eu levo o seu tablet ao limite dele.</em></h2>
+  <p class="sub">Todo tablet passa pelos mesmos três níveis. O guia leva o seu até o último que ele aguenta, do passo mais seguro ao mais profundo.</p>
+  <div class="niveis">
+    <div class="glass nivel"><div class="lv"><i class="on"></i><i></i><i></i></div><h3>1 · Ajuste</h3><span class="pc">só o tablet</span><p>Tira o que pesa e o que a fábrica deixou ligado à toa. Ele já fica mais leve sem você precisar de computador.</p></div>
+    <div class="glass nivel"><div class="lv"><i class="on"></i><i class="on"></i><i></i></div><h3>2 · Entranhas</h3><span class="pc">tablet + computador</span><p>Pelo cabo USB, remove os apps que a fábrica forçou e que não saem pela tela. É aqui que ele respira de verdade.</p></div>
+    <div class="glass nivel"><div class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></div><h3>3 · Sistema novo</h3><span class="pc">quando existe pro seu modelo</span><p>Um Android mais novo feito pela comunidade, como o 11 que roda no meu. Se não existir pro seu, o guia diz isso antes e para no nível 2.</p></div>
+  </div>
+</div></section>
+
+<!-- 4. DOR -->
+<section aria-labelledby="h-dor"><div class="wrap">
+  <p class="eyebrow">você conhece essa cena?</p>
+  <h2 id="h-dor">Por que quase todo mundo desiste no meio.</h2>
+  <p class="sub">Eu não consigo gravar um vídeo pra cada tablet do Brasil. Cada modelo tem um arquivo próprio, e o tutorial que salvou o tablet do vizinho pode travar o seu.</p>
+  <div class="pain">
+    <div class="glass"><p><b>O PDF não abre, a aula trava</b>E o tablet foi comprado justamente pra isso.</p></div>
+    <div class="glass"><p><b>40 páginas de fórum em inglês</b>A resposta está na página 27, escrita por alguém que sumiu em 2021.</p></div>
+    <div class="glass"><p><b>Link morto</b>O arquivo que todo mundo usou não existe mais.</p></div>
+    <div class="glass"><p><b>Variante errada</b>Uma letra diferente no modelo e o tablet não liga mais.</p></div>
+    <div class="glass"><p><b>Tela estranha</b>Aparece um erro que o tutorial não mostrou e você fica sozinho com o tablet desligado na mão.</p></div>
+    <div class="glass"><p><b>"Compra outro"</b>Foi o que te disseram. E um tablet novo bom custa de R$ 2.500 a R$ 7.000.</p></div>
+  </div>
+</div></section>
+
+<!-- 5. COMO FUNCIONA -->
+<section id="como" aria-labelledby="h-como"><div class="wrap center">
+  <p class="eyebrow">como funciona</p>
+  <h2 id="h-como">Você me diz o modelo. Eu monto o caminho.</h2>
+  <p class="sub">Nada de tutorial genérico. Uma página feita só pro seu tablet, pra abrir no celular e seguir no seu ritmo.</p>
+  <div class="grid g3 steps" style="text-align:left">
+    <div class="glass card step"><h3>Você informa o modelo</h3><p>Na hora da compra. Não sabe qual é? O guia gratuito te ensina a achar em 1 minuto.</p></div>
+    <div class="glass card step"><h3>Eu pesquiso o seu modelo exato</h3><p>Arquivos certos, da fonte original, e até onde ele chega. Eu uso o Claude pra pesquisar e montar.</p></div>
+    <div class="glass card step"><h3>O link chega no seu WhatsApp</h3><p>Em média uns 20 minutos depois da compra, no número que você informar.</p></div>
+  </div>
+</div></section>
+
+<!-- 6. O QUE TEM DENTRO -->
+<section id="dentro" aria-labelledby="h-dentro"><div class="wrap">
+  <p class="eyebrow">o que tem dentro</p>
+  <h2 id="h-dentro">Uma página feita só pro seu tablet.</h2>
+  <p class="sub">Tudo o que eu precisei descobrir sozinho no meu, organizado pro seu modelo.</p>
+  <div class="grid g2">
+    <div class="glass phase"><span class="n">01</span><div><h3>Raio-x do modelo</h3><p>Até onde o seu tablet chega e em qual nível ele para.</p></div></div>
+    <div class="glass phase"><span class="n">02</span><div><h3>O plano do limite</h3><p>Do passo mais seguro ao mais profundo, na ordem certa.</p></div></div>
+    <div class="glass phase"><span class="n">03</span><div><h3>Cada passo narrado</h3><p>Onde tocar, o que digitar e o que deve aparecer na tela.</p></div></div>
+    <div class="glass phase"><span class="n">04</span><div><h3>Os erros antes deles</h3><p>Cada erro conhecido do seu modelo, já com a saída.</p></div></div>
+    <div class="glass phase"><span class="n">05</span><div><h3>Arquivos conferidos</h3><p>Só da fonte original, com a assinatura pra você conferir.</p></div></div>
+    <div class="glass phase"><span class="n">06</span><div><h3>Rota de fuga</h3><p>Como voltar ao estado de fábrica se algo sair do roteiro.</p></div></div>
+  </div>
+  <p class="cta-mid"><a class="btn" href="#planos">Quero o guia do meu tablet</a><span>Feito pro seu modelo · 7 dias de garantia</span></p>
+</div></section>
+
+<!-- 7. PRA QUEM É -->
+<section aria-labelledby="h-fit" style="padding-top:20px"><div class="wrap">
+  <h2 id="h-fit" class="center" style="text-align:center">É pra você?</h2>
+  <div class="fit">
+    <div class="glass yes"><h3>É pra você se…</h3><ul>
+      <li>tem um tablet Android parado ou lento, de qualquer marca</li>
+      <li>não quer gastar R$ 2.500 num novo agora</li>
+      <li>topa seguir um passo a passo com calma</li>
+      <li>usa o tablet pra estudar, ler PDF e ver vídeo</li>
+    </ul></div>
+    <div class="glass no"><h3>Não é pra você se…</h3><ul>
+      <li>o tablet é um iPad</li>
+      <li>ele não liga nem na tomada</li>
+      <li>quer que ele vire um tablet de jogo pesado</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<!-- 8. QUEM -->
+<section aria-labelledby="h-quem" style="padding-top:20px"><div class="wrap">
+  <div class="glass card" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+    <img src="../assets/img/luis.jpg" alt="" width="84" height="84" style="border-radius:50%;flex:0 0 84px">
+    <div style="flex:1;min-width:240px">
+      <p class="eyebrow" style="margin-bottom:6px">quem faz o seu guia</p>
+      <h2 id="h-quem" style="font-size:clamp(24px,3vw,32px);margin-bottom:8px">Eu sou o Luis, do @cobaia.dev.</h2>
+      <p style="color:var(--mu);margin:0">Eu sou a cobaia: testo tudo de verdade antes de ensinar. Ressuscitei um notebook do lixo, ajudei <b style="color:var(--tx)">3.894 pessoas</b> a fazer o mesmo com o delas, e levei o meu tablet do Android 5 ao 11. Agora é a vez do seu.</p>
     </div>
   </div>
-  <!-- VÍDEO DE VENDA 16:9: coloque o arquivo em assets/video/vsl-dia08.mp4 e preencha data-src. Sem controles: o play recomeça do zero com som. -->
-  <div class="player" data-src="../assets/video/vsl-dia08.mp4">
-    <div class="card"><b>A fabricante abandonou<br>seu tablet.</b><span>Dia 08 de 30</span></div>
-    <button class="ov" type="button" aria-label="Assistir o vídeo do começo, com som"><i></i><span>Toque pra assistir com som</span></button>
-    <div class="prog" aria-hidden="true"><i></i></div>
+</div></section>
+
+<!-- 9. COMPARAÇÃO -->
+<section aria-labelledby="h-cmp"><div class="wrap">
+  <p class="eyebrow">faça a conta</p>
+  <h2 id="h-cmp">Tablet novo ou o seu, no limite?</h2>
+  <div class="cmp">
+    <div class="glass us"><h3>Levar o seu ao limite</h3><p class="p">6x R$ 5,24</p><p class="sub">ou R$ 27,90 à vista</p><ul><li>Menos que um lanche</li><li>Nenhuma peça pra comprar</li><li>O tablet que já está na sua gaveta</li></ul></div>
+    <div class="glass new"><h3>Comprar um novo bom</h3><p class="p"><s>R$ 2.500</s></p><p class="sub">ou 12x de R$ 208</p><ul><li>Galaxy Tab S10 FE ou S11: de R$ 2.500 a R$ 7.000</li><li>Parcela no cartão por um ano</li><li>O velho continua na gaveta</li></ul></div>
   </div>
-</section>
+  <p class="pct">O guia custa cerca de <b>1%</b> do preço de um tablet novo bom.<br><span style="color:var(--mu);font-weight:700;font-size:.75em">E o seu já está pago.</span></p>
+  <p class="cta-mid"><a class="btn" href="#planos">Quero o guia do meu tablet</a><span>Feito pro seu modelo · 7 dias de garantia</span></p>
+</div></section>
 
-<section class="pin layers" aria-labelledby="h-niv">
-  <div class="stage">
-    <h2 id="h-niv" class="sr">Eu não vendo Android novo. Eu levo o seu tablet ao limite dele.</h2>
-    <div class="scene" aria-hidden="true"><div class="stack">
-      <div class="ly l-hw"><div class="pcb"><i class="soc"></i><i class="ram"></i><i class="batt-b"></i><i class="port"></i></div></div>
-      <div class="ly l-sys"><div class="sys"><span class="kern">núcleo do sistema</span><span>tela</span><span class="bloat">loja da fábrica</span><span>wi-fi</span><span class="bloat">assistente</span><span class="bloat">jogos pré-instalados</span><span>câmera</span><span class="bloat">notícias</span><span>áudio</span><span>bateria</span><span class="bloat">nuvem da marca</span><span>navegador</span><span class="bloat">"otimizador"</span></div></div>
-      <div class="ly l-ui"><div class="face f5"><div class="scrwrap" data-screen="5"></div></div><div class="face f13"><div class="scrwrap" data-screen="13"></div></div></div>
-    </div></div>
-    <div class="cap" aria-live="polite">
-      <p class="k" data-cap-k>Eu não vendo Android novo. <span>Eu levo o seu tablet ao limite dele.</span></p>
-      <p class="t" data-cap-t>Role e veja o seu tablet por dentro.</p>
-      <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec proof" aria-label="Quem está do outro lado">
-  <p class="num"><span data-count="3894">3.894</span><small>pessoas que eu ajudei a melhorar o notebook velho delas.</small></p>
-  <div class="who">
-    <img src="../assets/img/luis.jpg" alt="Foto de perfil do @cobaia.dev" width="52" height="52">
-    <p>Formado em Engenharia de Software. Ressuscitei um notebook do lixo e o meu tablet. Agora é a vez do seu.</p>
-  </div>
-</section>
-
-<section class="sec anchor" aria-labelledby="h-anc">
-  <h2 id="h-anc">Antes de gastar R$ 2.500 num tablet novo, olha isso.</h2>
-  <div class="row"><span class="what">Tablet novo bom (Galaxy Tab S10 FE, Galaxy Tab S11)</span><span class="price old"><span>12x de R$ 208</span><small class="full">ou R$ 2.500 a R$ 7.000 à vista</small></span></div>
-  <div class="row"><span class="what">O guia pro tablet que já está na sua gaveta</span><span class="price new">6x de R$ 5,24<small>ou R$ 27,90 à vista</small></span></div>
-  <p class="so">É cerca de 1% do preço de um tablet novo bom. E o seu já está pago.</p>
-</section>
-
-<section class="sec story" aria-labelledby="h-story">
-  <div>
-    <h2 id="h-story">Eu não consigo gravar um vídeo pra cada tablet do Brasil.</h2>
-    <p class="lead dim">Cada modelo tem um arquivo próprio. O tutorial que salvou o tablet do vizinho pode travar o seu.</p>
-    <p class="big">Então eu fiz diferente: <span>você me diz qual é o seu tablet, eu monto o caminho dele.</span></p>
-  </div>
-  <div class="drawer" aria-hidden="true"><div class="slab dev"><div class="tabdev"><div class="scrwrap" data-screen="5"></div></div></div></div>
-</section>
-
-<section class="pin salto" aria-labelledby="h-salto">
-  <div class="stage">
-    <h2 id="h-salto" class="sr">Do Android 5 ao 13 no meu tablet</h2>
-    <div class="ver" aria-hidden="true">5.0</div>
-    <p class="lbl">parado desde 2017</p>
-    <div class="rail" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-    <p class="note">O hardware é o mesmo de 2017. Só o sistema mudou.</p>
-    <div class="fig dev" role="img" aria-label="A tela inicial do tablet mudando do Android 5 para o 10, o 11 e o 13"><div class="tabdev">
-      <div class="face on" data-i="0"><div class="scrwrap" data-screen="5"></div></div>
-      <div class="face" data-i="1"><div class="scrwrap" data-screen="10"></div></div>
-      <div class="face" data-i="2"><div class="scrwrap" data-screen="11"></div></div>
-      <div class="face" data-i="3"><div class="scrwrap" data-screen="13"></div></div>
-    </div></div>
-  </div>
-</section>
-
-<section class="pin dor" aria-labelledby="h-dor">
-  <div class="stage">
-    <h2 id="h-dor">Por que quase todo mundo desiste no meio</h2>
-    <div class="dlgs">
-      <div class="dlg" role="group" aria-label="Motivo 1"><b>40 páginas de fórum em inglês</b><p>A resposta que você precisa está na página 27, escrita por alguém que sumiu em 2021.</p><div class="acts" aria-hidden="true"><span>AGUARDAR</span><span>OK</span></div></div>
-      <div class="dlg" role="group" aria-label="Motivo 2"><b>Link morto</b><p>O arquivo que todo mundo usou não existe mais.</p><div class="acts" aria-hidden="true"><span>AGUARDAR</span><span>OK</span></div></div>
-      <div class="dlg" role="group" aria-label="Motivo 3"><b>Variante errada</b><p>Uma letra diferente no modelo e o tablet não liga mais.</p><div class="acts" aria-hidden="true"><span>AGUARDAR</span><span>OK</span></div></div>
-      <div class="dlg" role="group" aria-label="Motivo 4"><b>Tela estranha</b><p>Aparece um erro que o tutorial não mostrou e você fica sozinho com o tablet desligado na mão.</p><div class="acts" aria-hidden="true"><span>AGUARDAR</span><span>OK</span></div></div>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="sec" aria-labelledby="h-ent">
-  <div class="deliv">
-    <div class="phone2" role="img" aria-label="Prévia do guia: uma página feita pro modelo do tablet, com raio-x, plano e passos ilustrados">
-      <i class="btn-a"></i><i class="btn-b"></i><i class="btn-c"></i>
-      <div class="glass2"><div class="island"></div><div class="sbar"><b>9:41</b><span><i></i><i></i></span></div>
-      <div class="gfeed">
-        <div class="gh"><span class="gtag">Seu guia</span><span class="gm">SM-T580, Wi-Fi</span></div>
-        <div class="gt">Galaxy Tab A 10.1</div>
-        <div class="gx"><div class="ring" style="--v:43"><b>6/14</b></div><div><b>Você está no nível 2</b><span>Este modelo chega ao nível 3: Android 11 da comunidade.</span></div></div>
-        <div class="glv"><i class="on"></i><i class="on"></i><i></i><span>1 ajuste</span><span>2 entranhas</span><span>3 sistema novo</span></div>
-        <div class="gs">
-          <div class="gsn">Passo 6</div>
-          <div class="gst">Confira se o computador enxerga o tablet</div>
-          <div class="gill"><div class="pc"><i></i></div><div class="cab"></div><div class="tb"><i></i></div></div>
-          <div class="gcode"><span>$</span> adb devices</div>
-          <div class="gok">Deve aparecer o número do tablet e a palavra <b>device</b>.</div>
-        </div>
-        <div class="gerr"><b>Apareceu "unauthorized"?</b><span>Desbloqueie a tela do tablet e toque em Permitir.</span></div>
-        <div class="gs dim"><div class="gsn">Passo 7</div><div class="gst">Remova os apps que a fábrica forçou</div></div>
-      </div>
-      <div class="lock"><i></i><b>O resto é do seu modelo</b><span>8 passos, a rota de fuga e os arquivos conferidos</span></div>
-      </div>
-    </div>
-    <div>
-      <h2 id="h-ent">Uma página feita só pro seu tablet</h2>
-      <p class="lead">Um link pra abrir no celular e seguir no seu ritmo.</p>
-      <ul class="ilist">
-        <li><div><b>Raio-x do modelo</b><span>Até onde o seu tablet chega.</span></div></li>
-        <li><div><b>O plano do limite</b><span>Do passo mais seguro ao mais profundo.</span></div></li>
-        <li><div><b>Cada passo narrado</b><span>Onde tocar e o que deve aparecer.</span></div></li>
-        <li><div><b>Os erros antes deles</b><span>E a saída de cada um.</span></div></li>
-        <li><div><b>Arquivos conferidos</b><span>Só fonte original.</span></div></li>
-        <li><div><b>Rota de fuga</b><span>Volta ao estado de fábrica se algo sair do roteiro.</span></div></li>
-      </ul>
-      <p class="fine" style="margin-top:24px">Entrega média agora: <b class="eta" data-eta>22 min</b>, no WhatsApp que você informar na compra.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec offer" id="oferta" aria-labelledby="h-of">
-  <h2 id="h-of">Sozinho com o guia, ou comigo do lado.</h2>
-  <div class="plans">
-    <article class="plan">
+<!-- 10. OFERTA -->
+<section id="planos" aria-labelledby="h-planos"><div class="wrap center">
+  <p class="eyebrow">escolha o seu</p>
+  <h2 id="h-planos">Sozinho com o guia, ou comigo do lado.</h2>
+  <p class="sub">Você informa o modelo na compra e o link chega no seu WhatsApp.</p>
+  <div class="grid g2" style="text-align:left;max-width:900px;margin:0 auto">
+    <div class="glass price">
       <h3>Só o guia</h3>
-      <p class="for">Pra quem quer ir por conta própria.</p>
-      <div class="val"><small>6x de R$</small><big>5</big><sup>,24</sup></div>
-      <p class="full">ou R$ 27,90 à vista</p>
+      <p style="color:var(--mu);margin:0">Pra quem quer ir por conta própria.</p>
+      <div class="val"><span class="x">6x</span><small>R$</small>5,24</div>
+      <p class="pix">ou R$ 27,90 à vista no Pix</p>
       <ul>
-        <li>Guia do seu modelo, num link só seu</li>
-        <li>Cada passo narrado e cada erro previsto</li>
-        <li class="no">Acompanhamento individual no WhatsApp</li>
+        <li><b>Guia do seu modelo</b>, num link só seu</li>
+        <li>Raio-x, plano do limite e cada passo narrado</li>
+        <li>Os erros conhecidos, já com a saída</li>
+        <li>Arquivos conferidos e rota de fuga</li>
+        <li class="no">Eu no seu WhatsApp, do início ao fim</li>
+        <li class="no">Eu olho cada tela estranha com você</li>
       </ul>
-      <a class="btn paper" href="#" data-checkout="guia">Quero só o guia</a>
-      <p class="safe">7 dias de garantia</p>
-    </article>
-    <article class="plan hot">
+      <a class="btn full ghost" data-checkout="guia" href="#planos">Quero só o guia</a>
+    </div>
+    <div class="glass price hl">
       <span class="badge">Eu do seu lado</span>
       <h3>Guia + eu do seu lado</h3>
-      <p class="for">Pra quem quer chegar no fim sem travar em nada.</p>
-      <div class="val"><small>12x de R$</small><big>10</big><sup>,13</sup></div>
-      <p class="full">ou R$ 97,90 à vista</p>
+      <p style="color:var(--mu);margin:0">Pra quem quer chegar no fim sem travar em nada.</p>
+      <div class="val"><span class="x">12x</span><small>R$</small>10,13</div>
+      <p class="pix">ou R$ 97,90 à vista no Pix</p>
+      <span class="inc">🎁 O guia do seu modelo vem junto</span>
       <ul>
-        <li>Guia do seu modelo, num link só seu</li>
-        <li>Acompanhamento individual no WhatsApp, caso a caso, do início ao fim</li>
+        <li><b>Tudo do guia</b>: raio-x, plano, passos narrados, erros previstos e rota de fuga</li>
+        <li><b>Eu no seu WhatsApp</b>, caso a caso, do início ao fim</li>
+        <li>Travou? Você me manda a foto da tela e eu te digo o que fazer</li>
         <li>Eu olho cada erro e cada tela estranha com você</li>
       </ul>
-      <a class="btn main" href="#" data-checkout="combo">Quero o guia com você do meu lado</a>
-      <p class="safe">7 dias de garantia</p>
-    </article>
+      <a class="btn full" data-checkout="combo" href="#planos">Quero o guia com você do meu lado</a>
+    </div>
   </div>
-  <p class="after">Pix ou cartão. Você informa o modelo na compra e o guia chega no seu WhatsApp. Entrega média agora: <b class="eta" data-eta>22 min</b>.</p>
-</section>
+  <div class="secure"><span>🔒 Pagamento seguro pela Kiwify</span><span>📱 Link no seu WhatsApp</span><span>↩️ 7 dias de garantia</span></div>
+  <p class="free">Ainda não quer pagar? <a href="o-mapa-do-tablet-velho.pdf" download>Baixe o guia genérico gratuito</a></p>
+</div></section>
 
-<section class="sec" aria-labelledby="h-gar">
-  <div class="gar">
-    <div class="seven" aria-hidden="true">7</div>
-    <div><h2 id="h-gar">7 dias. Sem pergunta.</h2><p class="lead">Não era o que você esperava? O dinheiro volta inteiro.</p></div>
+<!-- 11. GARANTIA -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="glass guar">
+    <div class="seal">7<small>DIAS</small></div>
+    <div><h3 style="font:900 24px var(--f);margin:0 0 6px">O risco é todo meu</h3>
+    <p style="color:var(--mu);margin:0">Não era o que você esperava? Peça o reembolso na própria Kiwify em até 7 dias e receba tudo de volta, sem pergunta.</p></div>
   </div>
-</section>
+</div></section>
 
-<section class="sec" aria-labelledby="h-fit">
-  <h2 id="h-fit" class="sr">Pra quem é</h2>
-  <div class="fit">
-    <div><h3>É pra você se</h3><ul><li>Tem um tablet Android parado ou lento, de qualquer marca</li><li>Topa seguir um passo a passo com calma</li></ul></div>
-    <div><h3>Não é pra você se</h3><ul><li>O tablet é um iPad</li><li>Ele não liga nem na tomada</li></ul></div>
+<!-- 12. FAQ -->
+<section aria-labelledby="h-faq"><div class="wrap" style="max-width:820px">
+  <p class="eyebrow">perguntas frequentes</p>
+  <h2 id="h-faq">Antes de comprar</h2>
+  <details class="q"><summary>Preciso ter o Claude?</summary><p>Não. Eu uso o Claude pra pesquisar e montar o seu guia. Você só segue.</p></details>
+  <details class="q"><summary>Preciso de computador?</summary><p>Pro nível 1, não. Pros níveis 2 e 3, sim: um computador e um cabo USB que transfira dados.</p></details>
+  <details class="q"><summary>Vou conseguir subir a versão do Android?</summary><p>Se existir sistema da comunidade pro seu modelo, sim, o guia te leva até ele. Se não existir, o seu tablet vai até o limite pelos outros níveis.</p></details>
+  <details class="q"><summary>E se o meu modelo for raro?</summary><p>Eu pesquiso o seu modelo exato. Se não existir sistema da comunidade pra ele, o guia leva o tablet até o nível 2 e explica por que ele para ali.</p></details>
+  <details class="q"><summary>Posso estragar meu tablet?</summary><p>Mexer no sistema sempre tem algum risco. O guia reduz ao mínimo: arquivo certo, ordem certa e rota de fuga em cada etapa.</p></details>
+  <details class="q"><summary>E se eu travar no meio?</summary><p>Com o plano "eu do seu lado", você me chama e a gente resolve junto. Só com o guia, cada erro conhecido já vem com a saída.</p></details>
+  <details class="q"><summary>Comprei só o guia. Dá pra ter você do lado depois?</summary><p>Dá, pagando só a diferença. Quando o guia chegar no seu WhatsApp, é só me responder pedindo.</p></details>
+  <details class="q"><summary>Como eu recebo?</summary><p>Você informa o modelo e o WhatsApp na compra. O link do seu guia chega lá, em média uns 20 minutos depois.</p></details>
+</div></section>
+
+<!-- 13. CTA FINAL -->
+<section style="padding-top:20px"><div class="wrap">
+  <div class="glass final">
+    <p class="eyebrow">ele está na gaveta agora</p>
+    <h2>Tira ele de lá.</h2>
+    <p class="sub" style="margin:0 auto 26px">Por cerca de 1% do preço de um tablet novo, com 7 dias de garantia.</p>
+    <a class="btn" href="#planos">Quero o guia do meu tablet</a>
   </div>
-</section>
-
-<section class="sec faq" aria-labelledby="h-faq">
-  <h2 id="h-faq">Dúvidas</h2>
-  <details><summary>Preciso ter o Claude?</summary><p>Não. Eu uso o Claude pra pesquisar e montar o seu guia. Você só segue.</p></details>
-  <details><summary>Preciso de computador?</summary><p>Pro nível 1, não. Pros níveis 2 e 3, sim: um computador e um cabo USB que transfira dados.</p></details>
-  <details><summary>Vou conseguir subir a versão do Android?</summary><p>Se existir sistema da comunidade pro seu modelo, sim, o guia te leva até ele. Se não existir, o seu tablet vai até o limite pelos outros níveis.</p></details>
-  <details><summary>E se o meu modelo for raro?</summary><p>Eu pesquiso o seu modelo exato. Se não existir sistema da comunidade pra ele, o guia leva o tablet até o nível 2 e explica por que ele para ali.</p></details>
-  <details><summary>Posso estragar meu tablet?</summary><p>Mexer no sistema sempre tem algum risco. O guia reduz ao mínimo: arquivo certo, ordem certa e rota de fuga em cada etapa.</p></details>
-  <details><summary>E se eu travar no meio?</summary><p>Com suporte, você me chama e a gente resolve junto. Só com o guia, cada erro conhecido já vem com a saída.</p></details>
-  <details><summary>Comprei só o guia. Dá pra ter você do lado depois?</summary><p>Dá, pagando só a diferença. Quando o guia chegar no seu WhatsApp, é só me responder pedindo.</p></details>
-</section>
-
-<section class="sec end" aria-labelledby="h-end">
-  <p class="pre">ele está na gaveta agora.</p>
-  <h2 id="h-end">Tira ele de lá.</h2>
-  <div class="ctas">
-    <a class="btn main" href="#oferta">Quero o guia para o meu modelo de tablet</a>
-    <a class="btn alt" href="o-mapa-do-tablet-velho.pdf" download>Pegar o guia genérico gratuito</a>
-  </div>
-</section>
-
+</div></section>
 </main>
 
-<footer>
-  <span>© 2026 @cobaia.dev, 30 experimentos com Claude. <a href="../30-dias/">Ver todos os dias</a></span>
-  <span>Preços de tablets novos consultados em nov/2026: <a href="https://canaltech.com.br/tablet/tablet-custo-beneficio-da-samsung-chega-ao-menor-preco-historico-com-cupom/" rel="noopener" target="_blank">Canaltech</a> e <a href="https://tecnoblog.net/noticias/samsung-lanca-galaxy-s25-fe-tab-s11-e-s10-lite-no-brasil-veja-os-precos/" rel="noopener" target="_blank">Tecnoblog</a>. Fonte Archivo (OFL).</span>
-</footer>
+<footer><div class="wrap">
+  <p>@cobaia.dev · eu testo, você aprende · <a href="../30-dias/">todos os experimentos</a></p>
+  <p>Preços de tablets novos consultados em nov/2026: <a href="https://canaltech.com.br/tablet/tablet-custo-beneficio-da-samsung-chega-ao-menor-preco-historico-com-cupom/" rel="noopener" target="_blank">Canaltech</a> e <a href="https://tecnoblog.net/noticias/samsung-lanca-galaxy-s25-fe-tab-s11-e-s10-lite-no-brasil-veja-os-precos/" rel="noopener" target="_blank">Tecnoblog</a>.</p>
+</div></footer>
 
-<div class="stick" aria-hidden="true"><div class="in">
-  <span class="t"><b>Guia do seu tablet</b><small>6x de R$ 5,24 ou R$ 27,90</small></span>
-  <a class="btn main" href="#oferta" tabindex="-1">Quero</a>
-</div></div>
+<div class="sticky-cta glass" id="sticky"><span>Feito pro seu modelo<br><b>Guia do seu tablet</b></span><a class="btn" href="#planos">Ver planos</a></div>
 
-<script src="../assets/lp-screens.js"></script>
-<script src="../assets/lp-tablet.js"></script>
+<script>
+window.LP = {
+  src: '',
+  checkout: {
+    guia: 'https://pay.kiwify.com.br/KjZdaDl',   // Guia do seu tablet (R$ 27,90)
+    combo: 'https://pay.kiwify.com.br/y20fMyy'   // Guia + suporte (R$ 97,90)
+  }
+};
+</script>
+<script src="../assets/lp/molde.js"></script>
 </body>
 </html>
