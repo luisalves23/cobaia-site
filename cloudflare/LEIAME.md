@@ -12,3 +12,5 @@ O site antigo na Vercel (`cobaia-dev.vercel.app`) continua no ar, com as mesmas 
 Publicação: Workers Builds do Cloudflare, a cada push na branch ligada ao Worker `cobaia-site`.
 
 Testar no computador: `npx wrangler@4 dev --port 8798` e abrir `http://127.0.0.1:8798/30-dias/`.
+
+Branch de produção hoje: `claude/project-thread-kivilz` (até o PR para `main` ser aceito; depois troca para `main` em Settings → Builds). O comando de deploy é `test -f cloudflare/site.mjs && npx wrangler deploy`, para que um build da `main` antiga nunca publique nada.
